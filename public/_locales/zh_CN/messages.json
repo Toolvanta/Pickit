@@ -1,0 +1,11 @@
+{
+  "extName": {
+    "message": "PickKit – 取色器和字体识别"
+  },
+  "extDescription": {
+    "message": "从网页或屏幕拾取任意颜色，悬停即可识别字体，检查对比度并导出调色板。"
+  },
+  "actionTitle": {
+    "message": "打开 PickKit"
+  }
+}

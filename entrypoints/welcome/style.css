@@ -1,0 +1,57 @@
+body {
+  background: var(--pk-surface);
+}
+
+.welcome {
+  display: grid;
+  justify-items: center;
+  gap: var(--pk-space-3);
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 64px var(--pk-space-4);
+  text-align: center;
+}
+
+.welcome h1 {
+  font-size: 28px;
+}
+
+.lead {
+  font-size: var(--pk-text-l);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--pk-space-3);
+  width: 100%;
+  margin: var(--pk-space-5) 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.step {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--pk-space-2);
+  padding: var(--pk-space-4);
+}
+
+.step-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: var(--pk-space-1);
+  border-radius: var(--pk-radius-m);
+  background: var(--pk-accent-soft);
+  color: var(--pk-accent);
+}
+
+.welcome .btn {
+  height: 38px;
+  padding: 0 20px;
+  font-size: var(--pk-text-m);
+}

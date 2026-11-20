@@ -1,0 +1,11 @@
+{
+  "extName": {
+    "message": "PickKit – Pipette à couleurs et détecteur de polices"
+  },
+  "extDescription": {
+    "message": "Prélevez une couleur sur une page ou à l'écran, identifiez les polices au survol, vérifiez le contraste et exportez vos palettes."
+  },
+  "actionTitle": {
+    "message": "Ouvrir PickKit"
+  }
+}

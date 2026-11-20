@@ -1,0 +1,466 @@
+/* Base styles and components shared by every extension page. */
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+html[data-theme='light'] {
+  color-scheme: light;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--pk-bg);
+  color: var(--pk-text);
+  font: 400 var(--pk-text-m) / 1.45 var(--pk-font);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--pk-text-xl);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: var(--pk-text-l);
+  font-weight: 650;
+}
+
+h3 {
+  font-size: var(--pk-text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--pk-text-3);
+}
+
+a {
+  color: var(--pk-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--pk-accent);
+  outline-offset: 2px;
+}
+
+.mono {
+  font-family: var(--pk-mono);
+}
+
+.muted {
+  color: var(--pk-text-2);
+}
+
+.small {
+  font-size: var(--pk-text-s);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--pk-space-2);
+}
+
+.between {
+  justify-content: space-between;
+}
+
+.stack {
+  display: grid;
+  gap: var(--pk-space-3);
+}
+
+.grow {
+  flex: 1;
+  min-width: 0;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--pk-border);
+  border-radius: var(--pk-radius-s);
+  background: var(--pk-bg);
+  color: var(--pk-text);
+  font: 600 var(--pk-text-s) / 1 var(--pk-font);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--pk-fast) var(--pk-ease), border-color var(--pk-fast) var(--pk-ease);
+}
+
+.btn:hover {
+  background: var(--pk-surface);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--pk-accent);
+  border-color: var(--pk-accent);
+  color: var(--pk-on-accent);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--pk-accent-hover);
+  border-color: var(--pk-accent-hover);
+}
+
+.btn-ghost {
+  border-color: transparent;
+  background: transparent;
+}
+
+.btn-ghost:hover {
+  background: var(--pk-surface-2);
+}
+
+.btn-danger {
+  color: var(--pk-danger);
+}
+
+.btn-danger:hover {
+  background: var(--pk-danger-soft);
+  border-color: var(--pk-danger-soft);
+}
+
+.btn-small {
+  height: 26px;
+  padding: 0 8px;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--pk-radius-s);
+  background: transparent;
+  color: var(--pk-text-2);
+  cursor: pointer;
+  transition: background var(--pk-fast) var(--pk-ease), color var(--pk-fast) var(--pk-ease);
+}
+
+.icon-btn:hover {
+  background: var(--pk-surface-2);
+  color: var(--pk-text);
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+/* ---------- Inputs ---------- */
+
+.input,
+.select {
+  height: 32px;
+  width: 100%;
+  padding: 0 10px;
+  border: 1px solid var(--pk-border);
+  border-radius: var(--pk-radius-s);
+  background: var(--pk-bg);
+  color: var(--pk-text);
+  font: 500 var(--pk-text-s) var(--pk-font);
+}
+
+.input:hover,
+.select:hover {
+  border-color: var(--pk-border-strong);
+}
+
+.input.mono {
+  font-family: var(--pk-mono);
+}
+
+.input[aria-invalid='true'] {
+  border-color: var(--pk-danger);
+}
+
+.segmented {
+  display: inline-flex;
+  padding: 2px;
+  gap: 2px;
+  border-radius: var(--pk-radius-s);
+  background: var(--pk-surface-2);
+}
+
+.segmented button {
+  height: 26px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--pk-text-2);
+  font: 600 var(--pk-text-s) var(--pk-font);
+  cursor: pointer;
+}
+
+.segmented button[aria-pressed='true'] {
+  background: var(--pk-bg);
+  color: var(--pk-text);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.12);
+}
+
+/* ---------- Surfaces ---------- */
+
+.card {
+  padding: var(--pk-space-3);
+  border: 1px solid var(--pk-border);
+  border-radius: var(--pk-radius-m);
+  background: var(--pk-bg);
+}
+
+.banner {
+  display: flex;
+  gap: var(--pk-space-2);
+  padding: 10px 12px;
+  border-radius: var(--pk-radius-m);
+  background: var(--pk-surface);
+  color: var(--pk-text-2);
+  font-size: var(--pk-text-s);
+}
+
+.banner strong {
+  display: block;
+  color: var(--pk-text);
+}
+
+.banner-warn {
+  background: var(--pk-danger-soft);
+}
+
+.banner-warn .icon {
+  color: var(--pk-danger);
+}
+
+.empty {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: var(--pk-space-5) var(--pk-space-4);
+  text-align: center;
+  color: var(--pk-text-2);
+  font-size: var(--pk-text-s);
+}
+
+.empty-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 4px;
+  border-radius: 50%;
+  background: var(--pk-surface);
+  color: var(--pk-text-3);
+}
+
+.empty strong {
+  color: var(--pk-text);
+  font-size: var(--pk-text-m);
+}
+
+kbd {
+  display: inline-block;
+  padding: 1px 6px;
+  border: 1px solid var(--pk-border-strong);
+  border-radius: 4px;
+  background: var(--pk-surface);
+  color: var(--pk-text);
+  font: 600 var(--pk-text-xs) var(--pk-mono);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--pk-surface-2);
+  color: var(--pk-text-2);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.badge-pass {
+  background: var(--pk-success-soft);
+  color: var(--pk-success);
+}
+
+.badge-fail {
+  background: var(--pk-danger-soft);
+  color: var(--pk-danger);
+}
+
+/* ---------- Colour pieces ---------- */
+
+.swatch {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 1px solid rgb(128 128 128 / 0.3);
+  border-radius: var(--pk-radius-s);
+  cursor: pointer;
+  transition: transform var(--pk-fast) var(--pk-ease);
+}
+
+.swatch:hover {
+  transform: scale(1.08);
+}
+
+.swatch[aria-pressed='true'] {
+  outline: 2px solid var(--pk-accent);
+  outline-offset: 2px;
+}
+
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 6px;
+}
+
+.dot {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid rgb(128 128 128 / 0.35);
+}
+
+.copy-rows {
+  display: grid;
+  gap: 1px;
+  border-radius: var(--pk-radius-s);
+  overflow: hidden;
+}
+
+.copy-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pk-space-3);
+  width: 100%;
+  padding: 7px 10px;
+  border: 0;
+  background: var(--pk-surface);
+  color: var(--pk-text);
+  font: 500 var(--pk-text-s) var(--pk-font);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--pk-fast) var(--pk-ease);
+}
+
+.copy-row:hover {
+  background: var(--pk-surface-2);
+}
+
+.copy-row:focus-visible {
+  outline-offset: -2px;
+}
+
+.copy-row-label {
+  width: 44px;
+  flex: none;
+  color: var(--pk-text-3);
+  font-size: var(--pk-text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.copy-row-value {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--pk-mono);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.copy-row .icon {
+  color: var(--pk-text-3);
+}
+
+.copy-row[data-copied] .icon {
+  color: var(--pk-success);
+}
+
+/* ---------- Toasts ---------- */
+
+.toaster {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.toast {
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--pk-text);
+  color: var(--pk-bg);
+  font-size: var(--pk-text-s);
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: var(--pk-shadow);
+  animation: toast-in var(--pk-fast) var(--pk-ease);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

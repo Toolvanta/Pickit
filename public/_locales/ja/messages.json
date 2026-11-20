@@ -1,0 +1,11 @@
+{
+  "extName": {
+    "message": "PickKit – カラーピッカー＆フォント検出"
+  },
+  "extDescription": {
+    "message": "ページや画面から色を取得し、ホバーでフォントを特定。コントラストの確認やパレットの書き出しもできます。"
+  },
+  "actionTitle": {
+    "message": "PickKit を開く"
+  }
+}

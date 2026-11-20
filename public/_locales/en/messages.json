@@ -1,0 +1,11 @@
+{
+  "extName": {
+    "message": "PickKit – Color Picker & Font Finder"
+  },
+  "extDescription": {
+    "message": "Pick any color from a page or your screen, identify fonts on hover, check contrast and export palettes. Fast and keyboard-friendly."
+  },
+  "actionTitle": {
+    "message": "Open PickKit"
+  }
+}

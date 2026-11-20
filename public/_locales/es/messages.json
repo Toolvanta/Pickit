@@ -1,0 +1,11 @@
+{
+  "extName": {
+    "message": "PickKit – Selector de color y buscador de fuentes"
+  },
+  "extDescription": {
+    "message": "Captura colores de cualquier página o de tu pantalla, identifica fuentes al pasar el cursor, revisa el contraste y exporta paletas."
+  },
+  "actionTitle": {
+    "message": "Abrir PickKit"
+  }
+}

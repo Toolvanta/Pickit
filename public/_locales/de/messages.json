@@ -1,0 +1,11 @@
+{
+  "extName": {
+    "message": "PickKit – Farbpipette & Schriftarten-Finder"
+  },
+  "extDescription": {
+    "message": "Farben von jeder Seite oder vom Bildschirm aufnehmen, Schriftarten per Hover erkennen, Kontrast prüfen und Paletten exportieren."
+  },
+  "actionTitle": {
+    "message": "PickKit öffnen"
+  }
+}

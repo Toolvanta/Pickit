@@ -1,0 +1,11 @@
+{
+  "extName": {
+    "message": "PickKit – Seletor de cores e identificador de fontes"
+  },
+  "extDescription": {
+    "message": "Capture qualquer cor de uma página ou da tela, identifique fontes ao passar o mouse, verifique o contraste e exporte paletas."
+  },
+  "actionTitle": {
+    "message": "Abrir o PickKit"
+  }
+}
