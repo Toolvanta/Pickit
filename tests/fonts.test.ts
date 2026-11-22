@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { fontCss, isGenericFamily, lineHeightLabel, parseFontStack, weightName, type FontInfo } from '../core/fonts';
+import { fontCss, isGenericFamily, lineHeightLabel, parseFontStack, weightName, type FontInfo } from '../src/core/fonts';
 
 describe('parseFontStack', () => {
   it('splits families and strips quotes', () => {

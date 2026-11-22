@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { isRestrictedUrl } from '../core/config';
-import { exportColors, slug } from '../core/export';
+import { isRestrictedUrl } from '../src/core/config';
+import { exportColors, slug } from '../src/core/export';
 
 describe('slug', () => {
   it('makes a CSS-safe name', () => {

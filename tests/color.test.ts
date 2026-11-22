@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   contrastRatio, formatColor, hexToRgb, nearestColorName, oklchToRgb, parseColor, rgbToHex, rgbToHsl,
   rgbToOklch, sameColor, shades, wcag,
-} from '../core/color';
+} from '../src/core/color';
 
 const red = { r: 255, g: 0, b: 0, a: 1 };
 const white = { r: 255, g: 255, b: 255, a: 1 };

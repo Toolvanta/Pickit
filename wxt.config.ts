@@ -4,6 +4,7 @@ import { defineConfig } from 'wxt';
 // no "read your data on all websites" warning at install. All-sites access is an
 // optional permission the user can grant from the side panel (auto-scan).
 export default defineConfig({
+  srcDir: 'src',
   modules: ['@wxt-dev/module-react'],
   manifest: {
     name: '__MSG_extName__',

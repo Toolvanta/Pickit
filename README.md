@@ -26,10 +26,10 @@ Colour picker and font inspector for Chrome (Manifest V3).
 
 | Path | Contents |
 |---|---|
-| `core/` | Logic with no UI framework: colour maths, font detection, page scan, storage, export |
-| `core/overlay/` | The in-page overlay: shadow-DOM shell, colour loupe, font inspector |
-| `entrypoints/` | Background worker, injected overlay script, popup, side panel, settings, welcome page |
-| `ui/` | Design tokens and shared React components |
+| `src/core/` | Logic with no UI framework: colour maths, font detection, page scan, storage, export |
+| `src/core/overlay/` | The in-page overlay: shadow-DOM shell, colour loupe, font inspector |
+| `src/entrypoints/` | Background worker, injected overlay script, popup, side panel, settings, welcome page |
+| `src/ui/` | Design tokens and shared React components |
 | `public/_locales/` | Store listing name and description in ten languages |
 | `scripts/preview/` | Test page and `chrome.*` stand-in used by `npm run preview` |
 
@@ -41,5 +41,5 @@ settings when the user turns on automatic page scanning.
 
 ## Before publishing
 
-- Set `UNINSTALL_FEEDBACK_URL` in `core/config.ts` once a feedback form exists.
-- `core/features.ts` is the single place to gate features if a paid tier is added.
+- Set `UNINSTALL_FEEDBACK_URL` in `src/core/config.ts` once a feedback form exists.
+- `src/core/features.ts` is the single place to gate features if a paid tier is added.
