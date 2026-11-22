@@ -1,27 +1,117 @@
 body {
-  background: var(--pk-surface);
+  background: var(--pk-bg);
 }
 
 .options {
   display: grid;
-  gap: var(--pk-space-5);
-  max-width: 680px;
+  gap: var(--pk-space-6);
+  max-width: 760px;
   margin: 0 auto;
-  padding: var(--pk-space-6) var(--pk-space-4);
+  padding: var(--pk-space-6) var(--pk-space-4) var(--pk-space-7);
 }
 
-.options header {
+/* The markup applies the shared entrance utility; this page stays still. */
+.options .fade-up {
+  animation: none;
+}
+
+/* ---------- Page header ---------- */
+
+.options-identity {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   gap: var(--pk-space-3);
 }
 
-.options h3 {
-  margin-bottom: var(--pk-space-2);
+.options-mark {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  flex: none;
+  border: 1px solid var(--pk-border);
+  border-radius: var(--pk-radius-s);
+  background: var(--pk-surface-raised);
 }
 
-.group {
+.options-mark img {
+  display: block;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--pk-radius-xs);
+}
+
+.options-identity h1 {
+  font-size: var(--pk-text-2xl);
+}
+
+.options-eyebrow {
+  color: var(--pk-accent);
+}
+
+.options-sub {
+  max-width: 440px;
+  margin-top: 2px;
+}
+
+.version-badge {
+  align-self: flex-start;
+  margin-left: auto;
+}
+
+/* ---------- Sections ---------- */
+
+.settings-section {
+  display: grid;
+  gap: var(--pk-space-3);
+  padding-top: var(--pk-space-5);
+  border-top: 1px solid var(--pk-border);
+}
+
+.settings-section .section-head {
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.section-title {
+  color: var(--pk-text);
+  font-size: var(--pk-text-xl);
+  font-weight: 700;
+  letter-spacing: var(--pk-track-tight);
+}
+
+.section-desc {
+  max-width: 540px;
+  margin-top: 3px;
+  line-height: 1.5;
+}
+
+.section-glyph {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: none;
   border: 1px solid var(--pk-border);
-  border-radius: var(--pk-radius-m);
-  background: var(--pk-bg);
+  border-radius: var(--pk-radius-xs);
+  background: var(--pk-surface);
+  color: var(--pk-text-2);
+}
+
+/* The markup keeps .card, but here it is a plain list: no surface, radius or elevation. */
+.card.settings-group {
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transition: none;
+}
+
+.card.settings-group:hover {
+  border-color: transparent;
 }
 
 .setting {
@@ -29,20 +119,259 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: var(--pk-space-4);
-  padding: 14px var(--pk-space-4);
-}
-
-.setting + .setting {
+  padding: 12px 0;
   border-top: 1px solid var(--pk-border);
 }
 
-.setting-title {
-  font-weight: 600;
+.setting-copy {
+  display: grid;
+  gap: 2px;
 }
 
-@media (max-width: 560px) {
+.setting-title {
+  font-size: var(--pk-text-m);
+  font-weight: 650;
+}
+
+.setting-control {
+  display: flex;
+  align-items: center;
+  flex: none;
+  gap: var(--pk-space-3);
+}
+
+.history-select {
+  width: 116px;
+}
+
+/* ---------- Controls ---------- */
+
+.key-chips {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.key-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.key-chips kbd {
+  padding: 4px 8px;
+  border: 1px solid var(--pk-border-strong);
+  border-bottom-width: 2px;
+  border-radius: var(--pk-radius-xs);
+  background: var(--pk-surface);
+  color: var(--pk-text);
+}
+
+.key-plus {
+  color: var(--pk-text-3);
+  font-size: var(--pk-text-xs);
+}
+
+.permission-badge {
+  gap: 6px;
+  border: 1px solid var(--pk-border);
+}
+
+.permission-badge.badge-pass {
+  border-color: color-mix(in srgb, var(--pk-success) 35%, var(--pk-border));
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ---------- Theme preview ---------- */
+
+.setting-wide {
+  align-items: flex-start;
+}
+
+.setting-wide .setting-control {
+  display: grid;
+  gap: var(--pk-space-2);
+  width: min(320px, 100%);
+}
+
+.theme-preview {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--pk-space-2);
+}
+
+.theme-tile {
+  position: relative;
+  display: grid;
+  gap: 5px;
+  padding: 6px;
+  border: 1px solid var(--pk-border);
+  border-radius: var(--pk-radius-xs);
+  background: var(--pk-surface);
+}
+
+.theme-tile.is-active {
+  border-color: var(--pk-accent);
+  outline: 1px solid var(--pk-accent);
+  outline-offset: 1px;
+}
+
+.theme-tile[data-theme='light'] {
+  --tile-bg: #f6faf7;
+  --tile-line: #d6e4da;
+  --tile-chip: #0f7a55;
+  --tile-dot: #b9cfc0;
+}
+
+.theme-tile[data-theme='dark'] {
+  --tile-bg: #0f1713;
+  --tile-line: #2a3b31;
+  --tile-chip: #5fd39a;
+  --tile-dot: #3d5547;
+}
+
+.theme-tile[data-theme='system'] {
+  --tile-bg: #f6faf7;
+  --tile-line: #9ab3a3;
+  --tile-chip: #0b6245;
+  --tile-dot: #8aa795;
+}
+
+.theme-window {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  height: 46px;
+  padding: 6px;
+  overflow: hidden;
+  border: 1px solid var(--tile-line);
+  border-radius: var(--pk-radius-xs);
+  background: var(--tile-bg);
+}
+
+/* System mode is a hard light/dark split of two solid halves, not a blend. */
+.theme-tile[data-theme='system'] .theme-window::before,
+.theme-tile[data-theme='system'] .theme-window::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  pointer-events: none;
+}
+
+.theme-tile[data-theme='system'] .theme-window::before {
+  left: 0;
+  background: #f6faf7;
+}
+
+.theme-tile[data-theme='system'] .theme-window::after {
+  right: 0;
+  background: #0f1713;
+}
+
+.theme-tile[data-theme='system'] .theme-window > * {
+  position: relative;
+  z-index: 1;
+}
+
+.theme-window-bar {
+  display: flex;
+  gap: 3px;
+}
+
+.theme-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--tile-dot);
+}
+
+.theme-line {
+  height: 4px;
+  border-radius: 3px;
+  background: var(--tile-line);
+}
+
+.theme-line.short {
+  width: 62%;
+}
+
+.theme-chip {
+  width: 30px;
+  height: 7px;
+  border-radius: 3px;
+  background: var(--tile-chip);
+}
+
+.theme-label {
+  color: var(--pk-text-3);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: var(--pk-track-label);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.theme-tile.is-active .theme-label {
+  color: var(--pk-accent);
+}
+
+.theme-check {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--pk-accent);
+  border-radius: 50%;
+  background: var(--pk-surface-raised);
+  color: var(--pk-accent);
+}
+
+/* ---------- Privacy note ---------- */
+
+.banner.privacy-note {
+  margin: var(--pk-space-3) 0 0;
+  padding: 10px 12px;
+  border: 1px solid var(--pk-border);
+  border-radius: var(--pk-radius-xs);
+  background: var(--pk-surface);
+}
+
+@media (max-width: 620px) {
   .setting {
     flex-direction: column;
     align-items: flex-start;
+    gap: var(--pk-space-3);
+  }
+
+  .setting-control {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .setting-wide .setting-control {
+    width: 100%;
+  }
+
+  .version-badge {
+    margin-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-tile,
+  .key-chips kbd {
+    transition: none;
   }
 }

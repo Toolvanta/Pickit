@@ -1,14 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { browser } from 'wxt/browser';
-import { hexToRgb, nearestColorName } from '@/core/color';
+import { contrastRatio, hexToRgb, nearestColorName, readableOn } from '@/core/color';
 import { isRestrictedUrl, RATING_PROMPT_AFTER_PICKS, SHORTCUTS, storeReviewUrl } from '@/core/config';
 import { weightName } from '@/core/fonts';
 import type { BackgroundRequest, FailureReason, PickMode, StartResponse } from '@/core/messages';
 import { ColorFormats, copy, Empty, IconButton, inDefaultFormat, Toaster } from '@/ui/components';
-import { useStored, useTheme } from '@/ui/hooks';
-import { Icon, type IconName } from '@/ui/icons';
+import { CommandMenu, type Command } from '@/ui/command-menu';
+import { useLiveAccent, useStored, useTheme } from '@/ui/hooks';
+import { Icon } from '@/ui/icons';
 
 const RECENT_COUNT = 16;
+const WHITE = { r: 255, g: 255, b: 255, a: 1 };
+const BLACK = { r: 0, g: 0, b: 0, a: 1 };
 
 const FAILURES: Record<FailureReason, { title: string; text: string }> = {
   restricted: {
@@ -22,27 +25,16 @@ const FAILURES: Record<FailureReason, { title: string; text: string }> = {
   unknown: { title: 'Something went wrong', text: 'Reload the page and try again.' },
 };
 
-function Action(props: { icon: IconName; title: string; shortcut: string; disabled: boolean; onClick: () => void }) {
-  return (
-    <button type="button" className="action" onClick={props.onClick} disabled={props.disabled}>
-      <span className="action-icon">
-        <Icon name={props.icon} size={18} />
-      </span>
-      <span className="action-title">{props.title}</span>
-      <kbd>{props.shortcut}</kbd>
-    </button>
-  );
-}
-
 export function App() {
   useTheme();
-  const [settings] = useStored('settings');
+  const [settings, setSettings] = useStored('settings');
   const [colors, , colorsLoaded] = useStored('colors');
   const [fonts] = useStored('fonts');
   const [stats, setStats] = useStored('stats');
   const [tab, setTab] = useState<{ id?: number; url?: string; windowId?: number } | null>(null);
   const [failure, setFailure] = useState<FailureReason | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
 
   useEffect(() => {
     void browser.tabs.query({ active: true, currentWindow: true }).then(([active]) => {
@@ -52,16 +44,20 @@ export function App() {
   }, []);
 
   async function start(mode: PickMode) {
-    if (tab?.id === undefined) return;
-    const request: BackgroundRequest = { t: 'start', mode, tabId: tab.id };
-    const response = (await browser.runtime.sendMessage(request)) as StartResponse;
-    if (response.ok) window.close();
-    else setFailure(response.reason);
+    if (tab?.id === undefined || busy) return;
+    setBusy(true);
+    try {
+      const request: BackgroundRequest = { t: 'start', mode, tabId: tab.id };
+      const response = (await browser.runtime.sendMessage(request)) as StartResponse;
+      if (response.ok) window.close();
+      else setFailure(response.reason);
+    } finally {
+      setBusy(false);
+    }
   }
 
   function openPanel() {
     if (tab?.windowId === undefined) return;
-    // Must be called synchronously inside the click for Chrome to accept it.
     void browser.sidePanel.open({ windowId: tab.windowId }).then(() => window.close());
   }
 
@@ -71,23 +67,101 @@ export function App() {
   const lastFont = fonts[0];
   const askForRating = stats.picks >= RATING_PROMPT_AFTER_PICKS && !stats.ratingDismissed;
 
+  useLiveAccent(current?.hex, settings.theme);
+
+  const bestRatio = currentRgb
+    ? Math.max(contrastRatio(currentRgb, WHITE), contrastRatio(currentRgb, BLACK))
+    : 0;
+  const heroInk = currentRgb ? readableOn(currentRgb) : '#fff';
+
+  const commands: Command[] = [
+    {
+      id: 'pick-colour',
+      label: 'Pick a colour',
+      hint: SHORTCUTS.color,
+      icon: 'pipette',
+      run: () => void start('color'),
+    },
+    {
+      id: 'inspect-font',
+      label: 'Inspect a font',
+      hint: SHORTCUTS.font,
+      icon: 'type',
+      run: () => void start('font'),
+    },
+    { id: 'workspace', label: 'Open workspace panel', icon: 'panel', run: openPanel },
+    ...(current
+      ? [
+          {
+            id: 'copy-colour',
+            label: 'Copy selected colour',
+            icon: 'copy' as const,
+            run: () => void copy(inDefaultFormat(current.hex, settings), 'Copied colour'),
+          },
+        ]
+      : []),
+    {
+      id: 'theme',
+      label: settings.theme === 'dark' ? 'Use light theme' : 'Use dark theme',
+      icon: settings.theme === 'dark' ? 'sun' : 'moon',
+      run: () => setSettings({ ...settings, theme: settings.theme === 'dark' ? 'light' : 'dark' }),
+    },
+    {
+      id: 'settings',
+      label: 'Open settings',
+      icon: 'settings',
+      run: () => void browser.runtime.openOptionsPage(),
+    },
+  ];
+
   return (
     <main className="popup">
-      <header className="row between">
-        <div className="row">
-          <img src="/icon/32.png" width="22" height="22" alt="" />
-          <h2>PickKit</h2>
+      <header className="popup-head">
+        <div className="brand">
+          <span className="brand-mark">
+            <img src="/icon/32.png" width="22" height="22" alt="" />
+          </span>
+          <span className="brand-copy">
+            <span className="brand-name">PickKit</span>
+            <span className="brand-sub">Colour &amp; type inspector</span>
+          </span>
         </div>
-        <div className="row" style={{ gap: 2 }}>
+        <div className="row" style={{ gap: 4 }}>
+          <CommandMenu commands={commands} compact />
           <IconButton icon="panel" label="Open workspace panel" onClick={openPanel} />
           <IconButton icon="settings" label="Settings" onClick={() => void browser.runtime.openOptionsPage()} />
         </div>
       </header>
 
-      <div className="actions">
-        <Action icon="pipette" title="Pick colour" shortcut={SHORTCUTS.color} disabled={blocked} onClick={() => void start('color')} />
-        <Action icon="type" title="Inspect font" shortcut={SHORTCUTS.font} disabled={blocked} onClick={() => void start('font')} />
-      </div>
+      <section className="inspector-intro" aria-labelledby="inspector-title">
+        <p className="eyebrow">Two tools</p>
+        <h1 id="inspector-title">Pick a colour. Read a font.</h1>
+        <p className="muted small">
+          Choose a tool, then click the page. PickKit only looks when you invoke it.
+        </p>
+        <div className="inspector-action">
+          <button
+            type="button"
+            className="btn btn-primary"
+            title={`Shortcut ${SHORTCUTS.color}`}
+            onClick={() => void start('color')}
+            disabled={blocked || busy}
+          >
+            <Icon name="pipette" size={15} />
+            Pick a colour
+          </button>
+          <button
+            type="button"
+            className="btn"
+            title={`Shortcut ${SHORTCUTS.font}`}
+            onClick={() => void start('font')}
+            disabled={blocked || busy}
+          >
+            <Icon name="type" size={15} />
+            Inspect a font
+          </button>
+        </div>
+      </section>
 
       {failure && (
         <div className="banner banner-warn" role="alert">
@@ -100,36 +174,45 @@ export function App() {
       )}
 
       {colorsLoaded && !current && (
-        <Empty icon="pipette" title="No colours yet">
-          Pick a colour from any page and it will appear here, ready to copy in any format.
+        <Empty icon="sparkles" title="No colours yet">
+          Pick a colour on any page to start a local history.
         </Empty>
       )}
 
       {current && currentRgb && (
         <section className="stack">
-          <div className="current">
-            <div className="current-swatch" style={{ background: current.hex }} />
+          <div className="section-head">
+            <h2 className="section-label">Latest colour</h2>
+            <span className="eyebrow">Best contrast {bestRatio.toFixed(1)}:1</span>
+          </div>
+          <div className="latest-colour">
+            <div className="latest-swatch" style={{ background: current.hex, color: heroInk }}>
+              <span className="mono">{inDefaultFormat(current.hex, settings)}</span>
+            </div>
             <div className="grow">
-              <div className="current-name truncate">{nearestColorName(currentRgb)}</div>
+              <div className="hero-name truncate">{nearestColorName(currentRgb)}</div>
               <div className="muted small truncate">
                 {current.token ? <span className="mono">{current.token}</span> : current.origin === 'screen' ? 'Picked from screen' : current.origin}
               </div>
+              <ColorFormats hex={current.hex} settings={settings} />
             </div>
           </div>
-          <ColorFormats hex={current.hex} settings={settings} />
         </section>
       )}
 
       {colors.length > 1 && (
         <section className="stack">
-          <h3>Recent</h3>
+          <div className="row between">
+            <h2 className="section-label">Recent · {Math.min(colors.length, RECENT_COUNT)}</h2>
+            <span className="eyebrow">Double-click to copy</span>
+          </div>
           <div className="swatch-grid">
-            {colors.slice(0, RECENT_COUNT).map((color) => (
+            {colors.slice(0, RECENT_COUNT).map((color, index) => (
               <button
                 key={color.id}
                 type="button"
                 className="swatch"
-                style={{ background: color.hex }}
+                style={{ background: color.hex, '--pk-i': index } as CSSProperties}
                 aria-label={`Show ${color.hex}`}
                 aria-pressed={color.hex === current?.hex}
                 title={`${inDefaultFormat(color.hex, settings)} · double-click to copy`}
@@ -143,10 +226,13 @@ export function App() {
 
       {lastFont && (
         <section className="stack">
-          <h3>Last font</h3>
-          <div className="card row between">
+          <h2 className="section-label">Latest font</h2>
+          <div className="font-card">
+            <span className="font-specimen" style={{ fontFamily: lastFont.stack, fontWeight: lastFont.weight, fontStyle: lastFont.style }} aria-hidden="true">
+              Ag
+            </span>
             <div className="grow">
-              <div className="current-name truncate">{lastFont.family}</div>
+              <div className="hero-name small truncate">{lastFont.family}</div>
               <div className="muted small truncate">
                 {lastFont.size}px · {weightName(lastFont.weight)} · {lastFont.sourceLabel}
               </div>
@@ -156,8 +242,14 @@ export function App() {
         </section>
       )}
 
+      <button type="button" className="panel-link" onClick={openPanel}>
+        <Icon name="layers" size={15} />
+        Open full workspace
+        <Icon name="chevron" size={14} />
+      </button>
+
       {askForRating && (
-        <div className="banner">
+        <div className="banner rating">
           <Icon name="star" />
           <div className="grow">
             <strong>Finding PickKit useful?</strong>A rating helps other people find it.

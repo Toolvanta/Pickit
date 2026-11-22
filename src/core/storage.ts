@@ -2,7 +2,7 @@
 // user's device; nothing here talks to a server.
 
 import { browser } from 'wxt/browser';
-import type { ColorFormat } from './color';
+import { COLOR_FORMATS, type ColorFormat } from './color';
 
 export type ThemeSetting = 'system' | 'light' | 'dark';
 
@@ -21,6 +21,8 @@ export interface ColorEntry {
   origin: string;
   /** CSS custom property whose value matched the picked colour, if any. */
   token?: string;
+  /** Pinned by the user in the history list. */
+  favorite?: boolean;
 }
 
 export type FontSourceKind = 'google' | 'adobe' | 'hosted' | 'system' | 'generic';
@@ -43,6 +45,8 @@ export interface FontEntry {
   source: FontSourceKind;
   sourceLabel: string;
   link?: string;
+  /** Pinned in the recent-font list. Saved fonts are favourites by definition. */
+  favorite?: boolean;
 }
 
 export interface Palette {
@@ -88,7 +92,13 @@ export async function getState<K extends keyof State>(key: K): Promise<State[K]>
   const value = stored[key] as State[K] | undefined;
   if (value === undefined) return DEFAULTS[key];
   // Settings gain fields over time; fill gaps so old installs keep working.
-  if (key === 'settings' || key === 'stats') return { ...DEFAULTS[key], ...value };
+  if (key === 'stats') return { ...DEFAULTS[key], ...value };
+  if (key === 'settings') {
+    const merged = { ...DEFAULTS.settings, ...(value as Settings) };
+    // A format removed in a later version must not leave the UI with no selection.
+    if (!COLOR_FORMATS.includes(merged.format)) merged.format = DEFAULTS.settings.format;
+    return merged as State[K];
+  }
   return value;
 }
 
@@ -120,8 +130,9 @@ export function watchState<K extends keyof State>(key: K, onChange: (value: Stat
 export async function addColor(entry: Omit<ColorEntry, 'id' | 'ts'>): Promise<void> {
   const { historyLimit } = await getState('settings');
   await updateState('colors', (colors) => {
+    const existing = colors.find((c) => c.hex.toLowerCase() === entry.hex.toLowerCase());
     const rest = colors.filter((c) => c.hex.toLowerCase() !== entry.hex.toLowerCase());
-    return [{ ...entry, id: newId(), ts: Date.now() }, ...rest].slice(0, historyLimit);
+    return [{ ...entry, id: newId(), ts: Date.now(), favorite: existing?.favorite }, ...rest].slice(0, historyLimit);
   });
   await updateState('stats', (stats) => ({ ...stats, picks: stats.picks + 1 }));
 }
@@ -143,6 +154,18 @@ export async function saveFont(entry: Omit<FontEntry, 'id' | 'ts'>): Promise<voi
     { ...entry, id: newId(), ts: Date.now() },
     ...fonts.filter((f) => !sameFont(f, entry)),
   ]);
+}
+
+/** Pins or unpins a colour without changing its place in history. */
+export async function toggleColorFavorite(id: string): Promise<void> {
+  await updateState('colors', (colors) =>
+    colors.map((color) => (color.id === id ? { ...color, favorite: !color.favorite } : color)),
+  );
+}
+
+/** Pins or unpins a recently inspected font. Saved fonts stay saved independently. */
+export async function toggleFontFavorite(id: string): Promise<void> {
+  await updateState('fonts', (fonts) => fonts.map((font) => (font.id === id ? { ...font, favorite: !font.favorite } : font)));
 }
 
 export async function clearAllData(): Promise<void> {

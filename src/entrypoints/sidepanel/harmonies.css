@@ -1,0 +1,91 @@
+/* Colour harmonies: flat, rule-separated bands. No cards, gradients or glow. */
+
+.harmonies {
+  padding: var(--pk-space-3) 0;
+  border-top: 1px solid var(--pk-border);
+}
+
+.harmonies h3 {
+  margin: 0 0 var(--pk-space-2);
+  color: var(--pk-text);
+  font-size: var(--pk-text-s);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.harmonies-row {
+  padding: var(--pk-space-2) 0;
+  border-top: 1px solid var(--pk-border);
+}
+
+.harmonies-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--pk-space-2);
+  margin-bottom: 6px;
+}
+
+.harmonies-label {
+  color: var(--pk-text-3);
+  font-size: var(--pk-text-xs);
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: var(--pk-track-label);
+}
+
+.harmonies-add {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--pk-text-2);
+  font: 500 var(--pk-text-xs) / 1.2 var(--pk-font);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.harmonies-add:hover {
+  color: var(--pk-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.harmonies-strip {
+  display: flex;
+  gap: var(--pk-space-1);
+  overflow-x: auto;
+  padding: 2px 2px 3px;
+  scrollbar-width: thin;
+}
+
+.harmonies-swatch {
+  position: relative;
+  flex: 1 0 38px;
+  min-width: 38px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid var(--pk-border);
+  border-radius: var(--pk-radius-xs);
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.harmonies-swatch:hover {
+  border-color: var(--pk-border-strong);
+}
+
+.harmonies-base {
+  position: absolute;
+  bottom: 2px;
+  left: 2px;
+  padding: 0 3px;
+  border: 1px solid var(--pk-border);
+  border-radius: 3px;
+  background: var(--pk-surface-raised);
+  color: var(--pk-text-2);
+  font: 600 9px / 1.3 var(--pk-mono);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}

@@ -31,7 +31,7 @@ function collectPropertyNames(): string[] {
   return propertyNames;
 }
 
-const COLOR_LIKE = /^(#|rgb|hsl|oklch|color\(|[a-z]+$|-?[\d.]+(deg)?\s+[\d.]+%\s+[\d.]+%$)/i;
+const COLOR_LIKE = /^(#|rgb|hsl|color\(|[a-z]+$|-?[\d.]+(deg)?\s+[\d.]+%\s+[\d.]+%$)/i;
 
 /** Name of a custom property resolving to `color` at `el`, or null. */
 export function findToken(color: RGB, el: Element | null): string | null {

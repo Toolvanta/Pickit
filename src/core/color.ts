@@ -11,8 +11,8 @@ export interface RGB {
   a: number;
 }
 
-export type ColorFormat = 'hex' | 'rgb' | 'hsl' | 'oklch';
-export const COLOR_FORMATS: ColorFormat[] = ['hex', 'rgb', 'hsl', 'oklch'];
+export type ColorFormat = 'hex' | 'rgb' | 'hsl';
+export const COLOR_FORMATS: ColorFormat[] = ['hex', 'rgb', 'hsl'];
 
 export interface FormatOptions {
   upperHex?: boolean;
@@ -22,6 +22,12 @@ const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(mi
 const round = (n: number, places = 0) => {
   const f = 10 ** places;
   return Math.round(n * f) / f;
+};
+
+/** sRGB gamma expansion, shared by colour parsing and WCAG luminance. */
+const toLinear = (v: number) => {
+  const x = v / 255;
+  return x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4;
 };
 
 export function rgb(r: number, g: number, b: number, a = 1): RGB {
@@ -75,70 +81,6 @@ export function hslToRgb(h: number, s: number, l: number, a = 1): RGB {
   return { r: Math.round(f(0) * 255), g: Math.round(f(8) * 255), b: Math.round(f(4) * 255), a };
 }
 
-// ---------- OKLab / OKLCH (Björn Ottosson's reference matrices) ----------
-
-const toLinear = (v: number) => {
-  const x = v / 255;
-  return x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4;
-};
-const fromLinear = (x: number) => (x <= 0.0031308 ? 12.92 * x : 1.055 * x ** (1 / 2.4) - 0.055) * 255;
-
-export function rgbToOklab(c: RGB): { L: number; a: number; b: number } {
-  const r = toLinear(c.r);
-  const g = toLinear(c.g);
-  const b = toLinear(c.b);
-  const l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b);
-  const m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
-  const s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
-  return {
-    L: 0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s,
-    a: 1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s,
-    b: 0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s,
-  };
-}
-
-/** Linear-light sRGB for an OKLab colour. Values outside 0–1 are out of gamut. */
-function oklabToLinear(L: number, a: number, b: number): [number, number, number] {
-  const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3;
-  const m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3;
-  const s = (L - 0.0894841775 * a - 1.291485548 * b) ** 3;
-  return [
-    4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,
-    -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
-    -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s,
-  ];
-}
-
-export function rgbToOklch(c: RGB): { l: number; c: number; h: number } {
-  const lab = rgbToOklab(c);
-  const chroma = Math.hypot(lab.a, lab.b);
-  let h = (Math.atan2(lab.b, lab.a) * 180) / Math.PI;
-  if (h < 0) h += 360;
-  // Hue is meaningless for greys; report 0 rather than floating-point noise.
-  return { l: lab.L, c: chroma, h: chroma < 0.0005 ? 0 : h };
-}
-
-/** Converts OKLCH to sRGB, reducing chroma until the colour fits the sRGB gamut. */
-export function oklchToRgb(l: number, c: number, h: number, alpha = 1): RGB {
-  const rad = (h * Math.PI) / 180;
-  const inGamut = (lin: number[]) => lin.every((v) => v >= -0.0005 && v <= 1.0005);
-  let chroma = c;
-  let lin = oklabToLinear(l, chroma * Math.cos(rad), chroma * Math.sin(rad));
-  if (!inGamut(lin)) {
-    let lo = 0;
-    let hi = c;
-    for (let i = 0; i < 18; i++) {
-      chroma = (lo + hi) / 2;
-      lin = oklabToLinear(l, chroma * Math.cos(rad), chroma * Math.sin(rad));
-      if (inGamut(lin)) lo = chroma;
-      else hi = chroma;
-    }
-    lin = oklabToLinear(l, lo * Math.cos(rad), lo * Math.sin(rad));
-  }
-  const ch = (v: number) => clamp(Math.round(fromLinear(clamp(v, 0, 1))), 0, 255);
-  return { r: ch(lin[0]), g: ch(lin[1]), b: ch(lin[2]), a: alpha };
-}
-
 // ---------- Formatting and parsing ----------
 
 export function formatColor(c: RGB, format: ColorFormat, opts: FormatOptions = {}): string {
@@ -155,11 +97,6 @@ export function formatColor(c: RGB, format: ColorFormat, opts: FormatOptions = {
       const body = `${Math.round(h)}, ${Math.round(s)}%, ${Math.round(l)}%`;
       return alpha === null ? `hsl(${body})` : `hsla(${body}, ${alpha})`;
     }
-    case 'oklch': {
-      const { l, c: chroma, h } = rgbToOklch(c);
-      const body = `${round(l * 100, 1)}% ${round(chroma, 3)} ${round(h, 1)}`;
-      return alpha === null ? `oklch(${body})` : `oklch(${body} / ${alpha})`;
-    }
   }
 }
 
@@ -174,8 +111,8 @@ function parseAlpha(token: string | undefined): number {
 
 /**
  * Parses the colour syntaxes PickKit meets in practice: hex, rgb()/rgba(), hsl()/hsla(),
- * oklch(), color(srgb …), named colours, and bare "H S% L%" triplets used by some
- * design-token setups. Returns null for anything else.
+ * color(srgb …), named colours, and bare "H S% L%" triplets used by some design-token
+ * setups. Returns null for anything else.
  */
 export function parseColor(input: string): RGB | null {
   const value = input.trim().toLowerCase();
@@ -207,14 +144,6 @@ export function parseColor(input: string): RGB | null {
     const [h, s, l] = tokens.slice(0, 3).map(parseFloat);
     if ([h, s, l].some(Number.isNaN)) return null;
     return hslToRgb(h, s, l, parseAlpha(alphaPart ?? tokens[3]));
-  }
-  if (name === 'oklch') {
-    if (tokens.length < 3) return null;
-    const l = tokens[0].endsWith('%') ? parseFloat(tokens[0]) / 100 : parseFloat(tokens[0]);
-    const c = tokens[1].endsWith('%') ? (parseFloat(tokens[1]) / 100) * 0.4 : parseFloat(tokens[1]);
-    const h = parseFloat(tokens[2]);
-    if ([l, c, h].some(Number.isNaN)) return null;
-    return oklchToRgb(l, c, h, parseAlpha(alphaPart));
   }
   if (name === 'color' && tokens[0] === 'srgb' && tokens.length >= 4) {
     const [r, g, b] = tokens.slice(1, 4).map((t) => (t.endsWith('%') ? parseFloat(t) / 100 : parseFloat(t)) * 255);
@@ -258,33 +187,57 @@ export function readableOn(bg: RGB): '#000000' | '#FFFFFF' {
   return luminance(bg) > 0.179 ? '#000000' : '#FFFFFF';
 }
 
+/**
+ * Keeps a picked colour usable as text/accents on a known surface. The hue and
+ * saturation stay put; only lightness moves until the contrast target is met.
+ * Used for the live accent so a dark picked colour does not disappear on dark UI.
+ */
+export function accessibleAccent(hex: string, background: string, target = 4.5): string {
+  const fg = hexToRgb(hex);
+  const bg = hexToRgb(background);
+  if (!fg || !bg) return hex;
+  if (contrastRatio(fg, bg) >= target) return rgbToHex(fg);
+
+  const { h, s, l } = rgbToHsl(fg);
+  const lighten = luminance(bg) < 0.3;
+  for (let step = 1; step <= 20; step++) {
+    const t = step / 20;
+    const nextL = lighten ? l + (100 - l) * t : l * (1 - t);
+    const candidate = rgbToHex(hslToRgb(h, s, nextL));
+    if (contrastRatio(hexToRgb(candidate)!, bg) >= target) return candidate;
+  }
+  return lighten ? '#FFFFFF' : '#000000';
+}
+
 // ---------- Shades ----------
 
 export const SHADE_STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] as const;
-const SHADE_LIGHTNESS = [0.975, 0.94, 0.885, 0.815, 0.72, 0.63, 0.545, 0.46, 0.385, 0.31, 0.225];
-const SHADE_CHROMA = [0.18, 0.36, 0.58, 0.8, 0.95, 1, 1, 0.95, 0.85, 0.74, 0.6];
+const SHADE_LIGHTNESS = [97, 93, 86, 78, 69, 60, 52, 44, 36, 28, 20];
+const SHADE_SATURATION = [0.25, 0.45, 0.7, 0.85, 0.95, 1, 1, 0.95, 0.85, 0.75, 0.65];
 
-/** A 50–950 scale built in OKLCH so steps look evenly spaced and keep the source hue. */
+/** A 50–950 HSL scale that keeps the source hue and reads evenly light to dark. */
 export function shades(c: RGB): { step: number; hex: string }[] {
-  const { c: chroma, h } = rgbToOklch(c);
-  const peak = Math.max(chroma, 0.02);
+  const { h, s } = rgbToHsl(c);
+  const peak = Math.max(s, 20);
   return SHADE_STEPS.map((step, i) => ({
     step,
-    hex: rgbToHex(oklchToRgb(SHADE_LIGHTNESS[i], peak * SHADE_CHROMA[i], h)),
+    hex: rgbToHex(hslToRgb(h, peak * SHADE_SATURATION[i], SHADE_LIGHTNESS[i])),
   }));
 }
 
 // ---------- Names ----------
 
-const NAME_LAB = COLOR_NAMES.map(([name, hex]) => ({ name, lab: rgbToOklab(hexToRgb(hex)!) }));
+const NAME_RGB = COLOR_NAMES.map(([name, hex]) => ({ name, rgb: hexToRgb(hex)! }));
 
-/** Nearest CSS colour name by perceptual (OKLab) distance, e.g. "Slate Blue". */
+/** Closest CSS colour name by luma-weighted RGB distance, e.g. "Slate Blue". */
 export function nearestColorName(c: RGB): string {
-  const lab = rgbToOklab(c);
-  let best = NAME_LAB[0];
+  let best = NAME_RGB[0];
   let bestDistance = Infinity;
-  for (const entry of NAME_LAB) {
-    const d = (entry.lab.L - lab.L) ** 2 + (entry.lab.a - lab.a) ** 2 + (entry.lab.b - lab.b) ** 2;
+  for (const entry of NAME_RGB) {
+    const dr = entry.rgb.r - c.r;
+    const dg = entry.rgb.g - c.g;
+    const db = entry.rgb.b - c.b;
+    const d = 0.3 * dr * dr + 0.59 * dg * dg + 0.11 * db * db;
     if (d < bestDistance) {
       bestDistance = d;
       best = entry;

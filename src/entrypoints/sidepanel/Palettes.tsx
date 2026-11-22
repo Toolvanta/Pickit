@@ -1,8 +1,9 @@
 import { useState, type KeyboardEvent } from 'react';
 import { parseColor, rgbToHex } from '@/core/color';
-import { EXPORT_FORMATS, exportColors, type ExportFormat } from '@/core/export';
+import { downloadText } from '@/core/download';
+import { EXPORT_FORMATS, exportColors, exportExtension, type ExportFormat } from '@/core/export';
 import { newId, type Palette, type Settings } from '@/core/storage';
-import { copy, Empty, IconButton, inDefaultFormat, Segmented } from '@/ui/components';
+import { ColorBar, copy, Empty, IconButton, inDefaultFormat, Segmented, toast } from '@/ui/components';
 import { useStored } from '@/ui/hooks';
 import { Icon } from '@/ui/icons';
 
@@ -42,14 +43,18 @@ function PaletteCard(props: { palette: Palette; settings: Settings; onChange: (p
   }
 
   return (
-    <article className="card stack">
-      <div className="row">
-        <input
-          className="input name-input grow"
-          aria-label="Palette name"
-          value={palette.name}
-          onChange={(e) => onChange({ ...palette, name: e.target.value })}
-        />
+    <article className="card palette-card stack">
+      <div className="section-head">
+        <div className="grow">
+          <div className="eyebrow">Palette</div>
+          <input
+            className="input name-input"
+            aria-label="Palette name"
+            value={palette.name}
+            onChange={(e) => onChange({ ...palette, name: e.target.value })}
+          />
+          <div className="faint small">{palette.colors.length} {palette.colors.length === 1 ? 'colour' : 'colours'}</div>
+        </div>
         {confirmDelete ? (
           <>
             <button type="button" className="btn btn-small btn-danger" onClick={props.onDelete}>
@@ -65,32 +70,35 @@ function PaletteCard(props: { palette: Palette; settings: Settings; onChange: (p
       </div>
 
       {palette.colors.length === 0 ? (
-        <p className="muted small">Empty. Add a colour below or from the Colours tab.</p>
+        <div className="palette-ribbon palette-ribbon-empty">Add a colour below or from the Colours tab.</div>
       ) : (
-        <div className="swatch-grid" role="list">
-          {palette.colors.map((hex, index) => (
-            <button
-              key={hex}
-              type="button"
-              role="listitem"
-              className="swatch"
-              style={{ background: hex, opacity: dragFrom === index ? 0.4 : 1 }}
-              title={`${inDefaultFormat(hex, settings)} · click to copy, drag to reorder, Delete to remove`}
-              aria-label={`${hex}. Enter copies, Delete removes, Alt plus arrow keys reorder.`}
-              draggable
-              onDragStart={() => setDragFrom(index)}
-              onDragEnd={() => setDragFrom(null)}
-              onDragOver={(e) => e.preventDefault()}
-              onDrop={(e) => {
-                e.preventDefault();
-                if (dragFrom !== null) setColors(move(palette.colors, dragFrom, index));
-                setDragFrom(null);
-              }}
-              onClick={() => void copy(inDefaultFormat(hex, settings))}
-              onKeyDown={(e) => onSwatchKey(e, index)}
-            />
-          ))}
-        </div>
+        <>
+          <div className="palette-ribbon" role="list" aria-label={`${palette.name} swatches`}>
+            {palette.colors.map((hex, index) => (
+              <button
+                key={hex}
+                type="button"
+                role="listitem"
+                className="palette-ribbon-swatch"
+                style={{ background: hex, opacity: dragFrom === index ? 0.4 : 1 }}
+                title={`${inDefaultFormat(hex, settings)} · click to copy, drag to reorder, Delete to remove`}
+                aria-label={`${hex}. Enter copies, Delete removes, Alt plus arrow keys reorder.`}
+                draggable
+                onDragStart={() => setDragFrom(index)}
+                onDragEnd={() => setDragFrom(null)}
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  if (dragFrom !== null) setColors(move(palette.colors, dragFrom, index));
+                  setDragFrom(null);
+                }}
+                onClick={() => void copy(inDefaultFormat(hex, settings))}
+                onKeyDown={(e) => onSwatchKey(e, index)}
+              />
+            ))}
+          </div>
+          <div className="faint small palette-hint">Drag to reorder · Alt + ←/→ to move · Delete to remove</div>
+        </>
       )}
 
       <form
@@ -116,16 +124,29 @@ function PaletteCard(props: { palette: Palette; settings: Settings; onChange: (p
 
       {palette.colors.length > 0 && (
         <div className="stack" style={{ gap: 8 }}>
-          <div className="row between">
-            <Segmented<ExportFormat> label="Export format" value={format} options={EXPORT_FORMATS} onChange={setFormat} />
-            <button
-              type="button"
-              className="btn btn-small"
-              onClick={() => void copy(exportColors(palette.name, palette.colors, format), 'Copied export')}
-            >
-              <Icon name="copy" /> Copy
-            </button>
+          <div className="mini-head">
+            <h3>Export</h3>
+            <div className="row">
+              <button
+                type="button"
+                className="btn btn-small"
+                onClick={() => void copy(exportColors(palette.name, palette.colors, format), 'Copied export')}
+              >
+                <Icon name="copy" /> Copy
+              </button>
+              <button
+                type="button"
+                className="btn btn-small"
+                onClick={() => {
+                  downloadText(palette.name, exportColors(palette.name, palette.colors, format), exportExtension(format));
+                  toast(`Downloaded ${palette.name}`);
+                }}
+              >
+                <Icon name="download" /> File
+              </button>
+            </div>
           </div>
+          <Segmented<ExportFormat> label="Export format" value={format} options={EXPORT_FORMATS} onChange={setFormat} />
           <pre className="code">{exportColors(palette.name, palette.colors, format)}</pre>
         </div>
       )}
@@ -135,12 +156,20 @@ function PaletteCard(props: { palette: Palette; settings: Settings; onChange: (p
 
 export function Palettes({ settings }: { settings: Settings }) {
   const [palettes, setPalettes, loaded] = useStored('palettes');
+  const allColors = [...new Set(palettes.flatMap((palette) => palette.colors))];
 
   const create = () =>
     setPalettes([...palettes, { id: newId(), name: `Palette ${palettes.length + 1}`, colors: [], ts: Date.now() }]);
 
   return (
     <div className="stack">
+      <div className="section-head">
+        <div>
+          <div className="eyebrow">Colour library</div>
+          <h3>{palettes.length} {palettes.length === 1 ? 'palette' : 'palettes'}</h3>
+        </div>
+      </div>
+
       {loaded && palettes.length === 0 ? (
         <Empty
           icon="palette"
@@ -157,6 +186,28 @@ export function Palettes({ settings }: { settings: Settings }) {
         <button type="button" className="btn" onClick={create}>
           <Icon name="plus" /> New palette
         </button>
+      )}
+
+      {allColors.length > 0 && (
+        <section className="stack" style={{ gap: 8 }}>
+          <div className="mini-head">
+            <h3>All colours</h3>
+            <button
+              type="button"
+              className="btn btn-small btn-ghost"
+              onClick={() => {
+                downloadText('pickkit-colours', exportColors('PickKit', allColors, 'css'), '.css');
+                toast('Downloaded all colours');
+              }}
+            >
+              <Icon name="download" size={13} /> Export all
+            </button>
+          </div>
+          <ColorBar
+            colors={allColors.map((hex) => ({ hex, weight: 1 }))}
+            onSelect={(hex) => void copy(inDefaultFormat(hex, settings), 'Copied colour')}
+          />
+        </section>
       )}
 
       {palettes.map((palette) => (

@@ -4,16 +4,21 @@
 
 import type { ScanResult } from './scan';
 
+/** Pickers are invoked explicitly; nothing listens to page interaction by default. */
 export type PickMode = 'color' | 'font';
 
 /** Sent to the background worker. */
 export type BackgroundRequest =
   | { t: 'start'; mode: PickMode; tabId: number }
   | { t: 'capture' }
-  | { t: 'scan'; windowId: number };
+  | { t: 'scan'; windowId: number }
+  | { t: 'openPanel' };
 
 /** Sent from the background worker to the overlay running in a tab. */
-export type OverlayRequest = { t: 'pk:ping' } | { t: 'pk:start'; mode: PickMode } | { t: 'pk:scan' };
+export type OverlayRequest =
+  | { t: 'pk:ping' }
+  | { t: 'pk:start'; mode: PickMode }
+  | { t: 'pk:scan' };
 
 export type FailureReason =
   /** Browser pages, the Web Store and similar: extensions can never run here. */

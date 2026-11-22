@@ -73,29 +73,51 @@ export function Contrast({ pair, onChange }: { pair: ContrastPair; onChange: (pa
   const bg = parseColor(pair.bg);
   const ratio = fg && bg ? contrastRatio(fg, bg) : 1;
   const levels = wcag(ratio);
+  const grade = levels.aaaNormal ? 'AAA' : levels.aaNormal ? 'AA' : 'Below AA';
 
   return (
     <div className="stack">
-      <div className="preview" style={{ background: pair.bg, color: pair.fg }}>
-        <div className="preview-large">Large text 24px</div>
-        <div>Body text at 16 pixels. The quick brown fox jumps over the lazy dog.</div>
-      </div>
-
-      <div className="row between">
-        <div>
-          <div className="ratio">{ratio.toFixed(2)}:1</div>
-          <div className="muted small">Contrast ratio (WCAG 2)</div>
+      <section className="card contrast-hero">
+        <div className="contrast-canvas" style={{ background: pair.bg, color: pair.fg }}>
+          <div className="row between">
+            <span className="eyebrow">Live preview</span>
+            <span className={levels.aaNormal ? 'badge badge-pass' : 'badge badge-fail'}>{grade}</span>
+          </div>
+          <div className="contrast-ag">Ag</div>
+          <div className="contrast-copy">
+            <div className="preview-large">Large text 24px</div>
+            <div>Body text at 16 pixels. The quick brown fox jumps over the lazy dog.</div>
+          </div>
         </div>
-        <IconButton icon="swap" label="Swap text and background" onClick={() => onChange({ fg: pair.bg, bg: pair.fg })} />
-      </div>
+        <div className="contrast-readout">
+          <div>
+            <div className="eyebrow">Contrast ratio · WCAG 2</div>
+            <div className="ratio">
+              {ratio.toFixed(2)}
+              <span className="ratio-unit">:1</span>
+            </div>
+          </div>
+          <IconButton icon="swap" label="Swap text and background" onClick={() => onChange({ fg: pair.bg, bg: pair.fg })} />
+        </div>
+      </section>
 
-      <div className="card results">
+      <section className="card stack results">
+        <div className="mini-head">
+          <h3>WCAG 2 results</h3>
+          <span className="faint small">4 checks</span>
+        </div>
         <Result label="AA · body text (4.5:1)" pass={levels.aaNormal} />
         <Result label="AA · large text (3:1)" pass={levels.aaLarge} />
         <Result label="AAA · body text (7:1)" pass={levels.aaaNormal} />
         <Result label="AAA · large text (4.5:1)" pass={levels.aaaLarge} />
-      </div>
+      </section>
 
+      <div className="section-head">
+        <div>
+          <div className="eyebrow">Colours</div>
+          <h3>Adjust the pair</h3>
+        </div>
+      </div>
       <ColorField label="Text" value={pair.fg} recent={recent} onChange={(fgHex) => onChange({ ...pair, fg: fgHex })} />
       <ColorField label="Background" value={pair.bg} recent={recent} onChange={(bgHex) => onChange({ ...pair, bg: bgHex })} />
     </div>

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { isRestrictedUrl } from '../src/core/config';
-import { exportColors, slug } from '../src/core/export';
+import { exportColors, exportExtension, slug } from '../src/core/export';
 
 describe('slug', () => {
   it('makes a CSS-safe name', () => {
@@ -23,6 +23,17 @@ describe('exportColors', () => {
   });
   it('writes valid JSON', () => {
     expect(JSON.parse(exportColors('Brand', colors, 'json'))).toEqual({ name: 'Brand', colors });
+  });
+  it('writes a self-contained SVG swatch sheet', () => {
+    const svg = exportColors('Brand <3', colors, 'svg');
+    expect(svg).toContain('<svg');
+    expect(svg).toContain('Brand &lt;3');
+    expect(svg).toContain('#5548E0');
+  });
+  it('maps formats to download extensions', () => {
+    expect(exportExtension('css')).toBe('.css');
+    expect(exportExtension('json')).toBe('.json');
+    expect(exportExtension('svg')).toBe('.svg');
   });
 });
 

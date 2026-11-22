@@ -16,6 +16,7 @@ const CELL = 12; // CSS pixels per magnified pixel.
 const SIZE = CELLS * CELL;
 const HALF = (CELLS - 1) / 2;
 const OFFSET = 24; // Gap between the cursor and the loupe.
+const ZOOM_LABEL = `${CELLS}× · 1px`; // Magnified pixels across · pixels sampled.
 const LOUPE_HEIGHT = SIZE + 44; // Canvas plus the value chip.
 const MIN_CAPTURE_GAP_MS = 550;
 const SETTLE_MS = 160;
@@ -46,10 +47,13 @@ export function startColorPicker(shell: Shell, settings: Settings, onDone: () =>
   const canScreenPick = typeof window.EyeDropper === 'function';
 
   const canvas = h('canvas');
+  const zoom = h('div', { class: 'pk-zoom' }, ZOOM_LABEL);
+  const glass = h('div', { class: 'pk-glass' }, canvas, zoom);
   const chipSwatch = swatch('transparent');
   const chipValue = h('span', { class: 'pk-chip-value' });
   const chipName = h('span', { class: 'pk-chip-name' });
-  const loupe = h('div', { class: 'pk-loupe' }, canvas, h('div', { class: 'pk-chip' }, chipSwatch, chipValue, chipName));
+  const chipText = h('span', { class: 'pk-chip-text' }, chipValue, chipName);
+  const loupe = h('div', { class: 'pk-loupe' }, glass, h('div', { class: 'pk-chip' }, chipSwatch, chipText));
   const catcher = h('div', { class: 'pk-catch' });
   const hints: [string, string][] = [
     ['Click', 'Copy colour'],
@@ -125,6 +129,31 @@ export function startColorPicker(shell: Shell, settings: Settings, onDone: () =>
     loupeCtx.strokeStyle = '#fff';
     loupeCtx.lineWidth = 2;
     loupeCtx.strokeRect(c + 1, c + 1, CELL - 1, CELL - 1);
+
+    // Fine crosshair arms stop short of the sampled pixel so its colour stays readable.
+    const cx = c + CELL / 2 + 0.5;
+    const cy = c + CELL / 2 + 0.5;
+    const gap = CELL * 0.85;
+    const reach = CELL * 3.6;
+    const drawArms = () => {
+      loupeCtx.beginPath();
+      loupeCtx.moveTo(cx - reach, cy);
+      loupeCtx.lineTo(cx - gap, cy);
+      loupeCtx.moveTo(cx + gap, cy);
+      loupeCtx.lineTo(cx + reach, cy);
+      loupeCtx.moveTo(cx, cy - reach);
+      loupeCtx.lineTo(cx, cy - gap);
+      loupeCtx.moveTo(cx, cy + gap);
+      loupeCtx.lineTo(cx, cy + reach);
+      loupeCtx.stroke();
+    };
+    // White underlay, then an ink core: legible on both light and dark pixels.
+    loupeCtx.lineWidth = 2.5;
+    loupeCtx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+    drawArms();
+    loupeCtx.lineWidth = 1;
+    loupeCtx.strokeStyle = 'rgba(0, 0, 0, 0.55)';
+    drawArms();
 
     const color = pixelAt(x, y);
     if (!color) return;

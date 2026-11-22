@@ -1,5 +1,5 @@
 // In-page script. Not listed in the manifest: the background worker injects it into a
-// tab only after the user invokes PickKit there, which is what `activeTab` permits.
+// tab only when a picker or a page scan is invoked. It never watches the page on its own.
 
 import { browser } from 'wxt/browser';
 import { defineUnlistedScript } from 'wxt/utils/define-unlisted-script';
@@ -25,6 +25,8 @@ export default defineUnlistedScript(() => {
 
   async function start(mode: PickMode) {
     stopActive?.();
+    stopActive = null;
+
     const settings = await getState('settings');
     const shell = getShell();
     shell.setTheme(settings.theme);

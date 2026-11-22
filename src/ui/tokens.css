@@ -1,89 +1,177 @@
 /* PickKit design tokens. One source for the popup, side panel, settings, welcome page
-   and the in-page overlay (where they attach to the shadow host via :host). */
+   and the in-page overlay (where they attach to the shadow host via :host).
+
+   The palette is a quiet, modern green: soft mint surfaces, deep forest ink and a
+   single emerald accent. No decorative gradients — hierarchy comes from flat
+   surfaces, hairline borders and type. The inspected colour stays a small sample;
+   surfaces and controls remain green so the product always reads as PickKit. */
 
 :root,
 :host {
-  --pk-bg: #ffffff;
-  --pk-surface: #f6f6f9;
-  --pk-surface-2: #ededf2;
-  --pk-border: #e2e2ea;
-  --pk-border-strong: #cdcdd8;
-  --pk-text: #17171f;
-  --pk-text-2: #5a5a6b;
-  --pk-text-3: #858596;
-  --pk-accent: #5548e0;
-  --pk-accent-hover: #463acb;
-  --pk-accent-soft: #ecebfd;
+  color-scheme: light;
+
+  /* Surfaces & ink — cool mint/forest, not warm paper */
+  --pk-bg: #f6faf7;
+  --pk-surface: #eef5f0;
+  --pk-surface-2: #e3eee6;
+  --pk-surface-raised: #ffffff;
+  --pk-border: #d6e4da;
+  --pk-border-strong: #b9cfc0;
+  --pk-text: #15231c;
+  --pk-text-2: #4f6357;
+  --pk-text-3: #5a6d60;
+
+  /* Brand + inspected-colour sample. The UI accent stays green; --pk-sample is
+     set at runtime to the colour currently being inspected. */
+  --pk-accent: #0f7a55;
+  --pk-accent-hover: #0b6245;
+  --pk-accent-soft: #dff3e9;
+  --pk-accent-tint: color-mix(in srgb, var(--pk-accent) 5%, var(--pk-surface));
+  --pk-accent-line: color-mix(in srgb, var(--pk-accent) 26%, var(--pk-border));
   --pk-on-accent: #ffffff;
-  --pk-success: #17794a;
-  --pk-success-soft: #e3f5ea;
+  --pk-sample: var(--pk-accent);
+  --pk-sample-ink: #ffffff;
+
+  /* Status */
+  --pk-success: #12805a;
+  --pk-success-soft: #dcf7eb;
   --pk-danger: #c2343f;
   --pk-danger-soft: #fdecee;
-  --pk-shadow: 0 1px 2px rgb(16 16 32 / 0.06), 0 8px 24px rgb(16 16 32 / 0.12);
+  --pk-warning: #a96a12;
+  --pk-warning-soft: #fff3dc;
 
-  --pk-radius-s: 6px;
-  --pk-radius-m: 10px;
-  --pk-radius-l: 14px;
+  /* Elevation: contact lines only. No broad ambient shadows. */
+  --pk-shadow-1: 0 1px 0 rgb(21 35 28 / 0.06);
+  --pk-shadow-2: 0 1px 2px rgb(21 35 28 / 0.08);
+  --pk-shadow-3: 0 2px 4px rgb(21 35 28 / 0.1);
+  --pk-shadow: var(--pk-shadow-2);
+  --pk-inset-hi: inset 0 1px 0 rgb(255 255 255 / 0.35);
 
+  /* Shape — tighter corners than the old pill-heavy UI */
+  --pk-radius-xs: 3px;
+  --pk-radius-s: 5px;
+  --pk-radius-m: 8px;
+  --pk-radius-l: 10px;
+  --pk-radius-xl: 12px;
+  --pk-radius-pill: 6px;
+
+  /* Rhythm */
   --pk-space-1: 4px;
   --pk-space-2: 8px;
   --pk-space-3: 12px;
   --pk-space-4: 16px;
   --pk-space-5: 24px;
   --pk-space-6: 32px;
+  --pk-space-7: 48px;
 
-  --pk-font: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --pk-mono: ui-monospace, 'Cascadia Code', 'SF Mono', Menlo, Consolas, monospace;
+  /* Type: a real display scale instead of one flat 11-15px band */
+  --pk-font: 'Montserrat', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --pk-mono: 'SF Mono', 'Cascadia Code', ui-monospace, 'JetBrains Mono', Menlo, Consolas, monospace;
   --pk-text-xs: 11px;
   --pk-text-s: 12px;
-  --pk-text-m: 13px;
-  --pk-text-l: 15px;
+  --pk-text-m: 14px;
+  --pk-text-l: 16px;
   --pk-text-xl: 20px;
+  --pk-text-2xl: 26px;
+  --pk-text-display: 34px;
+  --pk-text-hero: 46px;
+  --pk-track-tight: -0.035em;
+  --pk-track-label: 0.08em;
 
+  /* Motion — no overshoot; controls still slide, just without bounce. */
   --pk-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --pk-fast: 150ms;
+  --pk-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --pk-ease-spring: cubic-bezier(0.2, 0.9, 0.3, 1);
+  --pk-dur-1: 140ms;
+  --pk-dur-2: 240ms;
+  --pk-dur-3: 420ms;
+  --pk-fast: var(--pk-dur-1);
+
+  --pk-hairline: inset 0 0 0 1px rgb(255 255 255 / 0.25);
 }
 
+/* Dark palette is declared twice so system theme and explicit dark behave identically. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']),
   :host(:not([data-theme='light'])) {
-    --pk-bg: #16161c;
-    --pk-surface: #1f1f27;
-    --pk-surface-2: #2a2a34;
-    --pk-border: #2f2f3a;
-    --pk-border-strong: #454554;
-    --pk-text: #f1f1f5;
-    --pk-text-2: #b1b1c0;
-    --pk-text-3: #8a8a9a;
-    --pk-accent: #8f85ff;
-    --pk-accent-hover: #a39bff;
-    --pk-accent-soft: #2a2752;
-    --pk-on-accent: #121019;
+    color-scheme: dark;
+    --pk-bg: #0f1713;
+    --pk-surface: #16211b;
+    --pk-surface-2: #1d2b23;
+    --pk-surface-raised: #1a261f;
+    --pk-border: #2a3b31;
+    --pk-border-strong: #3d5547;
+    --pk-text: #edf7f0;
+    --pk-text-2: #b3c8ba;
+    --pk-text-3: #9ab3a3;
+    --pk-accent: #5fd39a;
+    --pk-accent-hover: #83e0b3;
+    --pk-accent-soft: #153327;
+    --pk-on-accent: #082015;
+    --pk-sample: var(--pk-accent);
+    --pk-sample-ink: #082015;
     --pk-success: #5fd39a;
-    --pk-success-soft: #173326;
-    --pk-danger: #ff8089;
-    --pk-danger-soft: #3d1a1e;
-    --pk-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.5);
+    --pk-success-soft: #153327;
+    --pk-danger: #ff818b;
+    --pk-danger-soft: #3b1a20;
+    --pk-warning: #f0bf73;
+    --pk-warning-soft: #3a2b17;
+    --pk-shadow-1: 0 1px 0 rgb(0 0 0 / 0.5);
+    --pk-shadow-2: 0 1px 2px rgb(0 0 0 / 0.55);
+    --pk-shadow-3: 0 2px 4px rgb(0 0 0 / 0.6);
+    --pk-shadow: var(--pk-shadow-2);
+    --pk-inset-hi: inset 0 1px 0 rgb(255 255 255 / 0.03);
+    --pk-hairline: inset 0 0 0 1px rgb(255 255 255 / 0.03);
   }
 }
 
 :root[data-theme='dark'],
 :host([data-theme='dark']) {
-  --pk-bg: #16161c;
-  --pk-surface: #1f1f27;
-  --pk-surface-2: #2a2a34;
-  --pk-border: #2f2f3a;
-  --pk-border-strong: #454554;
-  --pk-text: #f1f1f5;
-  --pk-text-2: #b1b1c0;
-  --pk-text-3: #8a8a9a;
-  --pk-accent: #8f85ff;
-  --pk-accent-hover: #a39bff;
-  --pk-accent-soft: #2a2752;
-  --pk-on-accent: #121019;
+  color-scheme: dark;
+  --pk-bg: #0f1713;
+  --pk-surface: #16211b;
+  --pk-surface-2: #1d2b23;
+  --pk-surface-raised: #1a261f;
+  --pk-border: #2a3b31;
+  --pk-border-strong: #3d5547;
+  --pk-text: #edf7f0;
+  --pk-text-2: #b3c8ba;
+  --pk-text-3: #9ab3a3;
+  --pk-accent: #5fd39a;
+  --pk-accent-hover: #83e0b3;
+  --pk-accent-soft: #153327;
+  --pk-on-accent: #082015;
+  --pk-sample: var(--pk-accent);
+  --pk-sample-ink: #082015;
   --pk-success: #5fd39a;
-  --pk-success-soft: #173326;
-  --pk-danger: #ff8089;
-  --pk-danger-soft: #3d1a1e;
-  --pk-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.5);
+  --pk-success-soft: #153327;
+  --pk-danger: #ff818b;
+  --pk-danger-soft: #3b1a20;
+  --pk-warning: #f0bf73;
+  --pk-warning-soft: #3a2b17;
+  --pk-shadow-1: 0 1px 0 rgb(0 0 0 / 0.5);
+  --pk-shadow-2: 0 1px 2px rgb(0 0 0 / 0.55);
+  --pk-shadow-3: 0 2px 4px rgb(0 0 0 / 0.6);
+  --pk-shadow: var(--pk-shadow-2);
+  --pk-inset-hi: inset 0 1px 0 rgb(255 255 255 / 0.03);
+  --pk-hairline: inset 0 0 0 1px rgb(255 255 255 / 0.03);
+}
+
+:root[data-theme='light'],
+:host([data-theme='light']) {
+  color-scheme: light;
+}
+
+::selection {
+  background: var(--pk-accent-soft);
+  color: var(--pk-text);
+}
+
+@media (prefers-contrast: more) {
+  :root,
+  :host {
+    --pk-border: var(--pk-border-strong);
+    --pk-text-2: var(--pk-text);
+    --pk-text-3: var(--pk-text-2);
+  }
 }

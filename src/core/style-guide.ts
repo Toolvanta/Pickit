@@ -14,7 +14,7 @@ const SWATCH_H = 150;
 const FONT_ROW = 92;
 const MAX_COLORS = 18;
 const MAX_FONTS = 6;
-const UI_FONT = "'Inter', 'Segoe UI', system-ui, sans-serif";
+const UI_FONT = "'Montserrat', 'Segoe UI', system-ui, sans-serif";
 const MONO_FONT = "'Cascadia Code', Consolas, Menlo, monospace";
 
 function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {

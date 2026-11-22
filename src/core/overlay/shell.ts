@@ -34,8 +34,20 @@ export function swatch(color: string): HTMLSpanElement {
   return el;
 }
 
+/** Floating shortcut dock: a brand mark plus one separated group per hint. */
 export function hintBar(items: [key: string, label: string][]): HTMLDivElement {
-  return h('div', { class: 'pk-hint' }, ...items.map(([key, label]) => h('span', null, h('kbd', null, key), label)));
+  const groups: Node[] = [];
+  items.forEach(([key, label], index) => {
+    if (index > 0) groups.push(h('span', { class: 'pk-dock-divider', 'aria-hidden': 'true' }));
+    groups.push(h('span', { class: 'pk-hint-group' }, h('kbd', null, key), label));
+  });
+  return h(
+    'div',
+    { class: 'pk-hint pk-dock', role: 'toolbar', 'aria-label': 'Keyboard shortcuts' },
+    h('span', { class: 'pk-brand', 'aria-hidden': 'true' }, 'P'),
+    h('span', { class: 'pk-dock-divider', 'aria-hidden': 'true' }),
+    ...groups,
+  );
 }
 
 export interface ToastContent {
@@ -65,7 +77,7 @@ export function getShell(): Shell {
   if (shell) return shell;
 
   const host = document.createElement('pickkit-overlay');
-  // Inline CSSOM styles beat the page's stylesheet and the UA popover defaults.
+  // Inline CSSOM styles beat the page's stylesheet under strict CSP.
   Object.assign(host.style, {
     all: 'initial',
     position: 'fixed',
@@ -92,14 +104,10 @@ export function getShell(): Shell {
   const toastLayer = h('div', { class: 'pk' }, toasts);
   shadow.append(root, toastLayer);
 
+  // Appended last with the maximum z-index. The old popover() trick pushed the host
+  // into the top layer, but it also triggered Chrome's deprecated anchor-positioning
+  // CSS warning on modern versions; the flat stacking order is quieter and sufficient.
   document.documentElement.append(host);
-  // The top layer keeps the overlay above modal dialogs and fullscreen elements.
-  try {
-    host.popover = 'manual';
-    host.showPopover();
-  } catch {
-    // Older Chrome: the maximum z-index is the fallback.
-  }
 
   let users = 0;
   const release = () => {

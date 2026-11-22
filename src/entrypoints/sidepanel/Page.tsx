@@ -7,7 +7,7 @@ import type { BackgroundRequest, FailureReason, ScanResponse } from '@/core/mess
 import type { ScanColor, ScanResult } from '@/core/scan';
 import { newId, type Settings } from '@/core/storage';
 import { downloadCanvas, renderStyleGuide } from '@/core/style-guide';
-import { copy, Empty, inDefaultFormat, Segmented, toast } from '@/ui/components';
+import { ColorBar, copy, Empty, inDefaultFormat, Segmented, Skeleton, toast } from '@/ui/components';
 import { useStored } from '@/ui/hooks';
 import { Icon } from '@/ui/icons';
 
@@ -17,7 +17,6 @@ type Status =
   | { kind: 'done'; result: ScanResult }
   | { kind: 'failed'; reason: FailureReason };
 
-const ALL_SITES = { origins: ['<all_urls>'] };
 const PALETTE_SIZE = 12;
 
 const usage = (color: ScanColor, role: Role) =>
@@ -41,9 +40,8 @@ export function Page({ settings }: { settings: Settings }) {
     }
   }, []);
 
-  // Rescan when the user switches tab or the page finishes loading. Without all-sites
-  // access this only succeeds on tabs where PickKit has been invoked; the failure
-  // state below explains that.
+  // Rescan when the user switches tab or the page finishes loading. This only succeeds
+  // on tabs where a picker has been invoked; the failure state below explains that.
   useEffect(() => {
     void scan();
     const onActivated = () => void scan();
@@ -58,17 +56,33 @@ export function Page({ settings }: { settings: Settings }) {
     };
   }, [scan]);
 
-  async function allowAllSites() {
-    if (await browser.permissions.request(ALL_SITES)) void scan();
-  }
-
   if (!isEnabled('page-scan')) return null;
 
   if (status.kind === 'loading') {
     return (
-      <Empty icon="scan" title="Reading the page…">
-        Collecting colours and fonts.
-      </Empty>
+      <div className="stack" aria-busy="true">
+        <div className="section-head">
+          <div>
+            <div className="eyebrow">Page scan</div>
+            <h3>Reading this page</h3>
+          </div>
+          <span className="badge badge-live">Working</span>
+        </div>
+        <div className="row" style={{ gap: 4 }} aria-hidden="true">
+          {[4, 3, 6, 2, 5, 3, 4].map((weight, index) => (
+            <div key={index} style={{ flexGrow: weight }}>
+              <Skeleton height={44} radius={index === 0 || index === 6 ? 8 : 0} />
+            </div>
+          ))}
+        </div>
+        <div className="stack" style={{ gap: 8, marginTop: 4 }} aria-hidden="true">
+          <Skeleton height={11} width="42%" />
+          <Skeleton height={11} width="68%" />
+          <Skeleton height={11} width="55%" />
+          <Skeleton height={64} width="100%" radius={12} />
+          <Skeleton height={64} width="100%" radius={12} />
+        </div>
+      </div>
     );
   }
 
@@ -85,18 +99,13 @@ export function Page({ settings }: { settings: Settings }) {
         icon="scan"
         title="PickKit has not been invoked on this tab"
         action={
-          <div className="row wrap center" style={{ marginTop: 8 }}>
-            <button type="button" className="btn" onClick={() => void scan()}>
-              Scan again
-            </button>
-            <button type="button" className="btn btn-primary" onClick={() => void allowAllSites()}>
-              Allow on all sites
-            </button>
-          </div>
+          <button type="button" className="btn btn-primary" onClick={() => void scan()} style={{ marginTop: 8 }}>
+            Scan again
+          </button>
         }
       >
-        For your privacy, PickKit only reads a page after you click its toolbar icon or use a shortcut there. Do that and
-        scan again, or allow automatic scanning.
+        For your privacy, PickKit only reads a page after you invoke a picker on that tab. Open the popup, pick a colour
+        or font there, then scan again.
       </Empty>
     );
   }
@@ -104,6 +113,9 @@ export function Page({ settings }: { settings: Settings }) {
   const { result } = status;
   const colors = result.colors.filter((c) => usage(c, role) > 0).sort((a, b) => usage(b, role) - usage(a, role));
   const topHexes = colors.slice(0, PALETTE_SIZE).map((c) => c.hex);
+  const ribbonColors = result.colors
+    .slice(0, PALETTE_SIZE)
+    .map((color) => ({ hex: color.hex, weight: color.text + color.background + color.border }));
 
   function saveAsPalette() {
     setPalettes([...palettes, { id: newId(), name: result.host || 'Page palette', colors: topHexes, ts: Date.now() }]);
@@ -117,15 +129,29 @@ export function Page({ settings }: { settings: Settings }) {
 
   return (
     <div className="stack">
-      <div className="row between">
+      <div className="section-head">
         <div className="grow">
-          <div className="strong truncate">{result.host || 'This page'}</div>
-          <div className="muted small truncate">{result.title}</div>
+          <div className="eyebrow">Current page</div>
+          <h2 className="page-host truncate">{result.host || 'This page'}</h2>
+          <div className="muted small truncate page-title">{result.title}</div>
         </div>
         <button type="button" className="btn btn-small" onClick={() => void scan()}>
           <Icon name="scan" /> Rescan
         </button>
       </div>
+
+      {ribbonColors.length > 0 && (
+        <section className="stack" style={{ gap: 8 }}>
+          <div className="mini-head">
+            <h3>Colour fingerprint</h3>
+            <span className="faint small">Tap a swatch to copy</span>
+          </div>
+          <ColorBar
+            colors={ribbonColors}
+            onSelect={(hex) => void copy(inDefaultFormat(hex, settings), 'Copied colour')}
+          />
+        </section>
+      )}
 
       {isEnabled('style-guide') && (
         <div className="row">
@@ -139,10 +165,13 @@ export function Page({ settings }: { settings: Settings }) {
       )}
 
       <section className="stack">
-        <div className="row between">
-          <h3>Colours · {colors.length}</h3>
+        <div className="section-head">
+          <div>
+            <div className="eyebrow">Extracted palette</div>
+            <h3>Colours · {colors.length}</h3>
+          </div>
           <button type="button" className="btn btn-small btn-ghost" onClick={saveAsPalette} disabled={!topHexes.length}>
-            Save as palette
+            <Icon name="bookmark" size={13} /> Save as palette
           </button>
         </div>
         <Segmented<Role>
@@ -178,7 +207,12 @@ export function Page({ settings }: { settings: Settings }) {
       </section>
 
       <section className="stack">
-        <h3>Typography · {result.fonts.length}</h3>
+        <div className="section-head">
+          <div>
+            <div className="eyebrow">Type system</div>
+            <h3>Typography · {result.fonts.length}</h3>
+          </div>
+        </div>
         {result.fonts.map((font) => (
           <article key={font.family} className="card stack">
             <div className="row between">
@@ -214,6 +248,7 @@ export function Page({ settings }: { settings: Settings }) {
             </div>
           </article>
         ))}
+        {result.fonts.length === 0 && <p className="muted small">No text was found on this page.</p>}
       </section>
 
       {result.truncated && <p className="muted small">This is a large page, so only the first 6,000 elements were read.</p>}

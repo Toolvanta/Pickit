@@ -9,6 +9,9 @@ import { copyText, h, hintBar, swatch, type Shell } from './shell';
 const CARD_WIDTH = 300;
 const GAP = 10;
 const EDGE = 8;
+const SCALE_MIN = 8;
+const SCALE_MAX = 96;
+const SCALE_TICKS = [8, 16, 24, 48, 96];
 const BLOCKED_EVENTS = ['mousedown', 'mouseup', 'pointerdown', 'pointerup', 'dblclick', 'auxclick', 'contextmenu'];
 
 /** Starts the font inspector. Returns a function that stops it. */
@@ -58,6 +61,24 @@ export function startFontInspector(shell: Shell, onDone: () => void): () => void
     preview.style.fontFamily = font.stack;
     preview.style.fontWeight = String(font.weight);
     preview.style.fontStyle = font.style;
+    const specimen = h('div', { class: 'pk-specimen' }, preview);
+
+    // A log scale keeps the small end legible without losing the display-size end.
+    const size = Math.min(SCALE_MAX, Math.max(SCALE_MIN, font.size));
+    const position = (Math.log(size / SCALE_MIN) / Math.log(SCALE_MAX / SCALE_MIN)) * 100;
+    const marker = h('span', { class: 'pk-ruler-marker' });
+    marker.style.left = `${position.toFixed(2)}%`;
+    const ruler = h(
+      'div',
+      { class: 'pk-ruler', role: 'img', 'aria-label': `Type scale, ${font.size}px detected` },
+      h('span', { class: 'pk-ruler-track' }),
+      h(
+        'div',
+        { class: 'pk-ruler-ticks' },
+        ...SCALE_TICKS.map((tick) => h('span', { class: 'pk-ruler-tick' }, String(tick))),
+      ),
+      marker,
+    );
 
     const rows = h(
       'div',
@@ -74,7 +95,7 @@ export function startFontInspector(shell: Shell, onDone: () => void): () => void
       h(
         'div',
         { class: 'pk-card-head' },
-        preview,
+        specimen,
         h(
           'div',
           { class: 'pk-card-title' },
@@ -87,11 +108,13 @@ export function startFontInspector(shell: Shell, onDone: () => void): () => void
           h('div', { class: 'pk-source' }, font.sourceLabel),
         ),
       ),
+      ruler,
       rows,
       h('div', { class: 'pk-stack', title: font.stack }, font.stack),
     ];
 
     if (pinned) {
+      children.unshift(h('div', { class: 'pk-accent-line', 'aria-hidden': 'true' }));
       const copyCss = h('button', { class: 'pk-btn pk-btn-primary', type: 'button' }, 'Copy CSS');
       copyCss.addEventListener('click', async () => {
         if (await copyText(fontCss(font))) shell.toast({ title: 'Copied font CSS', sub: font.family });

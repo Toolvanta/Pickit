@@ -1,5 +1,5 @@
 // Service worker. It owns everything that needs extension privileges: injecting the
-// overlay, taking tab screenshots, and relaying page scans to the side panel.
+// overlay, taking tab screenshots, relaying page scans, and handling keyboard commands.
 
 import { browser } from 'wxt/browser';
 import { defineBackground } from 'wxt/utils/define-background';
@@ -80,6 +80,15 @@ export default defineBackground(() => {
     }
   }
 
+  async function openPanel(windowId: number | undefined): Promise<void> {
+    if (windowId === undefined) return;
+    try {
+      await browser.sidePanel.open({ windowId });
+    } catch {
+      // Chrome only allows this inside a user gesture; the button supplies one.
+    }
+  }
+
   browser.runtime.onMessage.addListener((message: BackgroundRequest, sender, sendResponse) => {
     let reply: Promise<unknown>;
     switch (message.t) {
@@ -92,6 +101,9 @@ export default defineBackground(() => {
       case 'scan':
         reply = scan(message.windowId);
         break;
+      case 'openPanel':
+        reply = openPanel(sender.tab?.windowId);
+        break;
       default:
         return undefined;
     }
@@ -99,9 +111,9 @@ export default defineBackground(() => {
     return true; // Keep the channel open for the async reply.
   });
 
-  // Keyboard shortcuts. There is no popup to report a failure in, so flag it on the icon.
   browser.commands.onCommand.addListener(async (command, tab) => {
-    const mode: PickMode | null = command === 'pick-color' ? 'color' : command === 'inspect-font' ? 'font' : null;
+    const mode: PickMode | null =
+      command === 'pick-color' ? 'color' : command === 'inspect-font' ? 'font' : null;
     if (!mode || !tab?.id) return;
     const result = await start(tab.id, mode);
     if (result.ok) return;

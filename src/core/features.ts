@@ -8,7 +8,11 @@ export type Feature =
   | 'shades'
   | 'palettes'
   | 'export'
-  | 'style-guide';
+  | 'style-guide'
+  | 'harmonies'
+  | 'search'
+  | 'favorites'
+  | 'commands';
 
 export type Plan = 'free' | 'pro';
 
@@ -20,6 +24,10 @@ const FREE: ReadonlySet<Feature> = new Set<Feature>([
   'palettes',
   'export',
   'style-guide',
+  'harmonies',
+  'search',
+  'favorites',
+  'commands',
 ]);
 
 export function currentPlan(): Plan {

@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
 import { COLOR_FORMATS, formatColor, hexToRgb, type ColorFormat } from '@/core/color';
 import type { Settings } from '@/core/storage';
 import { Icon, type IconName } from './icons';
@@ -47,9 +47,16 @@ export function Toaster() {
 
 // ---------- Small building blocks ----------
 
-export function IconButton(props: { icon: IconName; label: string; onClick: () => void; disabled?: boolean }) {
+export function IconButton(props: {
+  icon: IconName;
+  label: string;
+  onClick: () => void;
+  disabled?: boolean;
+  active?: boolean;
+}) {
+  const className = props.active ? 'icon-btn is-active' : 'icon-btn';
   return (
-    <button type="button" className="icon-btn" aria-label={props.label} title={props.label} onClick={props.onClick} disabled={props.disabled}>
+    <button type="button" className={className} aria-label={props.label} aria-pressed={props.active} title={props.label} onClick={props.onClick} disabled={props.disabled}>
       <Icon name={props.icon} />
     </button>
   );
@@ -61,12 +68,58 @@ export function Segmented<T extends string>(props: {
   options: { value: T; label: string }[];
   onChange: (value: T) => void;
 }) {
+  const index = Math.max(0, props.options.findIndex((option) => option.value === props.value));
+  const style = {
+    '--pk-seg-count': props.options.length,
+    '--pk-seg-index': index,
+  } as CSSProperties;
+
   return (
-    <div className="segmented" role="group" aria-label={props.label}>
+    <div className="segmented" style={style} role="group" aria-label={props.label}>
       {props.options.map((option) => (
         <button key={option.value} type="button" aria-pressed={option.value === props.value} onClick={() => props.onChange(option.value)}>
           {option.label}
         </button>
+      ))}
+    </div>
+  );
+}
+
+/** An accessible on/off control with a sliding knob. */
+export function Switch(props: { checked: boolean; label: string; onChange: (checked: boolean) => void; disabled?: boolean }) {
+  return (
+    <button
+      type="button"
+      className="switch"
+      role="switch"
+      aria-checked={props.checked}
+      aria-label={props.label}
+      title={props.label}
+      disabled={props.disabled}
+      onClick={() => props.onChange(!props.checked)}
+    />
+  );
+}
+
+/** Shimmering placeholder for async views. */
+export function Skeleton(props: { height?: number; width?: string; radius?: number }) {
+  return <div className="skeleton" style={{ height: props.height ?? 14, width: props.width ?? '100%', borderRadius: props.radius }} aria-hidden="true" />;
+}
+
+/** A weighted colour ribbon: the wider the segment, the more the colour is used. */
+export function ColorBar({ colors, onSelect }: { colors: { hex: string; weight: number }[]; onSelect?: (hex: string) => void }) {
+  const total = colors.reduce((sum, color) => sum + color.weight, 0) || 1;
+  return (
+    <div className="color-bar" role="group" aria-label="Colours used on this page">
+      {colors.map((color) => (
+        <button
+          key={color.hex}
+          type="button"
+          style={{ background: color.hex, flexGrow: Math.max(0.35, color.weight / total * 100) }}
+          title={`${color.hex} · ${Math.round((color.weight / total) * 100)}%`}
+          aria-label={`${color.hex}, ${Math.round((color.weight / total) * 100)} percent of uses`}
+          onClick={() => onSelect?.(color.hex)}
+        />
       ))}
     </div>
   );
@@ -98,22 +151,22 @@ export function CopyRow({ label, value }: { label: string; value: string }) {
       type="button"
       className="copy-row"
       data-copied={copied ? '' : undefined}
-      aria-label={`Copy ${label} ${value}`}
       onClick={async () => {
         await copy(value);
         setCopied(true);
       }}
     >
-      <span className="copy-row-label">{label}</span>
+      <span className="sr-only">Copy </span>
+      <span className="copy-row-label">{label}</span>{' '}
       <span className="copy-row-value">{value}</span>
       <Icon name={copied ? 'check' : 'copy'} size={14} />
     </button>
   );
 }
 
-const FORMAT_LABELS: Record<ColorFormat, string> = { hex: 'HEX', rgb: 'RGB', hsl: 'HSL', oklch: 'OKLCH' };
+const FORMAT_LABELS: Record<ColorFormat, string> = { hex: 'HEX', rgb: 'RGB', hsl: 'HSL' };
 
-/** All four formats of one colour, the user's default format first. */
+/** All three formats of one colour, the user's default format first. */
 export function ColorFormats({ hex, settings }: { hex: string; settings: Settings }) {
   const color = hexToRgb(hex);
   if (!color) return null;

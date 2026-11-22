@@ -22,7 +22,7 @@
     ...extra,
   });
   const seed = {
-    colors: ['#5548E0', '#17794A', '#FBBF24', '#FB7185', '#38BDF8', '#17171F', '#F6F6F9', '#C2343F', '#6A5ACD', '#34D399'].map(
+    colors: ['#0F7A55', '#17794A', '#FBBF24', '#FB7185', '#38BDF8', '#17171F', '#F6F6F9', '#C2343F', '#6A5ACD', '#34D399'].map(
       (hex, i) => color(hex, i, i === 0 ? { token: '--brand-600' } : {}),
     ),
     fonts: [
