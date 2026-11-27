@@ -48,3 +48,25 @@ describe('isRestrictedUrl', () => {
     expect(isRestrictedUrl(undefined)).toBe(false);
   });
 });
+
+describe('named keys and design tokens', () => {
+  const scale = ['#EEF2FF', '#3B5BDB', '#1E2A78'];
+  const keys = [50, 500, 950];
+  it('uses shade keys in CSS and Tailwind', () => {
+    expect(exportColors('Brand', scale, 'css', keys)).toContain('--brand-500: #3B5BDB;');
+    expect(exportColors('Brand', scale, 'tailwind', keys)).toContain("  950: '#1E2A78',");
+  });
+  it('quotes non-numeric Tailwind keys', () => {
+    expect(exportColors('Brand', ['#000000'], 'tailwind', ['dark'])).toContain("  'dark': '#000000',");
+  });
+  it('writes W3C design tokens', () => {
+    expect(JSON.parse(exportColors('Brand', scale, 'tokens', keys))).toEqual({
+      brand: {
+        50: { $type: 'color', $value: '#EEF2FF' },
+        500: { $type: 'color', $value: '#3B5BDB' },
+        950: { $type: 'color', $value: '#1E2A78' },
+      },
+    });
+    expect(exportExtension('tokens')).toBe('.tokens.json');
+  });
+});

@@ -1,11 +1,1865 @@
 {
   "extName": {
-    "message": "PickKit – Color Picker & Font Finder"
+    "message": "Pickit - Color Picker & Font Detector"
   },
   "extDescription": {
     "message": "Pick any color from a page or your screen, identify fonts on hover, check contrast and export palettes. Fast and keyboard-friendly."
   },
   "actionTitle": {
-    "message": "Open PickKit"
+    "message": "Open Pickit"
+  },
+  "cmdPickColor": {
+    "message": "Pick a colour"
+  },
+  "cmdInspectFont": {
+    "message": "Inspect a font"
+  },
+  "fonts_likely_badge": {
+    "message": "Likely",
+    "description": "Side panel, Fonts tab: small badge next to a font name when the font is a best guess. One short word."
+  },
+  "fonts_likely_title": {
+    "message": "Best guess based on fonts installed on the device",
+    "description": "Side panel, Fonts tab: tooltip on the 'Likely' badge."
+  },
+  "fonts_specimen_pangram": {
+    "message": "The quick brown fox jumps over the lazy dog",
+    "description": "Side panel, Fonts tab: sample sentence rendered in the inspected font. Use a short sentence in your language that shows many letters (a pangram if one exists). One line, about 45 characters."
+  },
+  "fonts_fact_size": {
+    "message": "Size",
+    "description": "Side panel, font card: label for the font size value (e.g. 16px). One short word."
+  },
+  "fonts_fact_weight": {
+    "message": "Weight",
+    "description": "Side panel, font card: label for the font weight value (e.g. 400 Regular). One short word."
+  },
+  "fonts_fact_line_height": {
+    "message": "Line height",
+    "description": "Side panel, font card: label for the line-height value. Short."
+  },
+  "fonts_fact_spacing": {
+    "message": "Spacing",
+    "description": "Side panel, font card: label for the letter-spacing value. One short word."
+  },
+  "fonts_spacing_normal": {
+    "message": "Normal",
+    "description": "Side panel, font card: letter-spacing value when the page uses the default spacing."
+  },
+  "fonts_copy_css": {
+    "message": "Copy CSS",
+    "description": "Side panel, font card: button that copies the font's CSS declarations. Short button text."
+  },
+  "fonts_copied_css": {
+    "message": "Copied font CSS",
+    "description": "Toast shown after the font's CSS was copied to the clipboard."
+  },
+  "fonts_save_font": {
+    "message": "Save font",
+    "description": "Side panel, font card: tooltip and screen-reader label of the bookmark icon button."
+  },
+  "fonts_add_favourite": {
+    "message": "Add to favourites",
+    "description": "Side panel, font card: tooltip and screen-reader label of the heart icon button when the font is not a favourite."
+  },
+  "fonts_remove_favourite": {
+    "message": "Remove from favourites",
+    "description": "Side panel, font card: tooltip and screen-reader label of the heart icon button when the font is a favourite."
+  },
+  "fonts_remove": {
+    "message": "Remove",
+    "description": "Side panel, font card: tooltip and screen-reader label of the trash icon button that removes the font from the list."
+  },
+  "fonts_eyebrow_library": {
+    "message": "Type library",
+    "description": "Side panel, Fonts tab: small uppercase label above the section heading. Short."
+  },
+  "fonts_heading_recent": {
+    "message": "Recently inspected",
+    "description": "Side panel, Fonts tab: heading when the list of recently inspected fonts is shown."
+  },
+  "fonts_heading_saved": {
+    "message": "Saved fonts",
+    "description": "Side panel, Fonts tab: heading when the list of saved fonts is shown."
+  },
+  "fonts_search_label": {
+    "message": "Search fonts",
+    "description": "Side panel, Fonts tab: screen-reader label of the search field."
+  },
+  "fonts_search_placeholder": {
+    "message": "Search family, source, origin…",
+    "description": "Side panel, Fonts tab: placeholder in the search field. Keep under about 32 characters."
+  },
+  "fonts_list_label": {
+    "message": "Font list",
+    "description": "Side panel, Fonts tab: screen-reader label of the Recent/Saved switch."
+  },
+  "fonts_tab_recent_one": {
+    "message": "Recent · {0}",
+    "description": "Side panel, Fonts tab: segmented-control option for recent fonts; {0} is how many there are. Keep short, it shares the width with the Saved option."
+  },
+  "fonts_tab_recent_other": {
+    "message": "Recent · {0}",
+    "description": "Side panel, Fonts tab: segmented-control option for recent fonts; {0} is how many there are. Keep short, it shares the width with the Saved option."
+  },
+  "fonts_tab_saved_one": {
+    "message": "Saved · {0}",
+    "description": "Side panel, Fonts tab: segmented-control option for saved fonts; {0} is how many there are. Keep short."
+  },
+  "fonts_tab_saved_other": {
+    "message": "Saved · {0}",
+    "description": "Side panel, Fonts tab: segmented-control option for saved fonts; {0} is how many there are. Keep short."
+  },
+  "fonts_empty_search_title": {
+    "message": "No fonts match this search",
+    "description": "Side panel, Fonts tab: empty-state title when the search finds nothing."
+  },
+  "fonts_empty_search_body": {
+    "message": "Try a family name, source or hostname.",
+    "description": "Side panel, Fonts tab: empty-state hint when the search finds nothing."
+  },
+  "fonts_empty_recent_title": {
+    "message": "No fonts inspected yet",
+    "description": "Side panel, Fonts tab: empty-state title when no fonts have been inspected."
+  },
+  "fonts_empty_recent_body": {
+    "message": "Highlight text on any page and save its font from the inspector to keep its details here.",
+    "description": "Side panel, Fonts tab: empty-state explanation when no fonts have been inspected."
+  },
+  "fonts_empty_saved_title": {
+    "message": "No saved fonts",
+    "description": "Side panel, Fonts tab: empty-state title when no fonts are saved."
+  },
+  "fonts_empty_saved_body": {
+    "message": "Save a font from the inspector or from Recent to keep it for later.",
+    "description": "Side panel, Fonts tab: empty-state explanation when no fonts are saved. 'Recent' refers to the Recent list option."
+  },
+  "fonts_saved_toast": {
+    "message": "Saved to your fonts",
+    "description": "Toast shown after a recent font was saved."
+  },
+  "page_loading_eyebrow": {
+    "message": "Page scan",
+    "description": "Side panel, Page tab: small uppercase label above the heading while the page is being scanned. Short."
+  },
+  "page_loading_heading": {
+    "message": "Reading this page",
+    "description": "Side panel, Page tab: heading while the page is being scanned."
+  },
+  "page_loading_badge": {
+    "message": "Working",
+    "description": "Side panel, Page tab: small badge shown while scanning. One short word."
+  },
+  "page_restricted_title": {
+    "message": "This page cannot be scanned",
+    "description": "Side panel, Page tab: empty-state title on browser pages where extensions are blocked."
+  },
+  "page_restricted_body": {
+    "message": "Chrome blocks extensions on browser pages and the Web Store. Switch to any website.",
+    "description": "Side panel, Page tab: explanation on browser pages where extensions are blocked. 'Web Store' is the Chrome Web Store."
+  },
+  "page_unreadable_title": {
+    "message": "Pickit could not read this page",
+    "description": "Side panel, Page tab: empty-state title when the scan failed although access is granted. Keep 'Pickit' untranslated."
+  },
+  "page_unreadable_body": {
+    "message": "Reload the page and scan again. For local files, allow file access in the extension details.",
+    "description": "Side panel, Page tab: advice when the scan failed."
+  },
+  "page_not_invoked_title": {
+    "message": "Pickit has not been invoked on this tab",
+    "description": "Side panel, Page tab: empty-state title when Pickit has no access to the current tab yet. Keep 'Pickit' untranslated."
+  },
+  "page_not_invoked_body": {
+    "message": "For your privacy, Pickit only reads a page after you invoke it there. Click the Pickit toolbar icon on this tab and scan again, or allow access to all sites so the side panel can scan any page.",
+    "description": "Side panel, Page tab: explanation of why the page cannot be read yet. Keep 'Pickit' untranslated."
+  },
+  "page_scan_again": {
+    "message": "Scan again",
+    "description": "Side panel, Page tab: button that retries the page scan. Short button text."
+  },
+  "page_allow_all_sites": {
+    "message": "Allow on all sites",
+    "description": "Side panel, Page tab: button that asks Chrome for permission to read every site. Short button text."
+  },
+  "page_default_palette_name": {
+    "message": "Page palette",
+    "description": "Default name of a palette saved from a page scan when the page has no hostname."
+  },
+  "page_saved_as_palette": {
+    "message": "Saved as a palette",
+    "description": "Toast shown after the page colours were saved as a palette."
+  },
+  "page_style_guide_downloaded": {
+    "message": "Style guide downloaded",
+    "description": "Toast shown after the style-guide image was downloaded."
+  },
+  "page_current_eyebrow": {
+    "message": "Current page",
+    "description": "Side panel, Page tab: small uppercase label above the page hostname. Short."
+  },
+  "page_this_page": {
+    "message": "This page",
+    "description": "Side panel, Page tab: shown in place of the hostname when the page has none (e.g. a local file)."
+  },
+  "page_rescan": {
+    "message": "Rescan",
+    "description": "Side panel, Page tab: small button that scans the page again. One short word."
+  },
+  "page_fingerprint_heading": {
+    "message": "Colour fingerprint",
+    "description": "Side panel, Page tab: heading above the bar showing the page's colours by how much each is used."
+  },
+  "page_fingerprint_hint": {
+    "message": "Tap a swatch to copy",
+    "description": "Side panel, Page tab: hint next to the colour fingerprint heading. Keep short."
+  },
+  "page_copied_colour": {
+    "message": "Copied colour",
+    "description": "Toast shown after a colour was copied from the colour fingerprint bar."
+  },
+  "page_style_guide_button": {
+    "message": "Style guide (PNG)",
+    "description": "Side panel, Page tab: button that downloads the page's colours and fonts as a PNG image. Keep 'PNG'."
+  },
+  "page_copy_tokens": {
+    "message": "Copy tokens",
+    "description": "Side panel, Page tab: button that copies the page's colours as CSS custom properties (design tokens). Short button text."
+  },
+  "page_copied_css_variables": {
+    "message": "Copied CSS variables",
+    "description": "Toast shown after the page colours were copied as CSS variables."
+  },
+  "page_palette_eyebrow": {
+    "message": "Extracted palette",
+    "description": "Side panel, Page tab: small uppercase label above the colour list heading. Short."
+  },
+  "page_colours_heading_one": {
+    "message": "Colours · {0}",
+    "description": "Side panel, Page tab: heading of the colour list; {0} is the number of colours found."
+  },
+  "page_colours_heading_other": {
+    "message": "Colours · {0}",
+    "description": "Side panel, Page tab: heading of the colour list; {0} is the number of colours found."
+  },
+  "page_save_as_palette": {
+    "message": "Save as palette",
+    "description": "Side panel, Page tab: small button that saves the top colours as a palette."
+  },
+  "page_role_label": {
+    "message": "Colour role",
+    "description": "Side panel, Page tab: screen-reader label of the filter that shows colours by where they are used."
+  },
+  "page_role_all": {
+    "message": "All",
+    "description": "Side panel, Page tab: colour-role filter option showing every colour. Four options share one row, keep very short."
+  },
+  "page_role_text": {
+    "message": "Text",
+    "description": "Side panel, Page tab: colour-role filter option for text colours. Keep very short."
+  },
+  "page_role_background": {
+    "message": "Background",
+    "description": "Side panel, Page tab: colour-role filter option for background colours. Keep very short."
+  },
+  "page_role_border": {
+    "message": "Border",
+    "description": "Side panel, Page tab: colour-role filter option for border colours. Keep very short."
+  },
+  "page_no_colours_in_role": {
+    "message": "No colours used in this role.",
+    "description": "Side panel, Page tab: shown when the selected colour-role filter has no colours."
+  },
+  "page_copy_value": {
+    "message": "Copy {0}",
+    "description": "Side panel, Page tab: screen-reader label of a colour row; {0} is the colour value, e.g. #5548E0."
+  },
+  "page_uses_count_one": {
+    "message": "{0}×",
+    "description": "Side panel, Page tab: how many times a colour or font is used on the page; {0} is the count. Very short."
+  },
+  "page_uses_count_other": {
+    "message": "{0}×",
+    "description": "Side panel, Page tab: how many times a colour or font is used on the page; {0} is the count. Very short."
+  },
+  "page_type_eyebrow": {
+    "message": "Type system",
+    "description": "Side panel, Page tab: small uppercase label above the typography heading. Short."
+  },
+  "page_typography_heading_one": {
+    "message": "Typography · {0}",
+    "description": "Side panel, Page tab: heading of the font list; {0} is the number of font families found."
+  },
+  "page_typography_heading_other": {
+    "message": "Typography · {0}",
+    "description": "Side panel, Page tab: heading of the font list; {0} is the number of font families found."
+  },
+  "page_font_likely": {
+    "message": "Likely",
+    "description": "Side panel, Page tab: badge next to a font name when the font is a best guess. One short word."
+  },
+  "page_view_on_google_fonts": {
+    "message": "View on Google Fonts",
+    "description": "Side panel, Page tab: link to the font's Google Fonts page. Keep 'Google Fonts' untranslated."
+  },
+  "page_more_sizes_one": {
+    "message": "+{0}",
+    "description": "Side panel, Page tab: chip after the first 10 font sizes; {0} is how many more sizes are not shown. Very short."
+  },
+  "page_more_sizes_other": {
+    "message": "+{0}",
+    "description": "Side panel, Page tab: chip after the first 10 font sizes; {0} is how many more sizes are not shown. Very short."
+  },
+  "page_no_text_found": {
+    "message": "No text was found on this page.",
+    "description": "Side panel, Page tab: shown when the scan found no fonts."
+  },
+  "page_truncated_notice_one": {
+    "message": "This is a large page, so only the first {0} element was read.",
+    "description": "Side panel, Page tab: note when the scan stopped early; {0} is the number of elements read (6,000)."
+  },
+  "page_truncated_notice_other": {
+    "message": "This is a large page, so only the first {0} elements were read.",
+    "description": "Side panel, Page tab: note when the scan stopped early; {0} is the number of elements read (6,000)."
+  },
+  "palettes_name_label": {
+    "message": "Palette name",
+    "description": "Side panel, Palettes tab: screen-reader label of the editable palette name field."
+  },
+  "palettes_colour_count_one": {
+    "message": "{0} colour",
+    "description": "Side panel, Palettes tab: number of colours in a palette, under its name."
+  },
+  "palettes_colour_count_other": {
+    "message": "{0} colours",
+    "description": "Side panel, Palettes tab: number of colours in a palette, under its name."
+  },
+  "palettes_delete_confirm": {
+    "message": "Delete",
+    "description": "Side panel, Palettes tab: button that confirms deleting a palette. Short button text."
+  },
+  "palettes_delete_cancel": {
+    "message": "Cancel",
+    "description": "Side panel, Palettes tab: button that cancels deleting a palette. Short button text."
+  },
+  "palettes_delete_palette": {
+    "message": "Delete palette",
+    "description": "Side panel, Palettes tab: tooltip and screen-reader label of the trash icon button."
+  },
+  "palettes_empty_ribbon": {
+    "message": "Add a colour below or from the Colours tab.",
+    "description": "Side panel, Palettes tab: shown in place of the swatches when a palette is empty. 'Colours tab' is the side panel's Colours tab."
+  },
+  "palettes_swatches_label": {
+    "message": "{0} swatches",
+    "description": "Side panel, Palettes tab: screen-reader label of a palette's row of swatches; {0} is the palette name."
+  },
+  "palettes_swatch_title": {
+    "message": "{0} · click to copy, drag to reorder, Delete to remove",
+    "description": "Side panel, Palettes tab: tooltip on a swatch; {0} is the colour value. 'Delete' is the keyboard key."
+  },
+  "palettes_swatch_aria": {
+    "message": "{0}. Enter copies, Delete removes, Alt plus arrow keys reorder.",
+    "description": "Side panel, Palettes tab: screen-reader label of a swatch; {0} is the colour value. Enter, Delete and Alt are keyboard keys."
+  },
+  "palettes_swatch_hint": {
+    "message": "Drag to reorder · Alt + ←/→ to move · Delete to remove",
+    "description": "Side panel, Palettes tab: hint under the swatches. Alt and Delete are keyboard keys. Keep short, one line."
+  },
+  "palettes_add_placeholder": {
+    "message": "#5548E0 or rgb(…)",
+    "description": "Side panel, Palettes tab: placeholder in the field for adding a colour. Only translate 'or'; keep the colour examples."
+  },
+  "palettes_add_label": {
+    "message": "Colour to add",
+    "description": "Side panel, Palettes tab: screen-reader label of the field for adding a colour."
+  },
+  "palettes_add_button": {
+    "message": "Add",
+    "description": "Side panel, Palettes tab: button that adds the typed colour to the palette. One short word."
+  },
+  "palettes_export_format_label": {
+    "message": "Export format",
+    "description": "Side panel, Palettes tab: screen-reader label of the export format dropdown."
+  },
+  "palettes_copy_button": {
+    "message": "Copy",
+    "description": "Side panel, Palettes tab: small button that copies the palette export code. One short word."
+  },
+  "palettes_copied_export": {
+    "message": "Copied export",
+    "description": "Toast shown after the palette export code was copied."
+  },
+  "palettes_file_button": {
+    "message": "File",
+    "description": "Side panel, Palettes tab: small button that downloads the palette export as a file. One short word."
+  },
+  "palettes_downloaded_palette": {
+    "message": "Downloaded {0}",
+    "description": "Toast shown after a palette was downloaded; {0} is the palette name."
+  },
+  "palettes_default_name": {
+    "message": "Palette {0}",
+    "description": "Default name of a new palette; {0} is its number, e.g. 'Palette 3'."
+  },
+  "palettes_heading": {
+    "message": "Palettes",
+    "description": "Side panel, Palettes tab: section heading, followed by the number of palettes."
+  },
+  "palettes_vision_label": {
+    "message": "Preview palettes as seen with a colour-vision deficiency",
+    "description": "Side panel, Palettes tab: screen-reader label of the colour-vision simulation dropdown."
+  },
+  "palettes_vision_title": {
+    "message": "Check that palette colours stay distinguishable",
+    "description": "Side panel, Palettes tab: tooltip on the colour-vision simulation dropdown."
+  },
+  "palettes_vision_typical": {
+    "message": "Typical vision",
+    "description": "Side panel, Palettes tab: dropdown option that shows colours without simulation. Short."
+  },
+  "palettes_empty_title": {
+    "message": "No palettes yet",
+    "description": "Side panel, Palettes tab: empty-state title."
+  },
+  "palettes_empty_body": {
+    "message": "Group colours into a palette, then export them as CSS variables, SCSS, Tailwind, design tokens, JSON or SVG.",
+    "description": "Side panel, Palettes tab: empty-state explanation. Keep CSS, SCSS, Tailwind, JSON and SVG untranslated."
+  },
+  "palettes_new_palette": {
+    "message": "New palette",
+    "description": "Side panel, Palettes tab: button that creates a palette. Short button text."
+  },
+  "palettes_all_colours_heading": {
+    "message": "All colours",
+    "description": "Side panel, Palettes tab: heading above the bar of every colour across all palettes."
+  },
+  "palettes_export_all": {
+    "message": "Export all",
+    "description": "Side panel, Palettes tab: small button that downloads every palette colour as a CSS file. Short."
+  },
+  "palettes_downloaded_all": {
+    "message": "Downloaded all colours",
+    "description": "Toast shown after all palette colours were downloaded."
+  },
+  "palettes_copied_colour": {
+    "message": "Copied colour",
+    "description": "Toast shown after a colour was copied from the All colours bar."
+  },
+  "ui_copied_value": {
+    "message": "Copied {0}",
+    "description": "Toast shown after something was copied; {0} is the copied text, usually a colour value like #5548E0."
+  },
+  "ui_copy_failed": {
+    "message": "Could not copy",
+    "description": "Toast shown when copying to the clipboard failed."
+  },
+  "ui_colorbar_label": {
+    "message": "Colours used on this page",
+    "description": "Screen-reader label of the colour bar showing colours by share of use."
+  },
+  "ui_colorbar_segment_title": {
+    "message": "{0} · {1}%",
+    "description": "Tooltip on one segment of the colour bar; {0} is the colour value, {1} is its share of uses as a whole number. Adjust the percent sign placement for your language."
+  },
+  "ui_colorbar_segment_aria": {
+    "message": "{0}, {1} percent of uses",
+    "description": "Screen-reader label of one segment of the colour bar; {0} is the colour value, {1} is its share of uses as a whole number."
+  },
+  "ui_copy_row_sr": {
+    "message": "Copy {0} {1}",
+    "description": "Screen-reader text of a button that copies a colour value; {0} is the format name (HEX, RGB, HSL, OKLCH), {1} is the value."
+  },
+  "ui_search_placeholder": {
+    "message": "Search…",
+    "description": "Default placeholder in search fields. Short."
+  },
+  "ui_search_clear": {
+    "message": "Clear search",
+    "description": "Screen-reader label of the button that empties a search field."
+  },
+  "cmd_default_label": {
+    "message": "Commands",
+    "description": "Command menu: default button text and dialog title. Short."
+  },
+  "cmd_trigger_compact_label": {
+    "message": "{0} ({1})",
+    "description": "Command menu: screen-reader label of the compact trigger button; {0} is the menu name (e.g. Commands), {1} is the keyboard shortcut (e.g. Alt K)."
+  },
+  "cmd_close_label": {
+    "message": "Close command menu",
+    "description": "Command menu: screen-reader label of the close button."
+  },
+  "cmd_list_label": {
+    "message": "{0} list",
+    "description": "Command menu: screen-reader label of the list of commands; {0} is the menu name (e.g. Commands)."
+  },
+  "cmd_empty": {
+    "message": "No commands available",
+    "description": "Command menu: shown when there are no commands."
+  },
+  "cmd_footer_navigate": {
+    "message": "navigate",
+    "description": "Command menu footer: follows the up/down arrow key icons. One short lowercase word."
+  },
+  "cmd_footer_run": {
+    "message": "run",
+    "description": "Command menu footer: follows the Enter key icon. One short lowercase word."
+  },
+  "cmd_footer_close": {
+    "message": "close",
+    "description": "Command menu footer: follows the Esc key. One short lowercase word."
+  },
+  "styleguide_default_title": {
+    "message": "Style guide",
+    "description": "Exported style-guide PNG: title drawn at the top when the page has no hostname."
+  },
+  "styleguide_colours_heading": {
+    "message": "Colours",
+    "description": "Exported style-guide PNG: section heading, drawn in uppercase."
+  },
+  "styleguide_typography_heading": {
+    "message": "Typography",
+    "description": "Exported style-guide PNG: section heading, drawn in uppercase."
+  },
+  "styleguide_font_details": {
+    "message": "{0}   ·   Weights {1}   ·   Sizes {2}",
+    "description": "Exported style-guide PNG: line under each font name; {0} is where the font comes from (e.g. Google Fonts), {1} a list of weights (400, 700), {2} a list of sizes (16px  24px). Keep the wide spacing around the dots. One line on a 1,072px-wide canvas."
+  },
+  "styleguide_footer": {
+    "message": "Made with {0}",
+    "description": "Exported style-guide PNG: footer credit; {0} is the product name Pickit."
+  },
+  "export_format_tokens": {
+    "message": "Tokens",
+    "description": "Export format dropdown: option for the W3C design tokens JSON format. One short word; other options are CSS, SCSS, Tailwind, JSON, SVG."
+  },
+  "overlay_hint_bar_label": {
+    "message": "Keyboard shortcuts",
+    "description": "Screen-reader label for the floating shortcut bar shown at the bottom of the web page while a picker tool is active."
+  },
+  "overlay_key_click": {
+    "message": "Click",
+    "description": "Shown as a key cap in the colour picker's shortcut bar: the mouse action 'click'. One short word; the bar is narrow."
+  },
+  "overlay_key_shift_click": {
+    "message": "Shift+Click",
+    "description": "Key cap in the colour picker's shortcut bar: holding Shift while clicking. Keep 'Shift' as the key name; translate only 'Click'. Very short."
+  },
+  "overlay_hint_copy_colour": {
+    "message": "Copy colour",
+    "description": "Shortcut bar label next to the 'Click' key: clicking copies the colour under the cursor. 1-2 words; the bar is narrow."
+  },
+  "overlay_hint_pick_several": {
+    "message": "Pick several",
+    "description": "Shortcut bar label next to 'Shift+Click': pick a colour and keep the picker open to pick more. 1-2 words."
+  },
+  "overlay_hint_pick_from_screen": {
+    "message": "Pick from screen",
+    "description": "Shortcut bar label next to the 'S' key: opens the system eyedropper to pick a colour anywhere on screen, outside the browser. 1-3 words."
+  },
+  "overlay_hint_cancel": {
+    "message": "Cancel",
+    "description": "Shortcut bar label next to the 'Esc' key: closes the colour picker. One word."
+  },
+  "overlay_toast_cannot_read_page": {
+    "message": "Pickit cannot read this page",
+    "description": "Toast title when the colour picker cannot take a screenshot of the tab (e.g. permission lost). Keep 'Pickit' untranslated. Short; toasts are narrow."
+  },
+  "overlay_toast_cannot_read_page_sub": {
+    "message": "Click the toolbar icon and try again",
+    "description": "Second line of the toast above: tells the user to click Pickit's icon in the browser toolbar and retry. Short."
+  },
+  "overlay_toast_capture_failed": {
+    "message": "Could not capture the page",
+    "description": "Toast title when taking the screenshot the colour picker samples from failed unexpectedly. Short."
+  },
+  "overlay_toast_try_again": {
+    "message": "Try again",
+    "description": "Second line of the 'Could not capture the page' toast. 1-2 words."
+  },
+  "overlay_toast_copied": {
+    "message": "Copied {0}",
+    "description": "Toast after picking a colour and copying it. {0} is the colour value, e.g. #1A2B3C or rgb(26, 43, 60). Short."
+  },
+  "overlay_toast_saved": {
+    "message": "Saved {0}",
+    "description": "Toast after picking a colour when copying to the clipboard failed but the colour was saved to the history. {0} is the colour value, e.g. #1A2B3C. Short."
+  },
+  "overlay_font_card_label": {
+    "message": "Font details",
+    "description": "Screen-reader label for the font inspector's floating card that describes the font under the cursor."
+  },
+  "overlay_font_key_hover": {
+    "message": "Hover",
+    "description": "Key cap in the font inspector's shortcut bar: moving the mouse over text. One short word; the bar is narrow."
+  },
+  "overlay_font_key_click": {
+    "message": "Click",
+    "description": "Key cap in the font inspector's shortcut bar: the mouse action 'click'. One short word."
+  },
+  "overlay_font_hint_inspect": {
+    "message": "Inspect",
+    "description": "Shortcut bar label next to 'Hover': hovering shows the font of the element under the cursor. One word."
+  },
+  "overlay_font_hint_pin_copy": {
+    "message": "Pin and copy",
+    "description": "Shortcut bar label next to 'Click': clicking pins the font card so its values can be copied. 1-3 words."
+  },
+  "overlay_font_hint_exit": {
+    "message": "Exit",
+    "description": "Shortcut bar label next to 'Esc': closes the font inspector. One word."
+  },
+  "overlay_font_row_size": {
+    "message": "Size",
+    "description": "Row label on the font card: font size (value like '16px'). Max ~14 characters; the card is 300px wide."
+  },
+  "overlay_font_row_weight": {
+    "message": "Weight",
+    "description": "Row label on the font card: font weight (value like '700 · Bold'). Max ~14 characters."
+  },
+  "overlay_font_row_line_height": {
+    "message": "Line height",
+    "description": "Row label on the font card: CSS line height (value like '1.5 · 24px'). Max ~14 characters."
+  },
+  "overlay_font_row_letter_spacing": {
+    "message": "Letter spacing",
+    "description": "Row label on the font card: CSS letter spacing / tracking (value like '0.02em'). Max ~14 characters."
+  },
+  "overlay_font_row_style": {
+    "message": "Style",
+    "description": "Row label on the font card: CSS font style (value like 'italic', shown as the CSS keyword). Max ~14 characters."
+  },
+  "overlay_font_row_colour": {
+    "message": "Colour",
+    "description": "Row label on the font card: text colour (value like '#17171F'). Max ~14 characters."
+  },
+  "overlay_font_likely": {
+    "message": "Likely",
+    "description": "Small badge next to the font family name on the font card when the font was guessed rather than confirmed. One short word."
+  },
+  "overlay_font_likely_tooltip": {
+    "message": "Best guess based on fonts installed on this device",
+    "description": "Tooltip on the 'Likely' badge: explains the font name is a best guess, measured against the fonts installed on the user's computer."
+  },
+  "overlay_font_copy_css": {
+    "message": "Copy CSS",
+    "description": "Primary button on the pinned font card: copies the font's CSS declarations. Keep 'CSS'. Short; three buttons share a 300px row."
+  },
+  "overlay_font_save": {
+    "message": "Save font",
+    "description": "Button on the pinned font card: saves the font to the user's saved fonts in Pickit. Short; three buttons share a 300px row."
+  },
+  "overlay_font_open_google_fonts": {
+    "message": "Google Fonts ↗",
+    "description": "Button on the pinned font card that opens the font's page on Google Fonts in a new tab. 'Google Fonts' is a product name; keep it and the ↗ arrow."
+  },
+  "overlay_font_footer": {
+    "message": "Click to pin, then copy any value",
+    "description": "Hint at the bottom of the unpinned font card: click to pin the card, then click any row to copy its value. One short line, ~40 characters."
+  },
+  "overlay_font_toast_copied": {
+    "message": "Copied {0}",
+    "description": "Toast after clicking a row on the pinned font card. {0} is the copied value, e.g. '16px' or '#17171F'. Short."
+  },
+  "overlay_font_toast_copied_css": {
+    "message": "Copied font CSS",
+    "description": "Toast after the 'Copy CSS' button copied the font's CSS. Short."
+  },
+  "overlay_font_toast_saved": {
+    "message": "Saved to your fonts",
+    "description": "Toast after the 'Save font' button saved the font to Pickit's saved fonts. Short."
+  },
+  "font_weight_thin": {
+    "message": "Thin",
+    "description": "Font weight name for weight 100, shown after the number, e.g. '100 · Thin', on the font card, popup and side panel. Use the typographic term common in your language."
+  },
+  "font_weight_extra_light": {
+    "message": "Extra Light",
+    "description": "Font weight name for weight 200, e.g. '200 · Extra Light'. Typographic term."
+  },
+  "font_weight_light": {
+    "message": "Light",
+    "description": "Font weight name for weight 300, e.g. '300 · Light'. Typographic term."
+  },
+  "font_weight_regular": {
+    "message": "Regular",
+    "description": "Font weight name for weight 400, e.g. '400 · Regular'. Typographic term."
+  },
+  "font_weight_medium": {
+    "message": "Medium",
+    "description": "Font weight name for weight 500, e.g. '500 · Medium'. Typographic term."
+  },
+  "font_weight_semi_bold": {
+    "message": "Semi Bold",
+    "description": "Font weight name for weight 600, e.g. '600 · Semi Bold'. Typographic term."
+  },
+  "font_weight_bold": {
+    "message": "Bold",
+    "description": "Font weight name for weight 700, e.g. '700 · Bold'. Typographic term."
+  },
+  "font_weight_extra_bold": {
+    "message": "Extra Bold",
+    "description": "Font weight name for weight 800, e.g. '800 · Extra Bold'. Typographic term."
+  },
+  "font_weight_black": {
+    "message": "Black",
+    "description": "Font weight name for weight 900 (the heaviest), e.g. '900 · Black'. Typographic term, not the colour."
+  },
+  "font_line_height_normal": {
+    "message": "Normal",
+    "description": "Line height value shown when the page uses the CSS default ('normal'), on the font card and side panel. One short word."
+  },
+  "font_letter_spacing_normal": {
+    "message": "Normal",
+    "description": "Letter spacing value shown on the font card when the page uses no extra spacing (CSS 'normal'). One short word."
+  },
+  "font_source_browser_default": {
+    "message": "Browser default",
+    "description": "Shown as the font name and its source when no font in the page's list is available, so the browser's default font renders the text. Short."
+  },
+  "font_source_installed": {
+    "message": "Installed on this device",
+    "description": "Source line under the font name: the font is installed on the user's computer rather than downloaded by the page. Short; the card is 300px wide."
+  },
+  "font_source_web_font": {
+    "message": "Web font",
+    "description": "Source line under the font name: the page downloaded the font, but where from is unknown. Short."
+  },
+  "font_source_self_hosted": {
+    "message": "Self-hosted",
+    "description": "Source line under the font name: the website serves the font file from its own domain. Short."
+  },
+  "font_source_hosted_on": {
+    "message": "Hosted on {0}",
+    "description": "Source line under the font name: the font file comes from another site. {0} is a host name, e.g. 'cdn.example.com'. Short."
+  },
+  "panel_tab_colors": {
+    "message": "Colours",
+    "description": "Side panel tab name for the colour picker and history. Very short (one word, about 10 characters)."
+  },
+  "panel_tab_fonts": {
+    "message": "Fonts",
+    "description": "Side panel tab name for the font inspector. Very short (one word, about 10 characters)."
+  },
+  "panel_tab_page": {
+    "message": "Page",
+    "description": "Side panel tab name for the whole-page colour and font scan. Very short (one word, about 10 characters)."
+  },
+  "panel_tab_contrast": {
+    "message": "Contrast",
+    "description": "Side panel tab name for the contrast checker. Very short (one word, about 10 characters)."
+  },
+  "panel_tab_palettes": {
+    "message": "Palettes",
+    "description": "Side panel tab name for saved colour palettes. Very short (one word, about 10 characters)."
+  },
+  "panel_tabs_aria": {
+    "message": "Workspace sections",
+    "description": "Screen-reader label for the side panel's tab bar."
+  },
+  "panel_toast_restricted_page": {
+    "message": "Pickit cannot run on this page",
+    "description": "Toast when the picker is started on a browser page extensions may not access (e.g. the Chrome Web Store). Keep the product name Pickit."
+  },
+  "panel_toast_copied_colour": {
+    "message": "Copied colour",
+    "description": "Toast after copying the selected colour to the clipboard."
+  },
+  "panel_cmd_pick_colour": {
+    "message": "Pick a colour",
+    "description": "Command menu entry that starts the in-page colour picker."
+  },
+  "panel_cmd_inspect_font": {
+    "message": "Inspect a font",
+    "description": "Command menu entry that starts the in-page font inspector."
+  },
+  "panel_cmd_go_colors": {
+    "message": "Go to Colours",
+    "description": "Command menu entry that switches to the Colours tab. 'Colours' should match panel_tab_colors."
+  },
+  "panel_cmd_go_fonts": {
+    "message": "Go to Fonts",
+    "description": "Command menu entry that switches to the Fonts tab. 'Fonts' should match panel_tab_fonts."
+  },
+  "panel_cmd_go_page": {
+    "message": "Go to Page",
+    "description": "Command menu entry that switches to the Page tab. 'Page' should match panel_tab_page."
+  },
+  "panel_cmd_go_contrast": {
+    "message": "Go to Contrast",
+    "description": "Command menu entry that switches to the Contrast tab. 'Contrast' should match panel_tab_contrast."
+  },
+  "panel_cmd_go_palettes": {
+    "message": "Go to Palettes",
+    "description": "Command menu entry that switches to the Palettes tab. 'Palettes' should match panel_tab_palettes."
+  },
+  "panel_cmd_copy_selected_colour": {
+    "message": "Copy selected colour",
+    "description": "Command menu entry that copies the selected colour in the default format."
+  },
+  "panel_cmd_use_light_theme": {
+    "message": "Use light theme",
+    "description": "Command menu entry that switches the extension to the light theme."
+  },
+  "panel_cmd_use_dark_theme": {
+    "message": "Use dark theme",
+    "description": "Command menu entry that switches the extension to the dark theme."
+  },
+  "panel_cmd_open_settings": {
+    "message": "Open settings",
+    "description": "Command menu entry that opens the extension's options page."
+  },
+  "panel_settings": {
+    "message": "Settings",
+    "description": "Tooltip and screen-reader label of the gear icon button in the side panel header."
+  },
+  "panel_context_show_in_colors": {
+    "message": "Show in Colours",
+    "description": "Tooltip on the slim selected-colour bar shown on other tabs; clicking returns to the Colours tab."
+  },
+  "panel_context_copy_colour": {
+    "message": "Copy colour",
+    "description": "Tooltip and screen-reader label of the copy icon button on the selected-colour bar."
+  },
+  "panel_context_check_contrast": {
+    "message": "Check contrast",
+    "description": "Tooltip and screen-reader label of the icon button that sends the selected colour to the contrast checker."
+  },
+  "colors_pick_from_page": {
+    "message": "Pick from page",
+    "description": "Main button on the Colours tab that starts the in-page picker. Also inserted into colors_empty_body. Short, fits a wide button."
+  },
+  "colors_screen_pick": {
+    "message": "Screen",
+    "description": "Button next to 'Pick from page' that picks a colour anywhere on the screen. One short word."
+  },
+  "colors_screen_pick_title": {
+    "message": "Pick any pixel on your screen, even outside Chrome",
+    "description": "Tooltip on the Screen picker button."
+  },
+  "colors_empty_title": {
+    "message": "Pick your first colour",
+    "description": "Heading of the empty state on the Colours tab before any colour is picked."
+  },
+  "colors_empty_body": {
+    "message": "Click {0}, then click anything on the page. Every colour you pick is kept here so you can copy it in any format, check its contrast and build palettes.",
+    "description": "Empty-state text on the Colours tab. {0} is the button name from colors_pick_from_page."
+  },
+  "colors_selected_aria": {
+    "message": "Selected colour",
+    "description": "Screen-reader label for the large selected-colour card."
+  },
+  "colors_token_match_title": {
+    "message": "Matches the page's {0} variable",
+    "description": "Tooltip on the CSS variable name shown on the selected colour. {0} is a CSS custom property name such as --brand-500."
+  },
+  "colors_favorite_add": {
+    "message": "Add to favourites",
+    "description": "Tooltip and screen-reader label of the heart button when the colour is not a favourite."
+  },
+  "colors_favorite_remove": {
+    "message": "Remove from favourites",
+    "description": "Tooltip and screen-reader label of the heart button when the colour is a favourite."
+  },
+  "colors_copy_default_format_title": {
+    "message": "Copy in your default format",
+    "description": "Tooltip on the selected colour's name and value; clicking copies it."
+  },
+  "colors_toast_copied_colour": {
+    "message": "Copied colour",
+    "description": "Toast after copying the selected colour to the clipboard."
+  },
+  "colors_origin_screen": {
+    "message": "Picked from screen",
+    "description": "Shown under the selected colour when it was picked from the screen rather than a website (otherwise the site's hostname is shown)."
+  },
+  "colors_add_to_palette_aria": {
+    "message": "Add this colour to a palette",
+    "description": "Screen-reader label for the palette drop-down on the selected colour."
+  },
+  "colors_add_to_palette_placeholder": {
+    "message": "Add to palette…",
+    "description": "First (placeholder) entry of the palette drop-down. Short."
+  },
+  "colors_new_palette_option": {
+    "message": "+ New palette",
+    "description": "Drop-down entry that creates a new palette with this colour. Keep the leading '+'."
+  },
+  "colors_default_palette_name": {
+    "message": "Palette {0}",
+    "description": "Name given to a newly created palette. {0} is a number, e.g. 'Palette 3'."
+  },
+  "colors_toast_added_new_palette": {
+    "message": "Added to a new palette",
+    "description": "Toast after a colour is added to a newly created palette."
+  },
+  "colors_toast_already_in_palette": {
+    "message": "Already in {0}",
+    "description": "Toast when the colour is already in the chosen palette. {0} is the palette name."
+  },
+  "colors_toast_added_to_palette": {
+    "message": "Added to {0}",
+    "description": "Toast after a colour is added to a palette. {0} is the palette name."
+  },
+  "colors_as_text": {
+    "message": "As text",
+    "description": "Button that opens the contrast checker with this colour as the text colour. Very short (about 10 characters)."
+  },
+  "colors_as_text_title": {
+    "message": "Check this colour as text in the contrast checker",
+    "description": "Tooltip on the 'As text' button."
+  },
+  "colors_as_bg": {
+    "message": "As bg",
+    "description": "Button that opens the contrast checker with this colour as the background. 'bg' abbreviates background. Very short (about 10 characters)."
+  },
+  "colors_as_bg_title": {
+    "message": "Check this colour as a background in the contrast checker",
+    "description": "Tooltip on the 'As bg' button."
+  },
+  "colors_history_title": {
+    "message": "History",
+    "description": "Heading of the list of previously picked colours; a count badge follows it."
+  },
+  "colors_clear_all_confirm_one": {
+    "message": "Clear all {0}?",
+    "description": "Confirmation shown before clearing colour history. {0} is the number of colours (one). Short, sits beside Clear/Cancel buttons."
+  },
+  "colors_clear_all_confirm_other": {
+    "message": "Clear all {0}?",
+    "description": "Confirmation shown before clearing colour history. {0} is the number of colours. Short, sits beside Clear/Cancel buttons."
+  },
+  "colors_clear": {
+    "message": "Clear",
+    "description": "Button that clears the colour history (favourites are kept), and the button that confirms it. Short."
+  },
+  "colors_cancel": {
+    "message": "Cancel",
+    "description": "Button that cancels clearing the colour history. Short."
+  },
+  "colors_remove_selected": {
+    "message": "Remove selected colour",
+    "description": "Tooltip and screen-reader label of the trash icon button in the history header."
+  },
+  "colors_search_label": {
+    "message": "Search colours",
+    "description": "Screen-reader label of the history search field."
+  },
+  "colors_search_placeholder": {
+    "message": "Search hex, name, site or token",
+    "description": "Placeholder in the history search field. Keep 'hex' as the colour-format term. Fits a narrow field (about 35 characters)."
+  },
+  "colors_favorites_only_title": {
+    "message": "Show favourites only",
+    "description": "Tooltip of the heart toggle that filters history to favourites."
+  },
+  "colors_no_favorites": {
+    "message": "No favourites yet. Tap the heart on a colour to keep it.",
+    "description": "Shown when the favourites filter is on and there are no favourites."
+  },
+  "colors_no_search_match": {
+    "message": "No colours match this search.",
+    "description": "Shown when the history search finds nothing."
+  },
+  "colors_swatch_title": {
+    "message": "{0} · double-click to copy",
+    "description": "Tooltip on a history swatch. {0} is the colour value, e.g. #1A2B3C."
+  },
+  "colors_swatch_title_favorite": {
+    "message": "{0} · favourite · double-click to copy",
+    "description": "Tooltip on a favourite history swatch. {0} is the colour value, e.g. #1A2B3C."
+  },
+  "colors_swatch_select_aria": {
+    "message": "Select {0}",
+    "description": "Screen-reader label of a history swatch. {0} is a hex colour."
+  },
+  "colors_swatch_select_favorite_aria": {
+    "message": "Select {0}, favourite",
+    "description": "Screen-reader label of a favourite history swatch. {0} is a hex colour."
+  },
+  "colors_history_hint": {
+    "message": "Click to inspect · double-click to copy · favourites survive Clear",
+    "description": "Hint under the history grid. 'Clear' refers to the Clear button (colors_clear)."
+  },
+  "colors_explore_aria": {
+    "message": "Explore this colour",
+    "description": "Screen-reader label of the shades/harmonies section."
+  },
+  "colors_explore": {
+    "message": "Explore",
+    "description": "Heading of the section showing shades and harmonies of the selected colour; also the label of its switch."
+  },
+  "colors_explore_shades": {
+    "message": "Shades",
+    "description": "Segmented-control option showing a lightness scale of the colour. Very short (fits about 90px)."
+  },
+  "colors_explore_harmonies": {
+    "message": "Harmonies",
+    "description": "Segmented-control option showing colour harmonies (complementary, triadic…). Very short (fits about 90px)."
+  },
+  "colors_shade_scale_aria": {
+    "message": "Shade scale",
+    "description": "Screen-reader label of the row of shade swatches (50-950)."
+  },
+  "colors_shade_title": {
+    "message": "{0} · {1}",
+    "description": "Tooltip on a shade swatch. {0} is the shade step (e.g. 500), {1} the colour value."
+  },
+  "colors_shade_title_nearest": {
+    "message": "{0} · {1} · closest to this colour",
+    "description": "Tooltip on the shade swatch nearest the selected colour. {0} is the shade step (e.g. 500), {1} the colour value."
+  },
+  "colors_shade_copy_aria": {
+    "message": "Copy shade {0}, {1}",
+    "description": "Screen-reader label of a shade swatch. {0} is the shade step (e.g. 500), {1} the colour value."
+  },
+  "colors_copy_scale_as": {
+    "message": "Copy scale as",
+    "description": "Label before the CSS / Tailwind / Tokens buttons that copy the whole shade scale as code."
+  },
+  "colors_copy_scale_tokens": {
+    "message": "Tokens",
+    "description": "Button that copies the shade scale as design tokens JSON. One short word."
+  },
+  "colors_toast_copied_css_variables": {
+    "message": "Copied CSS variables",
+    "description": "Toast after copying the shade scale as CSS custom properties."
+  },
+  "colors_toast_copied_tailwind_scale": {
+    "message": "Copied Tailwind scale",
+    "description": "Toast after copying the shade scale as a Tailwind config. Keep 'Tailwind' (product name)."
+  },
+  "colors_toast_copied_design_tokens": {
+    "message": "Copied design tokens",
+    "description": "Toast after copying the shade scale as design tokens."
+  },
+  "harmonies_aria": {
+    "message": "Colour harmonies",
+    "description": "Screen-reader label of the colour harmonies section."
+  },
+  "harmonies_neutral_message": {
+    "message": "This colour is a neutral (grey, near-black or near-white), so it has no hue to build harmonies from. Pick a coloured swatch to see them.",
+    "description": "Shown instead of harmonies when the selected colour has no hue."
+  },
+  "harmonies_toast_added_new_palette_one": {
+    "message": "Added {0} colour to a new {1} palette",
+    "description": "Toast after creating a palette from a harmony. {0} is the count (one), {1} the harmony name, e.g. Triadic."
+  },
+  "harmonies_toast_added_new_palette_other": {
+    "message": "Added {0} colours to a new {1} palette",
+    "description": "Toast after creating a palette from a harmony. {0} is the count, {1} the harmony name, e.g. Triadic."
+  },
+  "harmonies_toast_already_in_palette": {
+    "message": "{0} colours are already in the palette",
+    "description": "Toast when every colour of a harmony is already in its palette. {0} is the harmony name, e.g. Triadic."
+  },
+  "harmonies_toast_added_to_palette_one": {
+    "message": "Added {0} colour to {1}",
+    "description": "Toast after adding missing harmony colours to an existing palette. {0} is the count (one), {1} the palette/harmony name."
+  },
+  "harmonies_toast_added_to_palette_other": {
+    "message": "Added {0} colours to {1}",
+    "description": "Toast after adding missing harmony colours to an existing palette. {0} is the count, {1} the palette/harmony name."
+  },
+  "harmonies_add_all_aria": {
+    "message": "Add all to palette: {0}",
+    "description": "Screen-reader label of the '+ Palette' button on a harmony row. {0} is the harmony name."
+  },
+  "harmonies_add_all_title": {
+    "message": "Add all {0} colours to a palette",
+    "description": "Tooltip of the '+ Palette' button on a harmony row. {0} is the harmony name."
+  },
+  "harmonies_add_palette_button": {
+    "message": "+ Palette",
+    "description": "Small text button on each harmony row that saves the row as a palette. Keep the leading '+'. Very short (about 10 characters)."
+  },
+  "harmonies_strip_aria": {
+    "message": "{0} colours",
+    "description": "Screen-reader label for a row of harmony swatches. {0} is the harmony name, e.g. Triadic."
+  },
+  "harmonies_swatch_title": {
+    "message": "{0} · click to copy",
+    "description": "Tooltip on a harmony swatch. {0} is the colour value."
+  },
+  "harmonies_swatch_title_base": {
+    "message": "{0} · base · click to copy",
+    "description": "Tooltip on the base (starting) colour swatch of a harmony. {0} is the colour value."
+  },
+  "harmonies_swatch_copy_aria": {
+    "message": "Copy {0} from {1}",
+    "description": "Screen-reader label of a harmony swatch. {0} is the colour value, {1} the harmony name."
+  },
+  "harmonies_swatch_copy_base_aria": {
+    "message": "Copy {0} from {1} (base)",
+    "description": "Screen-reader label of the base swatch of a harmony. {0} is the colour value, {1} the harmony name."
+  },
+  "harmonies_toast_copied_value": {
+    "message": "Copied {0}",
+    "description": "Toast after copying a harmony colour. {0} is the colour value."
+  },
+  "harmonies_base_badge": {
+    "message": "base",
+    "description": "Tiny badge on the base colour of a harmony row. Lowercase, about 4-6 characters."
+  },
+  "harmony_complementary": {
+    "message": "Complementary",
+    "description": "Colour harmony name: the base colour and its opposite hue. Also used as a default palette name."
+  },
+  "harmony_analogous": {
+    "message": "Analogous",
+    "description": "Colour harmony name: neighbouring hues. Also used as a default palette name."
+  },
+  "harmony_triadic": {
+    "message": "Triadic",
+    "description": "Colour harmony name: three evenly spaced hues. Also used as a default palette name."
+  },
+  "harmony_split_complement": {
+    "message": "Split complement",
+    "description": "Colour harmony name: the base plus the two hues beside its opposite. Also used as a default palette name."
+  },
+  "harmony_tetradic": {
+    "message": "Tetradic",
+    "description": "Colour harmony name: four evenly spaced hues. Also used as a default palette name."
+  },
+  "contrast_field_text": {
+    "message": "Text",
+    "description": "Label of the text (foreground) colour field in the contrast checker. One short word."
+  },
+  "contrast_field_background": {
+    "message": "Background",
+    "description": "Label of the background colour field in the contrast checker. One short word."
+  },
+  "contrast_text_picker_aria": {
+    "message": "Text colour picker",
+    "description": "Screen-reader label of the native colour picker for the text colour."
+  },
+  "contrast_background_picker_aria": {
+    "message": "Background colour picker",
+    "description": "Screen-reader label of the native colour picker for the background colour."
+  },
+  "contrast_use_recent_as_text_aria": {
+    "message": "Use {0} as text",
+    "description": "Screen-reader label of a recent-colour chip under the text field. {0} is a hex colour."
+  },
+  "contrast_use_recent_as_background_aria": {
+    "message": "Use {0} as background",
+    "description": "Screen-reader label of a recent-colour chip under the background field. {0} is a hex colour."
+  },
+  "contrast_grade_aa_large": {
+    "message": "AA Large",
+    "description": "Contrast grade badge: passes WCAG AA for large text only. Keep 'AA' untranslated. Very short."
+  },
+  "contrast_grade_fails": {
+    "message": "Fails",
+    "description": "Contrast grade badge: fails WCAG AA even for large text. One short word."
+  },
+  "contrast_simulating": {
+    "message": "Simulating {0}",
+    "description": "Note on the contrast preview while a colour-vision simulation is on. {0} is a vision type name, e.g. Protanopia."
+  },
+  "contrast_preview_large": {
+    "message": "Large text at 24px",
+    "description": "Sample line in the contrast preview, shown in large type."
+  },
+  "contrast_preview_body": {
+    "message": "Body text at 16px. The quick brown fox jumps over the lazy dog.",
+    "description": "Sample paragraph in the contrast preview. The second sentence is filler text; any natural sample sentence in the target language works."
+  },
+  "contrast_apca_title": {
+    "message": "APCA lightness contrast, proposed for WCAG 3",
+    "description": "Tooltip on the 'APCA Lc' readout. Keep APCA and WCAG 3 untranslated."
+  },
+  "contrast_swap": {
+    "message": "Swap text and background",
+    "description": "Tooltip and screen-reader label of the swap icon button."
+  },
+  "contrast_apca_use": {
+    "message": "APCA: {0}",
+    "description": "Line under the contrast readout. {0} is a usage hint from apca_use_* (e.g. 'Body text from 18px'). Keep APCA untranslated."
+  },
+  "contrast_check_aa_body": {
+    "message": "AA body",
+    "description": "Pass/fail row: WCAG AA for body (normal) text. Keep 'AA'. Very short."
+  },
+  "contrast_check_aa_large": {
+    "message": "AA large",
+    "description": "Pass/fail row: WCAG AA for large text. Keep 'AA'. Very short."
+  },
+  "contrast_check_aaa_body": {
+    "message": "AAA body",
+    "description": "Pass/fail row: WCAG AAA for body (normal) text. Keep 'AAA'. Very short."
+  },
+  "contrast_check_aaa_large": {
+    "message": "AAA large",
+    "description": "Pass/fail row: WCAG AAA for large text. Keep 'AAA'. Very short."
+  },
+  "contrast_fixes_aria": {
+    "message": "Suggested fixes",
+    "description": "Screen-reader label of the suggested colour fixes section."
+  },
+  "contrast_fixes_title": {
+    "message": "Reach {0} ({1}:1) with the smallest change",
+    "description": "Heading of the suggested fixes. {0} is the WCAG level (AA or AAA), {1} the target ratio (4.5 or 7)."
+  },
+  "contrast_fix_text": {
+    "message": "Adjust text",
+    "description": "Suggested fix button that changes the text colour. Short."
+  },
+  "contrast_fix_background": {
+    "message": "Adjust background",
+    "description": "Suggested fix button that changes the background colour. Short."
+  },
+  "contrast_vision_title": {
+    "message": "Colour vision",
+    "description": "Heading (and screen-reader label) of the colour-vision simulation section."
+  },
+  "contrast_vision_typical_note": {
+    "message": "Typical vision",
+    "description": "Note beside the colour vision heading when no simulation is selected."
+  },
+  "contrast_vision_picker_aria": {
+    "message": "Simulate colour vision",
+    "description": "Screen-reader label of the colour-vision button group."
+  },
+  "contrast_vision_short_typical": {
+    "message": "Typical",
+    "description": "Button in the colour-vision picker for no simulation. Five buttons share one row: keep to about 7 characters."
+  },
+  "contrast_vision_short_protanopia": {
+    "message": "Protan.",
+    "description": "Abbreviation of Protanopia (red-blind) on the colour-vision picker. Keep to about 7 characters."
+  },
+  "contrast_vision_short_deuteranopia": {
+    "message": "Deuter.",
+    "description": "Abbreviation of Deuteranopia (green-blind) on the colour-vision picker. Keep to about 7 characters."
+  },
+  "contrast_vision_short_tritanopia": {
+    "message": "Tritan.",
+    "description": "Abbreviation of Tritanopia (blue-blind) on the colour-vision picker. Keep to about 7 characters."
+  },
+  "contrast_vision_short_achromatopsia": {
+    "message": "Mono",
+    "description": "Short name for Achromatopsia (no colour vision, monochrome) on the colour-vision picker. Keep to about 7 characters."
+  },
+  "contrast_pair_aria": {
+    "message": "Colours",
+    "description": "Screen-reader label of the section holding the text and background colour fields."
+  },
+  "apca_use_body_any_size": {
+    "message": "Body text at any size",
+    "description": "What an APCA contrast value is good enough for (Lc 90+). Shown after 'APCA:'."
+  },
+  "apca_use_body_from_18px": {
+    "message": "Body text from 18px",
+    "description": "What an APCA contrast value is good enough for (Lc 75-89). Shown after 'APCA:'."
+  },
+  "apca_use_content_from_24px": {
+    "message": "Content text from 24px",
+    "description": "What an APCA contrast value is good enough for (Lc 60-74). Shown after 'APCA:'."
+  },
+  "apca_use_headlines_large_text": {
+    "message": "Headlines and large text",
+    "description": "What an APCA contrast value is good enough for (Lc 45-59). Shown after 'APCA:'."
+  },
+  "apca_use_placeholders_non_text": {
+    "message": "Placeholders and non-text only",
+    "description": "What an APCA contrast value is good enough for (Lc 30-44). Shown after 'APCA:'."
+  },
+  "apca_use_dividers_decoration": {
+    "message": "Dividers and decoration only",
+    "description": "What an APCA contrast value is good enough for (Lc 15-29). Shown after 'APCA:'."
+  },
+  "apca_use_not_readable": {
+    "message": "Not readable",
+    "description": "APCA contrast below Lc 15: too low for anything. Shown after 'APCA:'."
+  },
+  "vision_protanopia_label": {
+    "message": "Protanopia",
+    "description": "Name of a colour-vision deficiency (red-blind), used in the contrast checker and palette simulator."
+  },
+  "vision_protanopia_note": {
+    "message": "No red cones",
+    "description": "Short explanation of protanopia shown beside the vision picker."
+  },
+  "vision_deuteranopia_label": {
+    "message": "Deuteranopia",
+    "description": "Name of a colour-vision deficiency (green-blind), used in the contrast checker and palette simulator."
+  },
+  "vision_deuteranopia_note": {
+    "message": "No green cones",
+    "description": "Short explanation of deuteranopia shown beside the vision picker."
+  },
+  "vision_tritanopia_label": {
+    "message": "Tritanopia",
+    "description": "Name of a colour-vision deficiency (blue-blind), used in the contrast checker and palette simulator."
+  },
+  "vision_tritanopia_note": {
+    "message": "No blue cones",
+    "description": "Short explanation of tritanopia shown beside the vision picker."
+  },
+  "vision_achromatopsia_label": {
+    "message": "Achromatopsia",
+    "description": "Name of total colour blindness (sees only greys), used in the contrast checker and palette simulator."
+  },
+  "vision_achromatopsia_note": {
+    "message": "No colour vision",
+    "description": "Short explanation of achromatopsia shown beside the vision picker."
+  },
+  "popup_failure_restricted_title": {
+    "message": "Pickit cannot run on this page",
+    "description": "Popup warning banner title when the current tab is a browser page or the Web Store. One short line."
+  },
+  "popup_failure_restricted_text": {
+    "message": "Chrome blocks extensions on browser pages and the Web Store. Open any website and try again.",
+    "description": "Popup warning banner body under popup_failure_restricted_title. Popup is about 340px wide."
+  },
+  "popup_failure_no_access_title": {
+    "message": "Pickit could not reach this page",
+    "description": "Popup warning banner title when the extension could not inject into the tab. One short line."
+  },
+  "popup_failure_no_access_text": {
+    "message": "Reload the page and try again. For local files, allow file access in the extension details.",
+    "description": "Popup warning banner body under popup_failure_no_access_title. 'extension details' is Chrome's chrome://extensions details page."
+  },
+  "popup_failure_unknown_title": {
+    "message": "Something went wrong",
+    "description": "Popup warning banner title for an unexpected error. One short line."
+  },
+  "popup_failure_unknown_text": {
+    "message": "Reload the page and try again.",
+    "description": "Popup warning banner body under popup_failure_unknown_title."
+  },
+  "popup_command_pick_colour": {
+    "message": "Pick a colour",
+    "description": "Command menu item in the popup that starts the colour picker. Short."
+  },
+  "popup_command_inspect_font": {
+    "message": "Inspect a font",
+    "description": "Command menu item in the popup that starts the font inspector. Short."
+  },
+  "popup_command_open_workspace": {
+    "message": "Open workspace panel",
+    "description": "Command menu item in the popup that opens the side panel (the 'workspace'). Short."
+  },
+  "popup_command_copy_latest": {
+    "message": "Copy latest colour",
+    "description": "Command menu item in the popup that copies the most recently picked colour. Short."
+  },
+  "popup_command_light_theme": {
+    "message": "Use light theme",
+    "description": "Command menu item in the popup that switches the interface to the light theme. Short."
+  },
+  "popup_command_dark_theme": {
+    "message": "Use dark theme",
+    "description": "Command menu item in the popup that switches the interface to the dark theme. Short."
+  },
+  "popup_command_open_settings": {
+    "message": "Open settings",
+    "description": "Command menu item in the popup that opens the extension's settings page. Short."
+  },
+  "popup_toast_copied_colour": {
+    "message": "Copied colour",
+    "description": "Brief toast in the popup after a colour value is copied to the clipboard. Very short."
+  },
+  "popup_open_workspace_label": {
+    "message": "Open workspace panel",
+    "description": "Accessible label and tooltip for the panel icon button in the popup header that opens the side panel."
+  },
+  "popup_settings_label": {
+    "message": "Settings",
+    "description": "Accessible label and tooltip for the gear icon button in the popup header."
+  },
+  "popup_tools_label": {
+    "message": "Tools",
+    "description": "Screen-reader label for the group of tool buttons (colour picker, font inspector) in the popup."
+  },
+  "popup_tool_pick_title": {
+    "message": "Pick a colour",
+    "description": "Title on the large colour picker tool button in the popup. Keep under about 16 characters."
+  },
+  "popup_tool_pick_sub": {
+    "message": "Click any pixel",
+    "description": "Hint under popup_tool_pick_title on the colour picker tool button. Keep under about 18 characters."
+  },
+  "popup_tool_font_title": {
+    "message": "Inspect a font",
+    "description": "Title on the large font inspector tool button in the popup. Keep under about 16 characters."
+  },
+  "popup_tool_font_sub": {
+    "message": "Hover any text",
+    "description": "Hint under popup_tool_font_title on the font inspector tool button. Keep under about 18 characters."
+  },
+  "popup_empty_colours": {
+    "message": "Colours you pick appear here, ready to copy in any format.",
+    "description": "Empty-state text in the popup before any colour has been picked."
+  },
+  "popup_latest_colour_label": {
+    "message": "Latest colour",
+    "description": "Screen-reader label for the popup section showing the most recently picked colour."
+  },
+  "popup_latest_copy_title": {
+    "message": "Copy in your default format",
+    "description": "Tooltip on the large latest-colour card in the popup; clicking copies the colour in the format chosen in settings."
+  },
+  "popup_origin_screen": {
+    "message": "Picked from screen",
+    "description": "Shown on the latest-colour card when the colour was picked from the screen rather than a web page. One line, truncated if long."
+  },
+  "popup_recent_colours_label": {
+    "message": "Recent colours",
+    "description": "Screen-reader label for the row of recent colour swatches in the popup."
+  },
+  "popup_recent_copy_label": {
+    "message": "Copy {0}",
+    "description": "Screen-reader label for a recent colour swatch button. {0} is the colour value, e.g. #1A2B3C or rgb(26 43 60)."
+  },
+  "popup_recent_copy_title": {
+    "message": "{0} · click to copy",
+    "description": "Tooltip on a recent colour swatch. {0} is the colour value, e.g. #1A2B3C."
+  },
+  "popup_latest_font_label": {
+    "message": "Latest font",
+    "description": "Screen-reader label for the popup row showing the most recently inspected font."
+  },
+  "popup_font_details": {
+    "message": "{0}px · {1} · {2}",
+    "description": "Detail line under the latest font name in the popup. {0} is the font size in CSS pixels, {1} the weight name (e.g. Bold), {2} where the font comes from (e.g. Google Fonts). Keep 'px'."
+  },
+  "popup_workspace_link": {
+    "message": "Open workspace",
+    "description": "Label of the link row at the bottom of the popup that opens the side panel. Short."
+  },
+  "popup_workspace_link_sub": {
+    "message": "History, contrast, palettes",
+    "description": "Small hint next to popup_workspace_link listing what the side panel contains. Keep under about 28 characters."
+  },
+  "popup_rating_title": {
+    "message": "Finding Pickit useful?",
+    "description": "Bold title of the banner in the popup asking for a Chrome Web Store rating. Pickit is the product name; do not translate."
+  },
+  "popup_rating_text": {
+    "message": "A rating helps other people find it.",
+    "description": "Body text of the rating banner in the popup, after popup_rating_title."
+  },
+  "popup_rating_rate": {
+    "message": "Rate Pickit",
+    "description": "Button in the rating banner that opens the Chrome Web Store review page. Pickit is the product name; do not translate. Short."
+  },
+  "popup_rating_dismiss": {
+    "message": "Not now",
+    "description": "Button in the rating banner that dismisses it. Short."
+  },
+  "welcome_step_pick_title": {
+    "message": "Pick a colour",
+    "description": "Heading of the first step card on the welcome page shown after install."
+  },
+  "welcome_step_pick_text": {
+    "message": "Open the popup or use the shortcut, then click a colour on the page. Pickit reads it without watching what you do.",
+    "description": "Body of the first step card on the welcome page. Pickit is the product name; do not translate."
+  },
+  "welcome_step_font_title": {
+    "message": "Inspect a font",
+    "description": "Heading of the second step card on the welcome page."
+  },
+  "welcome_step_font_text": {
+    "message": "Choose the font tool and click any text. You get its family, size, weight and colour in one small panel.",
+    "description": "Body of the second step card on the welcome page."
+  },
+  "welcome_step_workspace_title": {
+    "message": "Keep it all in the workspace",
+    "description": "Heading of the third step card on the welcome page. 'Workspace' is the extension's side panel."
+  },
+  "welcome_step_workspace_text": {
+    "message": "The side panel holds your colour history, fonts, palettes, contrast checker and a one-click style guide of the page.",
+    "description": "Body of the third step card on the welcome page."
+  },
+  "welcome_shortcut_label": {
+    "message": "Shortcut {0}",
+    "description": "Screen-reader label for a keyboard shortcut shown on a welcome step card. {0} is the key combination, e.g. Alt+Shift+C."
+  },
+  "welcome_kicker": {
+    "message": "Welcome to Pickit",
+    "description": "Small uppercase line above the main heading on the welcome page. Pickit is the product name; do not translate."
+  },
+  "welcome_title_lead": {
+    "message": "Any colour. Any font.",
+    "description": "First part of the large welcome page heading, shown in normal colour. Followed by welcome_title_accent."
+  },
+  "welcome_title_accent": {
+    "message": "Right at your fingertips.",
+    "description": "Second part of the large welcome page heading, shown in the accent colour after welcome_title_lead."
+  },
+  "welcome_lead": {
+    "message": "Three things to know, then you are set.",
+    "description": "Intro line under the welcome page heading, introducing the three step cards."
+  },
+  "welcome_tip_pin": {
+    "message": "Tip: click the puzzle icon in Chrome's toolbar and pin Pickit so it is always one click away.",
+    "description": "Tip at the bottom of the welcome page. 'Puzzle icon' is Chrome's Extensions toolbar button. Pickit is the product name; do not translate."
+  },
+  "welcome_cta": {
+    "message": "Start inspecting",
+    "description": "Primary button at the bottom of the welcome page; closes the page. Short."
+  },
+  "access_unreachable_title": {
+    "message": "Pickit could not reach this page",
+    "description": "Side panel warning banner title when a picker started from the side panel failed although all-sites access is granted. Pickit is the product name."
+  },
+  "access_unreachable_text": {
+    "message": "Reload the page and try again. For local files, allow file access in the extension details.",
+    "description": "Side panel warning banner body under access_unreachable_title. 'extension details' is Chrome's chrome://extensions details page."
+  },
+  "access_allow_title": {
+    "message": "Allow Pickit on this page",
+    "description": "Side panel warning banner title when the side panel has no permission to reach the current tab. Pickit is the product name."
+  },
+  "access_allow_text": {
+    "message": "The side panel cannot reach a tab on its own. Click the Pickit toolbar icon on this tab, or allow access to all sites so the side panel works everywhere.",
+    "description": "Side panel warning banner body under access_allow_title, explaining the two ways to grant access."
+  },
+  "access_allow_all_sites": {
+    "message": "Allow on all sites",
+    "description": "Button in the side panel access banner that requests permission for all websites. Short."
+  },
+  "access_dismiss_label": {
+    "message": "Dismiss",
+    "description": "Accessible label and tooltip for the close (X) icon button on the side panel access banner."
+  },
+  "settings_theme_light": {
+    "message": "Light",
+    "description": "Settings page: theme option label, shown on a segmented button and under a preview tile. Keep under 10 characters."
+  },
+  "settings_theme_dark": {
+    "message": "Dark",
+    "description": "Settings page: theme option label, shown on a segmented button and under a preview tile. Keep under 10 characters."
+  },
+  "settings_theme_system": {
+    "message": "System",
+    "description": "Settings page: theme option label meaning 'follow the operating system setting'. Keep under 10 characters."
+  },
+  "settings_shortcut_not_set": {
+    "message": "Not set",
+    "description": "Settings page: shown in place of key chips when a keyboard shortcut has no keys assigned. Short."
+  },
+  "settings_shortcut_label": {
+    "message": "Shortcut {0}",
+    "description": "Settings page: screen-reader label for a group of key chips. {0} is the key combination, e.g. Alt+Shift+C."
+  },
+  "settings_count_colours_one": {
+    "message": "{0} colour",
+    "description": "Settings page: count phrase inserted into the backup banner and restore toast. {0} is the number. Singular form."
+  },
+  "settings_count_colours_other": {
+    "message": "{0} colours",
+    "description": "Settings page: count phrase inserted into the backup banner and restore toast. {0} is the number. Plural form."
+  },
+  "settings_count_fonts_one": {
+    "message": "{0} font",
+    "description": "Settings page: count phrase inserted into the backup banner and restore toast. {0} is the number. Singular form."
+  },
+  "settings_count_fonts_other": {
+    "message": "{0} fonts",
+    "description": "Settings page: count phrase inserted into the backup banner and restore toast. {0} is the number. Plural form."
+  },
+  "settings_count_palettes_one": {
+    "message": "{0} palette",
+    "description": "Settings page: count phrase inserted into the backup banner and restore toast. {0} is the number. Singular form."
+  },
+  "settings_count_palettes_other": {
+    "message": "{0} palettes",
+    "description": "Settings page: count phrase inserted into the backup banner and restore toast. {0} is the number. Plural form."
+  },
+  "settings_eyebrow": {
+    "message": "Preferences",
+    "description": "Settings page: small uppercase label above the page heading. One or two words."
+  },
+  "settings_heading": {
+    "message": "Pickit settings",
+    "description": "Settings page: main page heading. Pickit is the product name; do not translate it."
+  },
+  "settings_intro": {
+    "message": "Tune how colours are copied, how Pickit looks and what it remembers.",
+    "description": "Settings page: one-sentence introduction under the page heading."
+  },
+  "settings_version_badge": {
+    "message": "Version {0}",
+    "description": "Settings page: small badge in the header. {0} is the extension version number, e.g. 1.2.0."
+  },
+  "settings_colours_title": {
+    "message": "Colours",
+    "description": "Settings page: section heading for colour format options."
+  },
+  "settings_colours_description": {
+    "message": "The format and case used whenever you copy a colour.",
+    "description": "Settings page: one-line description under the Colours section heading."
+  },
+  "settings_default_format_title": {
+    "message": "Default format",
+    "description": "Settings page: setting title for choosing the default colour format (HEX, RGB, HSL, OKLCH)."
+  },
+  "settings_default_format_help": {
+    "message": "Used when you pick a colour and for one-click copy.",
+    "description": "Settings page: help text under the Default format setting."
+  },
+  "settings_default_format_label": {
+    "message": "Default colour format",
+    "description": "Settings page: screen-reader label for the default colour format button group."
+  },
+  "settings_hex_case_title": {
+    "message": "HEX letter case",
+    "description": "Settings page: setting title (and screen-reader label) for choosing upper or lower case HEX values. HEX is a technical term; keep it."
+  },
+  "settings_hex_case_help": {
+    "message": "How HEX values are written when copied.",
+    "description": "Settings page: help text under the HEX letter case setting."
+  },
+  "settings_history_size_title": {
+    "message": "History size",
+    "description": "Settings page: setting title (and screen-reader label) for how many picked colours are remembered."
+  },
+  "settings_history_size_help": {
+    "message": "Older colours are removed once the limit is reached. Favourites are always kept.",
+    "description": "Settings page: help text under the History size setting."
+  },
+  "settings_history_size_option_one": {
+    "message": "{0} colour",
+    "description": "Settings page: option in the History size dropdown. {0} is the number of colours kept. Singular form."
+  },
+  "settings_history_size_option_other": {
+    "message": "{0} colours",
+    "description": "Settings page: option in the History size dropdown. {0} is the number of colours kept, e.g. 50. Plural form."
+  },
+  "settings_appearance_title": {
+    "message": "Appearance",
+    "description": "Settings page: section heading for the theme setting."
+  },
+  "settings_appearance_description": {
+    "message": "Choose the look of Pickit's windows and the on-page overlay.",
+    "description": "Settings page: one-line description under the Appearance section heading."
+  },
+  "settings_theme_title": {
+    "message": "Theme",
+    "description": "Settings page: setting title (and screen-reader label) for light/dark/system theme."
+  },
+  "settings_theme_help": {
+    "message": "Applies to Pickit's own windows and the on-page overlay.",
+    "description": "Settings page: help text under the Theme setting."
+  },
+  "settings_shortcuts_title": {
+    "message": "Keyboard shortcuts",
+    "description": "Settings page: section heading for keyboard shortcuts."
+  },
+  "settings_shortcuts_description": {
+    "message": "Start a picker without opening the popup.",
+    "description": "Settings page: one-line description under the Keyboard shortcuts section heading."
+  },
+  "settings_shortcut_pick_colour_title": {
+    "message": "Pick a colour",
+    "description": "Settings page: name of the keyboard shortcut that starts the colour picker."
+  },
+  "settings_shortcut_pick_colour_help": {
+    "message": "Opens the colour picker on the current tab.",
+    "description": "Settings page: help text for the Pick a colour shortcut."
+  },
+  "settings_shortcut_inspect_font_title": {
+    "message": "Inspect a font",
+    "description": "Settings page: name of the keyboard shortcut that starts the font inspector."
+  },
+  "settings_shortcut_inspect_font_help": {
+    "message": "Opens the font inspector on the current tab.",
+    "description": "Settings page: help text for the Inspect a font shortcut."
+  },
+  "settings_change_shortcuts_title": {
+    "message": "Change shortcuts",
+    "description": "Settings page: setting title next to a button that opens Chrome's shortcut page."
+  },
+  "settings_change_shortcuts_help": {
+    "message": "Defaults are {0} and {1}. Chrome manages shortcuts for all extensions in one place.",
+    "description": "Settings page: help text. {0} and {1} are default key combinations, e.g. Alt+Shift+C and Alt+Shift+F."
+  },
+  "settings_open_chrome_shortcuts": {
+    "message": "Open Chrome shortcuts",
+    "description": "Settings page: button that opens Chrome's extension keyboard shortcut page. Keep short."
+  },
+  "settings_backup_title": {
+    "message": "Backup",
+    "description": "Settings page: section heading for exporting and restoring data."
+  },
+  "settings_backup_description": {
+    "message": "Move your colours, fonts and palettes to another browser, or keep a copy.",
+    "description": "Settings page: one-line description under the Backup section heading."
+  },
+  "settings_export_title": {
+    "message": "Export a backup",
+    "description": "Settings page: setting title for downloading a backup file."
+  },
+  "settings_export_help": {
+    "message": "Saves everything Pickit stores as one JSON file on your device.",
+    "description": "Settings page: help text under Export a backup. JSON is a file format; keep it."
+  },
+  "settings_export_button": {
+    "message": "Export",
+    "description": "Settings page: button that downloads the backup file. One word if possible."
+  },
+  "settings_toast_backup_downloaded": {
+    "message": "Backup downloaded",
+    "description": "Settings page: short confirmation toast after the backup file is downloaded."
+  },
+  "settings_restore_title": {
+    "message": "Restore a backup",
+    "description": "Settings page: setting title for loading a backup file."
+  },
+  "settings_restore_help": {
+    "message": "Replaces what is stored now with the backup's contents. Export first if you want to keep both.",
+    "description": "Settings page: help text under Restore a backup."
+  },
+  "settings_restore_confirm": {
+    "message": "Replace my data",
+    "description": "Settings page: button that confirms restoring a backup, overwriting current data. Keep short."
+  },
+  "settings_cancel": {
+    "message": "Cancel",
+    "description": "Settings page: button that cancels restoring a backup or clearing data."
+  },
+  "settings_restore_choose_file": {
+    "message": "Choose file",
+    "description": "Settings page: button that opens a file picker to select a backup file. Keep short."
+  },
+  "settings_toast_file_too_large": {
+    "message": "That file is too large to be a Pickit backup",
+    "description": "Settings page: error toast when the chosen backup file is over 5 MB."
+  },
+  "settings_toast_restored": {
+    "message": "Restored {0}, {1}, {2}",
+    "description": "Settings page: toast after a backup is restored. {0} is a colour count phrase (e.g. '12 colours'), {1} a font count phrase, {2} a palette count phrase."
+  },
+  "settings_restore_banner": {
+    "message": "This backup has {0}, {1} and {2}. Restoring replaces everything Pickit has stored now.",
+    "description": "Settings page: warning banner before confirming a restore. {0} is a colour count phrase (e.g. '12 colours'), {1} a font count phrase, {2} a palette count phrase."
+  },
+  "settings_privacy_title": {
+    "message": "Privacy",
+    "description": "Settings page: section heading for data and privacy options."
+  },
+  "settings_privacy_description": {
+    "message": "Decide what Pickit can read and how long it keeps it.",
+    "description": "Settings page: one-line description under the Privacy section heading."
+  },
+  "settings_clear_data_title": {
+    "message": "Clear data",
+    "description": "Settings page: setting title for deleting stored history, fonts and palettes."
+  },
+  "settings_clear_data_help": {
+    "message": "Removes colour history, fonts and palettes from this device. Settings are kept.",
+    "description": "Settings page: help text under Clear data."
+  },
+  "settings_clear_data_button": {
+    "message": "Clear data",
+    "description": "Settings page: button that asks to delete stored data (a confirmation follows). Keep short."
+  },
+  "settings_clear_data_confirm": {
+    "message": "Yes, clear everything",
+    "description": "Settings page: button that confirms deleting all stored data. Keep short."
+  },
+  "settings_toast_data_cleared": {
+    "message": "All data cleared",
+    "description": "Settings page: confirmation toast after stored data is deleted."
+  },
+  "settings_privacy_note": {
+    "message": "Everything Pickit saves stays in this browser. It has no account and sends nothing to a server.",
+    "description": "Settings page: information banner in the Privacy section."
+  },
+  "backup_imported_palette_name": {
+    "message": "Imported palette",
+    "description": "Default name given to a palette from a backup file that has no name. Shown in the palette list. Keep under 30 characters."
+  },
+  "backup_error_invalid_json": {
+    "message": "This file is not valid JSON.",
+    "description": "Error toast when a chosen backup file cannot be read. JSON is a file format; keep it."
+  },
+  "backup_error_not_pickit": {
+    "message": "This is not a Pickit backup file.",
+    "description": "Error toast when a chosen file is valid JSON but not a Pickit backup. Pickit is the product name."
+  },
+  "backup_error_newer_version": {
+    "message": "This backup was made by a newer version of Pickit. Update Pickit and try again.",
+    "description": "Error toast when a backup file comes from a newer version of the extension."
+  },
+  "ui_shortcut_title": {
+    "message": "Shortcut {0}",
+    "description": "Tooltip on picker buttons. {0} is the key combination, e.g. Alt+Shift+C."
+  },
+  "ui_shortcut_none": {
+    "message": "No shortcut set",
+    "description": "Tooltip on picker buttons when no keyboard shortcut is assigned."
+  },
+  "settings_sync_title": {
+    "message": "Sync palettes and favourites",
+    "description": "Settings: title of the switch that syncs palettes and favourite colours across the user's Chrome profiles"
+  },
+  "settings_sync_help": {
+    "message": "Keeps your palettes and favourite colours the same in every Chrome where you are signed in. History and fonts stay on this device.",
+    "description": "Settings: help text under the sync switch"
+  },
+  "settings_sync_error_quota": {
+    "message": "Chrome sync storage is full, so some palettes are not syncing. Delete palettes you no longer need.",
+    "description": "Settings: warning when chrome.storage.sync quota is exceeded"
+  },
+  "settings_sync_error_too_large": {
+    "message": "One palette is too large to sync. Split it into smaller palettes.",
+    "description": "Settings: warning when one palette exceeds the 8 KB per-item sync limit"
+  },
+  "settings_sync_error_unavailable": {
+    "message": "Sync is not available right now. Check that you are signed in to Chrome with sync turned on.",
+    "description": "Settings: warning when chrome.storage.sync cannot be reached"
+  },
+  "overlay_font_close": {
+    "message": "Close font inspector",
+    "description": "Font card in the page: label of the × button that exits the font inspector"
+  },
+  "sponsor_label": {
+    "message": "Sponsored by",
+    "description": "Sponsor credit label shown before the sponsor name (popup, side panel, settings, welcome page)"
+  },
+  "sponsor_tagline": {
+    "message": "Free online tools for images, video, audio and PDFs. Files stay in your browser.",
+    "description": "One-line description of the sponsor ToolEnhancer, on the settings and welcome cards"
+  },
+  "sponsor_tagline_short": {
+    "message": "Free tools for images, PDFs and more",
+    "description": "Very short description of the sponsor for a single footer line (max ~40 characters)"
+  },
+  "sponsor_cta": {
+    "message": "Visit",
+    "description": "Button that opens the sponsor website"
+  },
+  "sponsor_open": {
+    "message": "Open {0} in a new tab",
+    "description": "Tooltip/accessible name for the sponsor link; {0} is the sponsor name"
+  },
+  "credits_title": {
+    "message": "About",
+    "description": "Heading of the maker card on the welcome and settings pages"
+  },
+  "credits_made_by": {
+    "message": "Made by {0}",
+    "description": "Maker credit; {0} is the developer's name"
+  },
+  "credits_open_source": {
+    "message": "Pickit is open source. Report a bug, suggest a feature or follow along.",
+    "description": "One sentence under the maker credit inviting people to the GitHub project"
+  },
+  "credits_github": {
+    "message": "GitHub",
+    "description": "Link to the project source code on GitHub (product name, usually unchanged)"
+  },
+  "credits_linkedin": {
+    "message": "LinkedIn",
+    "description": "Link to the developer's LinkedIn profile (product name, usually unchanged)"
+  },
+  "credits_portfolio": {
+    "message": "Portfolio",
+    "description": "Link to the developer's personal portfolio website"
   }
 }

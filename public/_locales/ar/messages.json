@@ -1,11 +1,1583 @@
 {
   "extName": {
-    "message": "PickKit – منتقي الألوان وكاشف الخطوط"
+    "message": "Pickit - منتقي الألوان وكاشف الخطوط"
   },
   "extDescription": {
     "message": "التقط أي لون من الصفحة أو الشاشة، وتعرّف على الخطوط بالتمرير، وافحص التباين وصدّر لوحات الألوان."
   },
   "actionTitle": {
-    "message": "فتح PickKit"
+    "message": "فتح Pickit"
+  },
+  "cmdPickColor": {
+    "message": "اختيار لون"
+  },
+  "cmdInspectFont": {
+    "message": "فحص خط"
+  },
+  "fonts_likely_badge": {
+    "message": "مرجَّح"
+  },
+  "fonts_likely_title": {
+    "message": "أفضل تخمين استنادًا إلى الخطوط المثبتة على الجهاز"
+  },
+  "fonts_specimen_pangram": {
+    "message": "صف خلق خود كمثل الشمس إذ بزغت يحظى الضجيع بها نجلاء معطار"
+  },
+  "fonts_fact_size": {
+    "message": "الحجم"
+  },
+  "fonts_fact_weight": {
+    "message": "السُمك"
+  },
+  "fonts_fact_line_height": {
+    "message": "ارتفاع السطر"
+  },
+  "fonts_fact_spacing": {
+    "message": "التباعد"
+  },
+  "fonts_spacing_normal": {
+    "message": "عادي"
+  },
+  "fonts_copy_css": {
+    "message": "نسخ CSS"
+  },
+  "fonts_copied_css": {
+    "message": "تم نسخ CSS الخط"
+  },
+  "fonts_save_font": {
+    "message": "حفظ الخط"
+  },
+  "fonts_add_favourite": {
+    "message": "إضافة إلى المفضلة"
+  },
+  "fonts_remove_favourite": {
+    "message": "إزالة من المفضلة"
+  },
+  "fonts_remove": {
+    "message": "إزالة"
+  },
+  "fonts_eyebrow_library": {
+    "message": "مكتبة الخطوط"
+  },
+  "fonts_heading_recent": {
+    "message": "تم فحصها مؤخرًا"
+  },
+  "fonts_heading_saved": {
+    "message": "الخطوط المحفوظة"
+  },
+  "fonts_search_label": {
+    "message": "البحث في الخطوط"
+  },
+  "fonts_search_placeholder": {
+    "message": "ابحث بالعائلة أو المصدر أو الموقع…"
+  },
+  "fonts_list_label": {
+    "message": "قائمة الخطوط"
+  },
+  "fonts_tab_recent_zero": {
+    "message": "الأخيرة · {0}"
+  },
+  "fonts_tab_recent_one": {
+    "message": "الأخيرة · {0}"
+  },
+  "fonts_tab_recent_two": {
+    "message": "الأخيرة · {0}"
+  },
+  "fonts_tab_recent_few": {
+    "message": "الأخيرة · {0}"
+  },
+  "fonts_tab_recent_many": {
+    "message": "الأخيرة · {0}"
+  },
+  "fonts_tab_recent_other": {
+    "message": "الأخيرة · {0}"
+  },
+  "fonts_tab_saved_zero": {
+    "message": "المحفوظة · {0}"
+  },
+  "fonts_tab_saved_one": {
+    "message": "المحفوظة · {0}"
+  },
+  "fonts_tab_saved_two": {
+    "message": "المحفوظة · {0}"
+  },
+  "fonts_tab_saved_few": {
+    "message": "المحفوظة · {0}"
+  },
+  "fonts_tab_saved_many": {
+    "message": "المحفوظة · {0}"
+  },
+  "fonts_tab_saved_other": {
+    "message": "المحفوظة · {0}"
+  },
+  "fonts_empty_search_title": {
+    "message": "لا توجد خطوط مطابقة للبحث"
+  },
+  "fonts_empty_search_body": {
+    "message": "جرّب اسم عائلة أو مصدرًا أو اسم مضيف."
+  },
+  "fonts_empty_recent_title": {
+    "message": "لم تفحص أي خط بعد"
+  },
+  "fonts_empty_recent_body": {
+    "message": "حدّد نصًا في أي صفحة واحفظ خطه من أداة الفحص للاحتفاظ بتفاصيله هنا."
+  },
+  "fonts_empty_saved_title": {
+    "message": "لا توجد خطوط محفوظة"
+  },
+  "fonts_empty_saved_body": {
+    "message": "احفظ خطًا من أداة الفحص أو من «الأخيرة» للرجوع إليه لاحقًا."
+  },
+  "fonts_saved_toast": {
+    "message": "تم الحفظ في خطوطك"
+  },
+  "page_loading_eyebrow": {
+    "message": "فحص الصفحة"
+  },
+  "page_loading_heading": {
+    "message": "جارٍ قراءة هذه الصفحة"
+  },
+  "page_loading_badge": {
+    "message": "جارٍ العمل"
+  },
+  "page_restricted_title": {
+    "message": "لا يمكن فحص هذه الصفحة"
+  },
+  "page_restricted_body": {
+    "message": "يحظر Chrome الإضافات في صفحات المتصفح وفي Web Store. انتقل إلى أي موقع ويب."
+  },
+  "page_unreadable_title": {
+    "message": "تعذّر على Pickit قراءة هذه الصفحة"
+  },
+  "page_unreadable_body": {
+    "message": "أعد تحميل الصفحة وافحصها مجددًا. للملفات المحلية، اسمح بالوصول إلى الملفات في تفاصيل الإضافة."
+  },
+  "page_not_invoked_title": {
+    "message": "لم يتم تشغيل Pickit في علامة التبويب هذه بعد"
+  },
+  "page_not_invoked_body": {
+    "message": "حفاظًا على خصوصيتك، لا يقرأ Pickit الصفحة إلا بعد أن تشغّله عليها. انقر على أيقونة Pickit في شريط الأدوات في علامة التبويب هذه ثم افحص مجددًا، أو اسمح بالوصول إلى جميع المواقع لتتمكن اللوحة الجانبية من فحص أي صفحة."
+  },
+  "page_scan_again": {
+    "message": "إعادة الفحص"
+  },
+  "page_allow_all_sites": {
+    "message": "السماح على كل المواقع"
+  },
+  "page_default_palette_name": {
+    "message": "لوحة ألوان الصفحة"
+  },
+  "page_saved_as_palette": {
+    "message": "تم الحفظ كلوحة ألوان"
+  },
+  "page_style_guide_downloaded": {
+    "message": "تم تنزيل دليل الأنماط"
+  },
+  "page_current_eyebrow": {
+    "message": "الصفحة الحالية"
+  },
+  "page_this_page": {
+    "message": "هذه الصفحة"
+  },
+  "page_rescan": {
+    "message": "تحديث"
+  },
+  "page_fingerprint_heading": {
+    "message": "البصمة اللونية"
+  },
+  "page_fingerprint_hint": {
+    "message": "انقر على لون لنسخه"
+  },
+  "page_copied_colour": {
+    "message": "تم نسخ اللون"
+  },
+  "page_style_guide_button": {
+    "message": "دليل الأنماط (PNG)"
+  },
+  "page_copy_tokens": {
+    "message": "نسخ رموز التصميم"
+  },
+  "page_copied_css_variables": {
+    "message": "تم نسخ متغيرات CSS"
+  },
+  "page_palette_eyebrow": {
+    "message": "اللوحة المستخرجة"
+  },
+  "page_colours_heading_zero": {
+    "message": "الألوان · {0}"
+  },
+  "page_colours_heading_one": {
+    "message": "الألوان · {0}"
+  },
+  "page_colours_heading_two": {
+    "message": "الألوان · {0}"
+  },
+  "page_colours_heading_few": {
+    "message": "الألوان · {0}"
+  },
+  "page_colours_heading_many": {
+    "message": "الألوان · {0}"
+  },
+  "page_colours_heading_other": {
+    "message": "الألوان · {0}"
+  },
+  "page_save_as_palette": {
+    "message": "حفظ كلوحة ألوان"
+  },
+  "page_role_label": {
+    "message": "دور اللون"
+  },
+  "page_role_all": {
+    "message": "الكل"
+  },
+  "page_role_text": {
+    "message": "النص"
+  },
+  "page_role_background": {
+    "message": "الخلفية"
+  },
+  "page_role_border": {
+    "message": "الحدود"
+  },
+  "page_no_colours_in_role": {
+    "message": "لا توجد ألوان مستخدمة في هذا الدور."
+  },
+  "page_copy_value": {
+    "message": "نسخ {0}"
+  },
+  "page_uses_count_zero": {
+    "message": "{0}×"
+  },
+  "page_uses_count_one": {
+    "message": "{0}×"
+  },
+  "page_uses_count_two": {
+    "message": "{0}×"
+  },
+  "page_uses_count_few": {
+    "message": "{0}×"
+  },
+  "page_uses_count_many": {
+    "message": "{0}×"
+  },
+  "page_uses_count_other": {
+    "message": "{0}×"
+  },
+  "page_type_eyebrow": {
+    "message": "النظام الطباعي"
+  },
+  "page_typography_heading_zero": {
+    "message": "الخطوط · {0}"
+  },
+  "page_typography_heading_one": {
+    "message": "الخطوط · {0}"
+  },
+  "page_typography_heading_two": {
+    "message": "الخطوط · {0}"
+  },
+  "page_typography_heading_few": {
+    "message": "الخطوط · {0}"
+  },
+  "page_typography_heading_many": {
+    "message": "الخطوط · {0}"
+  },
+  "page_typography_heading_other": {
+    "message": "الخطوط · {0}"
+  },
+  "page_font_likely": {
+    "message": "مرجَّح"
+  },
+  "page_view_on_google_fonts": {
+    "message": "عرض على Google Fonts"
+  },
+  "page_more_sizes_zero": {
+    "message": "+{0}"
+  },
+  "page_more_sizes_one": {
+    "message": "+{0}"
+  },
+  "page_more_sizes_two": {
+    "message": "+{0}"
+  },
+  "page_more_sizes_few": {
+    "message": "+{0}"
+  },
+  "page_more_sizes_many": {
+    "message": "+{0}"
+  },
+  "page_more_sizes_other": {
+    "message": "+{0}"
+  },
+  "page_no_text_found": {
+    "message": "لم يُعثر على نص في هذه الصفحة."
+  },
+  "page_truncated_notice_zero": {
+    "message": "هذه صفحة كبيرة، لذا لم يُقرأ أي عنصر منها."
+  },
+  "page_truncated_notice_one": {
+    "message": "هذه صفحة كبيرة، لذا قُرئ أول عنصر فقط."
+  },
+  "page_truncated_notice_two": {
+    "message": "هذه صفحة كبيرة، لذا قُرئ أول عنصرين فقط."
+  },
+  "page_truncated_notice_few": {
+    "message": "هذه صفحة كبيرة، لذا قُرئت أول {0} عناصر فقط."
+  },
+  "page_truncated_notice_many": {
+    "message": "هذه صفحة كبيرة، لذا قُرئ أول {0} عنصرًا فقط."
+  },
+  "page_truncated_notice_other": {
+    "message": "هذه صفحة كبيرة، لذا قُرئ أول {0} عنصر فقط."
+  },
+  "palettes_name_label": {
+    "message": "اسم اللوحة"
+  },
+  "palettes_colour_count_zero": {
+    "message": "لا ألوان"
+  },
+  "palettes_colour_count_one": {
+    "message": "لون واحد"
+  },
+  "palettes_colour_count_two": {
+    "message": "لونان"
+  },
+  "palettes_colour_count_few": {
+    "message": "{0} ألوان"
+  },
+  "palettes_colour_count_many": {
+    "message": "{0} لونًا"
+  },
+  "palettes_colour_count_other": {
+    "message": "{0} لون"
+  },
+  "palettes_delete_confirm": {
+    "message": "حذف"
+  },
+  "palettes_delete_cancel": {
+    "message": "إلغاء"
+  },
+  "palettes_delete_palette": {
+    "message": "حذف اللوحة"
+  },
+  "palettes_empty_ribbon": {
+    "message": "أضف لونًا أدناه أو من علامة تبويب «الألوان»."
+  },
+  "palettes_swatches_label": {
+    "message": "عينات {0}"
+  },
+  "palettes_swatch_title": {
+    "message": "{0} · انقر للنسخ، واسحب لإعادة الترتيب، واضغط Delete للإزالة"
+  },
+  "palettes_swatch_aria": {
+    "message": "{0}. Enter للنسخ، وDelete للإزالة، وAlt مع مفاتيح الأسهم لإعادة الترتيب."
+  },
+  "palettes_swatch_hint": {
+    "message": "اسحب لإعادة الترتيب · Alt + ←/→ للنقل · Delete للإزالة"
+  },
+  "palettes_add_placeholder": {
+    "message": "#5548E0 أو rgb(…)"
+  },
+  "palettes_add_label": {
+    "message": "اللون المراد إضافته"
+  },
+  "palettes_add_button": {
+    "message": "إضافة"
+  },
+  "palettes_export_format_label": {
+    "message": "تنسيق التصدير"
+  },
+  "palettes_copy_button": {
+    "message": "نسخ"
+  },
+  "palettes_copied_export": {
+    "message": "تم نسخ التصدير"
+  },
+  "palettes_file_button": {
+    "message": "ملف"
+  },
+  "palettes_downloaded_palette": {
+    "message": "تم تنزيل {0}"
+  },
+  "palettes_default_name": {
+    "message": "لوحة {0}"
+  },
+  "palettes_heading": {
+    "message": "لوحات الألوان"
+  },
+  "palettes_vision_label": {
+    "message": "معاينة اللوحات كما يراها من لديه قصور في رؤية الألوان"
+  },
+  "palettes_vision_title": {
+    "message": "تحقّق من أن ألوان اللوحة تظل قابلة للتمييز"
+  },
+  "palettes_vision_typical": {
+    "message": "رؤية طبيعية"
+  },
+  "palettes_empty_title": {
+    "message": "لا توجد لوحات بعد"
+  },
+  "palettes_empty_body": {
+    "message": "اجمع الألوان في لوحة، ثم صدّرها كمتغيرات CSS أو SCSS أو Tailwind أو رموز تصميم أو JSON أو SVG."
+  },
+  "palettes_new_palette": {
+    "message": "لوحة جديدة"
+  },
+  "palettes_all_colours_heading": {
+    "message": "كل الألوان"
+  },
+  "palettes_export_all": {
+    "message": "تصدير الكل"
+  },
+  "palettes_downloaded_all": {
+    "message": "تم تنزيل كل الألوان"
+  },
+  "palettes_copied_colour": {
+    "message": "تم نسخ اللون"
+  },
+  "ui_copied_value": {
+    "message": "تم نسخ {0}"
+  },
+  "ui_copy_failed": {
+    "message": "تعذّر النسخ"
+  },
+  "ui_colorbar_label": {
+    "message": "الألوان المستخدمة في هذه الصفحة"
+  },
+  "ui_colorbar_segment_title": {
+    "message": "{0} · {1}٪"
+  },
+  "ui_colorbar_segment_aria": {
+    "message": "{0}، {1} بالمئة من الاستخدامات"
+  },
+  "ui_copy_row_sr": {
+    "message": "نسخ {0} {1}"
+  },
+  "ui_search_placeholder": {
+    "message": "بحث…"
+  },
+  "ui_search_clear": {
+    "message": "مسح البحث"
+  },
+  "cmd_default_label": {
+    "message": "الأوامر"
+  },
+  "cmd_trigger_compact_label": {
+    "message": "{0} ({1})"
+  },
+  "cmd_close_label": {
+    "message": "إغلاق قائمة الأوامر"
+  },
+  "cmd_list_label": {
+    "message": "قائمة {0}"
+  },
+  "cmd_empty": {
+    "message": "لا توجد أوامر متاحة"
+  },
+  "cmd_footer_navigate": {
+    "message": "تنقّل"
+  },
+  "cmd_footer_run": {
+    "message": "تشغيل"
+  },
+  "cmd_footer_close": {
+    "message": "إغلاق"
+  },
+  "styleguide_default_title": {
+    "message": "دليل الأنماط"
+  },
+  "styleguide_colours_heading": {
+    "message": "الألوان"
+  },
+  "styleguide_typography_heading": {
+    "message": "الخطوط"
+  },
+  "styleguide_font_details": {
+    "message": "{0}   ·   الأوزان {1}   ·   الأحجام {2}"
+  },
+  "styleguide_footer": {
+    "message": "صُنع باستخدام {0}"
+  },
+  "export_format_tokens": {
+    "message": "رموز"
+  },
+  "overlay_hint_bar_label": {
+    "message": "اختصارات لوحة المفاتيح"
+  },
+  "overlay_key_click": {
+    "message": "نقرة"
+  },
+  "overlay_key_shift_click": {
+    "message": "Shift+نقرة"
+  },
+  "overlay_hint_copy_colour": {
+    "message": "نسخ اللون"
+  },
+  "overlay_hint_pick_several": {
+    "message": "اختيار عدة ألوان"
+  },
+  "overlay_hint_pick_from_screen": {
+    "message": "من الشاشة"
+  },
+  "overlay_hint_cancel": {
+    "message": "إلغاء"
+  },
+  "overlay_toast_cannot_read_page": {
+    "message": "لا يستطيع Pickit قراءة هذه الصفحة"
+  },
+  "overlay_toast_cannot_read_page_sub": {
+    "message": "انقر على أيقونة شريط الأدوات وحاول مجددًا"
+  },
+  "overlay_toast_capture_failed": {
+    "message": "تعذّر التقاط الصفحة"
+  },
+  "overlay_toast_try_again": {
+    "message": "حاول مجددًا"
+  },
+  "overlay_toast_copied": {
+    "message": "تم نسخ {0}"
+  },
+  "overlay_toast_saved": {
+    "message": "تم حفظ {0}"
+  },
+  "overlay_font_card_label": {
+    "message": "تفاصيل الخط"
+  },
+  "overlay_font_key_hover": {
+    "message": "تمرير"
+  },
+  "overlay_font_key_click": {
+    "message": "نقرة"
+  },
+  "overlay_font_hint_inspect": {
+    "message": "فحص"
+  },
+  "overlay_font_hint_pin_copy": {
+    "message": "تثبيت ونسخ"
+  },
+  "overlay_font_hint_exit": {
+    "message": "خروج"
+  },
+  "overlay_font_row_size": {
+    "message": "الحجم"
+  },
+  "overlay_font_row_weight": {
+    "message": "السُمك"
+  },
+  "overlay_font_row_line_height": {
+    "message": "ارتفاع السطر"
+  },
+  "overlay_font_row_letter_spacing": {
+    "message": "تباعد الأحرف"
+  },
+  "overlay_font_row_style": {
+    "message": "النمط"
+  },
+  "overlay_font_row_colour": {
+    "message": "اللون"
+  },
+  "overlay_font_likely": {
+    "message": "مرجَّح"
+  },
+  "overlay_font_likely_tooltip": {
+    "message": "أفضل تخمين استنادًا إلى الخطوط المثبتة على هذا الجهاز"
+  },
+  "overlay_font_copy_css": {
+    "message": "نسخ CSS"
+  },
+  "overlay_font_save": {
+    "message": "حفظ الخط"
+  },
+  "overlay_font_open_google_fonts": {
+    "message": "Google Fonts ↗"
+  },
+  "overlay_font_footer": {
+    "message": "انقر للتثبيت، ثم انسخ أي قيمة"
+  },
+  "overlay_font_toast_copied": {
+    "message": "تم نسخ {0}"
+  },
+  "overlay_font_toast_copied_css": {
+    "message": "تم نسخ CSS الخط"
+  },
+  "overlay_font_toast_saved": {
+    "message": "تم الحفظ في خطوطك"
+  },
+  "font_weight_thin": {
+    "message": "رفيع"
+  },
+  "font_weight_extra_light": {
+    "message": "خفيف جدًا"
+  },
+  "font_weight_light": {
+    "message": "خفيف"
+  },
+  "font_weight_regular": {
+    "message": "عادي"
+  },
+  "font_weight_medium": {
+    "message": "متوسط"
+  },
+  "font_weight_semi_bold": {
+    "message": "شبه عريض"
+  },
+  "font_weight_bold": {
+    "message": "عريض"
+  },
+  "font_weight_extra_bold": {
+    "message": "عريض جدًا"
+  },
+  "font_weight_black": {
+    "message": "ثقيل"
+  },
+  "font_line_height_normal": {
+    "message": "عادي"
+  },
+  "font_letter_spacing_normal": {
+    "message": "عادي"
+  },
+  "font_source_browser_default": {
+    "message": "الخط الافتراضي للمتصفح"
+  },
+  "font_source_installed": {
+    "message": "مثبّت على هذا الجهاز"
+  },
+  "font_source_web_font": {
+    "message": "خط ويب"
+  },
+  "font_source_self_hosted": {
+    "message": "مستضاف على الموقع نفسه"
+  },
+  "font_source_hosted_on": {
+    "message": "مستضاف على {0}"
+  },
+  "panel_tab_colors": {
+    "message": "الألوان"
+  },
+  "panel_tab_fonts": {
+    "message": "الخطوط"
+  },
+  "panel_tab_page": {
+    "message": "الصفحة"
+  },
+  "panel_tab_contrast": {
+    "message": "التباين"
+  },
+  "panel_tab_palettes": {
+    "message": "اللوحات"
+  },
+  "panel_tabs_aria": {
+    "message": "أقسام مساحة العمل"
+  },
+  "panel_toast_restricted_page": {
+    "message": "لا يمكن تشغيل Pickit في هذه الصفحة"
+  },
+  "panel_toast_copied_colour": {
+    "message": "تم نسخ اللون"
+  },
+  "panel_cmd_pick_colour": {
+    "message": "اختيار لون"
+  },
+  "panel_cmd_inspect_font": {
+    "message": "فحص خط"
+  },
+  "panel_cmd_go_colors": {
+    "message": "الانتقال إلى الألوان"
+  },
+  "panel_cmd_go_fonts": {
+    "message": "الانتقال إلى الخطوط"
+  },
+  "panel_cmd_go_page": {
+    "message": "الانتقال إلى الصفحة"
+  },
+  "panel_cmd_go_contrast": {
+    "message": "الانتقال إلى التباين"
+  },
+  "panel_cmd_go_palettes": {
+    "message": "الانتقال إلى اللوحات"
+  },
+  "panel_cmd_copy_selected_colour": {
+    "message": "نسخ اللون المحدد"
+  },
+  "panel_cmd_use_light_theme": {
+    "message": "استخدام المظهر الفاتح"
+  },
+  "panel_cmd_use_dark_theme": {
+    "message": "استخدام المظهر الداكن"
+  },
+  "panel_cmd_open_settings": {
+    "message": "فتح الإعدادات"
+  },
+  "panel_settings": {
+    "message": "الإعدادات"
+  },
+  "panel_context_show_in_colors": {
+    "message": "عرض في الألوان"
+  },
+  "panel_context_copy_colour": {
+    "message": "نسخ اللون"
+  },
+  "panel_context_check_contrast": {
+    "message": "فحص التباين"
+  },
+  "colors_pick_from_page": {
+    "message": "اختيار من الصفحة"
+  },
+  "colors_screen_pick": {
+    "message": "الشاشة"
+  },
+  "colors_screen_pick_title": {
+    "message": "التقط أي بكسل على شاشتك، حتى خارج Chrome"
+  },
+  "colors_empty_title": {
+    "message": "اختر لونك الأول"
+  },
+  "colors_empty_body": {
+    "message": "انقر على «{0}» ثم انقر على أي شيء في الصفحة. يُحفظ كل لون تختاره هنا لتنسخه بأي تنسيق وتفحص تباينه وتبني منه لوحات."
+  },
+  "colors_selected_aria": {
+    "message": "اللون المحدد"
+  },
+  "colors_token_match_title": {
+    "message": "يطابق المتغير {0} في الصفحة"
+  },
+  "colors_favorite_add": {
+    "message": "إضافة إلى المفضلة"
+  },
+  "colors_favorite_remove": {
+    "message": "إزالة من المفضلة"
+  },
+  "colors_copy_default_format_title": {
+    "message": "النسخ بالتنسيق الافتراضي"
+  },
+  "colors_toast_copied_colour": {
+    "message": "تم نسخ اللون"
+  },
+  "colors_origin_screen": {
+    "message": "مُلتقط من الشاشة"
+  },
+  "colors_add_to_palette_aria": {
+    "message": "إضافة هذا اللون إلى لوحة"
+  },
+  "colors_add_to_palette_placeholder": {
+    "message": "إضافة إلى لوحة…"
+  },
+  "colors_new_palette_option": {
+    "message": "+ لوحة جديدة"
+  },
+  "colors_default_palette_name": {
+    "message": "لوحة {0}"
+  },
+  "colors_toast_added_new_palette": {
+    "message": "تمت الإضافة إلى لوحة جديدة"
+  },
+  "colors_toast_already_in_palette": {
+    "message": "موجود بالفعل في {0}"
+  },
+  "colors_toast_added_to_palette": {
+    "message": "تمت الإضافة إلى {0}"
+  },
+  "colors_as_text": {
+    "message": "كنص"
+  },
+  "colors_as_text_title": {
+    "message": "فحص هذا اللون كلون نص في أداة التباين"
+  },
+  "colors_as_bg": {
+    "message": "كخلفية"
+  },
+  "colors_as_bg_title": {
+    "message": "فحص هذا اللون كخلفية في أداة التباين"
+  },
+  "colors_history_title": {
+    "message": "السجل"
+  },
+  "colors_clear_all_confirm_zero": {
+    "message": "مسح كل الألوان ({0})؟"
+  },
+  "colors_clear_all_confirm_one": {
+    "message": "مسح اللون الوحيد؟"
+  },
+  "colors_clear_all_confirm_two": {
+    "message": "مسح اللونين؟"
+  },
+  "colors_clear_all_confirm_few": {
+    "message": "مسح كل الألوان ({0})؟"
+  },
+  "colors_clear_all_confirm_many": {
+    "message": "مسح كل الألوان ({0})؟"
+  },
+  "colors_clear_all_confirm_other": {
+    "message": "مسح كل الألوان ({0})؟"
+  },
+  "colors_clear": {
+    "message": "مسح"
+  },
+  "colors_cancel": {
+    "message": "إلغاء"
+  },
+  "colors_remove_selected": {
+    "message": "إزالة اللون المحدد"
+  },
+  "colors_search_label": {
+    "message": "البحث في الألوان"
+  },
+  "colors_search_placeholder": {
+    "message": "ابحث بـ hex أو الاسم أو الموقع أو الرمز"
+  },
+  "colors_favorites_only_title": {
+    "message": "عرض المفضلة فقط"
+  },
+  "colors_no_favorites": {
+    "message": "لا توجد مفضلة بعد. انقر على القلب في أي لون للاحتفاظ به."
+  },
+  "colors_no_search_match": {
+    "message": "لا توجد ألوان مطابقة لهذا البحث."
+  },
+  "colors_swatch_title": {
+    "message": "{0} · انقر مرتين للنسخ"
+  },
+  "colors_swatch_title_favorite": {
+    "message": "{0} · مفضّل · انقر مرتين للنسخ"
+  },
+  "colors_swatch_select_aria": {
+    "message": "تحديد {0}"
+  },
+  "colors_swatch_select_favorite_aria": {
+    "message": "تحديد {0}، مفضّل"
+  },
+  "colors_history_hint": {
+    "message": "انقر للفحص · انقر مرتين للنسخ · المفضلة تبقى بعد «مسح»"
+  },
+  "colors_explore_aria": {
+    "message": "استكشاف هذا اللون"
+  },
+  "colors_explore": {
+    "message": "استكشاف"
+  },
+  "colors_explore_shades": {
+    "message": "الدرجات"
+  },
+  "colors_explore_harmonies": {
+    "message": "التناسقات"
+  },
+  "colors_shade_scale_aria": {
+    "message": "مقياس الدرجات"
+  },
+  "colors_shade_title": {
+    "message": "{0} · {1}"
+  },
+  "colors_shade_title_nearest": {
+    "message": "{0} · {1} · الأقرب إلى هذا اللون"
+  },
+  "colors_shade_copy_aria": {
+    "message": "نسخ الدرجة {0}، {1}"
+  },
+  "colors_copy_scale_as": {
+    "message": "نسخ المقياس بصيغة"
+  },
+  "colors_copy_scale_tokens": {
+    "message": "رموز"
+  },
+  "colors_toast_copied_css_variables": {
+    "message": "تم نسخ متغيرات CSS"
+  },
+  "colors_toast_copied_tailwind_scale": {
+    "message": "تم نسخ مقياس Tailwind"
+  },
+  "colors_toast_copied_design_tokens": {
+    "message": "تم نسخ رموز التصميم"
+  },
+  "harmonies_aria": {
+    "message": "تناسقات الألوان"
+  },
+  "harmonies_neutral_message": {
+    "message": "هذا لون محايد (رمادي أو قريب من الأسود أو الأبيض)، فليس له تدرّج لوني تُبنى عليه التناسقات. اختر عينة ملوّنة لرؤيتها."
+  },
+  "harmonies_toast_added_new_palette_zero": {
+    "message": "تمت إضافة {0} لون إلى لوحة جديدة باسم {1}"
+  },
+  "harmonies_toast_added_new_palette_one": {
+    "message": "تمت إضافة لون واحد إلى لوحة جديدة باسم {1}"
+  },
+  "harmonies_toast_added_new_palette_two": {
+    "message": "تمت إضافة لونين إلى لوحة جديدة باسم {1}"
+  },
+  "harmonies_toast_added_new_palette_few": {
+    "message": "تمت إضافة {0} ألوان إلى لوحة جديدة باسم {1}"
+  },
+  "harmonies_toast_added_new_palette_many": {
+    "message": "تمت إضافة {0} لونًا إلى لوحة جديدة باسم {1}"
+  },
+  "harmonies_toast_added_new_palette_other": {
+    "message": "تمت إضافة {0} لون إلى لوحة جديدة باسم {1}"
+  },
+  "harmonies_toast_already_in_palette": {
+    "message": "ألوان {0} موجودة بالفعل في اللوحة"
+  },
+  "harmonies_toast_added_to_palette_zero": {
+    "message": "تمت إضافة {0} لون إلى {1}"
+  },
+  "harmonies_toast_added_to_palette_one": {
+    "message": "تمت إضافة لون واحد إلى {1}"
+  },
+  "harmonies_toast_added_to_palette_two": {
+    "message": "تمت إضافة لونين إلى {1}"
+  },
+  "harmonies_toast_added_to_palette_few": {
+    "message": "تمت إضافة {0} ألوان إلى {1}"
+  },
+  "harmonies_toast_added_to_palette_many": {
+    "message": "تمت إضافة {0} لونًا إلى {1}"
+  },
+  "harmonies_toast_added_to_palette_other": {
+    "message": "تمت إضافة {0} لون إلى {1}"
+  },
+  "harmonies_add_all_aria": {
+    "message": "إضافة الكل إلى لوحة: {0}"
+  },
+  "harmonies_add_all_title": {
+    "message": "إضافة كل ألوان {0} إلى لوحة"
+  },
+  "harmonies_add_palette_button": {
+    "message": "+ لوحة"
+  },
+  "harmonies_strip_aria": {
+    "message": "ألوان {0}"
+  },
+  "harmonies_swatch_title": {
+    "message": "{0} · انقر للنسخ"
+  },
+  "harmonies_swatch_title_base": {
+    "message": "{0} · الأساس · انقر للنسخ"
+  },
+  "harmonies_swatch_copy_aria": {
+    "message": "نسخ {0} من {1}"
+  },
+  "harmonies_swatch_copy_base_aria": {
+    "message": "نسخ {0} من {1} (الأساس)"
+  },
+  "harmonies_toast_copied_value": {
+    "message": "تم نسخ {0}"
+  },
+  "harmonies_base_badge": {
+    "message": "أساس"
+  },
+  "harmony_complementary": {
+    "message": "متكامل"
+  },
+  "harmony_analogous": {
+    "message": "متجاور"
+  },
+  "harmony_triadic": {
+    "message": "ثلاثي"
+  },
+  "harmony_split_complement": {
+    "message": "متكامل منقسم"
+  },
+  "harmony_tetradic": {
+    "message": "رباعي"
+  },
+  "contrast_field_text": {
+    "message": "النص"
+  },
+  "contrast_field_background": {
+    "message": "الخلفية"
+  },
+  "contrast_text_picker_aria": {
+    "message": "منتقي لون النص"
+  },
+  "contrast_background_picker_aria": {
+    "message": "منتقي لون الخلفية"
+  },
+  "contrast_use_recent_as_text_aria": {
+    "message": "استخدام {0} كنص"
+  },
+  "contrast_use_recent_as_background_aria": {
+    "message": "استخدام {0} كخلفية"
+  },
+  "contrast_grade_aa_large": {
+    "message": "AA كبير"
+  },
+  "contrast_grade_fails": {
+    "message": "راسب"
+  },
+  "contrast_simulating": {
+    "message": "محاكاة {0}"
+  },
+  "contrast_preview_large": {
+    "message": "نص كبير بحجم 24px"
+  },
+  "contrast_preview_body": {
+    "message": "نص أساسي بحجم 16px. نص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر."
+  },
+  "contrast_apca_title": {
+    "message": "تباين الإضاءة APCA، المقترح لـ WCAG 3"
+  },
+  "contrast_swap": {
+    "message": "تبديل النص والخلفية"
+  },
+  "contrast_apca_use": {
+    "message": "APCA: {0}"
+  },
+  "contrast_check_aa_body": {
+    "message": "AA أساسي"
+  },
+  "contrast_check_aa_large": {
+    "message": "AA كبير"
+  },
+  "contrast_check_aaa_body": {
+    "message": "AAA أساسي"
+  },
+  "contrast_check_aaa_large": {
+    "message": "AAA كبير"
+  },
+  "contrast_fixes_aria": {
+    "message": "إصلاحات مقترحة"
+  },
+  "contrast_fixes_title": {
+    "message": "الوصول إلى {0} ({1}:1) بأقل تغيير"
+  },
+  "contrast_fix_text": {
+    "message": "ضبط النص"
+  },
+  "contrast_fix_background": {
+    "message": "ضبط الخلفية"
+  },
+  "contrast_vision_title": {
+    "message": "رؤية الألوان"
+  },
+  "contrast_vision_typical_note": {
+    "message": "رؤية طبيعية"
+  },
+  "contrast_vision_picker_aria": {
+    "message": "محاكاة رؤية الألوان"
+  },
+  "contrast_vision_short_typical": {
+    "message": "طبيعي"
+  },
+  "contrast_vision_short_protanopia": {
+    "message": "أحمر"
+  },
+  "contrast_vision_short_deuteranopia": {
+    "message": "أخضر"
+  },
+  "contrast_vision_short_tritanopia": {
+    "message": "أزرق"
+  },
+  "contrast_vision_short_achromatopsia": {
+    "message": "أحادي"
+  },
+  "contrast_pair_aria": {
+    "message": "الألوان"
+  },
+  "apca_use_body_any_size": {
+    "message": "نص أساسي بأي حجم"
+  },
+  "apca_use_body_from_18px": {
+    "message": "نص أساسي من 18px"
+  },
+  "apca_use_content_from_24px": {
+    "message": "نص المحتوى من 24px"
+  },
+  "apca_use_headlines_large_text": {
+    "message": "العناوين والنص الكبير"
+  },
+  "apca_use_placeholders_non_text": {
+    "message": "النصوص النائبة والعناصر غير النصية فقط"
+  },
+  "apca_use_dividers_decoration": {
+    "message": "الفواصل والزخارف فقط"
+  },
+  "apca_use_not_readable": {
+    "message": "غير مقروء"
+  },
+  "vision_protanopia_label": {
+    "message": "عمى الأحمر"
+  },
+  "vision_protanopia_note": {
+    "message": "لا توجد مخاريط حمراء"
+  },
+  "vision_deuteranopia_label": {
+    "message": "عمى الأخضر"
+  },
+  "vision_deuteranopia_note": {
+    "message": "لا توجد مخاريط خضراء"
+  },
+  "vision_tritanopia_label": {
+    "message": "عمى الأزرق"
+  },
+  "vision_tritanopia_note": {
+    "message": "لا توجد مخاريط زرقاء"
+  },
+  "vision_achromatopsia_label": {
+    "message": "عمى الألوان الكلي"
+  },
+  "vision_achromatopsia_note": {
+    "message": "لا توجد رؤية للألوان"
+  },
+  "popup_failure_restricted_title": {
+    "message": "لا يمكن تشغيل Pickit في هذه الصفحة"
+  },
+  "popup_failure_restricted_text": {
+    "message": "يحظر Chrome الإضافات في صفحات المتصفح وفي Web Store. افتح أي موقع وحاول مجددًا."
+  },
+  "popup_failure_no_access_title": {
+    "message": "تعذّر على Pickit الوصول إلى هذه الصفحة"
+  },
+  "popup_failure_no_access_text": {
+    "message": "أعد تحميل الصفحة وحاول مجددًا. للملفات المحلية، اسمح بالوصول إلى الملفات في تفاصيل الإضافة."
+  },
+  "popup_failure_unknown_title": {
+    "message": "حدث خطأ ما"
+  },
+  "popup_failure_unknown_text": {
+    "message": "أعد تحميل الصفحة وحاول مجددًا."
+  },
+  "popup_command_pick_colour": {
+    "message": "اختيار لون"
+  },
+  "popup_command_inspect_font": {
+    "message": "فحص خط"
+  },
+  "popup_command_open_workspace": {
+    "message": "فتح لوحة مساحة العمل"
+  },
+  "popup_command_copy_latest": {
+    "message": "نسخ آخر لون"
+  },
+  "popup_command_light_theme": {
+    "message": "استخدام المظهر الفاتح"
+  },
+  "popup_command_dark_theme": {
+    "message": "استخدام المظهر الداكن"
+  },
+  "popup_command_open_settings": {
+    "message": "فتح الإعدادات"
+  },
+  "popup_toast_copied_colour": {
+    "message": "تم نسخ اللون"
+  },
+  "popup_open_workspace_label": {
+    "message": "فتح لوحة مساحة العمل"
+  },
+  "popup_settings_label": {
+    "message": "الإعدادات"
+  },
+  "popup_tools_label": {
+    "message": "الأدوات"
+  },
+  "popup_tool_pick_title": {
+    "message": "اختيار لون"
+  },
+  "popup_tool_pick_sub": {
+    "message": "انقر على أي بكسل"
+  },
+  "popup_tool_font_title": {
+    "message": "فحص خط"
+  },
+  "popup_tool_font_sub": {
+    "message": "مرّر فوق أي نص"
+  },
+  "popup_empty_colours": {
+    "message": "تظهر هنا الألوان التي تختارها، جاهزة للنسخ بأي تنسيق."
+  },
+  "popup_latest_colour_label": {
+    "message": "آخر لون"
+  },
+  "popup_latest_copy_title": {
+    "message": "النسخ بالتنسيق الافتراضي"
+  },
+  "popup_origin_screen": {
+    "message": "مُلتقط من الشاشة"
+  },
+  "popup_recent_colours_label": {
+    "message": "الألوان الأخيرة"
+  },
+  "popup_recent_copy_label": {
+    "message": "نسخ {0}"
+  },
+  "popup_recent_copy_title": {
+    "message": "{0} · انقر للنسخ"
+  },
+  "popup_latest_font_label": {
+    "message": "آخر خط"
+  },
+  "popup_font_details": {
+    "message": "{0}px · {1} · {2}"
+  },
+  "popup_workspace_link": {
+    "message": "فتح مساحة العمل"
+  },
+  "popup_workspace_link_sub": {
+    "message": "السجل، التباين، اللوحات"
+  },
+  "popup_rating_title": {
+    "message": "هل تجد Pickit مفيدًا؟"
+  },
+  "popup_rating_text": {
+    "message": "يساعد تقييمك الآخرين في العثور عليه."
+  },
+  "popup_rating_rate": {
+    "message": "تقييم Pickit"
+  },
+  "popup_rating_dismiss": {
+    "message": "ليس الآن"
+  },
+  "welcome_step_pick_title": {
+    "message": "اختر لونًا"
+  },
+  "welcome_step_pick_text": {
+    "message": "افتح النافذة المنبثقة أو استخدم الاختصار، ثم انقر على لون في الصفحة. يقرأ Pickit اللون دون مراقبة ما تفعله."
+  },
+  "welcome_step_font_title": {
+    "message": "افحص خطًا"
+  },
+  "welcome_step_font_text": {
+    "message": "اختر أداة الخطوط وانقر على أي نص. ستحصل على العائلة والحجم والسُمك واللون في لوحة صغيرة واحدة."
+  },
+  "welcome_step_workspace_title": {
+    "message": "كل شيء في مساحة العمل"
+  },
+  "welcome_step_workspace_text": {
+    "message": "تضم اللوحة الجانبية سجل ألوانك وخطوطك ولوحاتك وأداة فحص التباين ودليل أنماط للصفحة بنقرة واحدة."
+  },
+  "welcome_shortcut_label": {
+    "message": "الاختصار {0}"
+  },
+  "welcome_kicker": {
+    "message": "مرحبًا بك في Pickit"
+  },
+  "welcome_title_lead": {
+    "message": "أي لون. أي خط."
+  },
+  "welcome_title_accent": {
+    "message": "في متناول يدك."
+  },
+  "welcome_lead": {
+    "message": "ثلاثة أشياء تحتاج إلى معرفتها، ثم أنت جاهز."
+  },
+  "welcome_tip_pin": {
+    "message": "نصيحة: انقر على أيقونة قطعة الأحجية في شريط أدوات Chrome وثبّت Pickit ليكون دائمًا على بُعد نقرة واحدة."
+  },
+  "welcome_cta": {
+    "message": "ابدأ الفحص"
+  },
+  "access_unreachable_title": {
+    "message": "تعذّر على Pickit الوصول إلى هذه الصفحة"
+  },
+  "access_unreachable_text": {
+    "message": "أعد تحميل الصفحة وحاول مجددًا. للملفات المحلية، اسمح بالوصول إلى الملفات في تفاصيل الإضافة."
+  },
+  "access_allow_title": {
+    "message": "اسمح لـ Pickit بالعمل في هذه الصفحة"
+  },
+  "access_allow_text": {
+    "message": "لا تستطيع اللوحة الجانبية الوصول إلى علامة تبويب بمفردها. انقر على أيقونة Pickit في شريط الأدوات في علامة التبويب هذه، أو اسمح بالوصول إلى جميع المواقع لتعمل اللوحة الجانبية في كل مكان."
+  },
+  "access_allow_all_sites": {
+    "message": "السماح على كل المواقع"
+  },
+  "access_dismiss_label": {
+    "message": "تجاهل"
+  },
+  "settings_theme_light": {
+    "message": "فاتح"
+  },
+  "settings_theme_dark": {
+    "message": "داكن"
+  },
+  "settings_theme_system": {
+    "message": "النظام"
+  },
+  "settings_shortcut_not_set": {
+    "message": "غير معيّن"
+  },
+  "settings_shortcut_label": {
+    "message": "الاختصار {0}"
+  },
+  "settings_count_colours_zero": {
+    "message": "{0} لون"
+  },
+  "settings_count_colours_one": {
+    "message": "لون واحد"
+  },
+  "settings_count_colours_two": {
+    "message": "لونان"
+  },
+  "settings_count_colours_few": {
+    "message": "{0} ألوان"
+  },
+  "settings_count_colours_many": {
+    "message": "{0} لونًا"
+  },
+  "settings_count_colours_other": {
+    "message": "{0} لون"
+  },
+  "settings_count_fonts_zero": {
+    "message": "{0} خط"
+  },
+  "settings_count_fonts_one": {
+    "message": "خط واحد"
+  },
+  "settings_count_fonts_two": {
+    "message": "خطان"
+  },
+  "settings_count_fonts_few": {
+    "message": "{0} خطوط"
+  },
+  "settings_count_fonts_many": {
+    "message": "{0} خطًا"
+  },
+  "settings_count_fonts_other": {
+    "message": "{0} خط"
+  },
+  "settings_count_palettes_zero": {
+    "message": "{0} لوحة"
+  },
+  "settings_count_palettes_one": {
+    "message": "لوحة واحدة"
+  },
+  "settings_count_palettes_two": {
+    "message": "لوحتان"
+  },
+  "settings_count_palettes_few": {
+    "message": "{0} لوحات"
+  },
+  "settings_count_palettes_many": {
+    "message": "{0} لوحة"
+  },
+  "settings_count_palettes_other": {
+    "message": "{0} لوحة"
+  },
+  "settings_eyebrow": {
+    "message": "التفضيلات"
+  },
+  "settings_heading": {
+    "message": "إعدادات Pickit"
+  },
+  "settings_intro": {
+    "message": "اضبط طريقة نسخ الألوان، ومظهر Pickit، وما يتذكره."
+  },
+  "settings_version_badge": {
+    "message": "الإصدار {0}"
+  },
+  "settings_colours_title": {
+    "message": "الألوان"
+  },
+  "settings_colours_description": {
+    "message": "التنسيق وحالة الأحرف المستخدمان كلما نسخت لونًا."
+  },
+  "settings_default_format_title": {
+    "message": "التنسيق الافتراضي"
+  },
+  "settings_default_format_help": {
+    "message": "يُستخدم عند اختيار لون وعند النسخ بنقرة واحدة."
+  },
+  "settings_default_format_label": {
+    "message": "تنسيق اللون الافتراضي"
+  },
+  "settings_hex_case_title": {
+    "message": "حالة أحرف HEX"
+  },
+  "settings_hex_case_help": {
+    "message": "طريقة كتابة قيم HEX عند نسخها."
+  },
+  "settings_history_size_title": {
+    "message": "حجم السجل"
+  },
+  "settings_history_size_help": {
+    "message": "تُزال الألوان الأقدم عند بلوغ الحد. تُحفظ المفضلة دائمًا."
+  },
+  "settings_history_size_option_zero": {
+    "message": "{0} لون"
+  },
+  "settings_history_size_option_one": {
+    "message": "لون واحد"
+  },
+  "settings_history_size_option_two": {
+    "message": "لونان"
+  },
+  "settings_history_size_option_few": {
+    "message": "{0} ألوان"
+  },
+  "settings_history_size_option_many": {
+    "message": "{0} لونًا"
+  },
+  "settings_history_size_option_other": {
+    "message": "{0} لون"
+  },
+  "settings_appearance_title": {
+    "message": "المظهر"
+  },
+  "settings_appearance_description": {
+    "message": "اختر شكل نوافذ Pickit والطبقة المعروضة على الصفحة."
+  },
+  "settings_theme_title": {
+    "message": "السمة"
+  },
+  "settings_theme_help": {
+    "message": "تنطبق على نوافذ Pickit والطبقة المعروضة على الصفحة."
+  },
+  "settings_shortcuts_title": {
+    "message": "اختصارات لوحة المفاتيح"
+  },
+  "settings_shortcuts_description": {
+    "message": "شغّل أداة الاختيار دون فتح النافذة المنبثقة."
+  },
+  "settings_shortcut_pick_colour_title": {
+    "message": "اختيار لون"
+  },
+  "settings_shortcut_pick_colour_help": {
+    "message": "يفتح منتقي الألوان في علامة التبويب الحالية."
+  },
+  "settings_shortcut_inspect_font_title": {
+    "message": "فحص خط"
+  },
+  "settings_shortcut_inspect_font_help": {
+    "message": "يفتح فاحص الخطوط في علامة التبويب الحالية."
+  },
+  "settings_change_shortcuts_title": {
+    "message": "تغيير الاختصارات"
+  },
+  "settings_change_shortcuts_help": {
+    "message": "الاختصاران الافتراضيان هما {0} و {1}. يدير Chrome اختصارات كل الإضافات في مكان واحد."
+  },
+  "settings_open_chrome_shortcuts": {
+    "message": "فتح اختصارات Chrome"
+  },
+  "settings_backup_title": {
+    "message": "النسخ الاحتياطي"
+  },
+  "settings_backup_description": {
+    "message": "انقل ألوانك وخطوطك ولوحاتك إلى متصفح آخر، أو احتفظ بنسخة."
+  },
+  "settings_export_title": {
+    "message": "تصدير نسخة احتياطية"
+  },
+  "settings_export_help": {
+    "message": "يحفظ كل ما يخزنه Pickit في ملف JSON واحد على جهازك."
+  },
+  "settings_export_button": {
+    "message": "تصدير"
+  },
+  "settings_toast_backup_downloaded": {
+    "message": "تم تنزيل النسخة الاحتياطية"
+  },
+  "settings_restore_title": {
+    "message": "استعادة نسخة احتياطية"
+  },
+  "settings_restore_help": {
+    "message": "يستبدل البيانات المخزنة حاليًا بمحتوى النسخة الاحتياطية. صدّر أولًا إذا أردت الاحتفاظ بكليهما."
+  },
+  "settings_restore_confirm": {
+    "message": "استبدال بياناتي"
+  },
+  "settings_cancel": {
+    "message": "إلغاء"
+  },
+  "settings_restore_choose_file": {
+    "message": "اختيار ملف"
+  },
+  "settings_toast_file_too_large": {
+    "message": "هذا الملف أكبر من أن يكون نسخة احتياطية من Pickit"
+  },
+  "settings_toast_restored": {
+    "message": "تمت الاستعادة: {0}، {1}، {2}"
+  },
+  "settings_restore_banner": {
+    "message": "في هذه النسخة {0} و{1} و{2}. ستستبدل الاستعادة كل ما يخزنه Pickit الآن."
+  },
+  "settings_privacy_title": {
+    "message": "الخصوصية"
+  },
+  "settings_privacy_description": {
+    "message": "حدّد ما يمكن لـ Pickit قراءته ومدة احتفاظه به."
+  },
+  "settings_clear_data_title": {
+    "message": "مسح البيانات"
+  },
+  "settings_clear_data_help": {
+    "message": "يزيل سجل الألوان والخطوط واللوحات من هذا الجهاز. تبقى الإعدادات كما هي."
+  },
+  "settings_clear_data_button": {
+    "message": "مسح البيانات"
+  },
+  "settings_clear_data_confirm": {
+    "message": "نعم، امسح كل شيء"
+  },
+  "settings_toast_data_cleared": {
+    "message": "تم مسح كل البيانات"
+  },
+  "settings_privacy_note": {
+    "message": "كل ما يحفظه Pickit يبقى في هذا المتصفح. لا حساب، ولا يُرسل أي شيء إلى خادم."
+  },
+  "backup_imported_palette_name": {
+    "message": "لوحة مستوردة"
+  },
+  "backup_error_invalid_json": {
+    "message": "هذا الملف ليس JSON صالحًا."
+  },
+  "backup_error_not_pickit": {
+    "message": "هذا ليس ملف نسخة احتياطية من Pickit."
+  },
+  "backup_error_newer_version": {
+    "message": "أُنشئت هذه النسخة الاحتياطية بإصدار أحدث من Pickit. حدّث Pickit وحاول مجددًا."
+  },
+  "ui_shortcut_title": {
+    "message": "الاختصار {0}"
+  },
+  "ui_shortcut_none": {
+    "message": "لم يُعيَّن اختصار"
+  },
+  "settings_sync_title": {
+    "message": "مزامنة اللوحات والمفضلة"
+  },
+  "settings_sync_help": {
+    "message": "يُبقي لوحاتك وألوانك المفضلة متطابقة في كل متصفح Chrome سجّلت الدخول إليه. يبقى السجل والخطوط على هذا الجهاز."
+  },
+  "settings_sync_error_quota": {
+    "message": "مساحة مزامنة Chrome ممتلئة، لذا لا تتم مزامنة بعض اللوحات. احذف اللوحات التي لم تعد تحتاجها."
+  },
+  "settings_sync_error_too_large": {
+    "message": "إحدى اللوحات أكبر من أن تتم مزامنتها. قسّمها إلى لوحات أصغر."
+  },
+  "settings_sync_error_unavailable": {
+    "message": "المزامنة غير متاحة الآن. تأكد من تسجيل الدخول إلى Chrome مع تفعيل المزامنة."
+  },
+  "overlay_font_close": {
+    "message": "إغلاق فاحص الخطوط"
+  },
+  "sponsor_label": {
+    "message": "برعاية"
+  },
+  "sponsor_tagline": {
+    "message": "أدوات مجانية عبر الإنترنت للصور والفيديو والصوت وملفات PDF. تبقى ملفاتك في متصفحك."
+  },
+  "sponsor_tagline_short": {
+    "message": "أدوات مجانية للصور وملفات PDF والمزيد"
+  },
+  "sponsor_cta": {
+    "message": "زيارة"
+  },
+  "sponsor_open": {
+    "message": "فتح {0} في علامة تبويب جديدة"
+  },
+  "credits_title": {
+    "message": "حول"
+  },
+  "credits_made_by": {
+    "message": "من تطوير {0}"
+  },
+  "credits_open_source": {
+    "message": "Pickit مفتوح المصدر. أبلغ عن خطأ أو اقترح ميزة أو تابع التطوير."
+  },
+  "credits_github": {
+    "message": "GitHub"
+  },
+  "credits_linkedin": {
+    "message": "LinkedIn"
+  },
+  "credits_portfolio": {
+    "message": "معرض الأعمال"
   }
 }

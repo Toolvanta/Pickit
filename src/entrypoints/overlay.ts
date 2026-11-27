@@ -12,29 +12,48 @@ import { getState } from '@/core/storage';
 
 declare global {
   interface Window {
-    __pickkitLoaded?: boolean;
+    /** Set by the running copy; answers whether that copy can still reach the extension. */
+    __pickitAlive?: () => boolean;
+  }
+}
+
+/** False once the extension has been updated or reloaded and this copy is orphaned. */
+function contextAlive(): boolean {
+  try {
+    return Boolean(browser.runtime?.id);
+  } catch {
+    return false;
   }
 }
 
 export default defineUnlistedScript(() => {
-  // The worker pings before injecting, but guard anyway against a double injection.
-  if (window.__pickkitLoaded) return;
-  window.__pickkitLoaded = true;
+  // The worker pings before injecting, but guard against a double injection. A copy left
+  // behind by an extension update cannot talk to the extension any more; let the new
+  // copy take over instead of refusing to start.
+  if (window.__pickitAlive?.()) return;
+  window.__pickitAlive = contextAlive;
 
   let stopActive: (() => void) | null = null;
+  /** Bumped on every start, so a start that finishes late does not mount a second picker. */
+  let generation = 0;
 
   async function start(mode: PickMode) {
+    const mine = ++generation;
     stopActive?.();
     stopActive = null;
 
     const settings = await getState('settings');
+    if (mine !== generation) return; // a newer start arrived while settings loaded
+
     const shell = getShell();
     shell.setTheme(settings.theme);
+    let stop: (() => void) | null = null;
     const onDone = () => {
-      stopActive = null;
+      // Only clear the slot if it still belongs to this picker.
+      if (stopActive === stop) stopActive = null;
     };
-    stopActive =
-      mode === 'color' ? startColorPicker(shell, settings, onDone) : startFontInspector(shell, onDone);
+    stop = mode === 'color' ? startColorPicker(shell, settings, onDone) : startFontInspector(shell, settings, onDone);
+    stopActive = stop;
   }
 
   browser.runtime.onMessage.addListener((message: OverlayRequest, _sender, sendResponse) => {
@@ -46,9 +65,15 @@ export default defineUnlistedScript(() => {
         void start(message.mode);
         sendResponse({ ok: true });
         break;
+      case 'pk:stop':
+        generation += 1;
+        stopActive?.();
+        stopActive = null;
+        sendResponse({ ok: true });
+        break;
       case 'pk:scan': {
-        // The overlay host is passed so the scan skips PickKit's own element.
-        const own = document.querySelector('pickkit-overlay') ?? document.createElement('div');
+        // The overlay host is passed so the scan skips Pickit's own element.
+        const own = document.querySelector('pickit-overlay') ?? document.createElement('div');
         const response: ScanResponse = { ok: true, result: scanPage(own) };
         sendResponse(response);
         break;

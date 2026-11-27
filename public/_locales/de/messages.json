@@ -1,11 +1,1403 @@
 {
   "extName": {
-    "message": "PickKit – Farbpipette & Schriftarten-Finder"
+    "message": "Pickit - Farbpipette & Schrifterkennung"
   },
   "extDescription": {
     "message": "Farben von jeder Seite oder vom Bildschirm aufnehmen, Schriftarten per Hover erkennen, Kontrast prüfen und Paletten exportieren."
   },
   "actionTitle": {
-    "message": "PickKit öffnen"
+    "message": "Pickit öffnen"
+  },
+  "cmdPickColor": {
+    "message": "Farbe aufnehmen"
+  },
+  "cmdInspectFont": {
+    "message": "Schrift untersuchen"
+  },
+  "fonts_likely_badge": {
+    "message": "Vermutet"
+  },
+  "fonts_likely_title": {
+    "message": "Beste Schätzung anhand der auf dem Gerät installierten Schriften"
+  },
+  "fonts_specimen_pangram": {
+    "message": "Victor jagt zwölf Boxkämpfer quer über den Sylter Deich"
+  },
+  "fonts_fact_size": {
+    "message": "Größe"
+  },
+  "fonts_fact_weight": {
+    "message": "Stärke"
+  },
+  "fonts_fact_line_height": {
+    "message": "Zeilenhöhe"
+  },
+  "fonts_fact_spacing": {
+    "message": "Laufweite"
+  },
+  "fonts_spacing_normal": {
+    "message": "Normal"
+  },
+  "fonts_copy_css": {
+    "message": "CSS kopieren"
+  },
+  "fonts_copied_css": {
+    "message": "Schrift-CSS kopiert"
+  },
+  "fonts_save_font": {
+    "message": "Schrift speichern"
+  },
+  "fonts_add_favourite": {
+    "message": "Zu Favoriten hinzufügen"
+  },
+  "fonts_remove_favourite": {
+    "message": "Aus Favoriten entfernen"
+  },
+  "fonts_remove": {
+    "message": "Entfernen"
+  },
+  "fonts_eyebrow_library": {
+    "message": "Schriftbibliothek"
+  },
+  "fonts_heading_recent": {
+    "message": "Zuletzt untersucht"
+  },
+  "fonts_heading_saved": {
+    "message": "Gespeicherte Schriften"
+  },
+  "fonts_search_label": {
+    "message": "Schriften durchsuchen"
+  },
+  "fonts_search_placeholder": {
+    "message": "Familie, Quelle, Herkunft suchen…"
+  },
+  "fonts_list_label": {
+    "message": "Schriftliste"
+  },
+  "fonts_tab_recent_one": {
+    "message": "Zuletzt · {0}"
+  },
+  "fonts_tab_recent_other": {
+    "message": "Zuletzt · {0}"
+  },
+  "fonts_tab_saved_one": {
+    "message": "Gespeichert · {0}"
+  },
+  "fonts_tab_saved_other": {
+    "message": "Gespeichert · {0}"
+  },
+  "fonts_empty_search_title": {
+    "message": "Keine Schriften gefunden"
+  },
+  "fonts_empty_search_body": {
+    "message": "Versuche es mit Familienname, Quelle oder Hostname."
+  },
+  "fonts_empty_recent_title": {
+    "message": "Noch keine Schriften untersucht"
+  },
+  "fonts_empty_recent_body": {
+    "message": "Markiere Text auf einer beliebigen Seite und speichere seine Schrift im Inspektor, um die Details hier zu behalten."
+  },
+  "fonts_empty_saved_title": {
+    "message": "Keine gespeicherten Schriften"
+  },
+  "fonts_empty_saved_body": {
+    "message": "Speichere eine Schrift im Inspektor oder unter „Zuletzt“, um sie für später zu behalten."
+  },
+  "fonts_saved_toast": {
+    "message": "In deinen Schriften gespeichert"
+  },
+  "page_loading_eyebrow": {
+    "message": "Seitenscan"
+  },
+  "page_loading_heading": {
+    "message": "Seite wird gelesen"
+  },
+  "page_loading_badge": {
+    "message": "Läuft"
+  },
+  "page_restricted_title": {
+    "message": "Diese Seite kann nicht gescannt werden"
+  },
+  "page_restricted_body": {
+    "message": "Chrome blockiert Erweiterungen auf Browserseiten und im Web Store. Wechsle zu einer beliebigen Website."
+  },
+  "page_unreadable_title": {
+    "message": "Pickit konnte diese Seite nicht lesen"
+  },
+  "page_unreadable_body": {
+    "message": "Lade die Seite neu und scanne erneut. Erlaube für lokale Dateien den Dateizugriff in den Details der Erweiterung."
+  },
+  "page_not_invoked_title": {
+    "message": "Pickit wurde auf diesem Tab noch nicht aufgerufen"
+  },
+  "page_not_invoked_body": {
+    "message": "Zum Schutz deiner Privatsphäre liest Pickit eine Seite erst, nachdem du es dort aufgerufen hast. Klicke auf diesem Tab auf das Pickit-Symbol in der Symbolleiste und scanne erneut - oder erlaube den Zugriff auf alle Websites, damit die Seitenleiste jede Seite scannen kann."
+  },
+  "page_scan_again": {
+    "message": "Erneut scannen"
+  },
+  "page_allow_all_sites": {
+    "message": "Auf allen Websites erlauben"
+  },
+  "page_default_palette_name": {
+    "message": "Seitenpalette"
+  },
+  "page_saved_as_palette": {
+    "message": "Als Palette gespeichert"
+  },
+  "page_style_guide_downloaded": {
+    "message": "Styleguide heruntergeladen"
+  },
+  "page_current_eyebrow": {
+    "message": "Aktuelle Seite"
+  },
+  "page_this_page": {
+    "message": "Diese Seite"
+  },
+  "page_rescan": {
+    "message": "Neu scannen"
+  },
+  "page_fingerprint_heading": {
+    "message": "Farb-Fingerabdruck"
+  },
+  "page_fingerprint_hint": {
+    "message": "Zum Kopieren antippen"
+  },
+  "page_copied_colour": {
+    "message": "Farbe kopiert"
+  },
+  "page_style_guide_button": {
+    "message": "Styleguide (PNG)"
+  },
+  "page_copy_tokens": {
+    "message": "Tokens kopieren"
+  },
+  "page_copied_css_variables": {
+    "message": "CSS-Variablen kopiert"
+  },
+  "page_palette_eyebrow": {
+    "message": "Extrahierte Palette"
+  },
+  "page_colours_heading_one": {
+    "message": "Farben · {0}"
+  },
+  "page_colours_heading_other": {
+    "message": "Farben · {0}"
+  },
+  "page_save_as_palette": {
+    "message": "Als Palette speichern"
+  },
+  "page_role_label": {
+    "message": "Farbrolle"
+  },
+  "page_role_all": {
+    "message": "Alle"
+  },
+  "page_role_text": {
+    "message": "Text"
+  },
+  "page_role_background": {
+    "message": "Hintergr."
+  },
+  "page_role_border": {
+    "message": "Rahmen"
+  },
+  "page_no_colours_in_role": {
+    "message": "Keine Farben in dieser Rolle."
+  },
+  "page_copy_value": {
+    "message": "{0} kopieren"
+  },
+  "page_uses_count_one": {
+    "message": "{0}×"
+  },
+  "page_uses_count_other": {
+    "message": "{0}×"
+  },
+  "page_type_eyebrow": {
+    "message": "Schriftsystem"
+  },
+  "page_typography_heading_one": {
+    "message": "Typografie · {0}"
+  },
+  "page_typography_heading_other": {
+    "message": "Typografie · {0}"
+  },
+  "page_font_likely": {
+    "message": "Vermutet"
+  },
+  "page_view_on_google_fonts": {
+    "message": "Auf Google Fonts ansehen"
+  },
+  "page_more_sizes_one": {
+    "message": "+{0}"
+  },
+  "page_more_sizes_other": {
+    "message": "+{0}"
+  },
+  "page_no_text_found": {
+    "message": "Auf dieser Seite wurde kein Text gefunden."
+  },
+  "page_truncated_notice_one": {
+    "message": "Diese Seite ist sehr groß, daher wurde nur {0} Element gelesen."
+  },
+  "page_truncated_notice_other": {
+    "message": "Diese Seite ist sehr groß, daher wurden nur die ersten {0} Elemente gelesen."
+  },
+  "palettes_name_label": {
+    "message": "Palettenname"
+  },
+  "palettes_colour_count_one": {
+    "message": "{0} Farbe"
+  },
+  "palettes_colour_count_other": {
+    "message": "{0} Farben"
+  },
+  "palettes_delete_confirm": {
+    "message": "Löschen"
+  },
+  "palettes_delete_cancel": {
+    "message": "Abbrechen"
+  },
+  "palettes_delete_palette": {
+    "message": "Palette löschen"
+  },
+  "palettes_empty_ribbon": {
+    "message": "Füge unten oder im Tab „Farben“ eine Farbe hinzu."
+  },
+  "palettes_swatches_label": {
+    "message": "Farbfelder von {0}"
+  },
+  "palettes_swatch_title": {
+    "message": "{0} · Klicken zum Kopieren, Ziehen zum Sortieren, Delete zum Entfernen"
+  },
+  "palettes_swatch_aria": {
+    "message": "{0}. Enter kopiert, Delete entfernt, Alt plus Pfeiltasten sortiert um."
+  },
+  "palettes_swatch_hint": {
+    "message": "Ziehen zum Sortieren · Alt + ←/→ verschieben · Delete entfernt"
+  },
+  "palettes_add_placeholder": {
+    "message": "#5548E0 oder rgb(…)"
+  },
+  "palettes_add_label": {
+    "message": "Hinzuzufügende Farbe"
+  },
+  "palettes_add_button": {
+    "message": "Hinzufügen"
+  },
+  "palettes_export_format_label": {
+    "message": "Exportformat"
+  },
+  "palettes_copy_button": {
+    "message": "Kopieren"
+  },
+  "palettes_copied_export": {
+    "message": "Export kopiert"
+  },
+  "palettes_file_button": {
+    "message": "Datei"
+  },
+  "palettes_downloaded_palette": {
+    "message": "{0} heruntergeladen"
+  },
+  "palettes_default_name": {
+    "message": "Palette {0}"
+  },
+  "palettes_heading": {
+    "message": "Paletten"
+  },
+  "palettes_vision_label": {
+    "message": "Paletten mit simulierter Farbsehschwäche ansehen"
+  },
+  "palettes_vision_title": {
+    "message": "Prüfen, ob die Palettenfarben unterscheidbar bleiben"
+  },
+  "palettes_vision_typical": {
+    "message": "Normales Sehen"
+  },
+  "palettes_empty_title": {
+    "message": "Noch keine Paletten"
+  },
+  "palettes_empty_body": {
+    "message": "Fasse Farben zu einer Palette zusammen und exportiere sie als CSS-Variablen, SCSS, Tailwind, Design-Tokens, JSON oder SVG."
+  },
+  "palettes_new_palette": {
+    "message": "Neue Palette"
+  },
+  "palettes_all_colours_heading": {
+    "message": "Alle Farben"
+  },
+  "palettes_export_all": {
+    "message": "Alle exportieren"
+  },
+  "palettes_downloaded_all": {
+    "message": "Alle Farben heruntergeladen"
+  },
+  "palettes_copied_colour": {
+    "message": "Farbe kopiert"
+  },
+  "ui_copied_value": {
+    "message": "{0} kopiert"
+  },
+  "ui_copy_failed": {
+    "message": "Kopieren fehlgeschlagen"
+  },
+  "ui_colorbar_label": {
+    "message": "Auf dieser Seite verwendete Farben"
+  },
+  "ui_colorbar_segment_title": {
+    "message": "{0} · {1} %"
+  },
+  "ui_colorbar_segment_aria": {
+    "message": "{0}, {1} Prozent der Verwendungen"
+  },
+  "ui_copy_row_sr": {
+    "message": "{0} {1} kopieren"
+  },
+  "ui_search_placeholder": {
+    "message": "Suchen…"
+  },
+  "ui_search_clear": {
+    "message": "Suche löschen"
+  },
+  "cmd_default_label": {
+    "message": "Befehle"
+  },
+  "cmd_trigger_compact_label": {
+    "message": "{0} ({1})"
+  },
+  "cmd_close_label": {
+    "message": "Befehlsmenü schließen"
+  },
+  "cmd_list_label": {
+    "message": "Liste: {0}"
+  },
+  "cmd_empty": {
+    "message": "Keine Befehle verfügbar"
+  },
+  "cmd_footer_navigate": {
+    "message": "navigieren"
+  },
+  "cmd_footer_run": {
+    "message": "ausführen"
+  },
+  "cmd_footer_close": {
+    "message": "schließen"
+  },
+  "styleguide_default_title": {
+    "message": "Styleguide"
+  },
+  "styleguide_colours_heading": {
+    "message": "Farben"
+  },
+  "styleguide_typography_heading": {
+    "message": "Typografie"
+  },
+  "styleguide_font_details": {
+    "message": "{0}   ·   Stärken {1}   ·   Größen {2}"
+  },
+  "styleguide_footer": {
+    "message": "Erstellt mit {0}"
+  },
+  "export_format_tokens": {
+    "message": "Tokens"
+  },
+  "overlay_hint_bar_label": {
+    "message": "Tastenkürzel"
+  },
+  "overlay_key_click": {
+    "message": "Klick"
+  },
+  "overlay_key_shift_click": {
+    "message": "Shift+Klick"
+  },
+  "overlay_hint_copy_colour": {
+    "message": "Farbe kopieren"
+  },
+  "overlay_hint_pick_several": {
+    "message": "Mehrere wählen"
+  },
+  "overlay_hint_pick_from_screen": {
+    "message": "Vom Bildschirm"
+  },
+  "overlay_hint_cancel": {
+    "message": "Abbrechen"
+  },
+  "overlay_toast_cannot_read_page": {
+    "message": "Pickit kann diese Seite nicht lesen"
+  },
+  "overlay_toast_cannot_read_page_sub": {
+    "message": "Klicke auf das Symbol und versuche es erneut"
+  },
+  "overlay_toast_capture_failed": {
+    "message": "Seite konnte nicht erfasst werden"
+  },
+  "overlay_toast_try_again": {
+    "message": "Erneut versuchen"
+  },
+  "overlay_toast_copied": {
+    "message": "{0} kopiert"
+  },
+  "overlay_toast_saved": {
+    "message": "{0} gespeichert"
+  },
+  "overlay_font_card_label": {
+    "message": "Schriftdetails"
+  },
+  "overlay_font_key_hover": {
+    "message": "Hover"
+  },
+  "overlay_font_key_click": {
+    "message": "Klick"
+  },
+  "overlay_font_hint_inspect": {
+    "message": "Untersuchen"
+  },
+  "overlay_font_hint_pin_copy": {
+    "message": "Fixieren & kopieren"
+  },
+  "overlay_font_hint_exit": {
+    "message": "Beenden"
+  },
+  "overlay_font_row_size": {
+    "message": "Größe"
+  },
+  "overlay_font_row_weight": {
+    "message": "Stärke"
+  },
+  "overlay_font_row_line_height": {
+    "message": "Zeilenhöhe"
+  },
+  "overlay_font_row_letter_spacing": {
+    "message": "Laufweite"
+  },
+  "overlay_font_row_style": {
+    "message": "Stil"
+  },
+  "overlay_font_row_colour": {
+    "message": "Farbe"
+  },
+  "overlay_font_likely": {
+    "message": "Vermutet"
+  },
+  "overlay_font_likely_tooltip": {
+    "message": "Beste Schätzung anhand der auf diesem Gerät installierten Schriften"
+  },
+  "overlay_font_copy_css": {
+    "message": "CSS kopieren"
+  },
+  "overlay_font_save": {
+    "message": "Speichern"
+  },
+  "overlay_font_open_google_fonts": {
+    "message": "Google Fonts ↗"
+  },
+  "overlay_font_footer": {
+    "message": "Klicken zum Fixieren, dann Werte kopieren"
+  },
+  "overlay_font_toast_copied": {
+    "message": "{0} kopiert"
+  },
+  "overlay_font_toast_copied_css": {
+    "message": "Schrift-CSS kopiert"
+  },
+  "overlay_font_toast_saved": {
+    "message": "In deinen Schriften gespeichert"
+  },
+  "font_weight_thin": {
+    "message": "Thin"
+  },
+  "font_weight_extra_light": {
+    "message": "Extra Light"
+  },
+  "font_weight_light": {
+    "message": "Light"
+  },
+  "font_weight_regular": {
+    "message": "Regular"
+  },
+  "font_weight_medium": {
+    "message": "Medium"
+  },
+  "font_weight_semi_bold": {
+    "message": "Semi Bold"
+  },
+  "font_weight_bold": {
+    "message": "Bold"
+  },
+  "font_weight_extra_bold": {
+    "message": "Extra Bold"
+  },
+  "font_weight_black": {
+    "message": "Black"
+  },
+  "font_line_height_normal": {
+    "message": "Normal"
+  },
+  "font_letter_spacing_normal": {
+    "message": "Normal"
+  },
+  "font_source_browser_default": {
+    "message": "Browser-Standard"
+  },
+  "font_source_installed": {
+    "message": "Auf diesem Gerät installiert"
+  },
+  "font_source_web_font": {
+    "message": "Webfont"
+  },
+  "font_source_self_hosted": {
+    "message": "Selbst gehostet"
+  },
+  "font_source_hosted_on": {
+    "message": "Gehostet auf {0}"
+  },
+  "panel_tab_colors": {
+    "message": "Farben"
+  },
+  "panel_tab_fonts": {
+    "message": "Schriften"
+  },
+  "panel_tab_page": {
+    "message": "Seite"
+  },
+  "panel_tab_contrast": {
+    "message": "Kontrast"
+  },
+  "panel_tab_palettes": {
+    "message": "Paletten"
+  },
+  "panel_tabs_aria": {
+    "message": "Arbeitsbereiche"
+  },
+  "panel_toast_restricted_page": {
+    "message": "Pickit kann auf dieser Seite nicht ausgeführt werden"
+  },
+  "panel_toast_copied_colour": {
+    "message": "Farbe kopiert"
+  },
+  "panel_cmd_pick_colour": {
+    "message": "Farbe aufnehmen"
+  },
+  "panel_cmd_inspect_font": {
+    "message": "Schrift untersuchen"
+  },
+  "panel_cmd_go_colors": {
+    "message": "Zu Farben"
+  },
+  "panel_cmd_go_fonts": {
+    "message": "Zu Schriften"
+  },
+  "panel_cmd_go_page": {
+    "message": "Zu Seite"
+  },
+  "panel_cmd_go_contrast": {
+    "message": "Zu Kontrast"
+  },
+  "panel_cmd_go_palettes": {
+    "message": "Zu Paletten"
+  },
+  "panel_cmd_copy_selected_colour": {
+    "message": "Ausgewählte Farbe kopieren"
+  },
+  "panel_cmd_use_light_theme": {
+    "message": "Helles Design verwenden"
+  },
+  "panel_cmd_use_dark_theme": {
+    "message": "Dunkles Design verwenden"
+  },
+  "panel_cmd_open_settings": {
+    "message": "Einstellungen öffnen"
+  },
+  "panel_settings": {
+    "message": "Einstellungen"
+  },
+  "panel_context_show_in_colors": {
+    "message": "In Farben anzeigen"
+  },
+  "panel_context_copy_colour": {
+    "message": "Farbe kopieren"
+  },
+  "panel_context_check_contrast": {
+    "message": "Kontrast prüfen"
+  },
+  "colors_pick_from_page": {
+    "message": "Von Seite aufnehmen"
+  },
+  "colors_screen_pick": {
+    "message": "Bildschirm"
+  },
+  "colors_screen_pick_title": {
+    "message": "Beliebiges Pixel auf dem Bildschirm aufnehmen, auch außerhalb von Chrome"
+  },
+  "colors_empty_title": {
+    "message": "Nimm deine erste Farbe auf"
+  },
+  "colors_empty_body": {
+    "message": "Klicke auf {0} und dann auf eine beliebige Stelle der Seite. Jede aufgenommene Farbe bleibt hier gespeichert - zum Kopieren in jedem Format, zur Kontrastprüfung und zum Erstellen von Paletten."
+  },
+  "colors_selected_aria": {
+    "message": "Ausgewählte Farbe"
+  },
+  "colors_token_match_title": {
+    "message": "Entspricht der Variable {0} der Seite"
+  },
+  "colors_favorite_add": {
+    "message": "Zu Favoriten hinzufügen"
+  },
+  "colors_favorite_remove": {
+    "message": "Aus Favoriten entfernen"
+  },
+  "colors_copy_default_format_title": {
+    "message": "Im Standardformat kopieren"
+  },
+  "colors_toast_copied_colour": {
+    "message": "Farbe kopiert"
+  },
+  "colors_origin_screen": {
+    "message": "Vom Bildschirm aufgenommen"
+  },
+  "colors_add_to_palette_aria": {
+    "message": "Diese Farbe zu einer Palette hinzufügen"
+  },
+  "colors_add_to_palette_placeholder": {
+    "message": "Zur Palette hinzufügen…"
+  },
+  "colors_new_palette_option": {
+    "message": "+ Neue Palette"
+  },
+  "colors_default_palette_name": {
+    "message": "Palette {0}"
+  },
+  "colors_toast_added_new_palette": {
+    "message": "Zu neuer Palette hinzugefügt"
+  },
+  "colors_toast_already_in_palette": {
+    "message": "Bereits in {0}"
+  },
+  "colors_toast_added_to_palette": {
+    "message": "Zu {0} hinzugefügt"
+  },
+  "colors_as_text": {
+    "message": "Als Text"
+  },
+  "colors_as_text_title": {
+    "message": "Diese Farbe als Text im Kontrastprüfer testen"
+  },
+  "colors_as_bg": {
+    "message": "Als Hgr."
+  },
+  "colors_as_bg_title": {
+    "message": "Diese Farbe als Hintergrund im Kontrastprüfer testen"
+  },
+  "colors_history_title": {
+    "message": "Verlauf"
+  },
+  "colors_clear_all_confirm_one": {
+    "message": "{0} Farbe löschen?"
+  },
+  "colors_clear_all_confirm_other": {
+    "message": "Alle {0} löschen?"
+  },
+  "colors_clear": {
+    "message": "Löschen"
+  },
+  "colors_cancel": {
+    "message": "Abbrechen"
+  },
+  "colors_remove_selected": {
+    "message": "Ausgewählte Farbe entfernen"
+  },
+  "colors_search_label": {
+    "message": "Farben durchsuchen"
+  },
+  "colors_search_placeholder": {
+    "message": "Hex, Name, Website oder Token"
+  },
+  "colors_favorites_only_title": {
+    "message": "Nur Favoriten anzeigen"
+  },
+  "colors_no_favorites": {
+    "message": "Noch keine Favoriten. Tippe auf das Herz einer Farbe, um sie zu behalten."
+  },
+  "colors_no_search_match": {
+    "message": "Keine Farben gefunden."
+  },
+  "colors_swatch_title": {
+    "message": "{0} · Doppelklick zum Kopieren"
+  },
+  "colors_swatch_title_favorite": {
+    "message": "{0} · Favorit · Doppelklick zum Kopieren"
+  },
+  "colors_swatch_select_aria": {
+    "message": "{0} auswählen"
+  },
+  "colors_swatch_select_favorite_aria": {
+    "message": "{0} auswählen, Favorit"
+  },
+  "colors_history_hint": {
+    "message": "Klick zum Ansehen · Doppelklick zum Kopieren · Favoriten bleiben beim Löschen erhalten"
+  },
+  "colors_explore_aria": {
+    "message": "Diese Farbe erkunden"
+  },
+  "colors_explore": {
+    "message": "Erkunden"
+  },
+  "colors_explore_shades": {
+    "message": "Abstufungen"
+  },
+  "colors_explore_harmonies": {
+    "message": "Harmonien"
+  },
+  "colors_shade_scale_aria": {
+    "message": "Abstufungsskala"
+  },
+  "colors_shade_title": {
+    "message": "{0} · {1}"
+  },
+  "colors_shade_title_nearest": {
+    "message": "{0} · {1} · am nächsten an dieser Farbe"
+  },
+  "colors_shade_copy_aria": {
+    "message": "Abstufung {0} kopieren, {1}"
+  },
+  "colors_copy_scale_as": {
+    "message": "Skala kopieren als"
+  },
+  "colors_copy_scale_tokens": {
+    "message": "Tokens"
+  },
+  "colors_toast_copied_css_variables": {
+    "message": "CSS-Variablen kopiert"
+  },
+  "colors_toast_copied_tailwind_scale": {
+    "message": "Tailwind-Skala kopiert"
+  },
+  "colors_toast_copied_design_tokens": {
+    "message": "Design-Tokens kopiert"
+  },
+  "harmonies_aria": {
+    "message": "Farbharmonien"
+  },
+  "harmonies_neutral_message": {
+    "message": "Diese Farbe ist neutral (Grau, fast Schwarz oder fast Weiß) und hat keinen Farbton, aus dem sich Harmonien bilden lassen. Wähle eine bunte Farbe, um sie zu sehen."
+  },
+  "harmonies_toast_added_new_palette_one": {
+    "message": "{0} Farbe zu neuer Palette „{1}“ hinzugefügt"
+  },
+  "harmonies_toast_added_new_palette_other": {
+    "message": "{0} Farben zu neuer Palette „{1}“ hinzugefügt"
+  },
+  "harmonies_toast_already_in_palette": {
+    "message": "Die Farben von „{0}“ sind bereits in der Palette"
+  },
+  "harmonies_toast_added_to_palette_one": {
+    "message": "{0} Farbe zu {1} hinzugefügt"
+  },
+  "harmonies_toast_added_to_palette_other": {
+    "message": "{0} Farben zu {1} hinzugefügt"
+  },
+  "harmonies_add_all_aria": {
+    "message": "Alle zur Palette hinzufügen: {0}"
+  },
+  "harmonies_add_all_title": {
+    "message": "Alle Farben von „{0}“ zu einer Palette hinzufügen"
+  },
+  "harmonies_add_palette_button": {
+    "message": "+ Palette"
+  },
+  "harmonies_strip_aria": {
+    "message": "Farben: {0}"
+  },
+  "harmonies_swatch_title": {
+    "message": "{0} · Klicken zum Kopieren"
+  },
+  "harmonies_swatch_title_base": {
+    "message": "{0} · Basis · Klicken zum Kopieren"
+  },
+  "harmonies_swatch_copy_aria": {
+    "message": "{0} aus {1} kopieren"
+  },
+  "harmonies_swatch_copy_base_aria": {
+    "message": "{0} aus {1} kopieren (Basis)"
+  },
+  "harmonies_toast_copied_value": {
+    "message": "{0} kopiert"
+  },
+  "harmonies_base_badge": {
+    "message": "Basis"
+  },
+  "harmony_complementary": {
+    "message": "Komplementär"
+  },
+  "harmony_analogous": {
+    "message": "Analog"
+  },
+  "harmony_triadic": {
+    "message": "Triadisch"
+  },
+  "harmony_split_complement": {
+    "message": "Split-Komplementär"
+  },
+  "harmony_tetradic": {
+    "message": "Tetradisch"
+  },
+  "contrast_field_text": {
+    "message": "Text"
+  },
+  "contrast_field_background": {
+    "message": "Hintergrund"
+  },
+  "contrast_text_picker_aria": {
+    "message": "Farbwähler für Text"
+  },
+  "contrast_background_picker_aria": {
+    "message": "Farbwähler für Hintergrund"
+  },
+  "contrast_use_recent_as_text_aria": {
+    "message": "{0} als Text verwenden"
+  },
+  "contrast_use_recent_as_background_aria": {
+    "message": "{0} als Hintergrund verwenden"
+  },
+  "contrast_grade_aa_large": {
+    "message": "AA groß"
+  },
+  "contrast_grade_fails": {
+    "message": "Nicht bestanden"
+  },
+  "contrast_simulating": {
+    "message": "Simulation: {0}"
+  },
+  "contrast_preview_large": {
+    "message": "Großer Text mit 24px"
+  },
+  "contrast_preview_body": {
+    "message": "Fließtext mit 16px. Victor jagt zwölf Boxkämpfer quer über den Sylter Deich."
+  },
+  "contrast_apca_title": {
+    "message": "APCA-Helligkeitskontrast, vorgeschlagen für WCAG 3"
+  },
+  "contrast_swap": {
+    "message": "Text und Hintergrund tauschen"
+  },
+  "contrast_apca_use": {
+    "message": "APCA: {0}"
+  },
+  "contrast_check_aa_body": {
+    "message": "AA Fließtext"
+  },
+  "contrast_check_aa_large": {
+    "message": "AA groß"
+  },
+  "contrast_check_aaa_body": {
+    "message": "AAA Fließtext"
+  },
+  "contrast_check_aaa_large": {
+    "message": "AAA groß"
+  },
+  "contrast_fixes_aria": {
+    "message": "Vorgeschlagene Korrekturen"
+  },
+  "contrast_fixes_title": {
+    "message": "{0} ({1}:1) mit kleinster Änderung erreichen"
+  },
+  "contrast_fix_text": {
+    "message": "Text anpassen"
+  },
+  "contrast_fix_background": {
+    "message": "Hintergrund anpassen"
+  },
+  "contrast_vision_title": {
+    "message": "Farbsehen"
+  },
+  "contrast_vision_typical_note": {
+    "message": "Normales Sehen"
+  },
+  "contrast_vision_picker_aria": {
+    "message": "Farbsehen simulieren"
+  },
+  "contrast_vision_short_typical": {
+    "message": "Normal"
+  },
+  "contrast_vision_short_protanopia": {
+    "message": "Protan."
+  },
+  "contrast_vision_short_deuteranopia": {
+    "message": "Deuter."
+  },
+  "contrast_vision_short_tritanopia": {
+    "message": "Tritan."
+  },
+  "contrast_vision_short_achromatopsia": {
+    "message": "Mono"
+  },
+  "contrast_pair_aria": {
+    "message": "Farben"
+  },
+  "apca_use_body_any_size": {
+    "message": "Fließtext in jeder Größe"
+  },
+  "apca_use_body_from_18px": {
+    "message": "Fließtext ab 18px"
+  },
+  "apca_use_content_from_24px": {
+    "message": "Inhaltstext ab 24px"
+  },
+  "apca_use_headlines_large_text": {
+    "message": "Überschriften und großer Text"
+  },
+  "apca_use_placeholders_non_text": {
+    "message": "Nur Platzhalter und Nicht-Text"
+  },
+  "apca_use_dividers_decoration": {
+    "message": "Nur Trennlinien und Dekoration"
+  },
+  "apca_use_not_readable": {
+    "message": "Nicht lesbar"
+  },
+  "vision_protanopia_label": {
+    "message": "Protanopie"
+  },
+  "vision_protanopia_note": {
+    "message": "Keine Rotzapfen"
+  },
+  "vision_deuteranopia_label": {
+    "message": "Deuteranopie"
+  },
+  "vision_deuteranopia_note": {
+    "message": "Keine Grünzapfen"
+  },
+  "vision_tritanopia_label": {
+    "message": "Tritanopie"
+  },
+  "vision_tritanopia_note": {
+    "message": "Keine Blauzapfen"
+  },
+  "vision_achromatopsia_label": {
+    "message": "Achromatopsie"
+  },
+  "vision_achromatopsia_note": {
+    "message": "Kein Farbsehen"
+  },
+  "popup_failure_restricted_title": {
+    "message": "Pickit kann auf dieser Seite nicht ausgeführt werden"
+  },
+  "popup_failure_restricted_text": {
+    "message": "Chrome blockiert Erweiterungen auf Browserseiten und im Web Store. Öffne eine beliebige Website und versuche es erneut."
+  },
+  "popup_failure_no_access_title": {
+    "message": "Pickit konnte diese Seite nicht erreichen"
+  },
+  "popup_failure_no_access_text": {
+    "message": "Lade die Seite neu und versuche es erneut. Erlaube für lokale Dateien den Dateizugriff in den Details der Erweiterung."
+  },
+  "popup_failure_unknown_title": {
+    "message": "Etwas ist schiefgelaufen"
+  },
+  "popup_failure_unknown_text": {
+    "message": "Lade die Seite neu und versuche es erneut."
+  },
+  "popup_command_pick_colour": {
+    "message": "Farbe aufnehmen"
+  },
+  "popup_command_inspect_font": {
+    "message": "Schrift untersuchen"
+  },
+  "popup_command_open_workspace": {
+    "message": "Arbeitsbereich öffnen"
+  },
+  "popup_command_copy_latest": {
+    "message": "Letzte Farbe kopieren"
+  },
+  "popup_command_light_theme": {
+    "message": "Helles Design verwenden"
+  },
+  "popup_command_dark_theme": {
+    "message": "Dunkles Design verwenden"
+  },
+  "popup_command_open_settings": {
+    "message": "Einstellungen öffnen"
+  },
+  "popup_toast_copied_colour": {
+    "message": "Farbe kopiert"
+  },
+  "popup_open_workspace_label": {
+    "message": "Arbeitsbereich öffnen"
+  },
+  "popup_settings_label": {
+    "message": "Einstellungen"
+  },
+  "popup_tools_label": {
+    "message": "Werkzeuge"
+  },
+  "popup_tool_pick_title": {
+    "message": "Farbe aufnehmen"
+  },
+  "popup_tool_pick_sub": {
+    "message": "Beliebiges Pixel"
+  },
+  "popup_tool_font_title": {
+    "message": "Schrift prüfen"
+  },
+  "popup_tool_font_sub": {
+    "message": "Über Text fahren"
+  },
+  "popup_empty_colours": {
+    "message": "Aufgenommene Farben erscheinen hier - bereit zum Kopieren in jedem Format."
+  },
+  "popup_latest_colour_label": {
+    "message": "Letzte Farbe"
+  },
+  "popup_latest_copy_title": {
+    "message": "Im Standardformat kopieren"
+  },
+  "popup_origin_screen": {
+    "message": "Vom Bildschirm aufgenommen"
+  },
+  "popup_recent_colours_label": {
+    "message": "Letzte Farben"
+  },
+  "popup_recent_copy_label": {
+    "message": "{0} kopieren"
+  },
+  "popup_recent_copy_title": {
+    "message": "{0} · Klicken zum Kopieren"
+  },
+  "popup_latest_font_label": {
+    "message": "Letzte Schrift"
+  },
+  "popup_font_details": {
+    "message": "{0}px · {1} · {2}"
+  },
+  "popup_workspace_link": {
+    "message": "Arbeitsbereich öffnen"
+  },
+  "popup_workspace_link_sub": {
+    "message": "Verlauf, Kontrast, Paletten"
+  },
+  "popup_rating_title": {
+    "message": "Gefällt dir Pickit?"
+  },
+  "popup_rating_text": {
+    "message": "Eine Bewertung hilft anderen, es zu finden."
+  },
+  "popup_rating_rate": {
+    "message": "Pickit bewerten"
+  },
+  "popup_rating_dismiss": {
+    "message": "Nicht jetzt"
+  },
+  "welcome_step_pick_title": {
+    "message": "Farbe aufnehmen"
+  },
+  "welcome_step_pick_text": {
+    "message": "Öffne das Pop-up oder nutze das Tastenkürzel und klicke dann auf eine Farbe auf der Seite. Pickit liest sie, ohne zu beobachten, was du tust."
+  },
+  "welcome_step_font_title": {
+    "message": "Schrift untersuchen"
+  },
+  "welcome_step_font_text": {
+    "message": "Wähle das Schriftwerkzeug und klicke auf beliebigen Text. Du erhältst Familie, Größe, Stärke und Farbe in einem kompakten Fenster."
+  },
+  "welcome_step_workspace_title": {
+    "message": "Alles im Arbeitsbereich"
+  },
+  "welcome_step_workspace_text": {
+    "message": "In der Seitenleiste findest du Farbverlauf, Schriften, Paletten, Kontrastprüfer und einen Styleguide der Seite mit einem Klick."
+  },
+  "welcome_shortcut_label": {
+    "message": "Tastenkürzel {0}"
+  },
+  "welcome_kicker": {
+    "message": "Willkommen bei Pickit"
+  },
+  "welcome_title_lead": {
+    "message": "Jede Farbe. Jede Schrift."
+  },
+  "welcome_title_accent": {
+    "message": "Direkt griffbereit."
+  },
+  "welcome_lead": {
+    "message": "Drei Dinge, die du wissen solltest - dann kann es losgehen."
+  },
+  "welcome_tip_pin": {
+    "message": "Tipp: Klicke in der Chrome-Symbolleiste auf das Puzzle-Symbol und pinne Pickit an, damit es immer nur einen Klick entfernt ist."
+  },
+  "welcome_cta": {
+    "message": "Loslegen"
+  },
+  "access_unreachable_title": {
+    "message": "Pickit konnte diese Seite nicht erreichen"
+  },
+  "access_unreachable_text": {
+    "message": "Lade die Seite neu und versuche es erneut. Erlaube für lokale Dateien den Dateizugriff in den Details der Erweiterung."
+  },
+  "access_allow_title": {
+    "message": "Pickit auf dieser Seite erlauben"
+  },
+  "access_allow_text": {
+    "message": "Die Seitenleiste kann einen Tab nicht selbst erreichen. Klicke auf diesem Tab auf das Pickit-Symbol in der Symbolleiste oder erlaube den Zugriff auf alle Websites, damit die Seitenleiste überall funktioniert."
+  },
+  "access_allow_all_sites": {
+    "message": "Auf allen Websites erlauben"
+  },
+  "access_dismiss_label": {
+    "message": "Schließen"
+  },
+  "settings_theme_light": {
+    "message": "Hell"
+  },
+  "settings_theme_dark": {
+    "message": "Dunkel"
+  },
+  "settings_theme_system": {
+    "message": "System"
+  },
+  "settings_shortcut_not_set": {
+    "message": "Nicht festgelegt"
+  },
+  "settings_shortcut_label": {
+    "message": "Tastenkürzel {0}"
+  },
+  "settings_count_colours_one": {
+    "message": "{0} Farbe"
+  },
+  "settings_count_colours_other": {
+    "message": "{0} Farben"
+  },
+  "settings_count_fonts_one": {
+    "message": "{0} Schrift"
+  },
+  "settings_count_fonts_other": {
+    "message": "{0} Schriften"
+  },
+  "settings_count_palettes_one": {
+    "message": "{0} Palette"
+  },
+  "settings_count_palettes_other": {
+    "message": "{0} Paletten"
+  },
+  "settings_eyebrow": {
+    "message": "Einstellungen"
+  },
+  "settings_heading": {
+    "message": "Pickit-Einstellungen"
+  },
+  "settings_intro": {
+    "message": "Lege fest, wie Farben kopiert werden, wie Pickit aussieht und was es sich merkt."
+  },
+  "settings_version_badge": {
+    "message": "Version {0}"
+  },
+  "settings_colours_title": {
+    "message": "Farben"
+  },
+  "settings_colours_description": {
+    "message": "Format und Schreibweise beim Kopieren einer Farbe."
+  },
+  "settings_default_format_title": {
+    "message": "Standardformat"
+  },
+  "settings_default_format_help": {
+    "message": "Wird beim Aufnehmen einer Farbe und beim Kopieren per Klick verwendet."
+  },
+  "settings_default_format_label": {
+    "message": "Standard-Farbformat"
+  },
+  "settings_hex_case_title": {
+    "message": "HEX-Schreibweise"
+  },
+  "settings_hex_case_help": {
+    "message": "Wie HEX-Werte beim Kopieren geschrieben werden."
+  },
+  "settings_history_size_title": {
+    "message": "Verlaufsgröße"
+  },
+  "settings_history_size_help": {
+    "message": "Ältere Farben werden entfernt, sobald das Limit erreicht ist. Favoriten bleiben immer erhalten."
+  },
+  "settings_history_size_option_one": {
+    "message": "{0} Farbe"
+  },
+  "settings_history_size_option_other": {
+    "message": "{0} Farben"
+  },
+  "settings_appearance_title": {
+    "message": "Darstellung"
+  },
+  "settings_appearance_description": {
+    "message": "Aussehen der Pickit-Fenster und des Overlays auf der Seite."
+  },
+  "settings_theme_title": {
+    "message": "Design"
+  },
+  "settings_theme_help": {
+    "message": "Gilt für die Pickit-Fenster und das Overlay auf der Seite."
+  },
+  "settings_shortcuts_title": {
+    "message": "Tastenkürzel"
+  },
+  "settings_shortcuts_description": {
+    "message": "Werkzeuge starten, ohne das Pop-up zu öffnen."
+  },
+  "settings_shortcut_pick_colour_title": {
+    "message": "Farbe aufnehmen"
+  },
+  "settings_shortcut_pick_colour_help": {
+    "message": "Öffnet die Farbpipette im aktuellen Tab."
+  },
+  "settings_shortcut_inspect_font_title": {
+    "message": "Schrift untersuchen"
+  },
+  "settings_shortcut_inspect_font_help": {
+    "message": "Öffnet den Schrift-Inspektor im aktuellen Tab."
+  },
+  "settings_change_shortcuts_title": {
+    "message": "Tastenkürzel ändern"
+  },
+  "settings_change_shortcuts_help": {
+    "message": "Standard sind {0} und {1}. Chrome verwaltet die Tastenkürzel aller Erweiterungen an einem Ort."
+  },
+  "settings_open_chrome_shortcuts": {
+    "message": "Chrome-Tastenkürzel öffnen"
+  },
+  "settings_backup_title": {
+    "message": "Sicherung"
+  },
+  "settings_backup_description": {
+    "message": "Übertrage Farben, Schriften und Paletten in einen anderen Browser oder behalte eine Kopie."
+  },
+  "settings_export_title": {
+    "message": "Sicherung exportieren"
+  },
+  "settings_export_help": {
+    "message": "Speichert alle Daten von Pickit als eine JSON-Datei auf deinem Gerät."
+  },
+  "settings_export_button": {
+    "message": "Exportieren"
+  },
+  "settings_toast_backup_downloaded": {
+    "message": "Sicherung heruntergeladen"
+  },
+  "settings_restore_title": {
+    "message": "Sicherung wiederherstellen"
+  },
+  "settings_restore_help": {
+    "message": "Ersetzt die aktuellen Daten durch den Inhalt der Sicherung. Exportiere vorher, wenn du beides behalten möchtest."
+  },
+  "settings_restore_confirm": {
+    "message": "Daten ersetzen"
+  },
+  "settings_cancel": {
+    "message": "Abbrechen"
+  },
+  "settings_restore_choose_file": {
+    "message": "Datei wählen"
+  },
+  "settings_toast_file_too_large": {
+    "message": "Diese Datei ist zu groß für eine Pickit-Sicherung"
+  },
+  "settings_toast_restored": {
+    "message": "Wiederhergestellt: {0}, {1}, {2}"
+  },
+  "settings_restore_banner": {
+    "message": "Diese Sicherung enthält {0}, {1} und {2}. Beim Wiederherstellen wird alles ersetzt, was Pickit derzeit gespeichert hat."
+  },
+  "settings_privacy_title": {
+    "message": "Datenschutz"
+  },
+  "settings_privacy_description": {
+    "message": "Lege fest, was Pickit lesen darf und wie lange es Daten behält."
+  },
+  "settings_clear_data_title": {
+    "message": "Daten löschen"
+  },
+  "settings_clear_data_help": {
+    "message": "Entfernt Farbverlauf, Schriften und Paletten von diesem Gerät. Einstellungen bleiben erhalten."
+  },
+  "settings_clear_data_button": {
+    "message": "Daten löschen"
+  },
+  "settings_clear_data_confirm": {
+    "message": "Ja, alles löschen"
+  },
+  "settings_toast_data_cleared": {
+    "message": "Alle Daten gelöscht"
+  },
+  "settings_privacy_note": {
+    "message": "Alles, was Pickit speichert, bleibt in diesem Browser. Es gibt kein Konto, und nichts wird an einen Server gesendet."
+  },
+  "backup_imported_palette_name": {
+    "message": "Importierte Palette"
+  },
+  "backup_error_invalid_json": {
+    "message": "Diese Datei ist kein gültiges JSON."
+  },
+  "backup_error_not_pickit": {
+    "message": "Dies ist keine Pickit-Sicherungsdatei."
+  },
+  "backup_error_newer_version": {
+    "message": "Diese Sicherung stammt aus einer neueren Pickit-Version. Aktualisiere Pickit und versuche es erneut."
+  },
+  "ui_shortcut_title": {
+    "message": "Tastenkürzel {0}"
+  },
+  "ui_shortcut_none": {
+    "message": "Kein Tastenkürzel festgelegt"
+  },
+  "settings_sync_title": {
+    "message": "Paletten und Favoriten synchronisieren"
+  },
+  "settings_sync_help": {
+    "message": "Hält deine Paletten und Lieblingsfarben in jedem Chrome gleich, in dem du angemeldet bist. Verlauf und Schriften bleiben auf diesem Gerät."
+  },
+  "settings_sync_error_quota": {
+    "message": "Der Chrome-Synchronisierungsspeicher ist voll, daher werden einige Paletten nicht synchronisiert. Lösche Paletten, die du nicht mehr brauchst."
+  },
+  "settings_sync_error_too_large": {
+    "message": "Eine Palette ist zu groß zum Synchronisieren. Teile sie in kleinere Paletten auf."
+  },
+  "settings_sync_error_unavailable": {
+    "message": "Die Synchronisierung ist gerade nicht verfügbar. Prüfe, ob du in Chrome angemeldet bist und die Synchronisierung aktiviert ist."
+  },
+  "overlay_font_close": {
+    "message": "Schriftinspektor schließen"
+  },
+  "sponsor_label": {
+    "message": "Gesponsert von"
+  },
+  "sponsor_tagline": {
+    "message": "Kostenlose Online-Tools für Bilder, Videos, Audio und PDFs. Dateien bleiben in deinem Browser."
+  },
+  "sponsor_tagline_short": {
+    "message": "Kostenlose Tools für Bilder, PDFs und mehr"
+  },
+  "sponsor_cta": {
+    "message": "Besuchen"
+  },
+  "sponsor_open": {
+    "message": "{0} in neuem Tab öffnen"
+  },
+  "credits_title": {
+    "message": "Über"
+  },
+  "credits_made_by": {
+    "message": "Entwickelt von {0}"
+  },
+  "credits_open_source": {
+    "message": "Pickit ist Open Source. Melde Fehler, schlage Funktionen vor oder verfolge die Entwicklung."
+  },
+  "credits_github": {
+    "message": "GitHub"
+  },
+  "credits_linkedin": {
+    "message": "LinkedIn"
+  },
+  "credits_portfolio": {
+    "message": "Portfolio"
   }
 }

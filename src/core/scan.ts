@@ -2,7 +2,7 @@
 // the types are shared with the side panel that renders the result.
 
 import { parseColor, rgbToHex } from './color';
-import { detectRenderedFamily, fontSource } from './fonts';
+import { detectRenderedFamily, fontSource, resetFontCaches } from './fonts';
 import type { FontSourceKind } from './storage';
 
 export interface ScanColor {
@@ -45,41 +45,76 @@ function hasOwnText(el: Element): boolean {
   return false;
 }
 
+const GRADIENT_COLOR = /(?:rgba?|hsla?|oklch|oklab|lab|lch|color)\([^()]*\)|#[0-9a-f]{3,8}\b/gi;
+
+/** Colour stops in a computed `background-image`, e.g. from linear-gradient(). Images are ignored. */
+export function gradientColors(backgroundImage: string): string[] {
+  if (!backgroundImage || backgroundImage === 'none' || !backgroundImage.includes('gradient(')) return [];
+  // url() arguments can contain anything, including text that looks like a colour.
+  const withoutUrls = backgroundImage.replace(/url\((?:"[^"]*"|'[^']*'|[^)]*)\)/g, '');
+  return withoutUrls.match(GRADIENT_COLOR) ?? [];
+}
+
 export function scanPage(ignore: Element): ScanResult {
+  resetFontCaches();
   const colors = new Map<string, ScanColor>();
   const fonts = new Map<string, ScanFont & { sizeSet: Set<number>; weightSet: Set<number> }>();
 
   const addColor = (value: string, role: 'text' | 'background' | 'border') => {
     const parsed = parseColor(value);
     if (!parsed || parsed.a < 0.1) return;
-    const hex = rgbToHex(parsed);
+    // Translucent colours are grouped under their opaque base. Otherwise every alpha
+    // step of one brand colour (#0A66FF at 10%, 20%, …) would be listed separately.
+    const hex = rgbToHex({ ...parsed, a: 1 });
     const entry = colors.get(hex) ?? { hex, text: 0, background: 0, border: 0 };
     entry[role] += 1;
     colors.set(hex, entry);
   };
 
-  const walker = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_ELEMENT);
   let visited = 0;
   let truncated = false;
-  for (let node = walker.currentNode as Element | null; node; node = walker.nextNode() as Element | null) {
-    if (node === ignore || SKIP_TAGS.has(node.tagName)) continue;
+
+  /** Visits one element and, recursively, its open shadow root and same-origin iframe. */
+  const visit = (node: Element) => {
+    if (node === ignore || SKIP_TAGS.has(node.tagName)) return;
     if (visited >= MAX_ELEMENTS) {
       truncated = true;
-      break;
+      return;
     }
     visited += 1;
-    if (typeof node.checkVisibility === 'function' && !node.checkVisibility()) continue;
+    if (typeof node.checkVisibility === 'function' && !node.checkVisibility()) return;
 
-    const cs = getComputedStyle(node);
+    // Each document has its own window; an iframe's elements need its getComputedStyle.
+    const view = node.ownerDocument.defaultView ?? window;
+    const cs = view.getComputedStyle(node);
     addColor(cs.backgroundColor, 'background');
+    for (const color of gradientColors(cs.backgroundImage)) addColor(color, 'background');
     for (const side of ['Top', 'Right', 'Bottom', 'Left'] as const) {
       if (cs[`border${side}Style`] !== 'none' && parseFloat(cs[`border${side}Width`]) > 0) {
         addColor(cs[`border${side}Color`], 'border');
         break;
       }
     }
+    // SVG icons and illustrations paint with fill and stroke, not background and border.
+    if (node instanceof view.SVGElement && !(node instanceof view.SVGSVGElement)) {
+      if (cs.fill && cs.fill !== 'none' && !cs.fill.startsWith('url(')) addColor(cs.fill, 'background');
+      if (cs.stroke && cs.stroke !== 'none' && !cs.stroke.startsWith('url(') && parseFloat(cs.strokeWidth) > 0) {
+        addColor(cs.stroke, 'border');
+      }
+    }
 
-    if (!hasOwnText(node)) continue;
+    if (node.shadowRoot) walk(node.shadowRoot);
+    if (node instanceof view.HTMLIFrameElement) {
+      try {
+        // Same-origin frames only; cross-origin ones throw or return null.
+        const inner = node.contentDocument?.documentElement;
+        if (inner) walk(inner);
+      } catch {
+        // Cross-origin frame.
+      }
+    }
+
+    if (!hasOwnText(node)) return;
     addColor(cs.color, 'text');
 
     const detection = detectRenderedFamily(cs.fontFamily);
@@ -103,7 +138,20 @@ export function scanPage(ignore: Element): ScanResult {
     font.count += 1;
     font.sizeSet.add(Math.round(parseFloat(cs.fontSize) * 10) / 10);
     font.weightSet.add(parseInt(cs.fontWeight, 10) || 400);
+  };
+
+  /** Walks the elements under `root` in document order (a TreeWalker skips shadow roots). */
+  function walk(root: Node) {
+    const walker = (root.ownerDocument ?? document).createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
+    // nodeType, not instanceof: an iframe's elements come from another window's Element.
+    let node = root.nodeType === Node.ELEMENT_NODE ? (root as Element) : (walker.nextNode() as Element | null);
+    while (node && !truncated) {
+      visit(node);
+      node = walker.nextNode() as Element | null;
+    }
   }
+
+  walk(document.documentElement);
 
   const total = (c: ScanColor) => c.text + c.background + c.border;
   return {

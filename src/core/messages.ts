@@ -12,18 +12,21 @@ export type BackgroundRequest =
   | { t: 'start'; mode: PickMode; tabId: number }
   | { t: 'capture' }
   | { t: 'scan'; windowId: number }
-  | { t: 'openPanel' };
+  | { t: 'openPanel' }
+  | { t: 'stop'; windowId: number };
 
 /** Sent from the background worker to the overlay running in a tab. */
 export type OverlayRequest =
   | { t: 'pk:ping' }
   | { t: 'pk:start'; mode: PickMode }
+  /** Stops any active picker, e.g. Esc pressed while focus is in the side panel. */
+  | { t: 'pk:stop' }
   | { t: 'pk:scan' };
 
 export type FailureReason =
   /** Browser pages, the Web Store and similar: extensions can never run here. */
   | 'restricted'
-  /** A normal page PickKit has not been invoked on, so `activeTab` does not cover it. */
+  /** A normal page Pickit has not been invoked on, so `activeTab` does not cover it. */
   | 'no-access'
   | 'unknown';
 

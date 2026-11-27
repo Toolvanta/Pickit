@@ -7,6 +7,7 @@ import {
   type JSX,
   type KeyboardEvent as ReactKeyboardEvent,
 } from 'react';
+import { t } from '@/core/i18n';
 import { Icon, type IconName } from './icons';
 import './command-menu.css';
 
@@ -19,7 +20,7 @@ export interface Command {
 }
 
 export function CommandMenu(props: { commands: Command[]; label?: string; compact?: boolean }): JSX.Element {
-  const label = props.label ?? 'Commands';
+  const label = props.label ?? t('cmd_default_label');
   // Alt+K always reaches the page. Ctrl/Meta+K are kept as familiar aliases where the
   // browser does not consume them first.
   const shortcut = 'Alt K';
@@ -124,7 +125,7 @@ export function CommandMenu(props: { commands: Command[]; label?: string; compac
         type="button"
         className="pkcmd__trigger"
         data-compact={props.compact ? 'true' : undefined}
-        aria-label={props.compact ? `${label} (${shortcut})` : undefined}
+        aria-label={props.compact ? t('cmd_trigger_compact_label', label, shortcut) : undefined}
         aria-haspopup="dialog"
         aria-expanded={open}
         aria-controls={open ? dialogId : undefined}
@@ -153,13 +154,13 @@ export function CommandMenu(props: { commands: Command[]; label?: string; compac
           >
             <div className="pkcmd__head">
               <span className="pkcmd__title">{label}</span>
-              <button type="button" className="pkcmd__close" aria-label="Close command menu" onClick={closeMenu}>
+              <button type="button" className="pkcmd__close" aria-label={t('cmd_close_label')} onClick={closeMenu}>
                 <Icon name="x" size={14} />
               </button>
             </div>
 
             {props.commands.length > 0 ? (
-              <div id={listId} className="pkcmd__list" role="listbox" aria-label={`${label} list`}>
+              <div id={listId} className="pkcmd__list" role="listbox" aria-label={t('cmd_list_label', label)}>
                 {props.commands.map((command, index) => (
                   <div
                     key={command.id}
@@ -189,7 +190,7 @@ export function CommandMenu(props: { commands: Command[]; label?: string; compac
               </div>
             ) : (
               <div className="pkcmd__empty" role="status">
-                No commands available
+                {t('cmd_empty')}
               </div>
             )}
 
@@ -197,13 +198,13 @@ export function CommandMenu(props: { commands: Command[]; label?: string; compac
               <span className="pkcmd__keys">
                 <kbd className="pkcmd__key">↑</kbd>
                 <kbd className="pkcmd__key">↓</kbd>
-                navigate
+                {t('cmd_footer_navigate')}
               </span>
               <span className="pkcmd__keys">
                 <kbd className="pkcmd__key">↵</kbd>
-                run
+                {t('cmd_footer_run')}
                 <kbd className="pkcmd__key">Esc</kbd>
-                close
+                {t('cmd_footer_close')}
               </span>
             </div>
           </div>

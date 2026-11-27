@@ -4,6 +4,7 @@
 import { browser } from 'wxt/browser';
 import { defineBackground } from 'wxt/utils/define-background';
 import { isRestrictedUrl, UNINSTALL_FEEDBACK_URL } from '@/core/config';
+import { startSync } from '@/core/sync-engine';
 import type {
   BackgroundRequest,
   CaptureResponse,
@@ -15,6 +16,8 @@ import type {
 } from '@/core/messages';
 
 export default defineBackground(() => {
+  startSync();
+
   browser.runtime.onInstalled.addListener(({ reason }) => {
     if (reason === 'install') void browser.tabs.create({ url: browser.runtime.getURL('/welcome.html') });
   });
@@ -100,6 +103,12 @@ export default defineBackground(() => {
         break;
       case 'scan':
         reply = scan(message.windowId);
+        break;
+      case 'stop':
+        reply = browser.tabs
+          .query({ active: true, windowId: message.windowId })
+          .then(([tab]) => (tab?.id === undefined ? undefined : send(tab.id, { t: 'pk:stop' })))
+          .catch(() => undefined);
         break;
       case 'openPanel':
         reply = openPanel(sender.tab?.windowId);

@@ -10,6 +10,7 @@ import type { BackgroundRequest, CaptureResponse } from '../messages';
 import { addColor, type Settings } from '../storage';
 import { copyText, h, hintBar, swatch, type Shell } from './shell';
 import { findToken } from './tokens';
+import { t } from '../i18n';
 
 const CELLS = 11; // Pixels shown across the loupe. Odd, so there is a centre pixel.
 const CELL = 12; // CSS pixels per magnified pixel.
@@ -56,11 +57,11 @@ export function startColorPicker(shell: Shell, settings: Settings, onDone: () =>
   const loupe = h('div', { class: 'pk-loupe' }, glass, h('div', { class: 'pk-chip' }, chipSwatch, chipText));
   const catcher = h('div', { class: 'pk-catch' });
   const hints: [string, string][] = [
-    ['Click', 'Copy colour'],
-    ['Shift+Click', 'Pick several'],
+    [t('overlay_key_click'), t('overlay_hint_copy_colour')],
+    [t('overlay_key_shift_click'), t('overlay_hint_pick_several')],
   ];
-  if (canScreenPick) hints.push(['S', 'Pick from screen']);
-  hints.push(['Esc', 'Cancel']);
+  if (canScreenPick) hints.push(['S', t('overlay_hint_pick_from_screen')]);
+  hints.push(['Esc', t('overlay_hint_cancel')]);
   const hint = hintBar(hints);
   const ui = h('div', null, catcher, loupe, hint);
   shell.root.append(ui);
@@ -83,6 +84,8 @@ export function startColorPicker(shell: Shell, settings: Settings, onDone: () =>
   let lastCapture = 0;
   let settleTimer: ReturnType<typeof setTimeout> | undefined;
   let stopped = false;
+  /** Bumped on every scroll/resize; a capture taken before the latest one is out of date. */
+  let viewGeneration = 0;
 
   const format = (color: RGB) => formatColor(color, settings.format, { upperHex: settings.upperHex });
 
@@ -174,6 +177,7 @@ export function startColorPicker(shell: Shell, settings: Settings, onDone: () =>
       if (wait > 0) await sleep(wait);
       if (stopped) return;
       // Our own UI must not be in the screenshot.
+      const takenAt = viewGeneration;
       shell.setVisible(false);
       await nextFrame();
       await nextFrame();
@@ -183,7 +187,7 @@ export function startColorPicker(shell: Shell, settings: Settings, onDone: () =>
       shell.setVisible(true);
       if (stopped) return;
       if (!response?.ok) {
-        shell.toast({ title: 'PickKit cannot read this page', sub: 'Click the toolbar icon and try again' });
+        shell.toast({ title: t('overlay_toast_cannot_read_page'), sub: t('overlay_toast_cannot_read_page_sub') });
         stop();
         return;
       }
@@ -193,12 +197,14 @@ export function startColorPicker(shell: Shell, settings: Settings, onDone: () =>
       workCtx?.drawImage(bitmap, 0, 0);
       bitmap.close();
       scale = work.width / window.innerWidth;
-      stale = false;
+      // The page may have moved while the screenshot was decoding. Keep the loupe dimmed
+      // (and picking blocked) until the capture already scheduled by markStale lands.
+      stale = takenAt !== viewGeneration;
       render();
     } catch {
       shell.setVisible(true);
       if (!stopped) {
-        shell.toast({ title: 'Could not capture the page', sub: 'Try again' });
+        shell.toast({ title: t('overlay_toast_capture_failed'), sub: t('overlay_toast_try_again') });
         stop();
       }
     } finally {
@@ -211,6 +217,7 @@ export function startColorPicker(shell: Shell, settings: Settings, onDone: () =>
   }
 
   function markStale() {
+    viewGeneration += 1;
     stale = true;
     render();
     clearTimeout(settleTimer);
@@ -227,7 +234,7 @@ export function startColorPicker(shell: Shell, settings: Settings, onDone: () =>
       const copied = await copyText(text);
       await addColor({ hex, origin, token: token ?? undefined });
       shell.toast({
-        title: copied ? `Copied ${text}` : `Saved ${text}`,
+        title: copied ? t('overlay_toast_copied', text) : t('overlay_toast_saved', text),
         sub: token ?? nearestColorName(color),
         color: hex,
       });

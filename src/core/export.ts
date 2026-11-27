@@ -1,18 +1,29 @@
 // Turns a list of colours into code a developer can paste. Pure, so it is unit-tested.
 
-export type ExportFormat = 'css' | 'scss' | 'tailwind' | 'json' | 'svg';
+import { t } from './i18n';
+
+export type ExportFormat = 'css' | 'scss' | 'tailwind' | 'tokens' | 'json' | 'svg';
 
 export const EXPORT_FORMATS: { value: ExportFormat; label: string }[] = [
   { value: 'css', label: 'CSS' },
   { value: 'scss', label: 'SCSS' },
   { value: 'tailwind', label: 'Tailwind' },
+  {
+    value: 'tokens',
+    // A getter so the label is looked up when shown, not when this module first loads.
+    get label() {
+      return t('export_format_tokens');
+    },
+  },
   { value: 'json', label: 'JSON' },
   { value: 'svg', label: 'SVG' },
 ];
 
 /** File suffix for downloads, including the leading dot. */
 export function exportExtension(format: ExportFormat): string {
-  return format === 'tailwind' ? '.txt' : `.${format}`;
+  if (format === 'tailwind') return '.txt';
+  if (format === 'tokens') return '.tokens.json';
+  return `.${format}`;
 }
 
 /** "Brand Colours!" -> "brand-colours". Falls back to "palette" for names with no letters or digits. */
@@ -31,20 +42,33 @@ function escapeXml(value: string): string {
   );
 }
 
-export function exportColors(name: string, colors: string[], format: ExportFormat): string {
+/**
+ * Code for a list of colours. `keys` names each colour (e.g. 50…950 for a shade scale);
+ * without them the colours are numbered from 1.
+ */
+export function exportColors(name: string, colors: string[], format: ExportFormat, keys?: (string | number)[]): string {
   const key = slug(name);
+  const names = colors.map((_, i) => String(keys?.[i] ?? i + 1));
   switch (format) {
     case 'css':
-      return [':root {', ...colors.map((c, i) => `  --${key}-${i + 1}: ${c};`), '}'].join('\n');
+      return [':root {', ...colors.map((c, i) => `  --${key}-${names[i]}: ${c};`), '}'].join('\n');
     case 'scss':
-      return colors.map((c, i) => `$${key}-${i + 1}: ${c};`).join('\n');
+      return colors.map((c, i) => `$${key}-${names[i]}: ${c};`).join('\n');
     case 'tailwind':
       return [
         '// tailwind.config.js → theme.extend.colors',
         `'${key}': {`,
-        ...colors.map((c, i) => `  ${i + 1}: '${c}',`),
+        ...colors.map((c, i) => `  ${/^\d+$/.test(names[i]) ? names[i] : `'${names[i]}'`}: '${c}',`),
         '},',
       ].join('\n');
+    case 'tokens': {
+      // W3C Design Tokens (DTCG) format, read by Tokens Studio, Style Dictionary and others.
+      const group: Record<string, { $type: 'color'; $value: string }> = {};
+      colors.forEach((c, i) => {
+        group[names[i]] = { $type: 'color', $value: c };
+      });
+      return JSON.stringify({ [key]: group }, null, 2);
+    }
     case 'json':
       return JSON.stringify({ name, colors }, null, 2);
     case 'svg': {

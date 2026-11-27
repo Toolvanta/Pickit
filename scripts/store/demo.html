@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lumen - design studio</title>
+    <!-- A believable website for the store screenshots: the real overlay runs on it. -->
+    <style>
+      :root {
+        --brand-500: #5b5bd6;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #ffffff;
+        color: #17171c;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+      }
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        padding: 22px 40px;
+        font-size: 15px;
+        color: #52525c;
+      }
+      nav b {
+        margin-right: auto;
+        color: #17171c;
+        font-size: 20px;
+        letter-spacing: -0.02em;
+      }
+      .hero {
+        padding: 24px 40px 28px;
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: 46px;
+        font-weight: 700;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+      .lead {
+        max-width: 520px;
+        margin: 0;
+        color: #52525c;
+        font-size: 18px;
+        line-height: 1.55;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        padding: 0 40px;
+      }
+      .card {
+        height: 170px;
+        border-radius: 16px;
+        padding: 16px;
+        color: #fff;
+        font-weight: 600;
+      }
+    </style>
+    <script>
+      // Open shadow roots so the scene script can drive the overlay.
+      const attach = Element.prototype.attachShadow;
+      Element.prototype.attachShadow = function (init) {
+        return attach.call(this, { ...init, mode: 'open' });
+      };
+    </script>
+    <script src="/__stub.js"></script>
+  </head>
+  <body>
+    <nav><b>Lumen</b><span>Work</span><span>Studio</span><span>Journal</span><span>Contact</span></nav>
+    <section class="hero">
+      <h1>Design systems that ship.</h1>
+      <p class="lead">We help product teams build colour, type and components that stay consistent from Figma to production.</p>
+    </section>
+    <section class="cards">
+      <div class="card" data-band style="background: #5b5bd6">Brand</div>
+      <div class="card" data-band style="background: #f76b15">Accent</div>
+      <div class="card" data-band style="background: #30a46c">Success</div>
+      <div class="card" data-band style="background: #ffc53d; color: #17171c">Warning</div>
+    </section>
+    <script>
+      // Stand-in for captureVisibleTab: paints the coloured cards at device resolution.
+      window.__capture = () => {
+        const dpr = devicePixelRatio;
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(innerWidth * dpr);
+        canvas.height = Math.round(innerHeight * dpr);
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        for (const band of document.querySelectorAll('[data-band]')) {
+          const r = band.getBoundingClientRect();
+          ctx.fillStyle = getComputedStyle(band).backgroundColor;
+          ctx.fillRect(r.left * dpr, r.top * dpr, r.width * dpr, r.height * dpr);
+        }
+        return canvas.toDataURL('image/png');
+      };
+    </script>
+    <script src="/overlay.js"></script>
+  </body>
+</html>

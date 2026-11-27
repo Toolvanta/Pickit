@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
+import { browser } from 'wxt/browser';
 import { accessibleAccent, hexToRgb, readableOn } from '@/core/color';
-import { DEFAULTS, getState, setState, watchState, type State, type ThemeSetting } from '@/core/storage';
+import { SHORTCUTS } from '@/core/config';
+import { t } from '@/core/i18n';
+import type { PickMode } from '@/core/messages';
+import { DEFAULTS, getState, setState, updateState, watchState, type State, type ThemeSetting } from '@/core/storage';
 
 /**
  * A value from extension storage, kept in sync across the popup, side panel and
@@ -27,13 +31,19 @@ export function useStored<K extends keyof State>(
     };
   }, [key]);
 
+  // Function updates run against storage, so a change made meanwhile in another view
+  // (or by the in-page picker) is built on rather than overwritten. The local value is
+  // updated optimistically; the storage watcher then delivers the stored result.
   const update = useCallback(
     (next: State[K] | ((current: State[K]) => State[K])) => {
-      setValue((current) => {
-        const resolved = typeof next === 'function' ? (next as (c: State[K]) => State[K])(current) : next;
-        void setState(key, resolved);
-        return resolved;
-      });
+      if (typeof next === 'function') {
+        const fn = next as (current: State[K]) => State[K];
+        setValue(fn);
+        void updateState(key, fn);
+      } else {
+        setValue(next);
+        void setState(key, next);
+      }
     },
     [key],
   );
@@ -60,7 +70,7 @@ export function useLiveAccent(hex?: string | null, theme: ThemeSetting = 'system
       const color = hexToRgb(hex);
       if (!color) return;
       const dark = theme === 'dark' || (theme === 'system' && query.matches);
-      const display = accessibleAccent(hex, dark ? '#1D2B23' : '#EEF5F0');
+      const display = accessibleAccent(hex, dark ? '#16161A' : '#F0F0F2', 3);
       root.style.setProperty('--pk-sample', display);
       root.style.setProperty('--pk-sample-ink', readableOn(hexToRgb(display) ?? color));
     };
@@ -74,6 +84,35 @@ export function useLiveAccent(hex?: string | null, theme: ThemeSetting = 'system
     };
   }, [hex, theme]);
 }
+
+/**
+ * The picker shortcuts as Chrome actually has them. Users can change or clear them at
+ * chrome://extensions/shortcuts, and Chrome skips a default that clashes with another
+ * extension, so the manifest defaults are only shown until the real values load.
+ * An empty string means no shortcut is set.
+ */
+export function useShortcuts(): Record<PickMode, string> {
+  const [shortcuts, setShortcuts] = useState<Record<PickMode, string>>({ ...SHORTCUTS });
+  useEffect(() => {
+    let live = true;
+    void browser.commands
+      .getAll()
+      .then((commands) => {
+        if (!live) return;
+        const find = (name: string) => commands.find((c) => c.name === name)?.shortcut ?? '';
+        setShortcuts({ color: find('pick-color'), font: find('inspect-font') });
+      })
+      .catch(() => {});
+    return () => {
+      live = false;
+    };
+  }, []);
+  return shortcuts;
+}
+
+/** "Alt+Shift+C", or a note that there is none. For tooltips. */
+export const shortcutTitle = (shortcut: string) =>
+  shortcut ? t('ui_shortcut_title', shortcut) : t('ui_shortcut_none');
 
 /** Applies the user's theme setting to the page. "system" defers to the OS. */
 export function useTheme(): void {

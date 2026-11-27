@@ -30,7 +30,7 @@ const FREE: ReadonlySet<Feature> = new Set<Feature>([
   'commands',
 ]);
 
-export function currentPlan(): Plan {
+function currentPlan(): Plan {
   return 'free';
 }
 

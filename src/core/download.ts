@@ -1,4 +1,4 @@
-// Local file downloads. The blob is created in memory; PickKit never contacts a server.
+// Local file downloads. The blob is created in memory; Pickit never contacts a server.
 
 const MIME: Record<string, string> = {
   '.json': 'application/json',

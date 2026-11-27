@@ -1,11 +1,1358 @@
 {
   "extName": {
-    "message": "PickKit – カラーピッカー＆フォント検出"
+    "message": "Pickit - カラーピッカー＆フォント検出"
   },
   "extDescription": {
     "message": "ページや画面から色を取得し、ホバーでフォントを特定。コントラストの確認やパレットの書き出しもできます。"
   },
   "actionTitle": {
-    "message": "PickKit を開く"
+    "message": "Pickit を開く"
+  },
+  "cmdPickColor": {
+    "message": "色を取得"
+  },
+  "cmdInspectFont": {
+    "message": "フォントを調べる"
+  },
+  "fonts_likely_badge": {
+    "message": "推定"
+  },
+  "fonts_likely_title": {
+    "message": "デバイスにインストールされたフォントから推定しています"
+  },
+  "fonts_specimen_pangram": {
+    "message": "いろはにほへと ちりぬるを わかよたれそ つねならむ"
+  },
+  "fonts_fact_size": {
+    "message": "サイズ"
+  },
+  "fonts_fact_weight": {
+    "message": "ウェイト"
+  },
+  "fonts_fact_line_height": {
+    "message": "行の高さ"
+  },
+  "fonts_fact_spacing": {
+    "message": "字間"
+  },
+  "fonts_spacing_normal": {
+    "message": "標準"
+  },
+  "fonts_copy_css": {
+    "message": "CSS をコピー"
+  },
+  "fonts_copied_css": {
+    "message": "フォントの CSS をコピーしました"
+  },
+  "fonts_save_font": {
+    "message": "フォントを保存"
+  },
+  "fonts_add_favourite": {
+    "message": "お気に入りに追加"
+  },
+  "fonts_remove_favourite": {
+    "message": "お気に入りから削除"
+  },
+  "fonts_remove": {
+    "message": "削除"
+  },
+  "fonts_eyebrow_library": {
+    "message": "書体ライブラリ"
+  },
+  "fonts_heading_recent": {
+    "message": "最近調べたフォント"
+  },
+  "fonts_heading_saved": {
+    "message": "保存したフォント"
+  },
+  "fonts_search_label": {
+    "message": "フォントを検索"
+  },
+  "fonts_search_placeholder": {
+    "message": "ファミリー、ソース、配信元で検索…"
+  },
+  "fonts_list_label": {
+    "message": "フォント一覧"
+  },
+  "fonts_tab_recent_other": {
+    "message": "最近 · {0}"
+  },
+  "fonts_tab_saved_other": {
+    "message": "保存済み · {0}"
+  },
+  "fonts_empty_search_title": {
+    "message": "検索に一致するフォントはありません"
+  },
+  "fonts_empty_search_body": {
+    "message": "ファミリー名、ソース、ホスト名で検索してみてください。"
+  },
+  "fonts_empty_recent_title": {
+    "message": "まだフォントを調べていません"
+  },
+  "fonts_empty_recent_body": {
+    "message": "ページ上のテキストをハイライトし、インスペクターからフォントを保存すると、詳細がここに残ります。"
+  },
+  "fonts_empty_saved_title": {
+    "message": "保存したフォントはありません"
+  },
+  "fonts_empty_saved_body": {
+    "message": "インスペクターまたは「最近」からフォントを保存すると、後で見返せます。"
+  },
+  "fonts_saved_toast": {
+    "message": "フォントを保存しました"
+  },
+  "page_loading_eyebrow": {
+    "message": "ページスキャン"
+  },
+  "page_loading_heading": {
+    "message": "ページを読み取っています"
+  },
+  "page_loading_badge": {
+    "message": "処理中"
+  },
+  "page_restricted_title": {
+    "message": "このページはスキャンできません"
+  },
+  "page_restricted_body": {
+    "message": "Chrome はブラウザのページと Web Store で拡張機能をブロックしています。通常のウェブサイトに切り替えてください。"
+  },
+  "page_unreadable_title": {
+    "message": "Pickit はこのページを読み取れませんでした"
+  },
+  "page_unreadable_body": {
+    "message": "ページを再読み込みしてもう一度スキャンしてください。ローカルファイルの場合は、拡張機能の詳細でファイルへのアクセスを許可してください。"
+  },
+  "page_not_invoked_title": {
+    "message": "このタブではまだ Pickit が起動されていません"
+  },
+  "page_not_invoked_body": {
+    "message": "プライバシー保護のため、Pickit は起動されたページしか読み取りません。このタブでツールバーの Pickit アイコンをクリックしてもう一度スキャンするか、すべてのサイトへのアクセスを許可してサイドパネルからどのページでもスキャンできるようにしてください。"
+  },
+  "page_scan_again": {
+    "message": "再スキャン"
+  },
+  "page_allow_all_sites": {
+    "message": "すべてのサイトで許可"
+  },
+  "page_default_palette_name": {
+    "message": "ページのパレット"
+  },
+  "page_saved_as_palette": {
+    "message": "パレットとして保存しました"
+  },
+  "page_style_guide_downloaded": {
+    "message": "スタイルガイドをダウンロードしました"
+  },
+  "page_current_eyebrow": {
+    "message": "現在のページ"
+  },
+  "page_this_page": {
+    "message": "このページ"
+  },
+  "page_rescan": {
+    "message": "再スキャン"
+  },
+  "page_fingerprint_heading": {
+    "message": "カラーフィンガープリント"
+  },
+  "page_fingerprint_hint": {
+    "message": "タップしてコピー"
+  },
+  "page_copied_colour": {
+    "message": "色をコピーしました"
+  },
+  "page_style_guide_button": {
+    "message": "スタイルガイド（PNG）"
+  },
+  "page_copy_tokens": {
+    "message": "トークンをコピー"
+  },
+  "page_copied_css_variables": {
+    "message": "CSS 変数をコピーしました"
+  },
+  "page_palette_eyebrow": {
+    "message": "抽出したパレット"
+  },
+  "page_colours_heading_other": {
+    "message": "カラー · {0}"
+  },
+  "page_save_as_palette": {
+    "message": "パレットとして保存"
+  },
+  "page_role_label": {
+    "message": "色の役割"
+  },
+  "page_role_all": {
+    "message": "すべて"
+  },
+  "page_role_text": {
+    "message": "文字"
+  },
+  "page_role_background": {
+    "message": "背景"
+  },
+  "page_role_border": {
+    "message": "枠線"
+  },
+  "page_no_colours_in_role": {
+    "message": "この役割で使われている色はありません。"
+  },
+  "page_copy_value": {
+    "message": "{0} をコピー"
+  },
+  "page_uses_count_other": {
+    "message": "{0}回"
+  },
+  "page_type_eyebrow": {
+    "message": "タイプシステム"
+  },
+  "page_typography_heading_other": {
+    "message": "タイポグラフィ · {0}"
+  },
+  "page_font_likely": {
+    "message": "推定"
+  },
+  "page_view_on_google_fonts": {
+    "message": "Google Fonts で見る"
+  },
+  "page_more_sizes_other": {
+    "message": "+{0}"
+  },
+  "page_no_text_found": {
+    "message": "このページにテキストは見つかりませんでした。"
+  },
+  "page_truncated_notice_other": {
+    "message": "大きなページのため、最初の {0} 個の要素のみを読み取りました。"
+  },
+  "palettes_name_label": {
+    "message": "パレット名"
+  },
+  "palettes_colour_count_other": {
+    "message": "{0} 色"
+  },
+  "palettes_delete_confirm": {
+    "message": "削除"
+  },
+  "palettes_delete_cancel": {
+    "message": "キャンセル"
+  },
+  "palettes_delete_palette": {
+    "message": "パレットを削除"
+  },
+  "palettes_empty_ribbon": {
+    "message": "下の欄か「カラー」タブから色を追加してください。"
+  },
+  "palettes_swatches_label": {
+    "message": "{0} のスウォッチ"
+  },
+  "palettes_swatch_title": {
+    "message": "{0} · クリックでコピー、ドラッグで並べ替え、Delete で削除"
+  },
+  "palettes_swatch_aria": {
+    "message": "{0}。Enter でコピー、Delete で削除、Alt と矢印キーで並べ替え。"
+  },
+  "palettes_swatch_hint": {
+    "message": "ドラッグで並べ替え · Alt + ←/→ で移動 · Delete で削除"
+  },
+  "palettes_add_placeholder": {
+    "message": "#5548E0 または rgb(…)"
+  },
+  "palettes_add_label": {
+    "message": "追加する色"
+  },
+  "palettes_add_button": {
+    "message": "追加"
+  },
+  "palettes_export_format_label": {
+    "message": "書き出し形式"
+  },
+  "palettes_copy_button": {
+    "message": "コピー"
+  },
+  "palettes_copied_export": {
+    "message": "書き出し内容をコピーしました"
+  },
+  "palettes_file_button": {
+    "message": "ファイル"
+  },
+  "palettes_downloaded_palette": {
+    "message": "{0} をダウンロードしました"
+  },
+  "palettes_default_name": {
+    "message": "パレット {0}"
+  },
+  "palettes_heading": {
+    "message": "パレット"
+  },
+  "palettes_vision_label": {
+    "message": "色覚特性による見え方でパレットをプレビュー"
+  },
+  "palettes_vision_title": {
+    "message": "パレットの色が区別できるか確認します"
+  },
+  "palettes_vision_typical": {
+    "message": "一般色覚"
+  },
+  "palettes_empty_title": {
+    "message": "パレットはまだありません"
+  },
+  "palettes_empty_body": {
+    "message": "色をパレットにまとめ、CSS 変数、SCSS、Tailwind、デザイントークン、JSON、SVG として書き出せます。"
+  },
+  "palettes_new_palette": {
+    "message": "新規パレット"
+  },
+  "palettes_all_colours_heading": {
+    "message": "すべての色"
+  },
+  "palettes_export_all": {
+    "message": "すべて書き出し"
+  },
+  "palettes_downloaded_all": {
+    "message": "すべての色をダウンロードしました"
+  },
+  "palettes_copied_colour": {
+    "message": "色をコピーしました"
+  },
+  "ui_copied_value": {
+    "message": "{0} をコピーしました"
+  },
+  "ui_copy_failed": {
+    "message": "コピーできませんでした"
+  },
+  "ui_colorbar_label": {
+    "message": "このページで使われている色"
+  },
+  "ui_colorbar_segment_title": {
+    "message": "{0} · {1}%"
+  },
+  "ui_colorbar_segment_aria": {
+    "message": "{0}、使用率 {1} パーセント"
+  },
+  "ui_copy_row_sr": {
+    "message": "{0} {1} をコピー"
+  },
+  "ui_search_placeholder": {
+    "message": "検索…"
+  },
+  "ui_search_clear": {
+    "message": "検索をクリア"
+  },
+  "cmd_default_label": {
+    "message": "コマンド"
+  },
+  "cmd_trigger_compact_label": {
+    "message": "{0}（{1}）"
+  },
+  "cmd_close_label": {
+    "message": "コマンドメニューを閉じる"
+  },
+  "cmd_list_label": {
+    "message": "{0}の一覧"
+  },
+  "cmd_empty": {
+    "message": "利用できるコマンドはありません"
+  },
+  "cmd_footer_navigate": {
+    "message": "移動"
+  },
+  "cmd_footer_run": {
+    "message": "実行"
+  },
+  "cmd_footer_close": {
+    "message": "閉じる"
+  },
+  "styleguide_default_title": {
+    "message": "スタイルガイド"
+  },
+  "styleguide_colours_heading": {
+    "message": "カラー"
+  },
+  "styleguide_typography_heading": {
+    "message": "タイポグラフィ"
+  },
+  "styleguide_font_details": {
+    "message": "{0}   ·   ウェイト {1}   ·   サイズ {2}"
+  },
+  "styleguide_footer": {
+    "message": "{0} で作成"
+  },
+  "export_format_tokens": {
+    "message": "トークン"
+  },
+  "overlay_hint_bar_label": {
+    "message": "キーボードショートカット"
+  },
+  "overlay_key_click": {
+    "message": "クリック"
+  },
+  "overlay_key_shift_click": {
+    "message": "Shift+クリック"
+  },
+  "overlay_hint_copy_colour": {
+    "message": "色をコピー"
+  },
+  "overlay_hint_pick_several": {
+    "message": "連続取得"
+  },
+  "overlay_hint_pick_from_screen": {
+    "message": "画面から取得"
+  },
+  "overlay_hint_cancel": {
+    "message": "キャンセル"
+  },
+  "overlay_toast_cannot_read_page": {
+    "message": "Pickit はこのページを読み取れません"
+  },
+  "overlay_toast_cannot_read_page_sub": {
+    "message": "ツールバーのアイコンをクリックして再試行"
+  },
+  "overlay_toast_capture_failed": {
+    "message": "ページをキャプチャできませんでした"
+  },
+  "overlay_toast_try_again": {
+    "message": "再試行してください"
+  },
+  "overlay_toast_copied": {
+    "message": "{0} をコピーしました"
+  },
+  "overlay_toast_saved": {
+    "message": "{0} を保存しました"
+  },
+  "overlay_font_card_label": {
+    "message": "フォントの詳細"
+  },
+  "overlay_font_key_hover": {
+    "message": "ホバー"
+  },
+  "overlay_font_key_click": {
+    "message": "クリック"
+  },
+  "overlay_font_hint_inspect": {
+    "message": "調べる"
+  },
+  "overlay_font_hint_pin_copy": {
+    "message": "固定してコピー"
+  },
+  "overlay_font_hint_exit": {
+    "message": "終了"
+  },
+  "overlay_font_row_size": {
+    "message": "サイズ"
+  },
+  "overlay_font_row_weight": {
+    "message": "ウェイト"
+  },
+  "overlay_font_row_line_height": {
+    "message": "行の高さ"
+  },
+  "overlay_font_row_letter_spacing": {
+    "message": "字間"
+  },
+  "overlay_font_row_style": {
+    "message": "スタイル"
+  },
+  "overlay_font_row_colour": {
+    "message": "色"
+  },
+  "overlay_font_likely": {
+    "message": "推定"
+  },
+  "overlay_font_likely_tooltip": {
+    "message": "このデバイスにインストールされたフォントから推定しています"
+  },
+  "overlay_font_copy_css": {
+    "message": "CSS をコピー"
+  },
+  "overlay_font_save": {
+    "message": "フォントを保存"
+  },
+  "overlay_font_open_google_fonts": {
+    "message": "Google Fonts ↗"
+  },
+  "overlay_font_footer": {
+    "message": "クリックで固定し、値をコピーできます"
+  },
+  "overlay_font_toast_copied": {
+    "message": "{0} をコピーしました"
+  },
+  "overlay_font_toast_copied_css": {
+    "message": "フォントの CSS をコピーしました"
+  },
+  "overlay_font_toast_saved": {
+    "message": "フォントを保存しました"
+  },
+  "font_weight_thin": {
+    "message": "Thin"
+  },
+  "font_weight_extra_light": {
+    "message": "Extra Light"
+  },
+  "font_weight_light": {
+    "message": "Light"
+  },
+  "font_weight_regular": {
+    "message": "Regular"
+  },
+  "font_weight_medium": {
+    "message": "Medium"
+  },
+  "font_weight_semi_bold": {
+    "message": "Semi Bold"
+  },
+  "font_weight_bold": {
+    "message": "Bold"
+  },
+  "font_weight_extra_bold": {
+    "message": "Extra Bold"
+  },
+  "font_weight_black": {
+    "message": "Black"
+  },
+  "font_line_height_normal": {
+    "message": "標準"
+  },
+  "font_letter_spacing_normal": {
+    "message": "標準"
+  },
+  "font_source_browser_default": {
+    "message": "ブラウザの既定"
+  },
+  "font_source_installed": {
+    "message": "このデバイスにインストール済み"
+  },
+  "font_source_web_font": {
+    "message": "Web フォント"
+  },
+  "font_source_self_hosted": {
+    "message": "セルフホスト"
+  },
+  "font_source_hosted_on": {
+    "message": "{0} でホスト"
+  },
+  "panel_tab_colors": {
+    "message": "カラー"
+  },
+  "panel_tab_fonts": {
+    "message": "フォント"
+  },
+  "panel_tab_page": {
+    "message": "ページ"
+  },
+  "panel_tab_contrast": {
+    "message": "コントラスト"
+  },
+  "panel_tab_palettes": {
+    "message": "パレット"
+  },
+  "panel_tabs_aria": {
+    "message": "ワークスペースのセクション"
+  },
+  "panel_toast_restricted_page": {
+    "message": "Pickit はこのページでは動作しません"
+  },
+  "panel_toast_copied_colour": {
+    "message": "色をコピーしました"
+  },
+  "panel_cmd_pick_colour": {
+    "message": "色を取得"
+  },
+  "panel_cmd_inspect_font": {
+    "message": "フォントを調べる"
+  },
+  "panel_cmd_go_colors": {
+    "message": "カラーへ移動"
+  },
+  "panel_cmd_go_fonts": {
+    "message": "フォントへ移動"
+  },
+  "panel_cmd_go_page": {
+    "message": "ページへ移動"
+  },
+  "panel_cmd_go_contrast": {
+    "message": "コントラストへ移動"
+  },
+  "panel_cmd_go_palettes": {
+    "message": "パレットへ移動"
+  },
+  "panel_cmd_copy_selected_colour": {
+    "message": "選択中の色をコピー"
+  },
+  "panel_cmd_use_light_theme": {
+    "message": "ライトテーマを使用"
+  },
+  "panel_cmd_use_dark_theme": {
+    "message": "ダークテーマを使用"
+  },
+  "panel_cmd_open_settings": {
+    "message": "設定を開く"
+  },
+  "panel_settings": {
+    "message": "設定"
+  },
+  "panel_context_show_in_colors": {
+    "message": "カラーで表示"
+  },
+  "panel_context_copy_colour": {
+    "message": "色をコピー"
+  },
+  "panel_context_check_contrast": {
+    "message": "コントラストを確認"
+  },
+  "colors_pick_from_page": {
+    "message": "ページから取得"
+  },
+  "colors_screen_pick": {
+    "message": "画面"
+  },
+  "colors_screen_pick_title": {
+    "message": "Chrome の外も含め、画面上の任意のピクセルを取得します"
+  },
+  "colors_empty_title": {
+    "message": "最初の色を取得しましょう"
+  },
+  "colors_empty_body": {
+    "message": "「{0}」をクリックし、ページ上の好きな場所をクリックしてください。取得した色はすべてここに保存され、任意の形式でコピーしたり、コントラストを確認したり、パレットを作成したりできます。"
+  },
+  "colors_selected_aria": {
+    "message": "選択中の色"
+  },
+  "colors_token_match_title": {
+    "message": "ページの {0} 変数と一致"
+  },
+  "colors_favorite_add": {
+    "message": "お気に入りに追加"
+  },
+  "colors_favorite_remove": {
+    "message": "お気に入りから削除"
+  },
+  "colors_copy_default_format_title": {
+    "message": "既定の形式でコピー"
+  },
+  "colors_toast_copied_colour": {
+    "message": "色をコピーしました"
+  },
+  "colors_origin_screen": {
+    "message": "画面から取得"
+  },
+  "colors_add_to_palette_aria": {
+    "message": "この色をパレットに追加"
+  },
+  "colors_add_to_palette_placeholder": {
+    "message": "パレットに追加…"
+  },
+  "colors_new_palette_option": {
+    "message": "+ 新規パレット"
+  },
+  "colors_default_palette_name": {
+    "message": "パレット {0}"
+  },
+  "colors_toast_added_new_palette": {
+    "message": "新しいパレットに追加しました"
+  },
+  "colors_toast_already_in_palette": {
+    "message": "すでに {0} にあります"
+  },
+  "colors_toast_added_to_palette": {
+    "message": "{0} に追加しました"
+  },
+  "colors_as_text": {
+    "message": "文字色に"
+  },
+  "colors_as_text_title": {
+    "message": "この色を文字色としてコントラストチェッカーで確認"
+  },
+  "colors_as_bg": {
+    "message": "背景色に"
+  },
+  "colors_as_bg_title": {
+    "message": "この色を背景色としてコントラストチェッカーで確認"
+  },
+  "colors_history_title": {
+    "message": "履歴"
+  },
+  "colors_clear_all_confirm_other": {
+    "message": "{0} 件をすべて消去しますか？"
+  },
+  "colors_clear": {
+    "message": "消去"
+  },
+  "colors_cancel": {
+    "message": "キャンセル"
+  },
+  "colors_remove_selected": {
+    "message": "選択中の色を削除"
+  },
+  "colors_search_label": {
+    "message": "色を検索"
+  },
+  "colors_search_placeholder": {
+    "message": "hex、名前、サイト、トークンで検索"
+  },
+  "colors_favorites_only_title": {
+    "message": "お気に入りのみ表示"
+  },
+  "colors_no_favorites": {
+    "message": "お気に入りはまだありません。色のハートをタップすると保存できます。"
+  },
+  "colors_no_search_match": {
+    "message": "検索に一致する色はありません。"
+  },
+  "colors_swatch_title": {
+    "message": "{0} · ダブルクリックでコピー"
+  },
+  "colors_swatch_title_favorite": {
+    "message": "{0} · お気に入り · ダブルクリックでコピー"
+  },
+  "colors_swatch_select_aria": {
+    "message": "{0} を選択"
+  },
+  "colors_swatch_select_favorite_aria": {
+    "message": "{0} を選択、お気に入り"
+  },
+  "colors_history_hint": {
+    "message": "クリックで詳細 · ダブルクリックでコピー · お気に入りは「消去」しても残ります"
+  },
+  "colors_explore_aria": {
+    "message": "この色を探索"
+  },
+  "colors_explore": {
+    "message": "探索"
+  },
+  "colors_explore_shades": {
+    "message": "シェード"
+  },
+  "colors_explore_harmonies": {
+    "message": "配色"
+  },
+  "colors_shade_scale_aria": {
+    "message": "シェードスケール"
+  },
+  "colors_shade_title": {
+    "message": "{0} · {1}"
+  },
+  "colors_shade_title_nearest": {
+    "message": "{0} · {1} · この色に最も近い"
+  },
+  "colors_shade_copy_aria": {
+    "message": "シェード {0}（{1}）をコピー"
+  },
+  "colors_copy_scale_as": {
+    "message": "スケールをコピー："
+  },
+  "colors_copy_scale_tokens": {
+    "message": "トークン"
+  },
+  "colors_toast_copied_css_variables": {
+    "message": "CSS 変数をコピーしました"
+  },
+  "colors_toast_copied_tailwind_scale": {
+    "message": "Tailwind スケールをコピーしました"
+  },
+  "colors_toast_copied_design_tokens": {
+    "message": "デザイントークンをコピーしました"
+  },
+  "harmonies_aria": {
+    "message": "配色パターン"
+  },
+  "harmonies_neutral_message": {
+    "message": "この色は無彩色（グレー、黒に近い色、白に近い色）のため、配色の基になる色相がありません。色味のあるスウォッチを選ぶと表示されます。"
+  },
+  "harmonies_toast_added_new_palette_other": {
+    "message": "{0} 色を新しい「{1}」パレットに追加しました"
+  },
+  "harmonies_toast_already_in_palette": {
+    "message": "{0} の色はすべてパレットにあります"
+  },
+  "harmonies_toast_added_to_palette_other": {
+    "message": "{0} 色を {1} に追加しました"
+  },
+  "harmonies_add_all_aria": {
+    "message": "すべてパレットに追加：{0}"
+  },
+  "harmonies_add_all_title": {
+    "message": "{0} の色をすべてパレットに追加"
+  },
+  "harmonies_add_palette_button": {
+    "message": "+ パレット"
+  },
+  "harmonies_strip_aria": {
+    "message": "{0} の色"
+  },
+  "harmonies_swatch_title": {
+    "message": "{0} · クリックでコピー"
+  },
+  "harmonies_swatch_title_base": {
+    "message": "{0} · 基準色 · クリックでコピー"
+  },
+  "harmonies_swatch_copy_aria": {
+    "message": "{1} の {0} をコピー"
+  },
+  "harmonies_swatch_copy_base_aria": {
+    "message": "{1} の {0}（基準色）をコピー"
+  },
+  "harmonies_toast_copied_value": {
+    "message": "{0} をコピーしました"
+  },
+  "harmonies_base_badge": {
+    "message": "基準"
+  },
+  "harmony_complementary": {
+    "message": "補色"
+  },
+  "harmony_analogous": {
+    "message": "類似色"
+  },
+  "harmony_triadic": {
+    "message": "トライアド"
+  },
+  "harmony_split_complement": {
+    "message": "分裂補色"
+  },
+  "harmony_tetradic": {
+    "message": "テトラード"
+  },
+  "contrast_field_text": {
+    "message": "文字"
+  },
+  "contrast_field_background": {
+    "message": "背景"
+  },
+  "contrast_text_picker_aria": {
+    "message": "文字色ピッカー"
+  },
+  "contrast_background_picker_aria": {
+    "message": "背景色ピッカー"
+  },
+  "contrast_use_recent_as_text_aria": {
+    "message": "{0} を文字色に使用"
+  },
+  "contrast_use_recent_as_background_aria": {
+    "message": "{0} を背景色に使用"
+  },
+  "contrast_grade_aa_large": {
+    "message": "AA 大"
+  },
+  "contrast_grade_fails": {
+    "message": "不合格"
+  },
+  "contrast_simulating": {
+    "message": "{0} をシミュレーション中"
+  },
+  "contrast_preview_large": {
+    "message": "24px の大きな文字"
+  },
+  "contrast_preview_body": {
+    "message": "16px の本文テキスト。いろはにほへと ちりぬるを わかよたれそ。"
+  },
+  "contrast_apca_title": {
+    "message": "APCA 明度コントラスト（WCAG 3 で提案中）"
+  },
+  "contrast_swap": {
+    "message": "文字と背景を入れ替え"
+  },
+  "contrast_apca_use": {
+    "message": "APCA：{0}"
+  },
+  "contrast_check_aa_body": {
+    "message": "AA 本文"
+  },
+  "contrast_check_aa_large": {
+    "message": "AA 大"
+  },
+  "contrast_check_aaa_body": {
+    "message": "AAA 本文"
+  },
+  "contrast_check_aaa_large": {
+    "message": "AAA 大"
+  },
+  "contrast_fixes_aria": {
+    "message": "修正案"
+  },
+  "contrast_fixes_title": {
+    "message": "最小限の変更で {0}（{1}:1）を達成"
+  },
+  "contrast_fix_text": {
+    "message": "文字を調整"
+  },
+  "contrast_fix_background": {
+    "message": "背景を調整"
+  },
+  "contrast_vision_title": {
+    "message": "色覚"
+  },
+  "contrast_vision_typical_note": {
+    "message": "一般色覚"
+  },
+  "contrast_vision_picker_aria": {
+    "message": "色覚をシミュレーション"
+  },
+  "contrast_vision_short_typical": {
+    "message": "一般"
+  },
+  "contrast_vision_short_protanopia": {
+    "message": "1型"
+  },
+  "contrast_vision_short_deuteranopia": {
+    "message": "2型"
+  },
+  "contrast_vision_short_tritanopia": {
+    "message": "3型"
+  },
+  "contrast_vision_short_achromatopsia": {
+    "message": "全色盲"
+  },
+  "contrast_pair_aria": {
+    "message": "カラー"
+  },
+  "apca_use_body_any_size": {
+    "message": "あらゆるサイズの本文"
+  },
+  "apca_use_body_from_18px": {
+    "message": "18px 以上の本文"
+  },
+  "apca_use_content_from_24px": {
+    "message": "24px 以上のコンテンツ"
+  },
+  "apca_use_headlines_large_text": {
+    "message": "見出しと大きな文字"
+  },
+  "apca_use_placeholders_non_text": {
+    "message": "プレースホルダーと非テキストのみ"
+  },
+  "apca_use_dividers_decoration": {
+    "message": "区切り線と装飾のみ"
+  },
+  "apca_use_not_readable": {
+    "message": "判読不可"
+  },
+  "vision_protanopia_label": {
+    "message": "1型色覚（P型）"
+  },
+  "vision_protanopia_note": {
+    "message": "赤錐体なし"
+  },
+  "vision_deuteranopia_label": {
+    "message": "2型色覚（D型）"
+  },
+  "vision_deuteranopia_note": {
+    "message": "緑錐体なし"
+  },
+  "vision_tritanopia_label": {
+    "message": "3型色覚（T型）"
+  },
+  "vision_tritanopia_note": {
+    "message": "青錐体なし"
+  },
+  "vision_achromatopsia_label": {
+    "message": "全色盲"
+  },
+  "vision_achromatopsia_note": {
+    "message": "色覚なし"
+  },
+  "popup_failure_restricted_title": {
+    "message": "Pickit はこのページでは動作しません"
+  },
+  "popup_failure_restricted_text": {
+    "message": "Chrome はブラウザのページと Web Store で拡張機能をブロックしています。通常のウェブサイトを開いて再試行してください。"
+  },
+  "popup_failure_no_access_title": {
+    "message": "Pickit はこのページにアクセスできませんでした"
+  },
+  "popup_failure_no_access_text": {
+    "message": "ページを再読み込みして再試行してください。ローカルファイルの場合は、拡張機能の詳細でファイルへのアクセスを許可してください。"
+  },
+  "popup_failure_unknown_title": {
+    "message": "問題が発生しました"
+  },
+  "popup_failure_unknown_text": {
+    "message": "ページを再読み込みして再試行してください。"
+  },
+  "popup_command_pick_colour": {
+    "message": "色を取得"
+  },
+  "popup_command_inspect_font": {
+    "message": "フォントを調べる"
+  },
+  "popup_command_open_workspace": {
+    "message": "ワークスペースパネルを開く"
+  },
+  "popup_command_copy_latest": {
+    "message": "最新の色をコピー"
+  },
+  "popup_command_light_theme": {
+    "message": "ライトテーマを使用"
+  },
+  "popup_command_dark_theme": {
+    "message": "ダークテーマを使用"
+  },
+  "popup_command_open_settings": {
+    "message": "設定を開く"
+  },
+  "popup_toast_copied_colour": {
+    "message": "コピーしました"
+  },
+  "popup_open_workspace_label": {
+    "message": "ワークスペースパネルを開く"
+  },
+  "popup_settings_label": {
+    "message": "設定"
+  },
+  "popup_tools_label": {
+    "message": "ツール"
+  },
+  "popup_tool_pick_title": {
+    "message": "色を取得"
+  },
+  "popup_tool_pick_sub": {
+    "message": "任意のピクセルをクリック"
+  },
+  "popup_tool_font_title": {
+    "message": "フォントを調べる"
+  },
+  "popup_tool_font_sub": {
+    "message": "テキストにホバー"
+  },
+  "popup_empty_colours": {
+    "message": "取得した色はここに表示され、任意の形式でコピーできます。"
+  },
+  "popup_latest_colour_label": {
+    "message": "最新の色"
+  },
+  "popup_latest_copy_title": {
+    "message": "既定の形式でコピー"
+  },
+  "popup_origin_screen": {
+    "message": "画面から取得"
+  },
+  "popup_recent_colours_label": {
+    "message": "最近の色"
+  },
+  "popup_recent_copy_label": {
+    "message": "{0} をコピー"
+  },
+  "popup_recent_copy_title": {
+    "message": "{0} · クリックでコピー"
+  },
+  "popup_latest_font_label": {
+    "message": "最新のフォント"
+  },
+  "popup_font_details": {
+    "message": "{0}px · {1} · {2}"
+  },
+  "popup_workspace_link": {
+    "message": "ワークスペースを開く"
+  },
+  "popup_workspace_link_sub": {
+    "message": "履歴、コントラスト、パレット"
+  },
+  "popup_rating_title": {
+    "message": "Pickit はお役に立っていますか？"
+  },
+  "popup_rating_text": {
+    "message": "評価をいただくと、ほかの人が見つけやすくなります。"
+  },
+  "popup_rating_rate": {
+    "message": "Pickit を評価"
+  },
+  "popup_rating_dismiss": {
+    "message": "後で"
+  },
+  "welcome_step_pick_title": {
+    "message": "色を取得"
+  },
+  "welcome_step_pick_text": {
+    "message": "ポップアップを開くかショートカットを使い、ページ上の色をクリックします。Pickit はあなたの操作を監視せずに色を読み取ります。"
+  },
+  "welcome_step_font_title": {
+    "message": "フォントを調べる"
+  },
+  "welcome_step_font_text": {
+    "message": "フォントツールを選んでテキストをクリックすると、ファミリー、サイズ、ウェイト、色が小さなパネルにまとめて表示されます。"
+  },
+  "welcome_step_workspace_title": {
+    "message": "すべてをワークスペースに"
+  },
+  "welcome_step_workspace_text": {
+    "message": "サイドパネルには、色の履歴、フォント、パレット、コントラストチェッカー、ワンクリックで作れるページのスタイルガイドがまとまっています。"
+  },
+  "welcome_shortcut_label": {
+    "message": "ショートカット {0}"
+  },
+  "welcome_kicker": {
+    "message": "Pickit へようこそ"
+  },
+  "welcome_title_lead": {
+    "message": "どんな色も、どんなフォントも。"
+  },
+  "welcome_title_accent": {
+    "message": "すぐ手の届くところに。"
+  },
+  "welcome_lead": {
+    "message": "知っておきたい 3 つのポイントです。"
+  },
+  "welcome_tip_pin": {
+    "message": "ヒント：Chrome ツールバーのパズルアイコンをクリックして Pickit を固定すると、いつでもワンクリックで使えます。"
+  },
+  "welcome_cta": {
+    "message": "さっそく始める"
+  },
+  "access_unreachable_title": {
+    "message": "Pickit はこのページにアクセスできませんでした"
+  },
+  "access_unreachable_text": {
+    "message": "ページを再読み込みして再試行してください。ローカルファイルの場合は、拡張機能の詳細でファイルへのアクセスを許可してください。"
+  },
+  "access_allow_title": {
+    "message": "このページで Pickit を許可"
+  },
+  "access_allow_text": {
+    "message": "サイドパネルだけではタブにアクセスできません。このタブでツールバーの Pickit アイコンをクリックするか、すべてのサイトへのアクセスを許可すると、サイドパネルがどこでも使えるようになります。"
+  },
+  "access_allow_all_sites": {
+    "message": "すべてのサイトで許可"
+  },
+  "access_dismiss_label": {
+    "message": "閉じる"
+  },
+  "settings_theme_light": {
+    "message": "ライト"
+  },
+  "settings_theme_dark": {
+    "message": "ダーク"
+  },
+  "settings_theme_system": {
+    "message": "システム"
+  },
+  "settings_shortcut_not_set": {
+    "message": "未設定"
+  },
+  "settings_shortcut_label": {
+    "message": "ショートカット {0}"
+  },
+  "settings_count_colours_other": {
+    "message": "{0} 色"
+  },
+  "settings_count_fonts_other": {
+    "message": "{0} 件のフォント"
+  },
+  "settings_count_palettes_other": {
+    "message": "{0} 件のパレット"
+  },
+  "settings_eyebrow": {
+    "message": "環境設定"
+  },
+  "settings_heading": {
+    "message": "Pickit の設定"
+  },
+  "settings_intro": {
+    "message": "色のコピー方法、Pickit の見た目、記録する内容を調整できます。"
+  },
+  "settings_version_badge": {
+    "message": "バージョン {0}"
+  },
+  "settings_colours_title": {
+    "message": "カラー"
+  },
+  "settings_colours_description": {
+    "message": "色をコピーするときの形式と大文字・小文字の設定です。"
+  },
+  "settings_default_format_title": {
+    "message": "既定の形式"
+  },
+  "settings_default_format_help": {
+    "message": "色を取得したときやワンクリックでコピーするときに使われます。"
+  },
+  "settings_default_format_label": {
+    "message": "既定のカラー形式"
+  },
+  "settings_hex_case_title": {
+    "message": "HEX の大文字・小文字"
+  },
+  "settings_hex_case_help": {
+    "message": "コピー時の HEX 値の表記です。"
+  },
+  "settings_history_size_title": {
+    "message": "履歴の件数"
+  },
+  "settings_history_size_help": {
+    "message": "上限に達すると古い色から削除されます。お気に入りは常に保持されます。"
+  },
+  "settings_history_size_option_other": {
+    "message": "{0} 色"
+  },
+  "settings_appearance_title": {
+    "message": "外観"
+  },
+  "settings_appearance_description": {
+    "message": "Pickit のウィンドウとページ上のオーバーレイの見た目を選びます。"
+  },
+  "settings_theme_title": {
+    "message": "テーマ"
+  },
+  "settings_theme_help": {
+    "message": "Pickit のウィンドウとページ上のオーバーレイに適用されます。"
+  },
+  "settings_shortcuts_title": {
+    "message": "キーボードショートカット"
+  },
+  "settings_shortcuts_description": {
+    "message": "ポップアップを開かずにピッカーを起動できます。"
+  },
+  "settings_shortcut_pick_colour_title": {
+    "message": "色を取得"
+  },
+  "settings_shortcut_pick_colour_help": {
+    "message": "現在のタブでカラーピッカーを開きます。"
+  },
+  "settings_shortcut_inspect_font_title": {
+    "message": "フォントを調べる"
+  },
+  "settings_shortcut_inspect_font_help": {
+    "message": "現在のタブでフォントインスペクターを開きます。"
+  },
+  "settings_change_shortcuts_title": {
+    "message": "ショートカットを変更"
+  },
+  "settings_change_shortcuts_help": {
+    "message": "既定値は {0} と {1} です。すべての拡張機能のショートカットは Chrome でまとめて管理されます。"
+  },
+  "settings_open_chrome_shortcuts": {
+    "message": "Chrome のショートカットを開く"
+  },
+  "settings_backup_title": {
+    "message": "バックアップ"
+  },
+  "settings_backup_description": {
+    "message": "色、フォント、パレットを別のブラウザに移したり、コピーを保管したりできます。"
+  },
+  "settings_export_title": {
+    "message": "バックアップを書き出す"
+  },
+  "settings_export_help": {
+    "message": "Pickit が保存しているすべてのデータを、1 つの JSON ファイルとしてデバイスに保存します。"
+  },
+  "settings_export_button": {
+    "message": "書き出し"
+  },
+  "settings_toast_backup_downloaded": {
+    "message": "バックアップをダウンロードしました"
+  },
+  "settings_restore_title": {
+    "message": "バックアップを復元"
+  },
+  "settings_restore_help": {
+    "message": "現在のデータをバックアップの内容で置き換えます。両方を残したい場合は先に書き出してください。"
+  },
+  "settings_restore_confirm": {
+    "message": "データを置き換える"
+  },
+  "settings_cancel": {
+    "message": "キャンセル"
+  },
+  "settings_restore_choose_file": {
+    "message": "ファイルを選択"
+  },
+  "settings_toast_file_too_large": {
+    "message": "このファイルは Pickit のバックアップとしては大きすぎます"
+  },
+  "settings_toast_restored": {
+    "message": "{0}、{1}、{2} を復元しました"
+  },
+  "settings_restore_banner": {
+    "message": "このバックアップには {0}、{1}、{2} が含まれています。復元すると、Pickit に現在保存されているデータはすべて置き換えられます。"
+  },
+  "settings_privacy_title": {
+    "message": "プライバシー"
+  },
+  "settings_privacy_description": {
+    "message": "Pickit が読み取る内容と保存期間を決められます。"
+  },
+  "settings_clear_data_title": {
+    "message": "データを消去"
+  },
+  "settings_clear_data_help": {
+    "message": "このデバイスから色の履歴、フォント、パレットを削除します。設定は保持されます。"
+  },
+  "settings_clear_data_button": {
+    "message": "データを消去"
+  },
+  "settings_clear_data_confirm": {
+    "message": "はい、すべて消去します"
+  },
+  "settings_toast_data_cleared": {
+    "message": "すべてのデータを消去しました"
+  },
+  "settings_privacy_note": {
+    "message": "Pickit が保存するデータはすべてこのブラウザ内にとどまります。アカウントは不要で、サーバーには何も送信しません。"
+  },
+  "backup_imported_palette_name": {
+    "message": "インポートしたパレット"
+  },
+  "backup_error_invalid_json": {
+    "message": "このファイルは有効な JSON ではありません。"
+  },
+  "backup_error_not_pickit": {
+    "message": "このファイルは Pickit のバックアップではありません。"
+  },
+  "backup_error_newer_version": {
+    "message": "このバックアップは新しいバージョンの Pickit で作成されています。Pickit を更新して再試行してください。"
+  },
+  "ui_shortcut_title": {
+    "message": "ショートカット {0}"
+  },
+  "ui_shortcut_none": {
+    "message": "ショートカット未設定"
+  },
+  "settings_sync_title": {
+    "message": "パレットとお気に入りを同期"
+  },
+  "settings_sync_help": {
+    "message": "ログインしているすべての Chrome で、パレットとお気に入りの色を同じ状態に保ちます。履歴とフォントはこのデバイスにのみ保存されます。"
+  },
+  "settings_sync_error_quota": {
+    "message": "Chrome の同期ストレージがいっぱいのため、一部のパレットが同期されていません。不要なパレットを削除してください。"
+  },
+  "settings_sync_error_too_large": {
+    "message": "パレットが大きすぎて同期できません。小さなパレットに分割してください。"
+  },
+  "settings_sync_error_unavailable": {
+    "message": "現在、同期を利用できません。Chrome にログインし、同期が有効になっているか確認してください。"
+  },
+  "overlay_font_close": {
+    "message": "フォントインスペクターを閉じる"
+  },
+  "sponsor_label": {
+    "message": "スポンサー"
+  },
+  "sponsor_tagline": {
+    "message": "画像・動画・音声・PDF 向けの無料オンラインツール。ファイルはブラウザー内で処理されます。"
+  },
+  "sponsor_tagline_short": {
+    "message": "画像や PDF などの無料ツール"
+  },
+  "sponsor_cta": {
+    "message": "開く"
+  },
+  "sponsor_open": {
+    "message": "{0} を新しいタブで開く"
+  },
+  "credits_title": {
+    "message": "このアプリについて"
+  },
+  "credits_made_by": {
+    "message": "制作: {0}"
+  },
+  "credits_open_source": {
+    "message": "Pickit はオープンソースです。不具合の報告や機能の提案をお待ちしています。"
+  },
+  "credits_github": {
+    "message": "GitHub"
+  },
+  "credits_linkedin": {
+    "message": "LinkedIn"
+  },
+  "credits_portfolio": {
+    "message": "ポートフォリオ"
   }
 }

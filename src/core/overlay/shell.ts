@@ -7,6 +7,7 @@
 
 import tokensCss from '@/ui/tokens.css?inline';
 import overlayCss from './overlay.css?inline';
+import { t, textDirection, uiLocale } from '../i18n';
 import type { ThemeSetting } from '../storage';
 
 type Child = Node | string | null | undefined | false;
@@ -43,7 +44,7 @@ export function hintBar(items: [key: string, label: string][]): HTMLDivElement {
   });
   return h(
     'div',
-    { class: 'pk-hint pk-dock', role: 'toolbar', 'aria-label': 'Keyboard shortcuts' },
+    { class: 'pk-hint pk-dock', role: 'toolbar', 'aria-label': t('overlay_hint_bar_label') },
     h('span', { class: 'pk-brand', 'aria-hidden': 'true' }, 'P'),
     h('span', { class: 'pk-dock-divider', 'aria-hidden': 'true' }),
     ...groups,
@@ -63,7 +64,7 @@ export interface Shell {
   root: HTMLDivElement;
   toast(content: ToastContent): void;
   setTheme(theme: ThemeSetting): void;
-  /** Hides or shows all overlay UI, e.g. while a screenshot is taken. */
+  /** Hides or shows all overlay UI, toasts included, e.g. while a screenshot is taken. */
   setVisible(visible: boolean): void;
   /** Tools call retain() when they start and release() when they finish. */
   retain(): void;
@@ -71,12 +72,14 @@ export interface Shell {
 }
 
 const TOAST_MS = 2200;
+/** Most confirmations on screen at once; picking several colours quickly would otherwise stack them up the page. */
+const MAX_TOASTS = 3;
 let shell: Shell | null = null;
 
 export function getShell(): Shell {
   if (shell) return shell;
 
-  const host = document.createElement('pickkit-overlay');
+  const host = document.createElement('pickit-overlay');
   // Inline CSSOM styles beat the page's stylesheet under strict CSP.
   Object.assign(host.style, {
     all: 'initial',
@@ -98,10 +101,12 @@ export function getShell(): Shell {
   sheet.replaceSync(`${tokensCss}\n${overlayCss}`);
   shadow.adoptedStyleSheets = [sheet];
 
-  const root = h('div', { class: 'pk' });
+  // The page's own lang/dir do not reach into the shadow root; set Pickit's.
+  const locale = { lang: uiLocale(), dir: textDirection() };
+  const root = h('div', { class: 'pk', ...locale });
   const toasts = h('div', { class: 'pk-toasts', role: 'status', 'aria-live': 'polite' });
-  // Toasts live outside `root` so they stay visible while tool UI is hidden for capture.
-  const toastLayer = h('div', { class: 'pk' }, toasts);
+  // Toasts live outside `root` so they can outlive the tool that raised them.
+  const toastLayer = h('div', { class: 'pk', ...locale }, toasts);
   shadow.append(root, toastLayer);
 
   // Appended last with the maximum z-index. The old popover() trick pushed the host
@@ -110,6 +115,8 @@ export function getShell(): Shell {
   document.documentElement.append(host);
 
   let users = 0;
+  /** Dismiss functions of the toasts on screen, oldest first. */
+  const live: (() => void)[] = [];
   const release = () => {
     users -= 1;
     if (users > 0) return;
@@ -129,7 +136,9 @@ export function getShell(): Shell {
       else host.setAttribute('data-theme', theme);
     },
     setVisible(visible) {
+      // Toasts are hidden too: a toast left in a screenshot could be sampled as page colour.
       root.style.visibility = visible ? '' : 'hidden';
+      toastLayer.style.visibility = visible ? '' : 'hidden';
     },
     toast({ title, sub, color }) {
       users += 1; // A toast keeps the shell alive after its tool has finished.
@@ -141,11 +150,21 @@ export function getShell(): Shell {
         sub ? h('span', { class: 'pk-toast-sub' }, sub) : null,
       );
       toasts.append(el);
-      setTimeout(() => el.setAttribute('data-out', ''), TOAST_MS);
-      setTimeout(() => {
+      const fade = setTimeout(() => el.setAttribute('data-out', ''), TOAST_MS);
+      const done = setTimeout(dismiss, TOAST_MS + 200);
+      let gone = false;
+      function dismiss() {
+        if (gone) return; // runs once, whether it timed out or was pushed out
+        gone = true;
+        clearTimeout(fade);
+        clearTimeout(done);
+        live.splice(live.indexOf(dismiss), 1);
         el.remove();
         release();
-      }, TOAST_MS + 200);
+      }
+      live.push(dismiss);
+      // Keep only the newest few; the oldest goes first.
+      while (live.length > MAX_TOASTS) live[0]();
     },
   };
   return shell;

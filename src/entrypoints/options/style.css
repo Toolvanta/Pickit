@@ -172,22 +172,6 @@ body {
   font-size: var(--pk-text-xs);
 }
 
-.permission-badge {
-  gap: 6px;
-  border: 1px solid var(--pk-border);
-}
-
-.permission-badge.badge-pass {
-  border-color: color-mix(in srgb, var(--pk-success) 35%, var(--pk-border));
-}
-
-.badge-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: currentColor;
-}
-
 /* ---------- Theme preview ---------- */
 
 .setting-wide {
@@ -374,4 +358,18 @@ body {
   .key-chips kbd {
     transition: none;
   }
+}
+
+.options > .sponsor-card {
+  margin-top: var(--pk-space-6);
+}
+
+.about-cards {
+  display: grid;
+  gap: var(--pk-space-3);
+  margin-top: var(--pk-space-6);
+}
+
+.about-cards .sponsor-card {
+  margin-top: 0;
 }

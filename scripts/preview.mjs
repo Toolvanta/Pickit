@@ -7,7 +7,7 @@ import { readFile } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { extname, join, normalize } from 'node:path';
 
-const PORT = 4517;
+const PORT = Number(process.env.PORT) || 4517;
 // Paths are resolved from this file so the server works from any working directory.
 const ROOT = join(import.meta.dirname, '..');
 const BUILD = join(ROOT, '.output/chrome-mv3');
@@ -25,17 +25,19 @@ createServer(async (req, res) => {
   const local =
     path === '/__stub.js'
       ? join(ROOT, 'scripts/preview/stub.js')
-      : path === '/harness.html' || path === '/'
+      : path.startsWith('/store/')
+        ? join(ROOT, 'scripts', path)
+        : path === '/harness.html' || path === '/'
         ? join(ROOT, 'scripts/preview/harness.html')
         : join(BUILD, path);
   try {
     let body = await readFile(local);
     const type = TYPES[extname(local)] ?? 'application/octet-stream';
-    if (type.startsWith('text/html') && !local.endsWith('harness.html')) {
+    if (type.startsWith('text/html') && !local.endsWith('harness.html') && !path.startsWith('/store/')) {
       body = body.toString().replace('<head>', '<head><script src="/__stub.js"></script>');
     }
     res.writeHead(200, { 'content-type': type, 'cache-control': 'no-store' }).end(body);
   } catch {
     res.writeHead(404).end('Not found');
   }
-}).listen(PORT, () => console.log(`PickKit preview: http://localhost:${PORT}/harness.html`));
+}).listen(PORT, () => console.log(`Pickit preview: http://localhost:${PORT}/harness.html`));

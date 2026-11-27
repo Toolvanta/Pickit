@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   accessibleAccent, contrastRatio, formatColor, hexToRgb, nearestColorName, parseColor, rgbToHex,
-  rgbToHsl, shades, wcag,
+  apcaContrast, rgbToHsl, sameColor, shades, simulateVision, suggestContrastFix, wcag,
 } from '../src/core/color';
 
 const red = { r: 255, g: 0, b: 0, a: 1 };
@@ -52,9 +52,29 @@ describe('parseColor', () => {
     expect(parseColor('transparent')?.a).toBe(0);
   });
   it('rejects non-colours', () => {
-    for (const value of ['', 'banana', '12px', 'rgb(1, 2)', 'url(x.png)', 'oklch(62.8% 0.258 29.2)']) {
+    for (const value of ['', 'banana', '12px', 'rgb(1, 2)', 'url(x.png)', 'oklch(0.5 0.1)', 'color(rec2020 1 0 0)']) {
       expect(parseColor(value)).toBeNull();
     }
+  });
+  it('reads modern colour spaces as Chrome serialises them', () => {
+    const near = (value: string, expected: { r: number; g: number; b: number }) => {
+      const parsed = parseColor(value);
+      expect(parsed, value).not.toBeNull();
+      expect(sameColor(parsed!, { ...expected, a: 1 }), `${value} → ${JSON.stringify(parsed)}`).toBe(true);
+    };
+    near('oklch(0.627955 0.257683 29.2339)', red);
+    near('oklch(62.7955% 0.257683 29.2339deg)', red);
+    near('oklab(0.627955 0.224863 0.125846)', red);
+    near('lab(54.2917 80.8125 69.8851)', red);
+    near('lch(54.2917 106.839 40.8526)', red);
+    near('oklch(1 0 0)', white);
+    near('oklch(0 0 none)', black);
+    near('color(srgb-linear 0.21586 0.21586 0.21586)', { r: 128, g: 128, b: 128 });
+    near('color(display-p3 1 0 0)', red); // Wider than sRGB: clipped.
+    near('color(xyz-d65 0.95046 1 1.08906)', white);
+    expect(parseColor('oklch(0.7 0.1 0.5turn)')).toEqual(parseColor('oklch(0.7 0.1 180)'));
+    expect(parseColor('oklch(0.7 0.1 200 / 0.5)')?.a).toBe(0.5);
+    expect(parseColor('hsl(120deg 100% 25%)')).toEqual({ r: 0, g: 128, b: 0, a: 1 });
   });
 });
 
@@ -92,5 +112,68 @@ describe('shades and names', () => {
     expect(nearestColorName(red)).toBe('Red');
     expect(nearestColorName(hexToRgb('#6A5ACD')!)).toBe('Slate Blue');
     expect(nearestColorName(hexToRgb('#FEFEFE')!)).toBe('White');
+  });
+});
+
+describe('oklch output', () => {
+  it('formats sRGB colours as CSS oklch()', () => {
+    expect(formatColor(red, 'oklch')).toBe('oklch(62.8% 0.2577 29.23)');
+    expect(formatColor(white, 'oklch')).toBe('oklch(100% 0 0)');
+    expect(formatColor({ ...red, a: 0.5 }, 'oklch')).toBe('oklch(62.8% 0.2577 29.23 / 0.5)');
+  });
+  it('round-trips through parseColor', () => {
+    for (const hex of ['#3B5BDB', '#E8590C', '#2B8A3E', '#808080']) {
+      const rgb = hexToRgb(hex)!;
+      expect(sameColor(parseColor(formatColor(rgb, 'oklch'))!, rgb)).toBe(true);
+    }
+  });
+});
+
+describe('apca', () => {
+  it('matches the APCA reference values', () => {
+    expect(apcaContrast(black, white)).toBeCloseTo(106.04, 1);
+    expect(apcaContrast(white, black)).toBeCloseTo(-107.88, 1);
+    expect(apcaContrast(hexToRgb('#888888')!, white)).toBeCloseTo(63.06, 1);
+    expect(apcaContrast(white, white)).toBe(0);
+  });
+});
+
+describe('simulateVision', () => {
+  it('keeps neutrals neutral and collapses red-green for protanopia', () => {
+    expect(sameColor(simulateVision(white, 'protanopia'), white)).toBe(true);
+    const red2 = simulateVision(red, 'deuteranopia');
+    const green = simulateVision({ r: 0, g: 160, b: 0, a: 1 }, 'deuteranopia');
+    // Both read as olive/yellow-ish: blue channel stays low and red ~ green.
+    expect(Math.abs(red2.r - red2.g)).toBeLessThan(140);
+    expect(Math.abs(green.r - green.g)).toBeLessThan(60);
+    const grey = simulateVision(red, 'achromatopsia');
+    expect(grey.r).toBe(grey.g);
+    expect(grey.g).toBe(grey.b);
+  });
+});
+
+describe('suggestContrastFix', () => {
+  it('returns a passing colour close to the original', () => {
+    for (const [fgHex, bgHex] of [['#8FA3FF', '#FFFFFF'], ['#3B5BDB', '#17171C'], ['#F59F00', '#FFFFFF'], ['#777777', '#808080']]) {
+      const fg = hexToRgb(fgHex)!;
+      const bg = hexToRgb(bgHex)!;
+      const fix = suggestContrastFix(fg, bg, 4.5);
+      expect(fix, fgHex).not.toBeNull();
+      expect(contrastRatio(fix!, bg)).toBeGreaterThanOrEqual(4.5);
+    }
+  });
+  it('returns the colour unchanged when it already passes', () => {
+    expect(suggestContrastFix(black, white)).toEqual(black);
+  });
+  it('returns null when no lightness can reach the target', () => {
+    expect(suggestContrastFix(red, hexToRgb('#777777')!, 21)).toBeNull();
+  });
+});
+
+describe('nearestColorName (OKLab)', () => {
+  it('names colours perceptually', () => {
+    expect(nearestColorName(red)).toBe('Red');
+    expect(nearestColorName(hexToRgb('#0F0F10')!)).toBe('Black');
+    expect(nearestColorName(hexToRgb('#3B5BDB')!)).toMatch(/Blue/);
   });
 });

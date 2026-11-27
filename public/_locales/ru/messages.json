@@ -1,11 +1,1493 @@
 {
   "extName": {
-    "message": "PickKit – пипетка и определитель шрифтов"
+    "message": "Pickit - пипетка цвета и определитель шрифтов"
   },
   "extDescription": {
     "message": "Берите любой цвет со страницы или экрана, определяйте шрифты наведением, проверяйте контраст и экспортируйте палитры."
   },
   "actionTitle": {
-    "message": "Открыть PickKit"
+    "message": "Открыть Pickit"
+  },
+  "cmdPickColor": {
+    "message": "Выбрать цвет"
+  },
+  "cmdInspectFont": {
+    "message": "Определить шрифт"
+  },
+  "fonts_likely_badge": {
+    "message": "Вероятно"
+  },
+  "fonts_likely_title": {
+    "message": "Предположение по шрифтам, установленным на устройстве"
+  },
+  "fonts_specimen_pangram": {
+    "message": "Съешь же ещё этих мягких французских булок, да выпей чаю"
+  },
+  "fonts_fact_size": {
+    "message": "Размер"
+  },
+  "fonts_fact_weight": {
+    "message": "Жирность"
+  },
+  "fonts_fact_line_height": {
+    "message": "Интерлиньяж"
+  },
+  "fonts_fact_spacing": {
+    "message": "Трекинг"
+  },
+  "fonts_spacing_normal": {
+    "message": "Обычный"
+  },
+  "fonts_copy_css": {
+    "message": "Копировать CSS"
+  },
+  "fonts_copied_css": {
+    "message": "CSS шрифта скопирован"
+  },
+  "fonts_save_font": {
+    "message": "Сохранить шрифт"
+  },
+  "fonts_add_favourite": {
+    "message": "Добавить в избранное"
+  },
+  "fonts_remove_favourite": {
+    "message": "Убрать из избранного"
+  },
+  "fonts_remove": {
+    "message": "Удалить"
+  },
+  "fonts_eyebrow_library": {
+    "message": "Библиотека шрифтов"
+  },
+  "fonts_heading_recent": {
+    "message": "Недавно изученные"
+  },
+  "fonts_heading_saved": {
+    "message": "Сохранённые шрифты"
+  },
+  "fonts_search_label": {
+    "message": "Поиск шрифтов"
+  },
+  "fonts_search_placeholder": {
+    "message": "Семейство, источник, сайт…"
+  },
+  "fonts_list_label": {
+    "message": "Список шрифтов"
+  },
+  "fonts_tab_recent_one": {
+    "message": "Недавние · {0}"
+  },
+  "fonts_tab_recent_few": {
+    "message": "Недавние · {0}"
+  },
+  "fonts_tab_recent_many": {
+    "message": "Недавние · {0}"
+  },
+  "fonts_tab_recent_other": {
+    "message": "Недавние · {0}"
+  },
+  "fonts_tab_saved_one": {
+    "message": "Сохранённые · {0}"
+  },
+  "fonts_tab_saved_few": {
+    "message": "Сохранённые · {0}"
+  },
+  "fonts_tab_saved_many": {
+    "message": "Сохранённые · {0}"
+  },
+  "fonts_tab_saved_other": {
+    "message": "Сохранённые · {0}"
+  },
+  "fonts_empty_search_title": {
+    "message": "Нет шрифтов по запросу"
+  },
+  "fonts_empty_search_body": {
+    "message": "Попробуйте название семейства, источник или имя хоста."
+  },
+  "fonts_empty_recent_title": {
+    "message": "Вы ещё не изучали шрифты"
+  },
+  "fonts_empty_recent_body": {
+    "message": "Выделите текст на любой странице и сохраните его шрифт из инспектора - его параметры останутся здесь."
+  },
+  "fonts_empty_saved_title": {
+    "message": "Нет сохранённых шрифтов"
+  },
+  "fonts_empty_saved_body": {
+    "message": "Сохраните шрифт из инспектора или из «Недавних», чтобы вернуться к нему позже."
+  },
+  "fonts_saved_toast": {
+    "message": "Сохранено в ваши шрифты"
+  },
+  "page_loading_eyebrow": {
+    "message": "Сканирование"
+  },
+  "page_loading_heading": {
+    "message": "Читаем страницу"
+  },
+  "page_loading_badge": {
+    "message": "В работе"
+  },
+  "page_restricted_title": {
+    "message": "Эту страницу нельзя просканировать"
+  },
+  "page_restricted_body": {
+    "message": "Chrome блокирует расширения на служебных страницах браузера и в Web Store. Перейдите на любой сайт."
+  },
+  "page_unreadable_title": {
+    "message": "Pickit не удалось прочитать страницу"
+  },
+  "page_unreadable_body": {
+    "message": "Перезагрузите страницу и просканируйте снова. Для локальных файлов разрешите доступ к файлам в сведениях о расширении."
+  },
+  "page_not_invoked_title": {
+    "message": "Pickit ещё не запускался на этой вкладке"
+  },
+  "page_not_invoked_body": {
+    "message": "Ради вашей приватности Pickit читает страницу только после того, как вы запустите его на ней. Нажмите значок Pickit на панели инструментов на этой вкладке и просканируйте снова или разрешите доступ ко всем сайтам, чтобы боковая панель могла сканировать любую страницу."
+  },
+  "page_scan_again": {
+    "message": "Сканировать снова"
+  },
+  "page_allow_all_sites": {
+    "message": "Разрешить на всех сайтах"
+  },
+  "page_default_palette_name": {
+    "message": "Палитра страницы"
+  },
+  "page_saved_as_palette": {
+    "message": "Сохранено как палитра"
+  },
+  "page_style_guide_downloaded": {
+    "message": "Гайд по стилю скачан"
+  },
+  "page_current_eyebrow": {
+    "message": "Текущая страница"
+  },
+  "page_this_page": {
+    "message": "Эта страница"
+  },
+  "page_rescan": {
+    "message": "Обновить"
+  },
+  "page_fingerprint_heading": {
+    "message": "Цветовой отпечаток"
+  },
+  "page_fingerprint_hint": {
+    "message": "Нажмите, чтобы скопировать"
+  },
+  "page_copied_colour": {
+    "message": "Цвет скопирован"
+  },
+  "page_style_guide_button": {
+    "message": "Гайд по стилю (PNG)"
+  },
+  "page_copy_tokens": {
+    "message": "Копировать токены"
+  },
+  "page_copied_css_variables": {
+    "message": "CSS-переменные скопированы"
+  },
+  "page_palette_eyebrow": {
+    "message": "Извлечённая палитра"
+  },
+  "page_colours_heading_one": {
+    "message": "Цвета · {0}"
+  },
+  "page_colours_heading_few": {
+    "message": "Цвета · {0}"
+  },
+  "page_colours_heading_many": {
+    "message": "Цвета · {0}"
+  },
+  "page_colours_heading_other": {
+    "message": "Цвета · {0}"
+  },
+  "page_save_as_palette": {
+    "message": "Сохранить как палитру"
+  },
+  "page_role_label": {
+    "message": "Роль цвета"
+  },
+  "page_role_all": {
+    "message": "Все"
+  },
+  "page_role_text": {
+    "message": "Текст"
+  },
+  "page_role_background": {
+    "message": "Фон"
+  },
+  "page_role_border": {
+    "message": "Рамка"
+  },
+  "page_no_colours_in_role": {
+    "message": "В этой роли цвета не используются."
+  },
+  "page_copy_value": {
+    "message": "Копировать {0}"
+  },
+  "page_uses_count_one": {
+    "message": "{0}×"
+  },
+  "page_uses_count_few": {
+    "message": "{0}×"
+  },
+  "page_uses_count_many": {
+    "message": "{0}×"
+  },
+  "page_uses_count_other": {
+    "message": "{0}×"
+  },
+  "page_type_eyebrow": {
+    "message": "Шрифтовая система"
+  },
+  "page_typography_heading_one": {
+    "message": "Типографика · {0}"
+  },
+  "page_typography_heading_few": {
+    "message": "Типографика · {0}"
+  },
+  "page_typography_heading_many": {
+    "message": "Типографика · {0}"
+  },
+  "page_typography_heading_other": {
+    "message": "Типографика · {0}"
+  },
+  "page_font_likely": {
+    "message": "Вероятно"
+  },
+  "page_view_on_google_fonts": {
+    "message": "Открыть в Google Fonts"
+  },
+  "page_more_sizes_one": {
+    "message": "+{0}"
+  },
+  "page_more_sizes_few": {
+    "message": "+{0}"
+  },
+  "page_more_sizes_many": {
+    "message": "+{0}"
+  },
+  "page_more_sizes_other": {
+    "message": "+{0}"
+  },
+  "page_no_text_found": {
+    "message": "На этой странице не найден текст."
+  },
+  "page_truncated_notice_one": {
+    "message": "Страница большая, поэтому прочитан только первый {0} элемент."
+  },
+  "page_truncated_notice_few": {
+    "message": "Страница большая, поэтому прочитаны только первые {0} элемента."
+  },
+  "page_truncated_notice_many": {
+    "message": "Страница большая, поэтому прочитаны только первые {0} элементов."
+  },
+  "page_truncated_notice_other": {
+    "message": "Страница большая, поэтому прочитаны только первые {0} элемента."
+  },
+  "palettes_name_label": {
+    "message": "Название палитры"
+  },
+  "palettes_colour_count_one": {
+    "message": "{0} цвет"
+  },
+  "palettes_colour_count_few": {
+    "message": "{0} цвета"
+  },
+  "palettes_colour_count_many": {
+    "message": "{0} цветов"
+  },
+  "palettes_colour_count_other": {
+    "message": "{0} цвета"
+  },
+  "palettes_delete_confirm": {
+    "message": "Удалить"
+  },
+  "palettes_delete_cancel": {
+    "message": "Отмена"
+  },
+  "palettes_delete_palette": {
+    "message": "Удалить палитру"
+  },
+  "palettes_empty_ribbon": {
+    "message": "Добавьте цвет ниже или на вкладке «Цвета»."
+  },
+  "palettes_swatches_label": {
+    "message": "Образцы палитры {0}"
+  },
+  "palettes_swatch_title": {
+    "message": "{0} · нажмите, чтобы скопировать, перетащите для сортировки, Delete - удалить"
+  },
+  "palettes_swatch_aria": {
+    "message": "{0}. Enter - копировать, Delete - удалить, Alt и стрелки - переместить."
+  },
+  "palettes_swatch_hint": {
+    "message": "Перетащите для сортировки · Alt + ←/→ - сдвиг · Delete - удалить"
+  },
+  "palettes_add_placeholder": {
+    "message": "#5548E0 или rgb(…)"
+  },
+  "palettes_add_label": {
+    "message": "Цвет для добавления"
+  },
+  "palettes_add_button": {
+    "message": "Добавить"
+  },
+  "palettes_export_format_label": {
+    "message": "Формат экспорта"
+  },
+  "palettes_copy_button": {
+    "message": "Копировать"
+  },
+  "palettes_copied_export": {
+    "message": "Экспорт скопирован"
+  },
+  "palettes_file_button": {
+    "message": "Файл"
+  },
+  "palettes_downloaded_palette": {
+    "message": "Скачано: {0}"
+  },
+  "palettes_default_name": {
+    "message": "Палитра {0}"
+  },
+  "palettes_heading": {
+    "message": "Палитры"
+  },
+  "palettes_vision_label": {
+    "message": "Показать палитры так, как их видят люди с нарушением цветового зрения"
+  },
+  "palettes_vision_title": {
+    "message": "Проверьте, что цвета палитры остаются различимыми"
+  },
+  "palettes_vision_typical": {
+    "message": "Обычное зрение"
+  },
+  "palettes_empty_title": {
+    "message": "Палитр пока нет"
+  },
+  "palettes_empty_body": {
+    "message": "Объединяйте цвета в палитру и экспортируйте их как CSS-переменные, SCSS, Tailwind, дизайн-токены, JSON или SVG."
+  },
+  "palettes_new_palette": {
+    "message": "Новая палитра"
+  },
+  "palettes_all_colours_heading": {
+    "message": "Все цвета"
+  },
+  "palettes_export_all": {
+    "message": "Экспорт всех"
+  },
+  "palettes_downloaded_all": {
+    "message": "Все цвета скачаны"
+  },
+  "palettes_copied_colour": {
+    "message": "Цвет скопирован"
+  },
+  "ui_copied_value": {
+    "message": "Скопировано: {0}"
+  },
+  "ui_copy_failed": {
+    "message": "Не удалось скопировать"
+  },
+  "ui_colorbar_label": {
+    "message": "Цвета на этой странице"
+  },
+  "ui_colorbar_segment_title": {
+    "message": "{0} · {1} %"
+  },
+  "ui_colorbar_segment_aria": {
+    "message": "{0}, {1} % использований"
+  },
+  "ui_copy_row_sr": {
+    "message": "Копировать {0} {1}"
+  },
+  "ui_search_placeholder": {
+    "message": "Поиск…"
+  },
+  "ui_search_clear": {
+    "message": "Очистить поиск"
+  },
+  "cmd_default_label": {
+    "message": "Команды"
+  },
+  "cmd_trigger_compact_label": {
+    "message": "{0} ({1})"
+  },
+  "cmd_close_label": {
+    "message": "Закрыть меню команд"
+  },
+  "cmd_list_label": {
+    "message": "Список: {0}"
+  },
+  "cmd_empty": {
+    "message": "Нет доступных команд"
+  },
+  "cmd_footer_navigate": {
+    "message": "навигация"
+  },
+  "cmd_footer_run": {
+    "message": "запуск"
+  },
+  "cmd_footer_close": {
+    "message": "закрыть"
+  },
+  "styleguide_default_title": {
+    "message": "Гайд по стилю"
+  },
+  "styleguide_colours_heading": {
+    "message": "Цвета"
+  },
+  "styleguide_typography_heading": {
+    "message": "Типографика"
+  },
+  "styleguide_font_details": {
+    "message": "{0}   ·   Жирность {1}   ·   Размеры {2}"
+  },
+  "styleguide_footer": {
+    "message": "Сделано в {0}"
+  },
+  "export_format_tokens": {
+    "message": "Токены"
+  },
+  "overlay_hint_bar_label": {
+    "message": "Сочетания клавиш"
+  },
+  "overlay_key_click": {
+    "message": "Клик"
+  },
+  "overlay_key_shift_click": {
+    "message": "Shift+клик"
+  },
+  "overlay_hint_copy_colour": {
+    "message": "Копировать цвет"
+  },
+  "overlay_hint_pick_several": {
+    "message": "Выбрать несколько"
+  },
+  "overlay_hint_pick_from_screen": {
+    "message": "С экрана"
+  },
+  "overlay_hint_cancel": {
+    "message": "Отмена"
+  },
+  "overlay_toast_cannot_read_page": {
+    "message": "Pickit не может прочитать страницу"
+  },
+  "overlay_toast_cannot_read_page_sub": {
+    "message": "Нажмите значок на панели и повторите"
+  },
+  "overlay_toast_capture_failed": {
+    "message": "Не удалось захватить страницу"
+  },
+  "overlay_toast_try_again": {
+    "message": "Повторите попытку"
+  },
+  "overlay_toast_copied": {
+    "message": "Скопировано: {0}"
+  },
+  "overlay_toast_saved": {
+    "message": "Сохранено: {0}"
+  },
+  "overlay_font_card_label": {
+    "message": "Параметры шрифта"
+  },
+  "overlay_font_key_hover": {
+    "message": "Наведение"
+  },
+  "overlay_font_key_click": {
+    "message": "Клик"
+  },
+  "overlay_font_hint_inspect": {
+    "message": "Изучить"
+  },
+  "overlay_font_hint_pin_copy": {
+    "message": "Закрепить и копировать"
+  },
+  "overlay_font_hint_exit": {
+    "message": "Выход"
+  },
+  "overlay_font_row_size": {
+    "message": "Размер"
+  },
+  "overlay_font_row_weight": {
+    "message": "Жирность"
+  },
+  "overlay_font_row_line_height": {
+    "message": "Интерлиньяж"
+  },
+  "overlay_font_row_letter_spacing": {
+    "message": "Трекинг"
+  },
+  "overlay_font_row_style": {
+    "message": "Стиль"
+  },
+  "overlay_font_row_colour": {
+    "message": "Цвет"
+  },
+  "overlay_font_likely": {
+    "message": "Вероятно"
+  },
+  "overlay_font_likely_tooltip": {
+    "message": "Предположение по шрифтам, установленным на этом устройстве"
+  },
+  "overlay_font_copy_css": {
+    "message": "Копировать CSS"
+  },
+  "overlay_font_save": {
+    "message": "Сохранить"
+  },
+  "overlay_font_open_google_fonts": {
+    "message": "Google Fonts ↗"
+  },
+  "overlay_font_footer": {
+    "message": "Нажмите, чтобы закрепить и копировать"
+  },
+  "overlay_font_toast_copied": {
+    "message": "Скопировано: {0}"
+  },
+  "overlay_font_toast_copied_css": {
+    "message": "CSS шрифта скопирован"
+  },
+  "overlay_font_toast_saved": {
+    "message": "Сохранено в ваши шрифты"
+  },
+  "font_weight_thin": {
+    "message": "Тонкий"
+  },
+  "font_weight_extra_light": {
+    "message": "Сверхсветлый"
+  },
+  "font_weight_light": {
+    "message": "Светлый"
+  },
+  "font_weight_regular": {
+    "message": "Обычный"
+  },
+  "font_weight_medium": {
+    "message": "Средний"
+  },
+  "font_weight_semi_bold": {
+    "message": "Полужирный"
+  },
+  "font_weight_bold": {
+    "message": "Жирный"
+  },
+  "font_weight_extra_bold": {
+    "message": "Сверхжирный"
+  },
+  "font_weight_black": {
+    "message": "Тяжёлый"
+  },
+  "font_line_height_normal": {
+    "message": "Обычный"
+  },
+  "font_letter_spacing_normal": {
+    "message": "Обычный"
+  },
+  "font_source_browser_default": {
+    "message": "Шрифт браузера"
+  },
+  "font_source_installed": {
+    "message": "Установлен на устройстве"
+  },
+  "font_source_web_font": {
+    "message": "Веб-шрифт"
+  },
+  "font_source_self_hosted": {
+    "message": "На сервере сайта"
+  },
+  "font_source_hosted_on": {
+    "message": "Размещён на {0}"
+  },
+  "panel_tab_colors": {
+    "message": "Цвета"
+  },
+  "panel_tab_fonts": {
+    "message": "Шрифты"
+  },
+  "panel_tab_page": {
+    "message": "Страница"
+  },
+  "panel_tab_contrast": {
+    "message": "Контраст"
+  },
+  "panel_tab_palettes": {
+    "message": "Палитры"
+  },
+  "panel_tabs_aria": {
+    "message": "Разделы рабочей панели"
+  },
+  "panel_toast_restricted_page": {
+    "message": "Pickit не работает на этой странице"
+  },
+  "panel_toast_copied_colour": {
+    "message": "Цвет скопирован"
+  },
+  "panel_cmd_pick_colour": {
+    "message": "Выбрать цвет"
+  },
+  "panel_cmd_inspect_font": {
+    "message": "Определить шрифт"
+  },
+  "panel_cmd_go_colors": {
+    "message": "Открыть «Цвета»"
+  },
+  "panel_cmd_go_fonts": {
+    "message": "Открыть «Шрифты»"
+  },
+  "panel_cmd_go_page": {
+    "message": "Открыть «Страница»"
+  },
+  "panel_cmd_go_contrast": {
+    "message": "Открыть «Контраст»"
+  },
+  "panel_cmd_go_palettes": {
+    "message": "Открыть «Палитры»"
+  },
+  "panel_cmd_copy_selected_colour": {
+    "message": "Копировать выбранный цвет"
+  },
+  "panel_cmd_use_light_theme": {
+    "message": "Включить светлую тему"
+  },
+  "panel_cmd_use_dark_theme": {
+    "message": "Включить тёмную тему"
+  },
+  "panel_cmd_open_settings": {
+    "message": "Открыть настройки"
+  },
+  "panel_settings": {
+    "message": "Настройки"
+  },
+  "panel_context_show_in_colors": {
+    "message": "Показать в «Цветах»"
+  },
+  "panel_context_copy_colour": {
+    "message": "Копировать цвет"
+  },
+  "panel_context_check_contrast": {
+    "message": "Проверить контраст"
+  },
+  "colors_pick_from_page": {
+    "message": "Выбрать на странице"
+  },
+  "colors_screen_pick": {
+    "message": "Экран"
+  },
+  "colors_screen_pick_title": {
+    "message": "Возьмите любой пиксель на экране, даже за пределами Chrome"
+  },
+  "colors_empty_title": {
+    "message": "Выберите первый цвет"
+  },
+  "colors_empty_body": {
+    "message": "Нажмите «{0}», затем щёлкните что угодно на странице. Каждый выбранный цвет сохраняется здесь: его можно скопировать в любом формате, проверить контраст и собрать из него палитру."
+  },
+  "colors_selected_aria": {
+    "message": "Выбранный цвет"
+  },
+  "colors_token_match_title": {
+    "message": "Совпадает с переменной страницы {0}"
+  },
+  "colors_favorite_add": {
+    "message": "Добавить в избранное"
+  },
+  "colors_favorite_remove": {
+    "message": "Убрать из избранного"
+  },
+  "colors_copy_default_format_title": {
+    "message": "Копировать в формате по умолчанию"
+  },
+  "colors_toast_copied_colour": {
+    "message": "Цвет скопирован"
+  },
+  "colors_origin_screen": {
+    "message": "Взят с экрана"
+  },
+  "colors_add_to_palette_aria": {
+    "message": "Добавить цвет в палитру"
+  },
+  "colors_add_to_palette_placeholder": {
+    "message": "В палитру…"
+  },
+  "colors_new_palette_option": {
+    "message": "+ Новая палитра"
+  },
+  "colors_default_palette_name": {
+    "message": "Палитра {0}"
+  },
+  "colors_toast_added_new_palette": {
+    "message": "Добавлено в новую палитру"
+  },
+  "colors_toast_already_in_palette": {
+    "message": "Уже есть в «{0}»"
+  },
+  "colors_toast_added_to_palette": {
+    "message": "Добавлено в «{0}»"
+  },
+  "colors_as_text": {
+    "message": "Как текст"
+  },
+  "colors_as_text_title": {
+    "message": "Проверить этот цвет как цвет текста в проверке контраста"
+  },
+  "colors_as_bg": {
+    "message": "Как фон"
+  },
+  "colors_as_bg_title": {
+    "message": "Проверить этот цвет как фон в проверке контраста"
+  },
+  "colors_history_title": {
+    "message": "История"
+  },
+  "colors_clear_all_confirm_one": {
+    "message": "Очистить {0} цвет?"
+  },
+  "colors_clear_all_confirm_few": {
+    "message": "Очистить все {0} цвета?"
+  },
+  "colors_clear_all_confirm_many": {
+    "message": "Очистить все {0} цветов?"
+  },
+  "colors_clear_all_confirm_other": {
+    "message": "Очистить все {0} цвета?"
+  },
+  "colors_clear": {
+    "message": "Очистить"
+  },
+  "colors_cancel": {
+    "message": "Отмена"
+  },
+  "colors_remove_selected": {
+    "message": "Удалить выбранный цвет"
+  },
+  "colors_search_label": {
+    "message": "Поиск цветов"
+  },
+  "colors_search_placeholder": {
+    "message": "hex, название, сайт или токен"
+  },
+  "colors_favorites_only_title": {
+    "message": "Только избранные"
+  },
+  "colors_no_favorites": {
+    "message": "Избранного пока нет. Нажмите на сердечко у цвета, чтобы сохранить его."
+  },
+  "colors_no_search_match": {
+    "message": "Нет цветов по этому запросу."
+  },
+  "colors_swatch_title": {
+    "message": "{0} · двойной клик - копировать"
+  },
+  "colors_swatch_title_favorite": {
+    "message": "{0} · избранное · двойной клик - копировать"
+  },
+  "colors_swatch_select_aria": {
+    "message": "Выбрать {0}"
+  },
+  "colors_swatch_select_favorite_aria": {
+    "message": "Выбрать {0}, избранное"
+  },
+  "colors_history_hint": {
+    "message": "Клик - подробнее · двойной клик - копировать · избранное не удаляется при очистке"
+  },
+  "colors_explore_aria": {
+    "message": "Исследовать цвет"
+  },
+  "colors_explore": {
+    "message": "Исследовать"
+  },
+  "colors_explore_shades": {
+    "message": "Оттенки"
+  },
+  "colors_explore_harmonies": {
+    "message": "Гармонии"
+  },
+  "colors_shade_scale_aria": {
+    "message": "Шкала оттенков"
+  },
+  "colors_shade_title": {
+    "message": "{0} · {1}"
+  },
+  "colors_shade_title_nearest": {
+    "message": "{0} · {1} · ближе всего к этому цвету"
+  },
+  "colors_shade_copy_aria": {
+    "message": "Копировать оттенок {0}, {1}"
+  },
+  "colors_copy_scale_as": {
+    "message": "Копировать шкалу как"
+  },
+  "colors_copy_scale_tokens": {
+    "message": "Токены"
+  },
+  "colors_toast_copied_css_variables": {
+    "message": "CSS-переменные скопированы"
+  },
+  "colors_toast_copied_tailwind_scale": {
+    "message": "Шкала Tailwind скопирована"
+  },
+  "colors_toast_copied_design_tokens": {
+    "message": "Дизайн-токены скопированы"
+  },
+  "harmonies_aria": {
+    "message": "Цветовые гармонии"
+  },
+  "harmonies_neutral_message": {
+    "message": "Это нейтральный цвет (серый, почти чёрный или почти белый), у него нет тона для построения гармоний. Выберите хроматический цвет, чтобы их увидеть."
+  },
+  "harmonies_toast_added_new_palette_one": {
+    "message": "{0} цвет добавлен в новую палитру «{1}»"
+  },
+  "harmonies_toast_added_new_palette_few": {
+    "message": "{0} цвета добавлены в новую палитру «{1}»"
+  },
+  "harmonies_toast_added_new_palette_many": {
+    "message": "{0} цветов добавлено в новую палитру «{1}»"
+  },
+  "harmonies_toast_added_new_palette_other": {
+    "message": "{0} цвета добавлено в новую палитру «{1}»"
+  },
+  "harmonies_toast_already_in_palette": {
+    "message": "Цвета гармонии «{0}» уже есть в палитре"
+  },
+  "harmonies_toast_added_to_palette_one": {
+    "message": "{0} цвет добавлен в «{1}»"
+  },
+  "harmonies_toast_added_to_palette_few": {
+    "message": "{0} цвета добавлены в «{1}»"
+  },
+  "harmonies_toast_added_to_palette_many": {
+    "message": "{0} цветов добавлено в «{1}»"
+  },
+  "harmonies_toast_added_to_palette_other": {
+    "message": "{0} цвета добавлено в «{1}»"
+  },
+  "harmonies_add_all_aria": {
+    "message": "Добавить все в палитру: {0}"
+  },
+  "harmonies_add_all_title": {
+    "message": "Добавить все цвета гармонии «{0}» в палитру"
+  },
+  "harmonies_add_palette_button": {
+    "message": "+ Палитра"
+  },
+  "harmonies_strip_aria": {
+    "message": "Цвета: {0}"
+  },
+  "harmonies_swatch_title": {
+    "message": "{0} · нажмите, чтобы скопировать"
+  },
+  "harmonies_swatch_title_base": {
+    "message": "{0} · базовый · нажмите, чтобы скопировать"
+  },
+  "harmonies_swatch_copy_aria": {
+    "message": "Копировать {0} из «{1}»"
+  },
+  "harmonies_swatch_copy_base_aria": {
+    "message": "Копировать {0} из «{1}» (базовый)"
+  },
+  "harmonies_toast_copied_value": {
+    "message": "Скопировано: {0}"
+  },
+  "harmonies_base_badge": {
+    "message": "база"
+  },
+  "harmony_complementary": {
+    "message": "Комплементарная"
+  },
+  "harmony_analogous": {
+    "message": "Аналоговая"
+  },
+  "harmony_triadic": {
+    "message": "Триада"
+  },
+  "harmony_split_complement": {
+    "message": "Раздельно-комплементарная"
+  },
+  "harmony_tetradic": {
+    "message": "Тетрада"
+  },
+  "contrast_field_text": {
+    "message": "Текст"
+  },
+  "contrast_field_background": {
+    "message": "Фон"
+  },
+  "contrast_text_picker_aria": {
+    "message": "Выбор цвета текста"
+  },
+  "contrast_background_picker_aria": {
+    "message": "Выбор цвета фона"
+  },
+  "contrast_use_recent_as_text_aria": {
+    "message": "Использовать {0} как текст"
+  },
+  "contrast_use_recent_as_background_aria": {
+    "message": "Использовать {0} как фон"
+  },
+  "contrast_grade_aa_large": {
+    "message": "AA крупный"
+  },
+  "contrast_grade_fails": {
+    "message": "Провал"
+  },
+  "contrast_simulating": {
+    "message": "Симуляция: {0}"
+  },
+  "contrast_preview_large": {
+    "message": "Крупный текст 24 px"
+  },
+  "contrast_preview_body": {
+    "message": "Основной текст 16 px. Съешь же ещё этих мягких французских булок, да выпей чаю."
+  },
+  "contrast_apca_title": {
+    "message": "Контраст светлоты APCA, предложен для WCAG 3"
+  },
+  "contrast_swap": {
+    "message": "Поменять текст и фон местами"
+  },
+  "contrast_apca_use": {
+    "message": "APCA: {0}"
+  },
+  "contrast_check_aa_body": {
+    "message": "AA основной"
+  },
+  "contrast_check_aa_large": {
+    "message": "AA крупный"
+  },
+  "contrast_check_aaa_body": {
+    "message": "AAA основной"
+  },
+  "contrast_check_aaa_large": {
+    "message": "AAA крупный"
+  },
+  "contrast_fixes_aria": {
+    "message": "Предлагаемые исправления"
+  },
+  "contrast_fixes_title": {
+    "message": "Достичь {0} ({1}:1) минимальным изменением"
+  },
+  "contrast_fix_text": {
+    "message": "Изменить текст"
+  },
+  "contrast_fix_background": {
+    "message": "Изменить фон"
+  },
+  "contrast_vision_title": {
+    "message": "Цветовое зрение"
+  },
+  "contrast_vision_typical_note": {
+    "message": "Обычное зрение"
+  },
+  "contrast_vision_picker_aria": {
+    "message": "Симуляция цветового зрения"
+  },
+  "contrast_vision_short_typical": {
+    "message": "Норма"
+  },
+  "contrast_vision_short_protanopia": {
+    "message": "Протан."
+  },
+  "contrast_vision_short_deuteranopia": {
+    "message": "Дейтер."
+  },
+  "contrast_vision_short_tritanopia": {
+    "message": "Тритан."
+  },
+  "contrast_vision_short_achromatopsia": {
+    "message": "Монохр."
+  },
+  "contrast_pair_aria": {
+    "message": "Цвета"
+  },
+  "apca_use_body_any_size": {
+    "message": "Основной текст любого размера"
+  },
+  "apca_use_body_from_18px": {
+    "message": "Основной текст от 18 px"
+  },
+  "apca_use_content_from_24px": {
+    "message": "Контентный текст от 24 px"
+  },
+  "apca_use_headlines_large_text": {
+    "message": "Заголовки и крупный текст"
+  },
+  "apca_use_placeholders_non_text": {
+    "message": "Только плейсхолдеры и нетекстовые элементы"
+  },
+  "apca_use_dividers_decoration": {
+    "message": "Только разделители и декор"
+  },
+  "apca_use_not_readable": {
+    "message": "Нечитаемо"
+  },
+  "vision_protanopia_label": {
+    "message": "Протанопия"
+  },
+  "vision_protanopia_note": {
+    "message": "Нет красных колбочек"
+  },
+  "vision_deuteranopia_label": {
+    "message": "Дейтеранопия"
+  },
+  "vision_deuteranopia_note": {
+    "message": "Нет зелёных колбочек"
+  },
+  "vision_tritanopia_label": {
+    "message": "Тританопия"
+  },
+  "vision_tritanopia_note": {
+    "message": "Нет синих колбочек"
+  },
+  "vision_achromatopsia_label": {
+    "message": "Ахроматопсия"
+  },
+  "vision_achromatopsia_note": {
+    "message": "Нет цветового зрения"
+  },
+  "popup_failure_restricted_title": {
+    "message": "Pickit не работает на этой странице"
+  },
+  "popup_failure_restricted_text": {
+    "message": "Chrome блокирует расширения на служебных страницах браузера и в Web Store. Откройте любой сайт и повторите попытку."
+  },
+  "popup_failure_no_access_title": {
+    "message": "Pickit не удалось получить доступ к странице"
+  },
+  "popup_failure_no_access_text": {
+    "message": "Перезагрузите страницу и повторите попытку. Для локальных файлов разрешите доступ к файлам в сведениях о расширении."
+  },
+  "popup_failure_unknown_title": {
+    "message": "Что-то пошло не так"
+  },
+  "popup_failure_unknown_text": {
+    "message": "Перезагрузите страницу и повторите попытку."
+  },
+  "popup_command_pick_colour": {
+    "message": "Выбрать цвет"
+  },
+  "popup_command_inspect_font": {
+    "message": "Определить шрифт"
+  },
+  "popup_command_open_workspace": {
+    "message": "Открыть рабочую панель"
+  },
+  "popup_command_copy_latest": {
+    "message": "Копировать последний цвет"
+  },
+  "popup_command_light_theme": {
+    "message": "Включить светлую тему"
+  },
+  "popup_command_dark_theme": {
+    "message": "Включить тёмную тему"
+  },
+  "popup_command_open_settings": {
+    "message": "Открыть настройки"
+  },
+  "popup_toast_copied_colour": {
+    "message": "Цвет скопирован"
+  },
+  "popup_open_workspace_label": {
+    "message": "Открыть рабочую панель"
+  },
+  "popup_settings_label": {
+    "message": "Настройки"
+  },
+  "popup_tools_label": {
+    "message": "Инструменты"
+  },
+  "popup_tool_pick_title": {
+    "message": "Выбрать цвет"
+  },
+  "popup_tool_pick_sub": {
+    "message": "Клик по пикселю"
+  },
+  "popup_tool_font_title": {
+    "message": "Узнать шрифт"
+  },
+  "popup_tool_font_sub": {
+    "message": "Наведите на текст"
+  },
+  "popup_empty_colours": {
+    "message": "Здесь появятся выбранные цвета - их можно скопировать в любом формате."
+  },
+  "popup_latest_colour_label": {
+    "message": "Последний цвет"
+  },
+  "popup_latest_copy_title": {
+    "message": "Копировать в формате по умолчанию"
+  },
+  "popup_origin_screen": {
+    "message": "Взят с экрана"
+  },
+  "popup_recent_colours_label": {
+    "message": "Недавние цвета"
+  },
+  "popup_recent_copy_label": {
+    "message": "Копировать {0}"
+  },
+  "popup_recent_copy_title": {
+    "message": "{0} · нажмите, чтобы скопировать"
+  },
+  "popup_latest_font_label": {
+    "message": "Последний шрифт"
+  },
+  "popup_font_details": {
+    "message": "{0} px · {1} · {2}"
+  },
+  "popup_workspace_link": {
+    "message": "Открыть рабочую панель"
+  },
+  "popup_workspace_link_sub": {
+    "message": "История, контраст, палитры"
+  },
+  "popup_rating_title": {
+    "message": "Pickit вам полезен?"
+  },
+  "popup_rating_text": {
+    "message": "Оценка поможет другим найти его."
+  },
+  "popup_rating_rate": {
+    "message": "Оценить Pickit"
+  },
+  "popup_rating_dismiss": {
+    "message": "Не сейчас"
+  },
+  "welcome_step_pick_title": {
+    "message": "Выберите цвет"
+  },
+  "welcome_step_pick_text": {
+    "message": "Откройте всплывающее окно или нажмите сочетание клавиш, затем щёлкните цвет на странице. Pickit считывает его, не следя за вашими действиями."
+  },
+  "welcome_step_font_title": {
+    "message": "Определите шрифт"
+  },
+  "welcome_step_font_text": {
+    "message": "Выберите инструмент шрифтов и щёлкните любой текст. Семейство, размер, жирность и цвет - в одной небольшой панели."
+  },
+  "welcome_step_workspace_title": {
+    "message": "Всё под рукой в рабочей панели"
+  },
+  "welcome_step_workspace_text": {
+    "message": "В боковой панели - история цветов, шрифты, палитры, проверка контраста и гайд по стилю страницы в один клик."
+  },
+  "welcome_shortcut_label": {
+    "message": "Сочетание клавиш {0}"
+  },
+  "welcome_kicker": {
+    "message": "Добро пожаловать в Pickit"
+  },
+  "welcome_title_lead": {
+    "message": "Любой цвет. Любой шрифт."
+  },
+  "welcome_title_accent": {
+    "message": "Прямо под рукой."
+  },
+  "welcome_lead": {
+    "message": "Три вещи, которые стоит знать, - и можно начинать."
+  },
+  "welcome_tip_pin": {
+    "message": "Совет: нажмите значок пазла на панели Chrome и закрепите Pickit, чтобы он всегда был в одном клике."
+  },
+  "welcome_cta": {
+    "message": "Начать"
+  },
+  "access_unreachable_title": {
+    "message": "Pickit не удалось получить доступ к странице"
+  },
+  "access_unreachable_text": {
+    "message": "Перезагрузите страницу и повторите попытку. Для локальных файлов разрешите доступ к файлам в сведениях о расширении."
+  },
+  "access_allow_title": {
+    "message": "Разрешите Pickit доступ к странице"
+  },
+  "access_allow_text": {
+    "message": "Боковая панель не может сама получить доступ к вкладке. Нажмите значок Pickit на панели инструментов на этой вкладке или разрешите доступ ко всем сайтам, чтобы боковая панель работала везде."
+  },
+  "access_allow_all_sites": {
+    "message": "Разрешить на всех сайтах"
+  },
+  "access_dismiss_label": {
+    "message": "Закрыть"
+  },
+  "settings_theme_light": {
+    "message": "Светлая"
+  },
+  "settings_theme_dark": {
+    "message": "Тёмная"
+  },
+  "settings_theme_system": {
+    "message": "Системная"
+  },
+  "settings_shortcut_not_set": {
+    "message": "Не задано"
+  },
+  "settings_shortcut_label": {
+    "message": "Сочетание клавиш {0}"
+  },
+  "settings_count_colours_one": {
+    "message": "{0} цвет"
+  },
+  "settings_count_colours_few": {
+    "message": "{0} цвета"
+  },
+  "settings_count_colours_many": {
+    "message": "{0} цветов"
+  },
+  "settings_count_colours_other": {
+    "message": "{0} цвета"
+  },
+  "settings_count_fonts_one": {
+    "message": "{0} шрифт"
+  },
+  "settings_count_fonts_few": {
+    "message": "{0} шрифта"
+  },
+  "settings_count_fonts_many": {
+    "message": "{0} шрифтов"
+  },
+  "settings_count_fonts_other": {
+    "message": "{0} шрифта"
+  },
+  "settings_count_palettes_one": {
+    "message": "{0} палитра"
+  },
+  "settings_count_palettes_few": {
+    "message": "{0} палитры"
+  },
+  "settings_count_palettes_many": {
+    "message": "{0} палитр"
+  },
+  "settings_count_palettes_other": {
+    "message": "{0} палитры"
+  },
+  "settings_eyebrow": {
+    "message": "Параметры"
+  },
+  "settings_heading": {
+    "message": "Настройки Pickit"
+  },
+  "settings_intro": {
+    "message": "Настройте, как копируются цвета, как выглядит Pickit и что он запоминает."
+  },
+  "settings_version_badge": {
+    "message": "Версия {0}"
+  },
+  "settings_colours_title": {
+    "message": "Цвета"
+  },
+  "settings_colours_description": {
+    "message": "Формат и регистр, которые используются при копировании цвета."
+  },
+  "settings_default_format_title": {
+    "message": "Формат по умолчанию"
+  },
+  "settings_default_format_help": {
+    "message": "Используется при выборе цвета и копировании в один клик."
+  },
+  "settings_default_format_label": {
+    "message": "Формат цвета по умолчанию"
+  },
+  "settings_hex_case_title": {
+    "message": "Регистр HEX"
+  },
+  "settings_hex_case_help": {
+    "message": "Как записываются значения HEX при копировании."
+  },
+  "settings_history_size_title": {
+    "message": "Размер истории"
+  },
+  "settings_history_size_help": {
+    "message": "При достижении лимита старые цвета удаляются. Избранные сохраняются всегда."
+  },
+  "settings_history_size_option_one": {
+    "message": "{0} цвет"
+  },
+  "settings_history_size_option_few": {
+    "message": "{0} цвета"
+  },
+  "settings_history_size_option_many": {
+    "message": "{0} цветов"
+  },
+  "settings_history_size_option_other": {
+    "message": "{0} цвета"
+  },
+  "settings_appearance_title": {
+    "message": "Оформление"
+  },
+  "settings_appearance_description": {
+    "message": "Выберите вид окон Pickit и оверлея на странице."
+  },
+  "settings_theme_title": {
+    "message": "Тема"
+  },
+  "settings_theme_help": {
+    "message": "Применяется к окнам Pickit и оверлею на странице."
+  },
+  "settings_shortcuts_title": {
+    "message": "Сочетания клавиш"
+  },
+  "settings_shortcuts_description": {
+    "message": "Запускайте инструменты, не открывая всплывающее окно."
+  },
+  "settings_shortcut_pick_colour_title": {
+    "message": "Выбрать цвет"
+  },
+  "settings_shortcut_pick_colour_help": {
+    "message": "Открывает пипетку на текущей вкладке."
+  },
+  "settings_shortcut_inspect_font_title": {
+    "message": "Определить шрифт"
+  },
+  "settings_shortcut_inspect_font_help": {
+    "message": "Открывает инспектор шрифтов на текущей вкладке."
+  },
+  "settings_change_shortcuts_title": {
+    "message": "Изменить сочетания"
+  },
+  "settings_change_shortcuts_help": {
+    "message": "По умолчанию: {0} и {1}. Chrome управляет сочетаниями клавиш всех расширений в одном месте."
+  },
+  "settings_open_chrome_shortcuts": {
+    "message": "Открыть сочетания Chrome"
+  },
+  "settings_backup_title": {
+    "message": "Резервная копия"
+  },
+  "settings_backup_description": {
+    "message": "Перенесите цвета, шрифты и палитры в другой браузер или сохраните копию."
+  },
+  "settings_export_title": {
+    "message": "Экспорт резервной копии"
+  },
+  "settings_export_help": {
+    "message": "Сохраняет все данные Pickit в один JSON-файл на вашем устройстве."
+  },
+  "settings_export_button": {
+    "message": "Экспорт"
+  },
+  "settings_toast_backup_downloaded": {
+    "message": "Резервная копия скачана"
+  },
+  "settings_restore_title": {
+    "message": "Восстановление из копии"
+  },
+  "settings_restore_help": {
+    "message": "Заменяет текущие данные содержимым резервной копии. Сначала сделайте экспорт, если хотите сохранить и то и другое."
+  },
+  "settings_restore_confirm": {
+    "message": "Заменить мои данные"
+  },
+  "settings_cancel": {
+    "message": "Отмена"
+  },
+  "settings_restore_choose_file": {
+    "message": "Выбрать файл"
+  },
+  "settings_toast_file_too_large": {
+    "message": "Файл слишком большой для резервной копии Pickit"
+  },
+  "settings_toast_restored": {
+    "message": "Восстановлено: {0}, {1}, {2}"
+  },
+  "settings_restore_banner": {
+    "message": "В этой копии: {0}, {1} и {2}. Восстановление заменит все данные, которые сейчас хранит Pickit."
+  },
+  "settings_privacy_title": {
+    "message": "Конфиденциальность"
+  },
+  "settings_privacy_description": {
+    "message": "Решите, что Pickit может читать и как долго это хранить."
+  },
+  "settings_clear_data_title": {
+    "message": "Очистить данные"
+  },
+  "settings_clear_data_help": {
+    "message": "Удаляет историю цветов, шрифты и палитры с этого устройства. Настройки сохраняются."
+  },
+  "settings_clear_data_button": {
+    "message": "Очистить данные"
+  },
+  "settings_clear_data_confirm": {
+    "message": "Да, удалить всё"
+  },
+  "settings_toast_data_cleared": {
+    "message": "Все данные удалены"
+  },
+  "settings_privacy_note": {
+    "message": "Всё, что сохраняет Pickit, остаётся в этом браузере. Аккаунт не нужен, на сервер ничего не отправляется."
+  },
+  "backup_imported_palette_name": {
+    "message": "Импортированная палитра"
+  },
+  "backup_error_invalid_json": {
+    "message": "Этот файл не является корректным JSON."
+  },
+  "backup_error_not_pickit": {
+    "message": "Это не файл резервной копии Pickit."
+  },
+  "backup_error_newer_version": {
+    "message": "Эта копия создана более новой версией Pickit. Обновите Pickit и повторите попытку."
+  },
+  "ui_shortcut_title": {
+    "message": "Сочетание клавиш {0}"
+  },
+  "ui_shortcut_none": {
+    "message": "Сочетание клавиш не задано"
+  },
+  "settings_sync_title": {
+    "message": "Синхронизировать палитры и избранное"
+  },
+  "settings_sync_help": {
+    "message": "Ваши палитры и избранные цвета будут одинаковыми во всех браузерах Chrome, где вы вошли в аккаунт. История и шрифты остаются на этом устройстве."
+  },
+  "settings_sync_error_quota": {
+    "message": "Хранилище синхронизации Chrome заполнено, поэтому некоторые палитры не синхронизируются. Удалите ненужные палитры."
+  },
+  "settings_sync_error_too_large": {
+    "message": "Одна палитра слишком велика для синхронизации. Разделите её на палитры поменьше."
+  },
+  "settings_sync_error_unavailable": {
+    "message": "Синхронизация сейчас недоступна. Убедитесь, что вы вошли в Chrome и синхронизация включена."
+  },
+  "overlay_font_close": {
+    "message": "Закрыть инспектор шрифтов"
+  },
+  "sponsor_label": {
+    "message": "Спонсор -"
+  },
+  "sponsor_tagline": {
+    "message": "Бесплатные онлайн-инструменты для изображений, видео, аудио и PDF. Файлы остаются в вашем браузере."
+  },
+  "sponsor_tagline_short": {
+    "message": "Бесплатные инструменты для изображений, PDF и не только"
+  },
+  "sponsor_cta": {
+    "message": "Открыть"
+  },
+  "sponsor_open": {
+    "message": "Открыть {0} в новой вкладке"
+  },
+  "credits_title": {
+    "message": "О проекте"
+  },
+  "credits_made_by": {
+    "message": "Автор: {0}"
+  },
+  "credits_open_source": {
+    "message": "Pickit - проект с открытым кодом. Сообщайте об ошибках, предлагайте идеи или следите за развитием."
+  },
+  "credits_github": {
+    "message": "GitHub"
+  },
+  "credits_linkedin": {
+    "message": "LinkedIn"
+  },
+  "credits_portfolio": {
+    "message": "Портфолио"
   }
 }

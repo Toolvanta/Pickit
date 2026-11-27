@@ -3,6 +3,7 @@
 // on every machine and needs no extra permissions to save.
 
 import { hexToRgb, nearestColorName, readableOn } from './color';
+import { t } from './i18n';
 import type { ScanResult } from './scan';
 
 const WIDTH = 1200;
@@ -14,7 +15,7 @@ const SWATCH_H = 150;
 const FONT_ROW = 92;
 const MAX_COLORS = 18;
 const MAX_FONTS = 6;
-const UI_FONT = "'Montserrat', 'Segoe UI', system-ui, sans-serif";
+const UI_FONT = "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif";
 const MONO_FONT = "'Cascadia Code', Consolas, Menlo, monospace";
 
 function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
@@ -42,7 +43,7 @@ export function renderStyleGuide(scan: ScanResult): HTMLCanvasElement {
   let y = PAD;
   ctx.fillStyle = '#17171f';
   ctx.font = `650 34px ${UI_FONT}`;
-  ctx.fillText(scan.host || 'Style guide', PAD, y + 30);
+  ctx.fillText(scan.host || t('styleguide_default_title'), PAD, y + 30);
   ctx.fillStyle = '#5a5a6b';
   ctx.font = `400 16px ${UI_FONT}`;
   const title = scan.title.length > 110 ? `${scan.title.slice(0, 107)}…` : scan.title;
@@ -58,7 +59,7 @@ export function renderStyleGuide(scan: ScanResult): HTMLCanvasElement {
     y += 40;
   };
 
-  heading('Colours');
+  heading(t('styleguide_colours_heading'));
   colors.forEach((color, i) => {
     const x = PAD + (i % COLUMNS) * (SWATCH_W + GAP);
     const top = y + Math.floor(i / COLUMNS) * (SWATCH_H + GAP);
@@ -80,7 +81,7 @@ export function renderStyleGuide(scan: ScanResult): HTMLCanvasElement {
   });
   y += colorRows * (SWATCH_H + GAP) + 36;
 
-  heading('Typography');
+  heading(t('styleguide_typography_heading'));
   fonts.forEach((font) => {
     ctx.fillStyle = '#17171f';
     ctx.font = `600 30px "${font.family.replace(/"/g, '')}", ${UI_FONT}`;
@@ -88,7 +89,7 @@ export function renderStyleGuide(scan: ScanResult): HTMLCanvasElement {
     ctx.fillStyle = '#5a5a6b';
     ctx.font = `400 14px ${UI_FONT}`;
     const sizes = font.sizes.slice(0, 10).map((s) => `${s}px`).join('  ');
-    ctx.fillText(`${font.sourceLabel}   ·   Weights ${font.weights.join(', ')}   ·   Sizes ${sizes}`, PAD, y + 56);
+    ctx.fillText(t('styleguide_font_details', font.sourceLabel, font.weights.join(', '), sizes), PAD, y + 56);
     ctx.strokeStyle = '#e2e2ea';
     ctx.beginPath();
     ctx.moveTo(PAD, y + FONT_ROW - 16);
@@ -99,7 +100,7 @@ export function renderStyleGuide(scan: ScanResult): HTMLCanvasElement {
 
   ctx.fillStyle = '#858596';
   ctx.font = `400 13px ${UI_FONT}`;
-  ctx.fillText('Made with PickKit', PAD, height - 36);
+  ctx.fillText(t('styleguide_footer', 'Pickit'), PAD, height - 36);
   return canvas;
 }
 

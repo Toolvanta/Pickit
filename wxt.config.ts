@@ -11,15 +11,17 @@ export default defineConfig({
     default_locale: 'en',
     minimum_chrome_version: '116',
     permissions: ['activeTab', 'scripting', 'storage', 'sidePanel'],
+    // Requested only when the user opts in from the side panel, which does not get activeTab.
+    optional_host_permissions: ['<all_urls>'],
     action: { default_title: '__MSG_actionTitle__' },
     commands: {
       'pick-color': {
         suggested_key: { default: 'Alt+Shift+C' },
-        description: 'Pick a colour',
+        description: '__MSG_cmdPickColor__',
       },
       'inspect-font': {
         suggested_key: { default: 'Alt+Shift+F' },
-        description: 'Inspect a font',
+        description: '__MSG_cmdInspectFont__',
       },
     },
   },

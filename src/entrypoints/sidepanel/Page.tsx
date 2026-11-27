@@ -1,9 +1,11 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { browser } from 'wxt/browser';
 import { hexToRgb, nearestColorName } from '@/core/color';
 import { exportColors } from '@/core/export';
 import { isEnabled } from '@/core/features';
+import { t, tp } from '@/core/i18n';
 import type { BackgroundRequest, FailureReason, ScanResponse } from '@/core/messages';
+import { hasAllSites, requestAllSites, watchAllSites } from '@/core/permissions';
 import type { ScanColor, ScanResult } from '@/core/scan';
 import { newId, type Settings } from '@/core/storage';
 import { downloadCanvas, renderStyleGuide } from '@/core/style-guide';
@@ -18,6 +20,8 @@ type Status =
   | { kind: 'failed'; reason: FailureReason };
 
 const PALETTE_SIZE = 12;
+/** Elements read before a scan stops; matches the limit in the page scanner. */
+const SCAN_ELEMENT_LIMIT = 6000;
 
 const usage = (color: ScanColor, role: Role) =>
   role === 'all' ? color.text + color.background + color.border : color[role];
@@ -25,28 +29,45 @@ const usage = (color: ScanColor, role: Role) =>
 export function Page({ settings }: { settings: Settings }) {
   const [status, setStatus] = useState<Status>({ kind: 'loading' });
   const [role, setRole] = useState<Role>('all');
-  const [palettes, setPalettes] = useStored('palettes');
+  const [, setPalettes] = useStored('palettes');
+  const [allSites, setAllSites] = useState(false);
 
+  useEffect(() => {
+    void hasAllSites().then(setAllSites);
+    return watchAllSites(setAllSites);
+  }, []);
+
+  // Scans can overlap (tab switches while a slow page is still being read). Only the
+  // newest request may update the view, so a late reply cannot show another tab's data.
+  const latest = useRef(0);
   const scan = useCallback(async () => {
+    const request = ++latest.current;
     setStatus({ kind: 'loading' });
+    let next: Status;
     try {
       const { id: windowId } = await browser.windows.getCurrent();
       if (windowId === undefined) throw new Error('no window');
-      const request: BackgroundRequest = { t: 'scan', windowId };
-      const response = (await browser.runtime.sendMessage(request)) as ScanResponse;
-      setStatus(response.ok ? { kind: 'done', result: response.result } : { kind: 'failed', reason: response.reason });
+      const message: BackgroundRequest = { t: 'scan', windowId };
+      const response = (await browser.runtime.sendMessage(message)) as ScanResponse;
+      next = response.ok ? { kind: 'done', result: response.result } : { kind: 'failed', reason: response.reason };
     } catch {
-      setStatus({ kind: 'failed', reason: 'unknown' });
+      next = { kind: 'failed', reason: 'unknown' };
     }
+    if (request === latest.current) setStatus(next);
   }, []);
 
-  // Rescan when the user switches tab or the page finishes loading. This only succeeds
-  // on tabs where a picker has been invoked; the failure state below explains that.
+  // Rescan when the user switches tab or the page finishes loading, in this window only.
   useEffect(() => {
+    let windowId: number | undefined;
+    void browser.windows.getCurrent().then((w) => {
+      windowId = w.id;
+    });
     void scan();
-    const onActivated = () => void scan();
-    const onUpdated = (_id: number, change: { status?: string }, tab: { active?: boolean }) => {
-      if (change.status === 'complete' && tab.active) void scan();
+    const onActivated = (info: { windowId: number }) => {
+      if (windowId === undefined || info.windowId === windowId) void scan();
+    };
+    const onUpdated = (_id: number, change: { status?: string }, tab: { active?: boolean; windowId?: number }) => {
+      if (change.status === 'complete' && tab.active && (windowId === undefined || tab.windowId === windowId)) void scan();
     };
     browser.tabs.onActivated.addListener(onActivated);
     browser.tabs.onUpdated.addListener(onUpdated);
@@ -63,10 +84,10 @@ export function Page({ settings }: { settings: Settings }) {
       <div className="stack" aria-busy="true">
         <div className="section-head">
           <div>
-            <div className="eyebrow">Page scan</div>
-            <h3>Reading this page</h3>
+            <div className="eyebrow">{t('page_loading_eyebrow')}</div>
+            <h3>{t('page_loading_heading')}</h3>
           </div>
-          <span className="badge badge-live">Working</span>
+          <span className="badge badge-live">{t('page_loading_badge')}</span>
         </div>
         <div className="row" style={{ gap: 4 }} aria-hidden="true">
           {[4, 3, 6, 2, 5, 3, 4].map((weight, index) => (
@@ -89,23 +110,46 @@ export function Page({ settings }: { settings: Settings }) {
   if (status.kind === 'failed') {
     if (status.reason === 'restricted') {
       return (
-        <Empty icon="alert" title="This page cannot be scanned">
-          Chrome blocks extensions on browser pages and the Web Store. Switch to any website.
+        <Empty icon="alert" title={t('page_restricted_title')}>
+          {t('page_restricted_body')}
+        </Empty>
+      );
+    }
+    if (allSites) {
+      return (
+        <Empty
+          icon="scan"
+          title={t('page_unreadable_title')}
+          action={
+            <button type="button" className="btn btn-primary" onClick={() => void scan()} style={{ marginTop: 8 }}>
+              {t('page_scan_again')}
+            </button>
+          }
+        >
+          {t('page_unreadable_body')}
         </Empty>
       );
     }
     return (
       <Empty
         icon="scan"
-        title="PickKit has not been invoked on this tab"
+        title={t('page_not_invoked_title')}
         action={
-          <button type="button" className="btn btn-primary" onClick={() => void scan()} style={{ marginTop: 8 }}>
-            Scan again
-          </button>
+          <div className="row" style={{ marginTop: 8, justifyContent: 'center' }}>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => void requestAllSites().then((ok) => ok && void scan())}
+            >
+              {t('page_allow_all_sites')}
+            </button>
+            <button type="button" className="btn" onClick={() => void scan()}>
+              {t('page_scan_again')}
+            </button>
+          </div>
         }
       >
-        For your privacy, PickKit only reads a page after you invoke a picker on that tab. Open the popup, pick a colour
-        or font there, then scan again.
+        {t('page_not_invoked_body')}
       </Empty>
     );
   }
@@ -118,37 +162,38 @@ export function Page({ settings }: { settings: Settings }) {
     .map((color) => ({ hex: color.hex, weight: color.text + color.background + color.border }));
 
   function saveAsPalette() {
-    setPalettes([...palettes, { id: newId(), name: result.host || 'Page palette', colors: topHexes, ts: Date.now() }]);
-    toast('Saved as a palette');
+    const id = newId();
+    setPalettes((list) => [...list, { id, name: result.host || t('page_default_palette_name'), colors: topHexes, ts: Date.now() }]);
+    toast(t('page_saved_as_palette'));
   }
 
   async function downloadGuide() {
     await downloadCanvas(renderStyleGuide(result), `${result.host || 'page'}-style-guide.png`);
-    toast('Style guide downloaded');
+    toast(t('page_style_guide_downloaded'));
   }
 
   return (
     <div className="stack">
       <div className="section-head">
         <div className="grow">
-          <div className="eyebrow">Current page</div>
-          <h2 className="page-host truncate">{result.host || 'This page'}</h2>
+          <div className="eyebrow">{t('page_current_eyebrow')}</div>
+          <h2 className="page-host truncate">{result.host || t('page_this_page')}</h2>
           <div className="muted small truncate page-title">{result.title}</div>
         </div>
         <button type="button" className="btn btn-small" onClick={() => void scan()}>
-          <Icon name="scan" /> Rescan
+          <Icon name="scan" /> {t('page_rescan')}
         </button>
       </div>
 
       {ribbonColors.length > 0 && (
         <section className="stack" style={{ gap: 8 }}>
           <div className="mini-head">
-            <h3>Colour fingerprint</h3>
-            <span className="faint small">Tap a swatch to copy</span>
+            <h3>{t('page_fingerprint_heading')}</h3>
+            <span className="faint small">{t('page_fingerprint_hint')}</span>
           </div>
           <ColorBar
             colors={ribbonColors}
-            onSelect={(hex) => void copy(inDefaultFormat(hex, settings), 'Copied colour')}
+            onSelect={(hex) => void copy(inDefaultFormat(hex, settings), t('page_copied_colour'))}
           />
         </section>
       )}
@@ -156,10 +201,14 @@ export function Page({ settings }: { settings: Settings }) {
       {isEnabled('style-guide') && (
         <div className="row">
           <button type="button" className="btn btn-primary grow" onClick={() => void downloadGuide()}>
-            <Icon name="download" /> Style guide (PNG)
+            <Icon name="download" /> {t('page_style_guide_button')}
           </button>
-          <button type="button" className="btn grow" onClick={() => void copy(exportColors(result.host, topHexes, 'css'), 'Copied CSS variables')}>
-            <Icon name="copy" /> Copy tokens
+          <button
+            type="button"
+            className="btn grow"
+            onClick={() => void copy(exportColors(result.host, topHexes, 'css'), t('page_copied_css_variables'))}
+          >
+            <Icon name="copy" /> {t('page_copy_tokens')}
           </button>
         </div>
       )}
@@ -167,38 +216,38 @@ export function Page({ settings }: { settings: Settings }) {
       <section className="stack">
         <div className="section-head">
           <div>
-            <div className="eyebrow">Extracted palette</div>
-            <h3>Colours · {colors.length}</h3>
+            <div className="eyebrow">{t('page_palette_eyebrow')}</div>
+            <h3>{tp('page_colours_heading', colors.length)}</h3>
           </div>
           <button type="button" className="btn btn-small btn-ghost" onClick={saveAsPalette} disabled={!topHexes.length}>
-            <Icon name="bookmark" size={13} /> Save as palette
+            <Icon name="bookmark" size={13} /> {t('page_save_as_palette')}
           </button>
         </div>
         <Segmented<Role>
-          label="Colour role"
+          label={t('page_role_label')}
           value={role}
           options={[
-            { value: 'all', label: 'All' },
-            { value: 'text', label: 'Text' },
-            { value: 'background', label: 'Background' },
-            { value: 'border', label: 'Border' },
+            { value: 'all', label: t('page_role_all') },
+            { value: 'text', label: t('page_role_text') },
+            { value: 'background', label: t('page_role_background') },
+            { value: 'border', label: t('page_role_border') },
           ]}
           onChange={setRole}
         />
-        {colors.length === 0 && <p className="muted small">No colours used in this role.</p>}
+        {colors.length === 0 && <p className="muted small">{t('page_no_colours_in_role')}</p>}
         <ul className="list">
           {colors.map((color) => {
             const rgb = hexToRgb(color.hex);
             const value = inDefaultFormat(color.hex, settings);
             return (
               <li key={color.hex}>
-                <button type="button" className="list-row" onClick={() => void copy(value)} aria-label={`Copy ${value}`}>
+                <button type="button" className="list-row" onClick={() => void copy(value)} aria-label={t('page_copy_value', value)}>
                   <span className="list-swatch" style={{ background: color.hex }} />
                   <span className="grow">
                     <span className="mono">{value}</span>
                     <span className="muted small block">{rgb ? nearestColorName(rgb) : ''}</span>
                   </span>
-                  <span className="muted small">{usage(color, role)}×</span>
+                  <span className="muted small">{tp('page_uses_count', usage(color, role))}</span>
                 </button>
               </li>
             );
@@ -209,8 +258,8 @@ export function Page({ settings }: { settings: Settings }) {
       <section className="stack">
         <div className="section-head">
           <div>
-            <div className="eyebrow">Type system</div>
-            <h3>Typography · {result.fonts.length}</h3>
+            <div className="eyebrow">{t('page_type_eyebrow')}</div>
+            <h3>{tp('page_typography_heading', result.fonts.length)}</h3>
           </div>
         </div>
         {result.fonts.map((font) => (
@@ -218,9 +267,9 @@ export function Page({ settings }: { settings: Settings }) {
             <div className="row between">
               <div className="row grow">
                 <span className="font-name truncate">{font.family}</span>
-                {!font.certain && <span className="badge">Likely</span>}
+                {!font.certain && <span className="badge">{t('page_font_likely')}</span>}
               </div>
-              <span className="muted small">{font.count}×</span>
+              <span className="muted small">{tp('page_uses_count', font.count)}</span>
             </div>
             <div className="muted small">
               {font.sourceLabel}
@@ -228,7 +277,7 @@ export function Page({ settings }: { settings: Settings }) {
                 <>
                   {' · '}
                   <a href={font.link} target="_blank" rel="noreferrer">
-                    View on Google Fonts
+                    {t('page_view_on_google_fonts')}
                   </a>
                 </>
               )}
@@ -244,14 +293,14 @@ export function Page({ settings }: { settings: Settings }) {
                   {s}px
                 </span>
               ))}
-              {font.sizes.length > 10 && <span className="chip chip-quiet">+{font.sizes.length - 10}</span>}
+              {font.sizes.length > 10 && <span className="chip chip-quiet">{tp('page_more_sizes', font.sizes.length - 10)}</span>}
             </div>
           </article>
         ))}
-        {result.fonts.length === 0 && <p className="muted small">No text was found on this page.</p>}
+        {result.fonts.length === 0 && <p className="muted small">{t('page_no_text_found')}</p>}
       </section>
 
-      {result.truncated && <p className="muted small">This is a large page, so only the first 6,000 elements were read.</p>}
+      {result.truncated && <p className="muted small">{tp('page_truncated_notice', SCAN_ELEMENT_LIMIT)}</p>}
     </div>
   );
 }

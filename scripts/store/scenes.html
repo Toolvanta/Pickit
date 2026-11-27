@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Pickit store scenes</title>
+    <!--
+      Chrome Web Store artwork, composed from the real extension pages running in the
+      preview harness. scripts/store/capture.mjs opens this page once per scene
+      (?scene=…) and saves a PNG at the exact store size. Edit the copy in SCENES below.
+    -->
+    <style>
+      :root {
+        --ink: #17171c;
+        --ink-2: #52525c;
+        --bg: #f4f4f7;
+        --accent: #5b5bd6;
+        font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI Variable Display', 'Segoe UI', Roboto, sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+      }
+      .stage {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 48px;
+        width: var(--w);
+        height: var(--h);
+        padding: 0 64px;
+        overflow: hidden;
+        background:
+          radial-gradient(60% 80% at 100% 0%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%),
+          radial-gradient(50% 60% at 0% 100%, color-mix(in srgb, #2bb3ff 14%, transparent), transparent 70%),
+          var(--bg);
+      }
+      .copy {
+        flex: 0 0 380px;
+        display: grid;
+        gap: 18px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .brand img {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 50px;
+        line-height: 1.04;
+        letter-spacing: -0.04em;
+      }
+      p {
+        margin: 0;
+        color: var(--ink-2);
+        font-size: 19px;
+        line-height: 1.5;
+      }
+      ul {
+        display: grid;
+        gap: 10px;
+        margin: 4px 0 0;
+        padding: 0;
+        list-style: none;
+        font-size: 16px;
+        color: var(--ink-2);
+      }
+      li::before {
+        content: '';
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        margin-right: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+        vertical-align: 2px;
+      }
+      .shots {
+        position: relative;
+        flex: 1;
+        height: 100%;
+      }
+      .frame {
+        position: absolute;
+        overflow: hidden;
+        border: 0;
+        border-radius: 16px;
+        background: #fff;
+        box-shadow:
+          0 0 0 1px rgb(23 23 28 / 0.08),
+          0 30px 60px -20px rgb(23 23 28 / 0.35),
+          0 8px 20px -8px rgb(23 23 28 / 0.18);
+      }
+      .frame iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+      .window-bar {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        height: 34px;
+        padding: 0 14px;
+        background: #eceef2;
+        border-bottom: 1px solid #dcdfe5;
+      }
+      .window-bar span {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: #d0d3da;
+      }
+      .window-bar .url {
+        flex: 1;
+        height: 20px;
+        margin-left: 14px;
+        border-radius: 6px;
+        background: #fff;
+      }
+      .browser iframe {
+        height: calc(100% - 34px);
+      }
+      /* Promo tiles */
+      .tile {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 0 40px;
+      }
+      .tile .brand {
+        font-size: 40px;
+      }
+      .tile .brand img {
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
+      }
+      .tile p {
+        font-size: 20px;
+      }
+      .swatches {
+        display: flex;
+        gap: 8px;
+      }
+      .swatches span {
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        box-shadow: 0 0 0 1px rgb(0 0 0 / 0.06);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module">
+      // Sample data the framed pages read (same origin as the preview harness).
+      const now = Date.now();
+      const c = (hex, i, extra = {}) => ({ id: 'c' + i, hex, ts: now - i * 420000, origin: 'dribbble.com', ...extra });
+      const font = (id, family, extra = {}) => ({
+        id,
+        ts: now - 60000,
+        origin: 'linear.app',
+        family,
+        certain: true,
+        stack: family + ', system-ui, sans-serif',
+        size: 16,
+        weight: 500,
+        style: 'normal',
+        lineHeight: '1.5',
+        letterSpacing: 'normal',
+        color: '#17171C',
+        source: 'google',
+        sourceLabel: 'Google Fonts',
+        link: 'https://fonts.google.com/specimen/' + family,
+        ...extra,
+      });
+      const seed = {
+        settings: { format: 'hex', upperHex: true, theme: 'light', historyLimit: 100, sync: false },
+        colors: [
+          c('#5B5BD6', 0, { token: '--brand-500', favorite: true }),
+          c('#F76B15', 1),
+          c('#30A46C', 2, { favorite: true }),
+          c('#FFC53D', 3),
+          c('#E5484D', 4),
+          c('#0090FF', 5),
+          c('#8E4EC6', 6),
+          c('#12A594', 7),
+          c('#17171C', 8),
+          c('#F4F4F7', 9),
+          c('#D6409F', 10),
+          c('#46A758', 11),
+        ],
+        fonts: [
+          font('f1', 'Inter', { size: 40, weight: 700, lineHeight: '1.1', letterSpacing: '-0.03em' }),
+          font('f2', 'IBM Plex Mono', { size: 14, weight: 400, color: '#52525C' }),
+        ],
+        savedFonts: [font('f3', 'Fraunces', { size: 56, weight: 600 })],
+        palettes: [
+          { id: 'p1', name: 'Brand', colors: ['#5B5BD6', '#F76B15', '#30A46C', '#FFC53D', '#E5484D'], ts: now },
+          { id: 'p2', name: 'Calm UI', colors: ['#17171C', '#52525C', '#E3E3E8', '#F4F4F7', '#0090FF'], ts: now - 1000 },
+        ],
+        stats: { picks: 4, ratingDismissed: true },
+      };
+      localStorage.setItem('pickit-preview', JSON.stringify(seed));
+
+      const SCENES = {
+        colour: {
+          size: [1280, 800],
+          title: 'Pick any colour on any page',
+          text: 'A pixel-perfect loupe follows your cursor. Click to copy, Shift+click to pick several.',
+          points: ['HEX, RGB, HSL and OKLCH', 'Spots the CSS variable behind a colour', 'Works anywhere on your screen'],
+          frames: [{ kind: 'browser', src: '/store/demo.html', x: 0, y: 60, w: 760, h: 680, run: 'loupe' }],
+        },
+        font: {
+          size: [1280, 800],
+          title: 'Read any font in one click',
+          text: 'Hover any text to see its family, size, weight, line height and colour. Pin it to copy the CSS.',
+          points: ['Knows Google, Adobe and self-hosted fonts', 'Copy CSS or save the font', 'Colour in every format'],
+          frames: [{ kind: 'browser', src: '/store/demo.html', x: 0, y: 60, w: 760, h: 680, run: 'font' }],
+        },
+        workspace: {
+          size: [1280, 800],
+          title: 'A colour workspace in your side panel',
+          text: 'Every pick is kept with shades, harmonies, favourites and search.',
+          points: ['Shade scales from 50 to 950', 'Harmonies in one switch', 'Sync palettes across devices'],
+          frames: [
+            { src: '/popup.html', x: 0, y: 150, w: 360, h: 560 },
+            { src: '/sidepanel.html', x: 380, y: 40, w: 380, h: 720 },
+          ],
+        },
+        contrast: {
+          size: [1280, 800],
+          title: 'Contrast you can trust',
+          text: 'WCAG 2 and APCA side by side, one-click fixes, and colour-blindness previews.',
+          points: ['Smallest change that passes AA or AAA', 'Protanopia, deuteranopia, tritanopia', 'Live text preview'],
+          frames: [{ src: '/sidepanel.html', x: 190, y: 40, w: 380, h: 720, run: 'contrast' }],
+        },
+        palettes: {
+          size: [1280, 800],
+          title: 'Palettes ready for your code',
+          text: 'Group colours, then export them as CSS, SCSS, Tailwind, design tokens, JSON or SVG.',
+          points: ['Scan a whole page for its colours', 'Backup and restore', 'In 10 languages'],
+          frames: [
+            { src: '/sidepanel.html', x: 0, y: 40, w: 380, h: 720, run: 'palettes' },
+            { src: '/sidepanel.html', x: 400, y: 80, w: 380, h: 640, run: 'page' },
+          ],
+        },
+        tile: { size: [440, 280], tile: true },
+        marquee: {
+          size: [1400, 560],
+          title: 'Colours and fonts, picked in a click',
+          text: 'Pick colours, detect fonts, check contrast and export palettes.',
+          points: [],
+          frames: [
+            { src: '/popup.html', x: 40, y: 50, w: 360, h: 470 },
+            { src: '/sidepanel.html', x: 420, y: 24, w: 380, h: 536 },
+          ],
+        },
+      };
+
+      const name = new URLSearchParams(location.search).get('scene') ?? 'colour';
+      const scene = SCENES[name];
+      const [w, h] = scene.size;
+      const root = document.getElementById('root');
+      const stage = document.createElement('div');
+      stage.className = scene.tile ? 'stage tile' : 'stage';
+      stage.style.setProperty('--w', w + 'px');
+      stage.style.setProperty('--h', h + 'px');
+      root.append(stage);
+
+      const brand = `<div class="brand"><img src="/icon/128.png" alt="" />Pickit</div>`;
+      if (scene.tile) {
+        stage.innerHTML = `${brand}<p>Colour picker &amp; font detector</p>
+          <div class="swatches">${seed.colors.slice(0, 8).map((x) => `<span style="background:${x.hex}"></span>`).join('')}</div>`;
+        document.body.dataset.ready = '1';
+      } else {
+        stage.innerHTML = `<div class="copy">${brand}<h1>${scene.title}</h1><p>${scene.text}</p>
+          <ul>${scene.points.map((p) => `<li>${p}</li>`).join('')}</ul></div><div class="shots"></div>`;
+        const shots = stage.querySelector('.shots');
+        const ready = scene.frames.map((f) => {
+          const frame = document.createElement('div');
+          frame.className = f.kind === 'browser' ? 'frame browser' : 'frame';
+          Object.assign(frame.style, { left: f.x + 'px', top: f.y + 'px', width: f.w + 'px', height: f.h + 'px' });
+          if (f.kind === 'browser') frame.innerHTML = '<div class="window-bar"><span></span><span></span><span></span><div class="url"></div></div>';
+          const iframe = document.createElement('iframe');
+          iframe.src = f.src;
+          frame.append(iframe);
+          shots.append(frame);
+          return new Promise((resolve) => (iframe.onload = () => resolve(drive(iframe, f.run))));
+        });
+        Promise.all(ready).then(() => setTimeout(() => (document.body.dataset.ready = '1'), 600));
+      }
+
+      const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+      const tab = (win, label) => [...win.document.querySelectorAll('.tab')].find((t) => t.textContent.includes(label))?.click();
+
+      async function drive(iframe, run) {
+        const win = iframe.contentWindow;
+        await wait(500);
+        if (run === 'loupe') {
+          await win.__pkSend({ t: 'pk:start', mode: 'color' });
+          await wait(1200);
+          const root = win.document.querySelector('pickit-overlay').shadowRoot;
+          const catcher = root.querySelector('.pk-catch');
+          const band = win.document.querySelectorAll('[data-band]')[0].getBoundingClientRect();
+          catcher.dispatchEvent(new win.PointerEvent('pointermove', { clientX: band.left + 70, clientY: band.top + 24, bubbles: true }));
+        } else if (run === 'font') {
+          await win.__pkSend({ t: 'pk:start', mode: 'font' });
+          await wait(200);
+          const heading = win.document.querySelector('h1');
+          const r = heading.getBoundingClientRect();
+          const opts = { clientX: r.left + 40, clientY: r.top + 10, bubbles: true, composed: true };
+          heading.dispatchEvent(new win.MouseEvent('mousemove', opts));
+          await wait(200);
+          heading.dispatchEvent(new win.MouseEvent('click', opts));
+        } else if (run === 'contrast') {
+          tab(win, 'Contrast');
+          await wait(300);
+          const input = win.document.querySelector('#contrast-text');
+          Object.getOwnPropertyDescriptor(win.HTMLInputElement.prototype, 'value').set.call(input, '#8F8FF0');
+          input.dispatchEvent(new win.Event('input', { bubbles: true }));
+        } else if (run === 'palettes') {
+          tab(win, 'Palettes');
+        } else if (run === 'page') {
+          tab(win, 'Page');
+        }
+        await wait(500);
+      }
+    </script>
+  </body>
+</html>

@@ -1,4 +1,4 @@
-// Typed wrapper around chrome.storage.local. Everything PickKit stores stays on the
+// Typed wrapper around chrome.storage.local. Everything Pickit stores stays on the
 // user's device; nothing here talks to a server.
 
 import { browser } from 'wxt/browser';
@@ -11,6 +11,8 @@ export interface Settings {
   upperHex: boolean;
   theme: ThemeSetting;
   historyLimit: number;
+  /** Sync palettes and favourites through chrome.storage.sync. Off unless turned on. */
+  sync: boolean;
 }
 
 export interface ColorEntry {
@@ -71,7 +73,7 @@ export interface State {
 }
 
 export const DEFAULTS: State = {
-  settings: { format: 'hex', upperHex: true, theme: 'system', historyLimit: 100 },
+  settings: { format: 'hex', upperHex: true, theme: 'system', historyLimit: 100, sync: false },
   colors: [],
   fonts: [],
   savedFonts: [],
@@ -106,13 +108,27 @@ export async function setState<K extends keyof State>(key: K, value: State[K]): 
   await browser.storage.local.set({ [key]: value });
 }
 
+/**
+ * Read-modify-write against what is in storage now, not a possibly stale copy in a
+ * React component. Within one origin (the popup, side panel and settings share the
+ * extension's), a Web Lock queues concurrent updates so none is lost. The overlay runs
+ * in the page's origin, where the lock cannot coordinate, but its read-to-write window
+ * is a single storage round trip.
+ */
 export async function updateState<K extends keyof State>(
   key: K,
   update: (current: State[K]) => State[K],
 ): Promise<State[K]> {
-  const next = update(await getState(key));
-  await setState(key, next);
-  return next;
+  const run = async () => {
+    const next = update(await getState(key));
+    await setState(key, next);
+    return next;
+  };
+  // Only in Pickit's own pages. In a web page (the overlay) the lock would live in the
+  // page's origin, where it coordinates nothing and the page itself could hold it.
+  const ownPage = typeof location !== 'undefined' && location.protocol === 'chrome-extension:';
+  const locks = ownPage && typeof navigator !== 'undefined' ? navigator.locks : undefined;
+  return locks ? locks.request(`pickit:${key}`, run) : run();
 }
 
 /** Subscribes to changes of one key. Returns an unsubscribe function. */
@@ -126,13 +142,29 @@ export function watchState<K extends keyof State>(key: K, onChange: (value: Stat
   return () => browser.storage.onChanged.removeListener(listener);
 }
 
+/**
+ * Trims history to `limit` by dropping the oldest unpinned entries. Favourites are
+ * never dropped, so history can exceed the limit only when favourites alone do.
+ */
+export function trimHistory<T extends { favorite?: boolean }>(colors: T[], limit: number): T[] {
+  let excess = colors.length - limit;
+  if (excess <= 0) return colors;
+  const drop = new Set<T>();
+  for (let i = colors.length - 1; i >= 0 && excess > 0; i--) {
+    if (colors[i].favorite) continue;
+    drop.add(colors[i]);
+    excess -= 1;
+  }
+  return colors.filter((c) => !drop.has(c));
+}
+
 /** Adds a picked colour to history. Re-picking a colour moves it to the top instead of duplicating it. */
 export async function addColor(entry: Omit<ColorEntry, 'id' | 'ts'>): Promise<void> {
   const { historyLimit } = await getState('settings');
   await updateState('colors', (colors) => {
     const existing = colors.find((c) => c.hex.toLowerCase() === entry.hex.toLowerCase());
     const rest = colors.filter((c) => c.hex.toLowerCase() !== entry.hex.toLowerCase());
-    return [{ ...entry, id: newId(), ts: Date.now(), favorite: existing?.favorite }, ...rest].slice(0, historyLimit);
+    return trimHistory([{ ...entry, id: newId(), ts: Date.now(), favorite: existing?.favorite }, ...rest], historyLimit);
   });
   await updateState('stats', (stats) => ({ ...stats, picks: stats.picks + 1 }));
 }
@@ -141,12 +173,12 @@ const sameFont = (a: FontEntry, b: Omit<FontEntry, 'id' | 'ts'>) =>
   a.family === b.family && a.size === b.size && a.weight === b.weight && a.style === b.style;
 
 export async function addFont(entry: Omit<FontEntry, 'id' | 'ts'>): Promise<void> {
-  await updateState('fonts', (fonts) =>
-    [{ ...entry, id: newId(), ts: Date.now() }, ...fonts.filter((f) => !sameFont(f, entry))].slice(
-      0,
-      FONT_HISTORY_LIMIT,
-    ),
-  );
+  await updateState('fonts', (fonts) => {
+    // Re-inspecting a font moves it to the top but keeps it pinned if it was.
+    const existing = fonts.find((f) => sameFont(f, entry));
+    const next = { ...entry, id: newId(), ts: Date.now(), ...(existing?.favorite ? { favorite: true } : {}) };
+    return trimHistory([next, ...fonts.filter((f) => !sameFont(f, entry))], FONT_HISTORY_LIMIT);
+  });
 }
 
 export async function saveFont(entry: Omit<FontEntry, 'id' | 'ts'>): Promise<void> {
@@ -168,8 +200,24 @@ export async function toggleFontFavorite(id: string): Promise<void> {
   await updateState('fonts', (fonts) => fonts.map((font) => (font.id === id ? { ...font, favorite: !font.favorite } : font)));
 }
 
+/** Everything Pickit stores, with defaults filled in. Used for backups. */
+export async function getAllState(): Promise<State> {
+  const keys = Object.keys(DEFAULTS) as (keyof State)[];
+  const entries = await Promise.all(keys.map(async (key) => [key, await getState(key)] as const));
+  return Object.fromEntries(entries) as unknown as State;
+}
+
+/** Replaces everything Pickit stores, e.g. when restoring a backup. */
+export async function replaceAllState(state: State): Promise<void> {
+  // Write first, then drop keys the backup does not have. Clearing first would leave a
+  // moment with no settings, which other views and the sync engine would see.
+  await browser.storage.local.set(state);
+  const stale = Object.keys(await browser.storage.local.get(null)).filter((key) => !(key in state));
+  if (stale.length) await browser.storage.local.remove(stale);
+}
+
+/** Removes history, fonts, palettes and stats from this device. Settings stay, and so does synced data elsewhere. */
 export async function clearAllData(): Promise<void> {
-  const settings = await getState('settings');
-  await browser.storage.local.clear();
-  await setState('settings', settings);
+  const keys = Object.keys(await browser.storage.local.get(null)).filter((key) => key !== 'settings');
+  if (keys.length) await browser.storage.local.remove(keys);
 }

@@ -1,11 +1,1403 @@
 {
   "extName": {
-    "message": "PickKit – कलर पिकर और फ़ॉन्ट फ़ाइंडर"
+    "message": "Pickit - कलर पिकर और फ़ॉन्ट डिटेक्टर"
   },
   "extDescription": {
     "message": "किसी भी पेज या स्क्रीन से रंग चुनें, होवर करके फ़ॉन्ट पहचानें, कंट्रास्ट जाँचें और पैलेट एक्सपोर्ट करें।"
   },
   "actionTitle": {
-    "message": "PickKit खोलें"
+    "message": "Pickit खोलें"
+  },
+  "cmdPickColor": {
+    "message": "रंग चुनें"
+  },
+  "cmdInspectFont": {
+    "message": "फ़ॉन्ट जाँचें"
+  },
+  "fonts_likely_badge": {
+    "message": "संभावित"
+  },
+  "fonts_likely_title": {
+    "message": "डिवाइस पर इंस्टॉल फ़ॉन्ट के आधार पर सबसे सही अनुमान"
+  },
+  "fonts_specimen_pangram": {
+    "message": "ऋषियों को सताने वाले दुष्ट राक्षसों के राजा रावण का सर्वनाश करने वाले विष्णुवतार भगवान श्रीराम"
+  },
+  "fonts_fact_size": {
+    "message": "साइज़"
+  },
+  "fonts_fact_weight": {
+    "message": "वेट"
+  },
+  "fonts_fact_line_height": {
+    "message": "लाइन हाइट"
+  },
+  "fonts_fact_spacing": {
+    "message": "स्पेसिंग"
+  },
+  "fonts_spacing_normal": {
+    "message": "सामान्य"
+  },
+  "fonts_copy_css": {
+    "message": "CSS कॉपी करें"
+  },
+  "fonts_copied_css": {
+    "message": "फ़ॉन्ट CSS कॉपी हो गई"
+  },
+  "fonts_save_font": {
+    "message": "फ़ॉन्ट सेव करें"
+  },
+  "fonts_add_favourite": {
+    "message": "पसंदीदा में जोड़ें"
+  },
+  "fonts_remove_favourite": {
+    "message": "पसंदीदा से हटाएँ"
+  },
+  "fonts_remove": {
+    "message": "हटाएँ"
+  },
+  "fonts_eyebrow_library": {
+    "message": "टाइप लाइब्रेरी"
+  },
+  "fonts_heading_recent": {
+    "message": "हाल ही में जाँचे गए"
+  },
+  "fonts_heading_saved": {
+    "message": "सेव किए गए फ़ॉन्ट"
+  },
+  "fonts_search_label": {
+    "message": "फ़ॉन्ट खोजें"
+  },
+  "fonts_search_placeholder": {
+    "message": "फ़ैमिली, सोर्स, ओरिजिन खोजें…"
+  },
+  "fonts_list_label": {
+    "message": "फ़ॉन्ट सूची"
+  },
+  "fonts_tab_recent_one": {
+    "message": "हाल के · {0}"
+  },
+  "fonts_tab_recent_other": {
+    "message": "हाल के · {0}"
+  },
+  "fonts_tab_saved_one": {
+    "message": "सेव किए · {0}"
+  },
+  "fonts_tab_saved_other": {
+    "message": "सेव किए · {0}"
+  },
+  "fonts_empty_search_title": {
+    "message": "इस खोज से कोई फ़ॉन्ट मेल नहीं खाता"
+  },
+  "fonts_empty_search_body": {
+    "message": "फ़ैमिली का नाम, सोर्स या होस्टनेम आज़माएँ।"
+  },
+  "fonts_empty_recent_title": {
+    "message": "अभी तक कोई फ़ॉन्ट नहीं जाँचा गया"
+  },
+  "fonts_empty_recent_body": {
+    "message": "किसी भी पेज पर टेक्स्ट हाइलाइट करें और इंस्पेक्टर से उसका फ़ॉन्ट सेव करें, ताकि उसकी जानकारी यहाँ बनी रहे।"
+  },
+  "fonts_empty_saved_title": {
+    "message": "कोई सेव किया गया फ़ॉन्ट नहीं"
+  },
+  "fonts_empty_saved_body": {
+    "message": "बाद के लिए रखने हेतु इंस्पेक्टर से या 'हाल के' से कोई फ़ॉन्ट सेव करें।"
+  },
+  "fonts_saved_toast": {
+    "message": "आपके फ़ॉन्ट में सेव हो गया"
+  },
+  "page_loading_eyebrow": {
+    "message": "पेज स्कैन"
+  },
+  "page_loading_heading": {
+    "message": "यह पेज पढ़ा जा रहा है"
+  },
+  "page_loading_badge": {
+    "message": "जारी है"
+  },
+  "page_restricted_title": {
+    "message": "यह पेज स्कैन नहीं किया जा सकता"
+  },
+  "page_restricted_body": {
+    "message": "Chrome ब्राउज़र पेजों और Web Store पर एक्सटेंशन को ब्लॉक करता है। किसी भी वेबसाइट पर जाएँ।"
+  },
+  "page_unreadable_title": {
+    "message": "Pickit यह पेज नहीं पढ़ सका"
+  },
+  "page_unreadable_body": {
+    "message": "पेज रीलोड करें और फिर से स्कैन करें। लोकल फ़ाइलों के लिए, एक्सटेंशन की जानकारी में फ़ाइल ऐक्सेस की अनुमति दें।"
+  },
+  "page_not_invoked_title": {
+    "message": "इस टैब पर Pickit शुरू नहीं किया गया है"
+  },
+  "page_not_invoked_body": {
+    "message": "आपकी प्राइवेसी के लिए, Pickit किसी पेज को तभी पढ़ता है जब आप उसे वहाँ शुरू करते हैं। इस टैब पर टूलबार में Pickit आइकन पर क्लिक करें और फिर से स्कैन करें, या सभी साइटों का ऐक्सेस दें ताकि साइड पैनल कोई भी पेज स्कैन कर सके।"
+  },
+  "page_scan_again": {
+    "message": "फिर से स्कैन करें"
+  },
+  "page_allow_all_sites": {
+    "message": "सभी साइटों पर अनुमति दें"
+  },
+  "page_default_palette_name": {
+    "message": "पेज पैलेट"
+  },
+  "page_saved_as_palette": {
+    "message": "पैलेट के रूप में सेव हो गया"
+  },
+  "page_style_guide_downloaded": {
+    "message": "स्टाइल गाइड डाउनलोड हो गई"
+  },
+  "page_current_eyebrow": {
+    "message": "मौजूदा पेज"
+  },
+  "page_this_page": {
+    "message": "यह पेज"
+  },
+  "page_rescan": {
+    "message": "रीस्कैन"
+  },
+  "page_fingerprint_heading": {
+    "message": "रंग फ़िंगरप्रिंट"
+  },
+  "page_fingerprint_hint": {
+    "message": "कॉपी करने के लिए टैप करें"
+  },
+  "page_copied_colour": {
+    "message": "रंग कॉपी हो गया"
+  },
+  "page_style_guide_button": {
+    "message": "स्टाइल गाइड (PNG)"
+  },
+  "page_copy_tokens": {
+    "message": "टोकन कॉपी करें"
+  },
+  "page_copied_css_variables": {
+    "message": "CSS वैरिएबल कॉपी हो गए"
+  },
+  "page_palette_eyebrow": {
+    "message": "निकाला गया पैलेट"
+  },
+  "page_colours_heading_one": {
+    "message": "रंग · {0}"
+  },
+  "page_colours_heading_other": {
+    "message": "रंग · {0}"
+  },
+  "page_save_as_palette": {
+    "message": "पैलेट के रूप में सेव करें"
+  },
+  "page_role_label": {
+    "message": "रंग की भूमिका"
+  },
+  "page_role_all": {
+    "message": "सभी"
+  },
+  "page_role_text": {
+    "message": "टेक्स्ट"
+  },
+  "page_role_background": {
+    "message": "बैकग्राउंड"
+  },
+  "page_role_border": {
+    "message": "बॉर्डर"
+  },
+  "page_no_colours_in_role": {
+    "message": "इस भूमिका में कोई रंग इस्तेमाल नहीं हुआ है।"
+  },
+  "page_copy_value": {
+    "message": "{0} कॉपी करें"
+  },
+  "page_uses_count_one": {
+    "message": "{0}×"
+  },
+  "page_uses_count_other": {
+    "message": "{0}×"
+  },
+  "page_type_eyebrow": {
+    "message": "टाइप सिस्टम"
+  },
+  "page_typography_heading_one": {
+    "message": "टाइपोग्राफ़ी · {0}"
+  },
+  "page_typography_heading_other": {
+    "message": "टाइपोग्राफ़ी · {0}"
+  },
+  "page_font_likely": {
+    "message": "संभावित"
+  },
+  "page_view_on_google_fonts": {
+    "message": "Google Fonts पर देखें"
+  },
+  "page_more_sizes_one": {
+    "message": "+{0}"
+  },
+  "page_more_sizes_other": {
+    "message": "+{0}"
+  },
+  "page_no_text_found": {
+    "message": "इस पेज पर कोई टेक्स्ट नहीं मिला।"
+  },
+  "page_truncated_notice_one": {
+    "message": "यह एक बड़ा पेज है, इसलिए केवल पहला {0} एलिमेंट पढ़ा गया।"
+  },
+  "page_truncated_notice_other": {
+    "message": "यह एक बड़ा पेज है, इसलिए केवल पहले {0} एलिमेंट पढ़े गए।"
+  },
+  "palettes_name_label": {
+    "message": "पैलेट का नाम"
+  },
+  "palettes_colour_count_one": {
+    "message": "{0} रंग"
+  },
+  "palettes_colour_count_other": {
+    "message": "{0} रंग"
+  },
+  "palettes_delete_confirm": {
+    "message": "डिलीट करें"
+  },
+  "palettes_delete_cancel": {
+    "message": "रद्द करें"
+  },
+  "palettes_delete_palette": {
+    "message": "पैलेट डिलीट करें"
+  },
+  "palettes_empty_ribbon": {
+    "message": "नीचे से या 'रंग' टैब से कोई रंग जोड़ें।"
+  },
+  "palettes_swatches_label": {
+    "message": "{0} के स्वैच"
+  },
+  "palettes_swatch_title": {
+    "message": "{0} · कॉपी के लिए क्लिक करें, क्रम बदलने के लिए खींचें, हटाने के लिए Delete"
+  },
+  "palettes_swatch_aria": {
+    "message": "{0}। Enter से कॉपी, Delete से हटाएँ, Alt और ऐरो कुंजियों से क्रम बदलें।"
+  },
+  "palettes_swatch_hint": {
+    "message": "क्रम बदलने के लिए खींचें · Alt + ←/→ से खिसकाएँ · Delete से हटाएँ"
+  },
+  "palettes_add_placeholder": {
+    "message": "#5548E0 या rgb(…)"
+  },
+  "palettes_add_label": {
+    "message": "जोड़ने के लिए रंग"
+  },
+  "palettes_add_button": {
+    "message": "जोड़ें"
+  },
+  "palettes_export_format_label": {
+    "message": "एक्सपोर्ट फ़ॉर्मैट"
+  },
+  "palettes_copy_button": {
+    "message": "कॉपी"
+  },
+  "palettes_copied_export": {
+    "message": "एक्सपोर्ट कॉपी हो गया"
+  },
+  "palettes_file_button": {
+    "message": "फ़ाइल"
+  },
+  "palettes_downloaded_palette": {
+    "message": "{0} डाउनलोड हो गया"
+  },
+  "palettes_default_name": {
+    "message": "पैलेट {0}"
+  },
+  "palettes_heading": {
+    "message": "पैलेट"
+  },
+  "palettes_vision_label": {
+    "message": "रंग-दृष्टि की कमी में दिखने वाले रूप में पैलेट का प्रीव्यू देखें"
+  },
+  "palettes_vision_title": {
+    "message": "जाँचें कि पैलेट के रंग अलग-अलग पहचाने जा सकें"
+  },
+  "palettes_vision_typical": {
+    "message": "सामान्य दृष्टि"
+  },
+  "palettes_empty_title": {
+    "message": "अभी तक कोई पैलेट नहीं"
+  },
+  "palettes_empty_body": {
+    "message": "रंगों को एक पैलेट में रखें, फिर उन्हें CSS वैरिएबल, SCSS, Tailwind, डिज़ाइन टोकन, JSON या SVG के रूप में एक्सपोर्ट करें।"
+  },
+  "palettes_new_palette": {
+    "message": "नया पैलेट"
+  },
+  "palettes_all_colours_heading": {
+    "message": "सभी रंग"
+  },
+  "palettes_export_all": {
+    "message": "सभी एक्सपोर्ट करें"
+  },
+  "palettes_downloaded_all": {
+    "message": "सभी रंग डाउनलोड हो गए"
+  },
+  "palettes_copied_colour": {
+    "message": "रंग कॉपी हो गया"
+  },
+  "ui_copied_value": {
+    "message": "{0} कॉपी हो गया"
+  },
+  "ui_copy_failed": {
+    "message": "कॉपी नहीं हो सका"
+  },
+  "ui_colorbar_label": {
+    "message": "इस पेज पर इस्तेमाल हुए रंग"
+  },
+  "ui_colorbar_segment_title": {
+    "message": "{0} · {1}%"
+  },
+  "ui_colorbar_segment_aria": {
+    "message": "{0}, {1} प्रतिशत उपयोग"
+  },
+  "ui_copy_row_sr": {
+    "message": "{0} {1} कॉपी करें"
+  },
+  "ui_search_placeholder": {
+    "message": "खोजें…"
+  },
+  "ui_search_clear": {
+    "message": "खोज साफ़ करें"
+  },
+  "cmd_default_label": {
+    "message": "कमांड"
+  },
+  "cmd_trigger_compact_label": {
+    "message": "{0} ({1})"
+  },
+  "cmd_close_label": {
+    "message": "कमांड मेन्यू बंद करें"
+  },
+  "cmd_list_label": {
+    "message": "{0} सूची"
+  },
+  "cmd_empty": {
+    "message": "कोई कमांड उपलब्ध नहीं"
+  },
+  "cmd_footer_navigate": {
+    "message": "नेविगेट"
+  },
+  "cmd_footer_run": {
+    "message": "चलाएँ"
+  },
+  "cmd_footer_close": {
+    "message": "बंद करें"
+  },
+  "styleguide_default_title": {
+    "message": "स्टाइल गाइड"
+  },
+  "styleguide_colours_heading": {
+    "message": "रंग"
+  },
+  "styleguide_typography_heading": {
+    "message": "टाइपोग्राफ़ी"
+  },
+  "styleguide_font_details": {
+    "message": "{0}   ·   वेट {1}   ·   साइज़ {2}"
+  },
+  "styleguide_footer": {
+    "message": "{0} से बनाया गया"
+  },
+  "export_format_tokens": {
+    "message": "टोकन"
+  },
+  "overlay_hint_bar_label": {
+    "message": "कीबोर्ड शॉर्टकट"
+  },
+  "overlay_key_click": {
+    "message": "क्लिक"
+  },
+  "overlay_key_shift_click": {
+    "message": "Shift+क्लिक"
+  },
+  "overlay_hint_copy_colour": {
+    "message": "रंग कॉपी"
+  },
+  "overlay_hint_pick_several": {
+    "message": "कई चुनें"
+  },
+  "overlay_hint_pick_from_screen": {
+    "message": "स्क्रीन से चुनें"
+  },
+  "overlay_hint_cancel": {
+    "message": "रद्द करें"
+  },
+  "overlay_toast_cannot_read_page": {
+    "message": "Pickit यह पेज नहीं पढ़ सकता"
+  },
+  "overlay_toast_cannot_read_page_sub": {
+    "message": "टूलबार आइकन पर क्लिक करके फिर कोशिश करें"
+  },
+  "overlay_toast_capture_failed": {
+    "message": "पेज कैप्चर नहीं हो सका"
+  },
+  "overlay_toast_try_again": {
+    "message": "फिर कोशिश करें"
+  },
+  "overlay_toast_copied": {
+    "message": "{0} कॉपी हो गया"
+  },
+  "overlay_toast_saved": {
+    "message": "{0} सेव हो गया"
+  },
+  "overlay_font_card_label": {
+    "message": "फ़ॉन्ट की जानकारी"
+  },
+  "overlay_font_key_hover": {
+    "message": "होवर"
+  },
+  "overlay_font_key_click": {
+    "message": "क्लिक"
+  },
+  "overlay_font_hint_inspect": {
+    "message": "जाँचें"
+  },
+  "overlay_font_hint_pin_copy": {
+    "message": "पिन और कॉपी"
+  },
+  "overlay_font_hint_exit": {
+    "message": "बाहर निकलें"
+  },
+  "overlay_font_row_size": {
+    "message": "साइज़"
+  },
+  "overlay_font_row_weight": {
+    "message": "वेट"
+  },
+  "overlay_font_row_line_height": {
+    "message": "लाइन हाइट"
+  },
+  "overlay_font_row_letter_spacing": {
+    "message": "अक्षर स्पेसिंग"
+  },
+  "overlay_font_row_style": {
+    "message": "स्टाइल"
+  },
+  "overlay_font_row_colour": {
+    "message": "रंग"
+  },
+  "overlay_font_likely": {
+    "message": "संभावित"
+  },
+  "overlay_font_likely_tooltip": {
+    "message": "इस डिवाइस पर इंस्टॉल फ़ॉन्ट के आधार पर सबसे सही अनुमान"
+  },
+  "overlay_font_copy_css": {
+    "message": "CSS कॉपी करें"
+  },
+  "overlay_font_save": {
+    "message": "फ़ॉन्ट सेव करें"
+  },
+  "overlay_font_open_google_fonts": {
+    "message": "Google Fonts ↗"
+  },
+  "overlay_font_footer": {
+    "message": "पिन करने के लिए क्लिक करें, फिर कोई भी वैल्यू कॉपी करें"
+  },
+  "overlay_font_toast_copied": {
+    "message": "{0} कॉपी हो गया"
+  },
+  "overlay_font_toast_copied_css": {
+    "message": "फ़ॉन्ट CSS कॉपी हो गई"
+  },
+  "overlay_font_toast_saved": {
+    "message": "आपके फ़ॉन्ट में सेव हो गया"
+  },
+  "font_weight_thin": {
+    "message": "थिन"
+  },
+  "font_weight_extra_light": {
+    "message": "एक्स्ट्रा लाइट"
+  },
+  "font_weight_light": {
+    "message": "लाइट"
+  },
+  "font_weight_regular": {
+    "message": "रेगुलर"
+  },
+  "font_weight_medium": {
+    "message": "मीडियम"
+  },
+  "font_weight_semi_bold": {
+    "message": "सेमी बोल्ड"
+  },
+  "font_weight_bold": {
+    "message": "बोल्ड"
+  },
+  "font_weight_extra_bold": {
+    "message": "एक्स्ट्रा बोल्ड"
+  },
+  "font_weight_black": {
+    "message": "ब्लैक"
+  },
+  "font_line_height_normal": {
+    "message": "सामान्य"
+  },
+  "font_letter_spacing_normal": {
+    "message": "सामान्य"
+  },
+  "font_source_browser_default": {
+    "message": "ब्राउज़र डिफ़ॉल्ट"
+  },
+  "font_source_installed": {
+    "message": "इस डिवाइस पर इंस्टॉल"
+  },
+  "font_source_web_font": {
+    "message": "वेब फ़ॉन्ट"
+  },
+  "font_source_self_hosted": {
+    "message": "सेल्फ़-होस्टेड"
+  },
+  "font_source_hosted_on": {
+    "message": "{0} पर होस्ट किया गया"
+  },
+  "panel_tab_colors": {
+    "message": "रंग"
+  },
+  "panel_tab_fonts": {
+    "message": "फ़ॉन्ट"
+  },
+  "panel_tab_page": {
+    "message": "पेज"
+  },
+  "panel_tab_contrast": {
+    "message": "कंट्रास्ट"
+  },
+  "panel_tab_palettes": {
+    "message": "पैलेट"
+  },
+  "panel_tabs_aria": {
+    "message": "वर्कस्पेस सेक्शन"
+  },
+  "panel_toast_restricted_page": {
+    "message": "Pickit इस पेज पर नहीं चल सकता"
+  },
+  "panel_toast_copied_colour": {
+    "message": "रंग कॉपी हो गया"
+  },
+  "panel_cmd_pick_colour": {
+    "message": "रंग चुनें"
+  },
+  "panel_cmd_inspect_font": {
+    "message": "फ़ॉन्ट जाँचें"
+  },
+  "panel_cmd_go_colors": {
+    "message": "रंग पर जाएँ"
+  },
+  "panel_cmd_go_fonts": {
+    "message": "फ़ॉन्ट पर जाएँ"
+  },
+  "panel_cmd_go_page": {
+    "message": "पेज पर जाएँ"
+  },
+  "panel_cmd_go_contrast": {
+    "message": "कंट्रास्ट पर जाएँ"
+  },
+  "panel_cmd_go_palettes": {
+    "message": "पैलेट पर जाएँ"
+  },
+  "panel_cmd_copy_selected_colour": {
+    "message": "चुना गया रंग कॉपी करें"
+  },
+  "panel_cmd_use_light_theme": {
+    "message": "लाइट थीम इस्तेमाल करें"
+  },
+  "panel_cmd_use_dark_theme": {
+    "message": "डार्क थीम इस्तेमाल करें"
+  },
+  "panel_cmd_open_settings": {
+    "message": "सेटिंग्स खोलें"
+  },
+  "panel_settings": {
+    "message": "सेटिंग्स"
+  },
+  "panel_context_show_in_colors": {
+    "message": "रंग टैब में दिखाएँ"
+  },
+  "panel_context_copy_colour": {
+    "message": "रंग कॉपी करें"
+  },
+  "panel_context_check_contrast": {
+    "message": "कंट्रास्ट जाँचें"
+  },
+  "colors_pick_from_page": {
+    "message": "पेज से चुनें"
+  },
+  "colors_screen_pick": {
+    "message": "स्क्रीन"
+  },
+  "colors_screen_pick_title": {
+    "message": "अपनी स्क्रीन का कोई भी पिक्सेल चुनें, Chrome के बाहर भी"
+  },
+  "colors_empty_title": {
+    "message": "अपना पहला रंग चुनें"
+  },
+  "colors_empty_body": {
+    "message": "{0} पर क्लिक करें, फिर पेज पर कहीं भी क्लिक करें। आपका चुना हर रंग यहाँ रहता है, ताकि आप उसे किसी भी फ़ॉर्मैट में कॉपी कर सकें, उसका कंट्रास्ट जाँच सकें और पैलेट बना सकें।"
+  },
+  "colors_selected_aria": {
+    "message": "चुना गया रंग"
+  },
+  "colors_token_match_title": {
+    "message": "पेज के {0} वैरिएबल से मेल खाता है"
+  },
+  "colors_favorite_add": {
+    "message": "पसंदीदा में जोड़ें"
+  },
+  "colors_favorite_remove": {
+    "message": "पसंदीदा से हटाएँ"
+  },
+  "colors_copy_default_format_title": {
+    "message": "अपने डिफ़ॉल्ट फ़ॉर्मैट में कॉपी करें"
+  },
+  "colors_toast_copied_colour": {
+    "message": "रंग कॉपी हो गया"
+  },
+  "colors_origin_screen": {
+    "message": "स्क्रीन से चुना गया"
+  },
+  "colors_add_to_palette_aria": {
+    "message": "यह रंग किसी पैलेट में जोड़ें"
+  },
+  "colors_add_to_palette_placeholder": {
+    "message": "पैलेट में जोड़ें…"
+  },
+  "colors_new_palette_option": {
+    "message": "+ नया पैलेट"
+  },
+  "colors_default_palette_name": {
+    "message": "पैलेट {0}"
+  },
+  "colors_toast_added_new_palette": {
+    "message": "नए पैलेट में जोड़ा गया"
+  },
+  "colors_toast_already_in_palette": {
+    "message": "पहले से {0} में है"
+  },
+  "colors_toast_added_to_palette": {
+    "message": "{0} में जोड़ा गया"
+  },
+  "colors_as_text": {
+    "message": "टेक्स्ट रूप"
+  },
+  "colors_as_text_title": {
+    "message": "कंट्रास्ट चेकर में इस रंग को टेक्स्ट के रूप में जाँचें"
+  },
+  "colors_as_bg": {
+    "message": "BG रूप"
+  },
+  "colors_as_bg_title": {
+    "message": "कंट्रास्ट चेकर में इस रंग को बैकग्राउंड के रूप में जाँचें"
+  },
+  "colors_history_title": {
+    "message": "हिस्ट्री"
+  },
+  "colors_clear_all_confirm_one": {
+    "message": "{0} रंग साफ़ करें?"
+  },
+  "colors_clear_all_confirm_other": {
+    "message": "सभी {0} साफ़ करें?"
+  },
+  "colors_clear": {
+    "message": "साफ़ करें"
+  },
+  "colors_cancel": {
+    "message": "रद्द करें"
+  },
+  "colors_remove_selected": {
+    "message": "चुना गया रंग हटाएँ"
+  },
+  "colors_search_label": {
+    "message": "रंग खोजें"
+  },
+  "colors_search_placeholder": {
+    "message": "hex, नाम, साइट या टोकन खोजें"
+  },
+  "colors_favorites_only_title": {
+    "message": "केवल पसंदीदा दिखाएँ"
+  },
+  "colors_no_favorites": {
+    "message": "अभी तक कोई पसंदीदा नहीं। रखने के लिए किसी रंग पर दिल को टैप करें।"
+  },
+  "colors_no_search_match": {
+    "message": "इस खोज से कोई रंग मेल नहीं खाता।"
+  },
+  "colors_swatch_title": {
+    "message": "{0} · कॉपी के लिए डबल-क्लिक करें"
+  },
+  "colors_swatch_title_favorite": {
+    "message": "{0} · पसंदीदा · कॉपी के लिए डबल-क्लिक करें"
+  },
+  "colors_swatch_select_aria": {
+    "message": "{0} चुनें"
+  },
+  "colors_swatch_select_favorite_aria": {
+    "message": "{0} चुनें, पसंदीदा"
+  },
+  "colors_history_hint": {
+    "message": "जाँचने के लिए क्लिक · कॉपी के लिए डबल-क्लिक · 'साफ़ करें' के बाद भी पसंदीदा बने रहते हैं"
+  },
+  "colors_explore_aria": {
+    "message": "इस रंग को एक्सप्लोर करें"
+  },
+  "colors_explore": {
+    "message": "एक्सप्लोर"
+  },
+  "colors_explore_shades": {
+    "message": "शेड"
+  },
+  "colors_explore_harmonies": {
+    "message": "हार्मनी"
+  },
+  "colors_shade_scale_aria": {
+    "message": "शेड स्केल"
+  },
+  "colors_shade_title": {
+    "message": "{0} · {1}"
+  },
+  "colors_shade_title_nearest": {
+    "message": "{0} · {1} · इस रंग के सबसे करीब"
+  },
+  "colors_shade_copy_aria": {
+    "message": "शेड {0}, {1} कॉपी करें"
+  },
+  "colors_copy_scale_as": {
+    "message": "स्केल कॉपी करें:"
+  },
+  "colors_copy_scale_tokens": {
+    "message": "टोकन"
+  },
+  "colors_toast_copied_css_variables": {
+    "message": "CSS वैरिएबल कॉपी हो गए"
+  },
+  "colors_toast_copied_tailwind_scale": {
+    "message": "Tailwind स्केल कॉपी हो गया"
+  },
+  "colors_toast_copied_design_tokens": {
+    "message": "डिज़ाइन टोकन कॉपी हो गए"
+  },
+  "harmonies_aria": {
+    "message": "रंग हार्मनी"
+  },
+  "harmonies_neutral_message": {
+    "message": "यह रंग न्यूट्रल है (ग्रे, लगभग काला या लगभग सफ़ेद), इसलिए इसमें हार्मनी बनाने के लिए कोई ह्यू नहीं है। उन्हें देखने के लिए कोई रंगीन स्वैच चुनें।"
+  },
+  "harmonies_toast_added_new_palette_one": {
+    "message": "{0} रंग नए {1} पैलेट में जोड़ा गया"
+  },
+  "harmonies_toast_added_new_palette_other": {
+    "message": "{0} रंग नए {1} पैलेट में जोड़े गए"
+  },
+  "harmonies_toast_already_in_palette": {
+    "message": "{0} के सभी रंग पहले से पैलेट में हैं"
+  },
+  "harmonies_toast_added_to_palette_one": {
+    "message": "{0} रंग {1} में जोड़ा गया"
+  },
+  "harmonies_toast_added_to_palette_other": {
+    "message": "{0} रंग {1} में जोड़े गए"
+  },
+  "harmonies_add_all_aria": {
+    "message": "सभी को पैलेट में जोड़ें: {0}"
+  },
+  "harmonies_add_all_title": {
+    "message": "{0} के सभी रंग पैलेट में जोड़ें"
+  },
+  "harmonies_add_palette_button": {
+    "message": "+ पैलेट"
+  },
+  "harmonies_strip_aria": {
+    "message": "{0} रंग"
+  },
+  "harmonies_swatch_title": {
+    "message": "{0} · कॉपी के लिए क्लिक करें"
+  },
+  "harmonies_swatch_title_base": {
+    "message": "{0} · बेस · कॉपी के लिए क्लिक करें"
+  },
+  "harmonies_swatch_copy_aria": {
+    "message": "{1} से {0} कॉपी करें"
+  },
+  "harmonies_swatch_copy_base_aria": {
+    "message": "{1} से {0} कॉपी करें (बेस)"
+  },
+  "harmonies_toast_copied_value": {
+    "message": "{0} कॉपी हो गया"
+  },
+  "harmonies_base_badge": {
+    "message": "बेस"
+  },
+  "harmony_complementary": {
+    "message": "कॉम्प्लिमेंटरी"
+  },
+  "harmony_analogous": {
+    "message": "एनालॉगस"
+  },
+  "harmony_triadic": {
+    "message": "ट्रायडिक"
+  },
+  "harmony_split_complement": {
+    "message": "स्प्लिट कॉम्प्लिमेंट"
+  },
+  "harmony_tetradic": {
+    "message": "टेट्राडिक"
+  },
+  "contrast_field_text": {
+    "message": "टेक्स्ट"
+  },
+  "contrast_field_background": {
+    "message": "बैकग्राउंड"
+  },
+  "contrast_text_picker_aria": {
+    "message": "टेक्स्ट रंग पिकर"
+  },
+  "contrast_background_picker_aria": {
+    "message": "बैकग्राउंड रंग पिकर"
+  },
+  "contrast_use_recent_as_text_aria": {
+    "message": "{0} को टेक्स्ट के रूप में इस्तेमाल करें"
+  },
+  "contrast_use_recent_as_background_aria": {
+    "message": "{0} को बैकग्राउंड के रूप में इस्तेमाल करें"
+  },
+  "contrast_grade_aa_large": {
+    "message": "AA बड़ा"
+  },
+  "contrast_grade_fails": {
+    "message": "फ़ेल"
+  },
+  "contrast_simulating": {
+    "message": "{0} का सिमुलेशन"
+  },
+  "contrast_preview_large": {
+    "message": "24px पर बड़ा टेक्स्ट"
+  },
+  "contrast_preview_body": {
+    "message": "16px पर बॉडी टेक्स्ट। तेज़ भूरी लोमड़ी आलसी कुत्ते के ऊपर से कूद जाती है।"
+  },
+  "contrast_apca_title": {
+    "message": "APCA लाइटनेस कंट्रास्ट, WCAG 3 के लिए प्रस्तावित"
+  },
+  "contrast_swap": {
+    "message": "टेक्स्ट और बैकग्राउंड की अदला-बदली करें"
+  },
+  "contrast_apca_use": {
+    "message": "APCA: {0}"
+  },
+  "contrast_check_aa_body": {
+    "message": "AA बॉडी"
+  },
+  "contrast_check_aa_large": {
+    "message": "AA बड़ा"
+  },
+  "contrast_check_aaa_body": {
+    "message": "AAA बॉडी"
+  },
+  "contrast_check_aaa_large": {
+    "message": "AAA बड़ा"
+  },
+  "contrast_fixes_aria": {
+    "message": "सुझाए गए सुधार"
+  },
+  "contrast_fixes_title": {
+    "message": "सबसे छोटे बदलाव से {0} ({1}:1) तक पहुँचें"
+  },
+  "contrast_fix_text": {
+    "message": "टेक्स्ट बदलें"
+  },
+  "contrast_fix_background": {
+    "message": "बैकग्राउंड बदलें"
+  },
+  "contrast_vision_title": {
+    "message": "रंग दृष्टि"
+  },
+  "contrast_vision_typical_note": {
+    "message": "सामान्य दृष्टि"
+  },
+  "contrast_vision_picker_aria": {
+    "message": "रंग दृष्टि का सिमुलेशन करें"
+  },
+  "contrast_vision_short_typical": {
+    "message": "सामान्य"
+  },
+  "contrast_vision_short_protanopia": {
+    "message": "प्रोटैन."
+  },
+  "contrast_vision_short_deuteranopia": {
+    "message": "ड्यूटर."
+  },
+  "contrast_vision_short_tritanopia": {
+    "message": "ट्राइटैन."
+  },
+  "contrast_vision_short_achromatopsia": {
+    "message": "मोनो"
+  },
+  "contrast_pair_aria": {
+    "message": "रंग"
+  },
+  "apca_use_body_any_size": {
+    "message": "किसी भी साइज़ का बॉडी टेक्स्ट"
+  },
+  "apca_use_body_from_18px": {
+    "message": "18px से बॉडी टेक्स्ट"
+  },
+  "apca_use_content_from_24px": {
+    "message": "24px से कंटेंट टेक्स्ट"
+  },
+  "apca_use_headlines_large_text": {
+    "message": "हेडलाइन और बड़ा टेक्स्ट"
+  },
+  "apca_use_placeholders_non_text": {
+    "message": "केवल प्लेसहोल्डर और नॉन-टेक्स्ट"
+  },
+  "apca_use_dividers_decoration": {
+    "message": "केवल डिवाइडर और सजावट"
+  },
+  "apca_use_not_readable": {
+    "message": "पढ़ने योग्य नहीं"
+  },
+  "vision_protanopia_label": {
+    "message": "प्रोटानोपिया"
+  },
+  "vision_protanopia_note": {
+    "message": "लाल कोन नहीं"
+  },
+  "vision_deuteranopia_label": {
+    "message": "ड्यूटेरानोपिया"
+  },
+  "vision_deuteranopia_note": {
+    "message": "हरे कोन नहीं"
+  },
+  "vision_tritanopia_label": {
+    "message": "ट्राइटानोपिया"
+  },
+  "vision_tritanopia_note": {
+    "message": "नीले कोन नहीं"
+  },
+  "vision_achromatopsia_label": {
+    "message": "एक्रोमैटोप्सिया"
+  },
+  "vision_achromatopsia_note": {
+    "message": "कोई रंग दृष्टि नहीं"
+  },
+  "popup_failure_restricted_title": {
+    "message": "Pickit इस पेज पर नहीं चल सकता"
+  },
+  "popup_failure_restricted_text": {
+    "message": "Chrome ब्राउज़र पेजों और Web Store पर एक्सटेंशन को ब्लॉक करता है। कोई भी वेबसाइट खोलें और फिर कोशिश करें।"
+  },
+  "popup_failure_no_access_title": {
+    "message": "Pickit इस पेज तक नहीं पहुँच सका"
+  },
+  "popup_failure_no_access_text": {
+    "message": "पेज रीलोड करें और फिर कोशिश करें। लोकल फ़ाइलों के लिए, एक्सटेंशन की जानकारी में फ़ाइल ऐक्सेस की अनुमति दें।"
+  },
+  "popup_failure_unknown_title": {
+    "message": "कुछ गलत हो गया"
+  },
+  "popup_failure_unknown_text": {
+    "message": "पेज रीलोड करें और फिर कोशिश करें।"
+  },
+  "popup_command_pick_colour": {
+    "message": "रंग चुनें"
+  },
+  "popup_command_inspect_font": {
+    "message": "फ़ॉन्ट जाँचें"
+  },
+  "popup_command_open_workspace": {
+    "message": "वर्कस्पेस पैनल खोलें"
+  },
+  "popup_command_copy_latest": {
+    "message": "नया रंग कॉपी करें"
+  },
+  "popup_command_light_theme": {
+    "message": "लाइट थीम इस्तेमाल करें"
+  },
+  "popup_command_dark_theme": {
+    "message": "डार्क थीम इस्तेमाल करें"
+  },
+  "popup_command_open_settings": {
+    "message": "सेटिंग्स खोलें"
+  },
+  "popup_toast_copied_colour": {
+    "message": "रंग कॉपी हुआ"
+  },
+  "popup_open_workspace_label": {
+    "message": "वर्कस्पेस पैनल खोलें"
+  },
+  "popup_settings_label": {
+    "message": "सेटिंग्स"
+  },
+  "popup_tools_label": {
+    "message": "टूल"
+  },
+  "popup_tool_pick_title": {
+    "message": "रंग चुनें"
+  },
+  "popup_tool_pick_sub": {
+    "message": "कोई पिक्सेल क्लिक करें"
+  },
+  "popup_tool_font_title": {
+    "message": "फ़ॉन्ट जाँचें"
+  },
+  "popup_tool_font_sub": {
+    "message": "टेक्स्ट पर होवर करें"
+  },
+  "popup_empty_colours": {
+    "message": "आपके चुने रंग यहाँ दिखेंगे, किसी भी फ़ॉर्मैट में कॉपी के लिए तैयार।"
+  },
+  "popup_latest_colour_label": {
+    "message": "नया रंग"
+  },
+  "popup_latest_copy_title": {
+    "message": "अपने डिफ़ॉल्ट फ़ॉर्मैट में कॉपी करें"
+  },
+  "popup_origin_screen": {
+    "message": "स्क्रीन से चुना गया"
+  },
+  "popup_recent_colours_label": {
+    "message": "हाल के रंग"
+  },
+  "popup_recent_copy_label": {
+    "message": "{0} कॉपी करें"
+  },
+  "popup_recent_copy_title": {
+    "message": "{0} · कॉपी के लिए क्लिक करें"
+  },
+  "popup_latest_font_label": {
+    "message": "नया फ़ॉन्ट"
+  },
+  "popup_font_details": {
+    "message": "{0}px · {1} · {2}"
+  },
+  "popup_workspace_link": {
+    "message": "वर्कस्पेस खोलें"
+  },
+  "popup_workspace_link_sub": {
+    "message": "हिस्ट्री, कंट्रास्ट, पैलेट"
+  },
+  "popup_rating_title": {
+    "message": "क्या Pickit उपयोगी लग रहा है?"
+  },
+  "popup_rating_text": {
+    "message": "आपकी रेटिंग से दूसरों को इसे ढूँढने में मदद मिलती है।"
+  },
+  "popup_rating_rate": {
+    "message": "Pickit को रेट करें"
+  },
+  "popup_rating_dismiss": {
+    "message": "अभी नहीं"
+  },
+  "welcome_step_pick_title": {
+    "message": "रंग चुनें"
+  },
+  "welcome_step_pick_text": {
+    "message": "पॉपअप खोलें या शॉर्टकट इस्तेमाल करें, फिर पेज पर किसी रंग पर क्लिक करें। Pickit आपकी गतिविधि पर नज़र रखे बिना उसे पढ़ता है।"
+  },
+  "welcome_step_font_title": {
+    "message": "फ़ॉन्ट जाँचें"
+  },
+  "welcome_step_font_text": {
+    "message": "फ़ॉन्ट टूल चुनें और किसी भी टेक्स्ट पर क्लिक करें। आपको उसकी फ़ैमिली, साइज़, वेट और रंग एक छोटे पैनल में मिल जाते हैं।"
+  },
+  "welcome_step_workspace_title": {
+    "message": "सब कुछ वर्कस्पेस में रखें"
+  },
+  "welcome_step_workspace_text": {
+    "message": "साइड पैनल में आपकी रंग हिस्ट्री, फ़ॉन्ट, पैलेट, कंट्रास्ट चेकर और पेज की एक-क्लिक स्टाइल गाइड रहती है।"
+  },
+  "welcome_shortcut_label": {
+    "message": "शॉर्टकट {0}"
+  },
+  "welcome_kicker": {
+    "message": "Pickit में आपका स्वागत है"
+  },
+  "welcome_title_lead": {
+    "message": "कोई भी रंग। कोई भी फ़ॉन्ट।"
+  },
+  "welcome_title_accent": {
+    "message": "बस एक क्लिक दूर।"
+  },
+  "welcome_lead": {
+    "message": "तीन बातें जान लें, फिर आप तैयार हैं।"
+  },
+  "welcome_tip_pin": {
+    "message": "सुझाव: Chrome के टूलबार में पज़ल आइकन पर क्लिक करें और Pickit को पिन करें, ताकि यह हमेशा एक क्लिक की दूरी पर रहे।"
+  },
+  "welcome_cta": {
+    "message": "जाँच शुरू करें"
+  },
+  "access_unreachable_title": {
+    "message": "Pickit इस पेज तक नहीं पहुँच सका"
+  },
+  "access_unreachable_text": {
+    "message": "पेज रीलोड करें और फिर कोशिश करें। लोकल फ़ाइलों के लिए, एक्सटेंशन की जानकारी में फ़ाइल ऐक्सेस की अनुमति दें।"
+  },
+  "access_allow_title": {
+    "message": "इस पेज पर Pickit को अनुमति दें"
+  },
+  "access_allow_text": {
+    "message": "साइड पैनल अपने आप किसी टैब तक नहीं पहुँच सकता। इस टैब पर टूलबार में Pickit आइकन पर क्लिक करें, या सभी साइटों का ऐक्सेस दें ताकि साइड पैनल हर जगह काम करे।"
+  },
+  "access_allow_all_sites": {
+    "message": "सभी साइटों पर अनुमति दें"
+  },
+  "access_dismiss_label": {
+    "message": "बंद करें"
+  },
+  "settings_theme_light": {
+    "message": "लाइट"
+  },
+  "settings_theme_dark": {
+    "message": "डार्क"
+  },
+  "settings_theme_system": {
+    "message": "सिस्टम"
+  },
+  "settings_shortcut_not_set": {
+    "message": "सेट नहीं"
+  },
+  "settings_shortcut_label": {
+    "message": "शॉर्टकट {0}"
+  },
+  "settings_count_colours_one": {
+    "message": "{0} रंग"
+  },
+  "settings_count_colours_other": {
+    "message": "{0} रंग"
+  },
+  "settings_count_fonts_one": {
+    "message": "{0} फ़ॉन्ट"
+  },
+  "settings_count_fonts_other": {
+    "message": "{0} फ़ॉन्ट"
+  },
+  "settings_count_palettes_one": {
+    "message": "{0} पैलेट"
+  },
+  "settings_count_palettes_other": {
+    "message": "{0} पैलेट"
+  },
+  "settings_eyebrow": {
+    "message": "प्राथमिकताएँ"
+  },
+  "settings_heading": {
+    "message": "Pickit सेटिंग्स"
+  },
+  "settings_intro": {
+    "message": "तय करें कि रंग कैसे कॉपी हों, Pickit कैसा दिखे और वह क्या याद रखे।"
+  },
+  "settings_version_badge": {
+    "message": "वर्शन {0}"
+  },
+  "settings_colours_title": {
+    "message": "रंग"
+  },
+  "settings_colours_description": {
+    "message": "रंग कॉपी करते समय इस्तेमाल होने वाला फ़ॉर्मैट और केस।"
+  },
+  "settings_default_format_title": {
+    "message": "डिफ़ॉल्ट फ़ॉर्मैट"
+  },
+  "settings_default_format_help": {
+    "message": "रंग चुनने और एक-क्लिक कॉपी के लिए इस्तेमाल होता है।"
+  },
+  "settings_default_format_label": {
+    "message": "डिफ़ॉल्ट रंग फ़ॉर्मैट"
+  },
+  "settings_hex_case_title": {
+    "message": "HEX अक्षरों का केस"
+  },
+  "settings_hex_case_help": {
+    "message": "कॉपी करते समय HEX वैल्यू कैसे लिखी जाएँ।"
+  },
+  "settings_history_size_title": {
+    "message": "हिस्ट्री का साइज़"
+  },
+  "settings_history_size_help": {
+    "message": "सीमा पूरी होने पर पुराने रंग हटा दिए जाते हैं। पसंदीदा हमेशा रखे जाते हैं।"
+  },
+  "settings_history_size_option_one": {
+    "message": "{0} रंग"
+  },
+  "settings_history_size_option_other": {
+    "message": "{0} रंग"
+  },
+  "settings_appearance_title": {
+    "message": "रूप-रंग"
+  },
+  "settings_appearance_description": {
+    "message": "Pickit की विंडो और पेज पर दिखने वाले ओवरले का लुक चुनें।"
+  },
+  "settings_theme_title": {
+    "message": "थीम"
+  },
+  "settings_theme_help": {
+    "message": "Pickit की अपनी विंडो और पेज पर दिखने वाले ओवरले पर लागू होती है।"
+  },
+  "settings_shortcuts_title": {
+    "message": "कीबोर्ड शॉर्टकट"
+  },
+  "settings_shortcuts_description": {
+    "message": "पॉपअप खोले बिना पिकर शुरू करें।"
+  },
+  "settings_shortcut_pick_colour_title": {
+    "message": "रंग चुनें"
+  },
+  "settings_shortcut_pick_colour_help": {
+    "message": "मौजूदा टैब पर कलर पिकर खोलता है।"
+  },
+  "settings_shortcut_inspect_font_title": {
+    "message": "फ़ॉन्ट जाँचें"
+  },
+  "settings_shortcut_inspect_font_help": {
+    "message": "मौजूदा टैब पर फ़ॉन्ट इंस्पेक्टर खोलता है।"
+  },
+  "settings_change_shortcuts_title": {
+    "message": "शॉर्टकट बदलें"
+  },
+  "settings_change_shortcuts_help": {
+    "message": "डिफ़ॉल्ट {0} और {1} हैं। Chrome सभी एक्सटेंशन के शॉर्टकट एक ही जगह मैनेज करता है।"
+  },
+  "settings_open_chrome_shortcuts": {
+    "message": "Chrome शॉर्टकट खोलें"
+  },
+  "settings_backup_title": {
+    "message": "बैकअप"
+  },
+  "settings_backup_description": {
+    "message": "अपने रंग, फ़ॉन्ट और पैलेट किसी दूसरे ब्राउज़र में ले जाएँ, या एक कॉपी रखें।"
+  },
+  "settings_export_title": {
+    "message": "बैकअप एक्सपोर्ट करें"
+  },
+  "settings_export_help": {
+    "message": "Pickit में सेव सब कुछ आपके डिवाइस पर एक JSON फ़ाइल के रूप में सेव करता है।"
+  },
+  "settings_export_button": {
+    "message": "एक्सपोर्ट"
+  },
+  "settings_toast_backup_downloaded": {
+    "message": "बैकअप डाउनलोड हो गया"
+  },
+  "settings_restore_title": {
+    "message": "बैकअप रीस्टोर करें"
+  },
+  "settings_restore_help": {
+    "message": "अभी सेव डेटा को बैकअप की सामग्री से बदल देता है। दोनों रखने हों तो पहले एक्सपोर्ट करें।"
+  },
+  "settings_restore_confirm": {
+    "message": "मेरा डेटा बदलें"
+  },
+  "settings_cancel": {
+    "message": "रद्द करें"
+  },
+  "settings_restore_choose_file": {
+    "message": "फ़ाइल चुनें"
+  },
+  "settings_toast_file_too_large": {
+    "message": "यह फ़ाइल Pickit बैकअप होने के लिए बहुत बड़ी है"
+  },
+  "settings_toast_restored": {
+    "message": "{0}, {1}, {2} रीस्टोर किए गए"
+  },
+  "settings_restore_banner": {
+    "message": "इस बैकअप में {0}, {1} और {2} हैं। रीस्टोर करने पर Pickit में अभी सेव सब कुछ बदल जाएगा।"
+  },
+  "settings_privacy_title": {
+    "message": "प्राइवेसी"
+  },
+  "settings_privacy_description": {
+    "message": "तय करें कि Pickit क्या पढ़ सकता है और उसे कितने समय तक रखता है।"
+  },
+  "settings_clear_data_title": {
+    "message": "डेटा साफ़ करें"
+  },
+  "settings_clear_data_help": {
+    "message": "इस डिवाइस से रंग हिस्ट्री, फ़ॉन्ट और पैलेट हटा देता है। सेटिंग्स बनी रहती हैं।"
+  },
+  "settings_clear_data_button": {
+    "message": "डेटा साफ़ करें"
+  },
+  "settings_clear_data_confirm": {
+    "message": "हाँ, सब साफ़ करें"
+  },
+  "settings_toast_data_cleared": {
+    "message": "सारा डेटा साफ़ हो गया"
+  },
+  "settings_privacy_note": {
+    "message": "Pickit जो कुछ भी सेव करता है, वह इसी ब्राउज़र में रहता है। इसमें कोई अकाउंट नहीं है और यह किसी सर्वर पर कुछ नहीं भेजता।"
+  },
+  "backup_imported_palette_name": {
+    "message": "इंपोर्ट किया गया पैलेट"
+  },
+  "backup_error_invalid_json": {
+    "message": "यह फ़ाइल मान्य JSON नहीं है।"
+  },
+  "backup_error_not_pickit": {
+    "message": "यह Pickit बैकअप फ़ाइल नहीं है।"
+  },
+  "backup_error_newer_version": {
+    "message": "यह बैकअप Pickit के नए वर्शन से बनाया गया था। Pickit अपडेट करें और फिर कोशिश करें।"
+  },
+  "ui_shortcut_title": {
+    "message": "शॉर्टकट {0}"
+  },
+  "ui_shortcut_none": {
+    "message": "कोई शॉर्टकट सेट नहीं"
+  },
+  "settings_sync_title": {
+    "message": "पैलेट और पसंदीदा सिंक करें"
+  },
+  "settings_sync_help": {
+    "message": "जिस भी Chrome में आप साइन इन हैं, उसमें आपके पैलेट और पसंदीदा रंग एक जैसे रखता है। हिस्ट्री और फ़ॉन्ट इसी डिवाइस पर रहते हैं।"
+  },
+  "settings_sync_error_quota": {
+    "message": "Chrome सिंक स्टोरेज भर गया है, इसलिए कुछ पैलेट सिंक नहीं हो रहे हैं। जिन पैलेट की अब ज़रूरत नहीं, उन्हें डिलीट करें।"
+  },
+  "settings_sync_error_too_large": {
+    "message": "एक पैलेट सिंक के लिए बहुत बड़ा है। उसे छोटे पैलेट में बाँटें।"
+  },
+  "settings_sync_error_unavailable": {
+    "message": "सिंक अभी उपलब्ध नहीं है। जाँचें कि आप सिंक चालू करके Chrome में साइन इन हैं।"
+  },
+  "overlay_font_close": {
+    "message": "फ़ॉन्ट इंस्पेक्टर बंद करें"
+  },
+  "sponsor_label": {
+    "message": "प्रायोजक"
+  },
+  "sponsor_tagline": {
+    "message": "इमेज, वीडियो, ऑडियो और PDF के लिए मुफ़्त ऑनलाइन टूल। फ़ाइलें आपके ब्राउज़र में ही रहती हैं।"
+  },
+  "sponsor_tagline_short": {
+    "message": "इमेज, PDF और अन्य के लिए मुफ़्त टूल"
+  },
+  "sponsor_cta": {
+    "message": "देखें"
+  },
+  "sponsor_open": {
+    "message": "{0} को नए टैब में खोलें"
+  },
+  "credits_title": {
+    "message": "परिचय"
+  },
+  "credits_made_by": {
+    "message": "{0} द्वारा बनाया गया"
+  },
+  "credits_open_source": {
+    "message": "Pickit ओपन सोर्स है। बग बताएँ, नई सुविधा सुझाएँ या प्रगति देखें।"
+  },
+  "credits_github": {
+    "message": "GitHub"
+  },
+  "credits_linkedin": {
+    "message": "LinkedIn"
+  },
+  "credits_portfolio": {
+    "message": "पोर्टफ़ोलियो"
   }
 }

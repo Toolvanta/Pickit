@@ -1,8 +1,18 @@
 {
-  "name": "pickkit",
-  "description": "Colour picker and font inspector for Chrome",
+  "name": "pickit",
+  "description": "Color picker and font detector for Chrome",
   "private": true,
   "version": "1.0.0",
+  "license": "MIT",
+  "author": "Shoaib Arif (https://shoaibarif.vercel.app/)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Toolvanta/Pickit.git"
+  },
+  "homepage": "https://github.com/Toolvanta/Pickit#readme",
+  "bugs": {
+    "url": "https://github.com/Toolvanta/Pickit/issues"
+  },
   "type": "module",
   "scripts": {
     "dev": "wxt",
@@ -12,7 +22,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "postinstall": "wxt prepare",
-    "preview": "wxt build && node scripts/preview.mjs"
+    "preview": "wxt build && node scripts/preview.mjs",
+    "store": "wxt build && node scripts/store/capture.mjs"
   },
   "dependencies": {
     "react": "^19.3.1",

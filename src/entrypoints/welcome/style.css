@@ -27,7 +27,7 @@ body {
   gap: var(--pk-space-3);
   padding-bottom: var(--pk-space-6);
   border-bottom: 1px solid var(--pk-border);
-  text-align: left;
+  text-align: start;
 }
 
 /* The element remains in the tree for the markup, but carries no ambience. */
@@ -119,7 +119,7 @@ body {
   border-radius: 0;
   background: none;
   box-shadow: none;
-  text-align: left;
+  text-align: start;
 }
 
 .step:last-child {

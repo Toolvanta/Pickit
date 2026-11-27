@@ -1,59 +1,65 @@
-/* PickKit design tokens. One source for the popup, side panel, settings, welcome page
+/* Pickit design tokens. One source for the popup, side panel, settings, welcome page
    and the in-page overlay (where they attach to the shadow host via :host).
 
-   The palette is a quiet, modern green: soft mint surfaces, deep forest ink and a
-   single emerald accent. No decorative gradients — hierarchy comes from flat
-   surfaces, hairline borders and type. The inspected colour stays a small sample;
-   surfaces and controls remain green so the product always reads as PickKit. */
+   A colour tool should not compete with the colours it shows, so the interface is a
+   quiet neutral graphite: near-white or near-black surfaces, ink-coloured primary
+   actions and hairline borders. The only colour in the chrome is --pk-sample, the
+   colour being inspected (lightened or darkened just enough to stay legible), which
+   pages set at runtime. Selection rings, the active tab and the hero glow use it, so
+   the workspace quietly takes on whatever you picked. */
 
 :root,
 :host {
   color-scheme: light;
 
-  /* Surfaces & ink — cool mint/forest, not warm paper */
-  --pk-bg: #f6faf7;
-  --pk-surface: #eef5f0;
-  --pk-surface-2: #e3eee6;
+  /* Surfaces & ink */
+  --pk-bg: #f7f7f8;
+  --pk-surface: #f0f0f2;
+  --pk-surface-2: #e6e6ea;
   --pk-surface-raised: #ffffff;
-  --pk-border: #d6e4da;
-  --pk-border-strong: #b9cfc0;
-  --pk-text: #15231c;
-  --pk-text-2: #4f6357;
-  --pk-text-3: #5a6d60;
+  --pk-border: #e3e3e8;
+  --pk-border-strong: #cdcdd5;
+  --pk-text: #17171c;
+  --pk-text-2: #52525c;
+  --pk-text-3: #6b6b76;
 
-  /* Brand + inspected-colour sample. The UI accent stays green; --pk-sample is
-     set at runtime to the colour currently being inspected. */
-  --pk-accent: #0f7a55;
-  --pk-accent-hover: #0b6245;
-  --pk-accent-soft: #dff3e9;
-  --pk-accent-tint: color-mix(in srgb, var(--pk-accent) 5%, var(--pk-surface));
-  --pk-accent-line: color-mix(in srgb, var(--pk-accent) 26%, var(--pk-border));
+  /* Primary actions are ink, not a hue. */
+  --pk-accent: #17171c;
+  --pk-accent-hover: #2e2e36;
+  --pk-accent-soft: #ececf0;
+  --pk-accent-tint: color-mix(in srgb, var(--pk-text) 3%, var(--pk-surface-raised));
+  --pk-accent-line: color-mix(in srgb, var(--pk-text) 22%, var(--pk-border));
   --pk-on-accent: #ffffff;
-  --pk-sample: var(--pk-accent);
+
+  /* The inspected colour. Defaults to a calm indigo until something is picked. */
+  --pk-sample: #5b5bd6;
   --pk-sample-ink: #ffffff;
+  --pk-sample-soft: color-mix(in srgb, var(--pk-sample) 12%, transparent);
+  --pk-sample-line: color-mix(in srgb, var(--pk-sample) 55%, transparent);
+  --pk-focus: var(--pk-sample);
 
   /* Status */
-  --pk-success: #12805a;
-  --pk-success-soft: #dcf7eb;
+  --pk-success: #16794c;
+  --pk-success-soft: #e3f6ec;
   --pk-danger: #c2343f;
   --pk-danger-soft: #fdecee;
-  --pk-warning: #a96a12;
+  --pk-warning: #9a5b00;
   --pk-warning-soft: #fff3dc;
 
-  /* Elevation: contact lines only. No broad ambient shadows. */
-  --pk-shadow-1: 0 1px 0 rgb(21 35 28 / 0.06);
-  --pk-shadow-2: 0 1px 2px rgb(21 35 28 / 0.08);
-  --pk-shadow-3: 0 2px 4px rgb(21 35 28 / 0.1);
+  /* Elevation: soft and close, never a broad glow. */
+  --pk-shadow-1: 0 1px 0 rgb(23 23 28 / 0.04);
+  --pk-shadow-2: 0 1px 2px rgb(23 23 28 / 0.06), 0 1px 1px rgb(23 23 28 / 0.04);
+  --pk-shadow-3: 0 8px 24px -8px rgb(23 23 28 / 0.18), 0 2px 6px rgb(23 23 28 / 0.06);
   --pk-shadow: var(--pk-shadow-2);
-  --pk-inset-hi: inset 0 1px 0 rgb(255 255 255 / 0.35);
+  --pk-inset-hi: inset 0 1px 0 rgb(255 255 255 / 0.5);
 
-  /* Shape — tighter corners than the old pill-heavy UI */
-  --pk-radius-xs: 3px;
-  --pk-radius-s: 5px;
-  --pk-radius-m: 8px;
-  --pk-radius-l: 10px;
-  --pk-radius-xl: 12px;
-  --pk-radius-pill: 6px;
+  /* Shape */
+  --pk-radius-xs: 4px;
+  --pk-radius-s: 6px;
+  --pk-radius-m: 10px;
+  --pk-radius-l: 12px;
+  --pk-radius-xl: 16px;
+  --pk-radius-pill: 999px;
 
   /* Rhythm */
   --pk-space-1: 4px;
@@ -64,30 +70,33 @@
   --pk-space-6: 32px;
   --pk-space-7: 48px;
 
-  /* Type: a real display scale instead of one flat 11-15px band */
-  --pk-font: 'Montserrat', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --pk-mono: 'SF Mono', 'Cascadia Code', ui-monospace, 'JetBrains Mono', Menlo, Consolas, monospace;
+  /* Type. The platform UI face (SF Pro, Segoe UI Variable, Roboto) is crisp at small
+     sizes and costs nothing to ship; a named web font would need bundling. */
+  --pk-font: ui-sans-serif, system-ui, -apple-system, 'Segoe UI Variable Text', 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --pk-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', 'Cascadia Code', 'JetBrains Mono', Menlo, Consolas,
+    monospace;
   --pk-text-xs: 11px;
   --pk-text-s: 12px;
-  --pk-text-m: 14px;
-  --pk-text-l: 16px;
-  --pk-text-xl: 20px;
-  --pk-text-2xl: 26px;
-  --pk-text-display: 34px;
-  --pk-text-hero: 46px;
-  --pk-track-tight: -0.035em;
-  --pk-track-label: 0.08em;
+  --pk-text-m: 13px;
+  --pk-text-l: 15px;
+  --pk-text-xl: 18px;
+  --pk-text-2xl: 24px;
+  --pk-text-display: 30px;
+  --pk-text-hero: 40px;
+  --pk-track-tight: -0.025em;
+  --pk-track-label: 0.04em;
 
-  /* Motion — no overshoot; controls still slide, just without bounce. */
+  /* Motion */
   --pk-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   --pk-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --pk-ease-spring: cubic-bezier(0.2, 0.9, 0.3, 1);
   --pk-dur-1: 140ms;
-  --pk-dur-2: 240ms;
-  --pk-dur-3: 420ms;
+  --pk-dur-2: 220ms;
+  --pk-dur-3: 380ms;
   --pk-fast: var(--pk-dur-1);
 
-  --pk-hairline: inset 0 0 0 1px rgb(255 255 255 / 0.25);
+  --pk-hairline: inset 0 0 0 1px rgb(23 23 28 / 0.08);
 }
 
 /* Dark palette is declared twice so system theme and explicit dark behave identically. */
@@ -95,66 +104,66 @@
   :root:not([data-theme='light']),
   :host(:not([data-theme='light'])) {
     color-scheme: dark;
-    --pk-bg: #0f1713;
-    --pk-surface: #16211b;
-    --pk-surface-2: #1d2b23;
-    --pk-surface-raised: #1a261f;
-    --pk-border: #2a3b31;
-    --pk-border-strong: #3d5547;
-    --pk-text: #edf7f0;
-    --pk-text-2: #b3c8ba;
-    --pk-text-3: #9ab3a3;
-    --pk-accent: #5fd39a;
-    --pk-accent-hover: #83e0b3;
-    --pk-accent-soft: #153327;
-    --pk-on-accent: #082015;
-    --pk-sample: var(--pk-accent);
-    --pk-sample-ink: #082015;
-    --pk-success: #5fd39a;
-    --pk-success-soft: #153327;
+    --pk-bg: #0d0d10;
+    --pk-surface: #16161a;
+    --pk-surface-2: #1f1f25;
+    --pk-surface-raised: #1a1a1f;
+    --pk-border: #2a2a31;
+    --pk-border-strong: #3b3b45;
+    --pk-text: #f3f3f5;
+    --pk-text-2: #b6b6c0;
+    --pk-text-3: #9a9aa6;
+    --pk-accent: #f3f3f5;
+    --pk-accent-hover: #d9d9df;
+    --pk-accent-soft: #24242b;
+    --pk-on-accent: #0d0d10;
+    --pk-sample: #8f8ff0;
+    --pk-sample-ink: #0d0d10;
+    --pk-success: #4fd18f;
+    --pk-success-soft: #12301f;
     --pk-danger: #ff818b;
     --pk-danger-soft: #3b1a20;
     --pk-warning: #f0bf73;
     --pk-warning-soft: #3a2b17;
     --pk-shadow-1: 0 1px 0 rgb(0 0 0 / 0.5);
-    --pk-shadow-2: 0 1px 2px rgb(0 0 0 / 0.55);
-    --pk-shadow-3: 0 2px 4px rgb(0 0 0 / 0.6);
+    --pk-shadow-2: 0 1px 2px rgb(0 0 0 / 0.5);
+    --pk-shadow-3: 0 10px 30px -8px rgb(0 0 0 / 0.7), 0 2px 6px rgb(0 0 0 / 0.5);
     --pk-shadow: var(--pk-shadow-2);
-    --pk-inset-hi: inset 0 1px 0 rgb(255 255 255 / 0.03);
-    --pk-hairline: inset 0 0 0 1px rgb(255 255 255 / 0.03);
+    --pk-inset-hi: inset 0 1px 0 rgb(255 255 255 / 0.04);
+    --pk-hairline: inset 0 0 0 1px rgb(255 255 255 / 0.08);
   }
 }
 
 :root[data-theme='dark'],
 :host([data-theme='dark']) {
   color-scheme: dark;
-  --pk-bg: #0f1713;
-  --pk-surface: #16211b;
-  --pk-surface-2: #1d2b23;
-  --pk-surface-raised: #1a261f;
-  --pk-border: #2a3b31;
-  --pk-border-strong: #3d5547;
-  --pk-text: #edf7f0;
-  --pk-text-2: #b3c8ba;
-  --pk-text-3: #9ab3a3;
-  --pk-accent: #5fd39a;
-  --pk-accent-hover: #83e0b3;
-  --pk-accent-soft: #153327;
-  --pk-on-accent: #082015;
-  --pk-sample: var(--pk-accent);
-  --pk-sample-ink: #082015;
-  --pk-success: #5fd39a;
-  --pk-success-soft: #153327;
+  --pk-bg: #0d0d10;
+  --pk-surface: #16161a;
+  --pk-surface-2: #1f1f25;
+  --pk-surface-raised: #1a1a1f;
+  --pk-border: #2a2a31;
+  --pk-border-strong: #3b3b45;
+  --pk-text: #f3f3f5;
+  --pk-text-2: #b6b6c0;
+  --pk-text-3: #9a9aa6;
+  --pk-accent: #f3f3f5;
+  --pk-accent-hover: #d9d9df;
+  --pk-accent-soft: #24242b;
+  --pk-on-accent: #0d0d10;
+  --pk-sample: #8f8ff0;
+  --pk-sample-ink: #0d0d10;
+  --pk-success: #4fd18f;
+  --pk-success-soft: #12301f;
   --pk-danger: #ff818b;
   --pk-danger-soft: #3b1a20;
   --pk-warning: #f0bf73;
   --pk-warning-soft: #3a2b17;
   --pk-shadow-1: 0 1px 0 rgb(0 0 0 / 0.5);
-  --pk-shadow-2: 0 1px 2px rgb(0 0 0 / 0.55);
-  --pk-shadow-3: 0 2px 4px rgb(0 0 0 / 0.6);
+  --pk-shadow-2: 0 1px 2px rgb(0 0 0 / 0.5);
+  --pk-shadow-3: 0 10px 30px -8px rgb(0 0 0 / 0.7), 0 2px 6px rgb(0 0 0 / 0.5);
   --pk-shadow: var(--pk-shadow-2);
-  --pk-inset-hi: inset 0 1px 0 rgb(255 255 255 / 0.03);
-  --pk-hairline: inset 0 0 0 1px rgb(255 255 255 / 0.03);
+  --pk-inset-hi: inset 0 1px 0 rgb(255 255 255 / 0.04);
+  --pk-hairline: inset 0 0 0 1px rgb(255 255 255 / 0.08);
 }
 
 :root[data-theme='light'],
@@ -163,7 +172,7 @@
 }
 
 ::selection {
-  background: var(--pk-accent-soft);
+  background: var(--pk-sample-soft);
   color: var(--pk-text);
 }
 
@@ -173,5 +182,14 @@
     --pk-border: var(--pk-border-strong);
     --pk-text-2: var(--pk-text);
     --pk-text-3: var(--pk-text-2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root,
+  :host {
+    --pk-dur-1: 0ms;
+    --pk-dur-2: 0ms;
+    --pk-dur-3: 0ms;
   }
 }

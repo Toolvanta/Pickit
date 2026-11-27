@@ -2,26 +2,46 @@
 // card and copy values. Page clicks are swallowed while it is active so inspecting a
 // link or button does not trigger it.
 
-import { fontCss, inspectElement, lineHeightLabel, weightName, type FontInfo } from '../fonts';
-import { addFont, saveFont } from '../storage';
+import { fontCss, inspectElement, lineHeightLabel, resetFontCaches, weightName, type FontInfo } from '../fonts';
+import { t } from '../i18n';
+import { COLOR_FORMATS, formatColor, nearestColorName, parseColor, rgbToHex, type ColorFormat } from '../color';
+import { addFont, saveFont, type Settings } from '../storage';
 import { copyText, h, hintBar, swatch, type Shell } from './shell';
 
-const CARD_WIDTH = 300;
+const CARD_WIDTH = 280;
 const GAP = 10;
 const EDGE = 8;
-const SCALE_MIN = 8;
-const SCALE_MAX = 96;
-const SCALE_TICKS = [8, 16, 24, 48, 96];
+const SVG = 'http://www.w3.org/2000/svg';
+
+/** A small stroke icon. Built with DOM calls, never innerHTML, so page CSP cannot object. */
+function icon(paths: string[]): SVGSVGElement {
+  const svg = document.createElementNS(SVG, 'svg');
+  svg.setAttribute('viewBox', '0 0 24 24');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('class', 'pk-icon');
+  for (const d of paths) {
+    const path = document.createElementNS(SVG, 'path');
+    path.setAttribute('d', d);
+    svg.append(path);
+  }
+  return svg;
+}
+const ICON_CLOSE = ['M18 6L6 18', 'M6 6l12 12'];
+const ICON_EXTERNAL = ['M14 4h6v6', 'M20 4l-9 9', 'M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5'];
+const ICON_BOOKMARK = ['M6 4h12v16l-6-4-6 4z'];
 const BLOCKED_EVENTS = ['mousedown', 'mouseup', 'pointerdown', 'pointerup', 'dblclick', 'auxclick', 'contextmenu'];
 
 /** Starts the font inspector. Returns a function that stops it. */
-export function startFontInspector(shell: Shell, onDone: () => void): () => void {
+const FORMAT_LABELS: Record<ColorFormat, string> = { hex: 'HEX', rgb: 'RGB', hsl: 'HSL', oklch: 'OKLCH' };
+
+export function startFontInspector(shell: Shell, settings: Settings, onDone: () => void): () => void {
+  resetFontCaches();
   const box = h('div', { class: 'pk-box' });
-  const card = h('div', { class: 'pk-card', role: 'dialog', 'aria-label': 'Font details' });
+  const card = h('div', { class: 'pk-card', role: 'dialog', 'aria-label': t('overlay_font_card_label') });
   const hint = hintBar([
-    ['Hover', 'Inspect'],
-    ['Click', 'Pin and copy'],
-    ['Esc', 'Exit'],
+    [t('overlay_font_key_hover'), t('overlay_font_hint_inspect')],
+    [t('overlay_font_key_click'), t('overlay_font_hint_pin_copy')],
+    ['Esc', t('overlay_font_hint_exit')],
   ]);
   const ui = h('div', null, box, card, hint);
   shell.root.append(ui);
@@ -40,99 +60,118 @@ export function startFontInspector(shell: Shell, onDone: () => void): () => void
 
   const fromOverlay = (e: Event) => e.target === shell.host;
 
-  function row(label: string, value: string, color?: string): HTMLButtonElement {
+  /** One value in the grid. Pinned, a click copies it. */
+  function cell(label: string, value: string, color?: string): HTMLButtonElement {
     const button = h(
       'button',
-      { class: 'pk-row', type: 'button', tabindex: pinned ? '0' : '-1' },
-      h('span', { class: 'pk-row-label' }, label),
-      h('span', { class: 'pk-row-value' }, color ? swatch(color) : null, value),
+      { class: 'pk-cell', type: 'button', tabindex: pinned ? '0' : '-1', title: pinned ? t('overlay_font_toast_copied', value) : undefined },
+      h('span', { class: 'pk-cell-label' }, label),
+      h('span', { class: 'pk-cell-value' }, color ? swatch(color) : null, value),
     );
     button.addEventListener('click', async () => {
       if (!pinned) return;
-      if (await copyText(value)) shell.toast({ title: `Copied ${value}`, sub: label, color });
+      if (await copyText(value)) shell.toast({ title: t('overlay_font_toast_copied', value), sub: label, color });
     });
     return button;
+  }
+
+  /** The text colour in every format, the user's default first. Each line copies when pinned. */
+  function colourBlock(value: string): HTMLElement {
+    const label = t('overlay_font_row_colour');
+    const rgb = parseColor(value);
+    if (!rgb) return h('div', { class: 'pk-grid pk-grid-single' }, cell(label, value, value));
+    const hex = rgbToHex(rgb);
+    const order = [settings.format, ...COLOR_FORMATS.filter((f) => f !== settings.format)];
+    const line = (format: ColorFormat) => {
+      const text = formatColor(rgb, format, { upperHex: settings.upperHex });
+      const button = h(
+        'button',
+        { class: 'pk-format', type: 'button', tabindex: pinned ? '0' : '-1', title: pinned ? t('overlay_font_toast_copied', text) : undefined },
+        h('span', { class: 'pk-format-label' }, FORMAT_LABELS[format]),
+        h('span', { class: 'pk-format-value' }, text),
+      );
+      button.addEventListener('click', async () => {
+        if (!pinned) return;
+        if (await copyText(text)) shell.toast({ title: t('overlay_font_toast_copied', text), sub: label, color: hex });
+      });
+      return button;
+    };
+    return h(
+      'div',
+      { class: 'pk-colour' },
+      h('div', { class: 'pk-colour-head' }, swatch(hex), h('span', { class: 'pk-cell-label' }, label), h('span', { class: 'pk-colour-name' }, nearestColorName(rgb))),
+      h('div', { class: 'pk-formats' }, ...order.map(line)),
+    );
   }
 
   function renderCard() {
     if (!info) return;
     const font = info;
-    const preview = h('div', { class: 'pk-preview' }, 'Ag');
-    preview.style.fontFamily = font.stack;
-    preview.style.fontWeight = String(font.weight);
-    preview.style.fontStyle = font.style;
-    const specimen = h('div', { class: 'pk-specimen' }, preview);
 
-    // A log scale keeps the small end legible without losing the display-size end.
-    const size = Math.min(SCALE_MAX, Math.max(SCALE_MIN, font.size));
-    const position = (Math.log(size / SCALE_MIN) / Math.log(SCALE_MAX / SCALE_MIN)) * 100;
-    const marker = h('span', { class: 'pk-ruler-marker' });
-    marker.style.left = `${position.toFixed(2)}%`;
-    const ruler = h(
+    const sample = h('div', { class: 'pk-sample', 'aria-hidden': 'true' }, 'Ag');
+    sample.style.fontFamily = font.stack;
+    sample.style.fontWeight = String(font.weight);
+    sample.style.fontStyle = font.style;
+
+    const close = h('button', { class: 'pk-close', type: 'button', 'aria-label': t('overlay_font_close'), title: t('overlay_font_close') });
+    close.append(icon(ICON_CLOSE));
+    close.addEventListener('click', () => stop());
+
+    const head = h(
       'div',
-      { class: 'pk-ruler', role: 'img', 'aria-label': `Type scale, ${font.size}px detected` },
-      h('span', { class: 'pk-ruler-track' }),
+      { class: 'pk-card-head' },
+      sample,
       h(
         'div',
-        { class: 'pk-ruler-ticks' },
-        ...SCALE_TICKS.map((tick) => h('span', { class: 'pk-ruler-tick' }, String(tick))),
-      ),
-      marker,
-    );
-
-    const rows = h(
-      'div',
-      { class: 'pk-rows' },
-      row('Size', `${font.size}px`),
-      row('Weight', `${font.weight} · ${weightName(font.weight)}`),
-      row('Line height', lineHeightLabel(font)),
-      row('Letter spacing', font.letterSpacing === 'normal' ? 'Normal' : font.letterSpacing),
-      font.style !== 'normal' ? row('Style', font.style) : null,
-      row('Colour', font.color, font.color),
-    );
-
-    const children: (Node | null)[] = [
-      h(
-        'div',
-        { class: 'pk-card-head' },
-        specimen,
+        { class: 'pk-card-title' },
         h(
           'div',
-          { class: 'pk-card-title' },
-          h(
-            'div',
-            { class: 'pk-family' },
-            h('span', { class: 'pk-family-name' }, font.family),
-            font.certain ? null : h('span', { class: 'pk-badge', title: 'Best guess based on fonts installed on this device' }, 'Likely'),
-          ),
-          h('div', { class: 'pk-source' }, font.sourceLabel),
+          { class: 'pk-family' },
+          h('span', { class: 'pk-family-name', title: font.family }, font.family),
+          font.certain ? null : h('span', { class: 'pk-badge', title: t('overlay_font_likely_tooltip') }, t('overlay_font_likely')),
         ),
+        h('div', { class: 'pk-source' }, font.sourceLabel),
       ),
-      ruler,
-      rows,
-      h('div', { class: 'pk-stack', title: font.stack }, font.stack),
-    ];
+      close,
+    );
+
+    const grid = h(
+      'div',
+      { class: 'pk-grid' },
+      cell(t('overlay_font_row_size'), `${font.size}px`),
+      cell(t('overlay_font_row_weight'), `${font.weight} · ${weightName(font.weight)}`),
+      cell(t('overlay_font_row_line_height'), lineHeightLabel(font)),
+      cell(t('overlay_font_row_letter_spacing'), font.letterSpacing === 'normal' ? t('font_letter_spacing_normal') : font.letterSpacing),
+      font.style !== 'normal' ? cell(t('overlay_font_row_style'), font.style) : null,
+    );
+
+    const children: (Node | null)[] = [head, grid, colourBlock(font.color), h('div', { class: 'pk-stack', title: font.stack }, font.stack)];
 
     if (pinned) {
-      children.unshift(h('div', { class: 'pk-accent-line', 'aria-hidden': 'true' }));
-      const copyCss = h('button', { class: 'pk-btn pk-btn-primary', type: 'button' }, 'Copy CSS');
+      const copyCss = h('button', { class: 'pk-btn pk-btn-primary', type: 'button' }, t('overlay_font_copy_css'));
       copyCss.addEventListener('click', async () => {
-        if (await copyText(fontCss(font))) shell.toast({ title: 'Copied font CSS', sub: font.family });
+        if (await copyText(fontCss(font))) shell.toast({ title: t('overlay_font_toast_copied_css'), sub: font.family });
       });
-      const save = h('button', { class: 'pk-btn', type: 'button' }, 'Save font');
-      save.addEventListener('click', async () => {
+      const saveButton = h('button', { class: 'pk-btn', type: 'button' }, icon(ICON_BOOKMARK), t('overlay_font_save'));
+      saveButton.addEventListener('click', async () => {
         await saveFont(font);
-        shell.toast({ title: 'Saved to your fonts', sub: font.family });
+        shell.toast({ title: t('overlay_font_toast_saved'), sub: font.family });
       });
-      const actions = h('div', { class: 'pk-actions' }, copyCss, save);
+      const actions = h('div', { class: 'pk-actions' }, copyCss, saveButton);
       if (font.link) {
-        const link = h('button', { class: 'pk-btn', type: 'button' }, 'Google Fonts ↗');
+        const link = h('button', {
+          class: 'pk-btn pk-btn-icon',
+          type: 'button',
+          'aria-label': t('overlay_font_open_google_fonts'),
+          title: t('overlay_font_open_google_fonts'),
+        });
+        link.append(icon(ICON_EXTERNAL));
         link.addEventListener('click', () => window.open(font.link, '_blank', 'noopener'));
         actions.append(link);
       }
       children.push(actions);
     } else {
-      children.push(h('div', { class: 'pk-card-foot' }, 'Click to pin, then copy any value'));
+      children.push(h('div', { class: 'pk-card-foot' }, t('overlay_font_footer')));
     }
 
     card.replaceChildren(...children.filter((c): c is Node => c !== null));

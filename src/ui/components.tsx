@@ -1,6 +1,7 @@
 import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
 import { COLOR_FORMATS, formatColor, hexToRgb, type ColorFormat } from '@/core/color';
 import type { Settings } from '@/core/storage';
+import { relativeTime, t } from '@/core/i18n';
 import { Icon, type IconName } from './icons';
 
 // ---------- Toasts ----------
@@ -13,12 +14,15 @@ export function toast(message: string): void {
   listeners.forEach((listener) => listener(message));
 }
 
-export async function copy(text: string, label?: string): Promise<void> {
+/** Copies text and confirms with a toast. Resolves to whether the copy worked. */
+export async function copy(text: string, label?: string): Promise<boolean> {
   try {
     await navigator.clipboard.writeText(text);
-    toast(label ?? `Copied ${text}`);
+    toast(label ?? t('ui_copied_value', text));
+    return true;
   } catch {
-    toast('Could not copy');
+    toast(t('ui_copy_failed'));
+    return false;
   }
 }
 
@@ -110,14 +114,14 @@ export function Skeleton(props: { height?: number; width?: string; radius?: numb
 export function ColorBar({ colors, onSelect }: { colors: { hex: string; weight: number }[]; onSelect?: (hex: string) => void }) {
   const total = colors.reduce((sum, color) => sum + color.weight, 0) || 1;
   return (
-    <div className="color-bar" role="group" aria-label="Colours used on this page">
+    <div className="color-bar" role="group" aria-label={t('ui_colorbar_label')}>
       {colors.map((color) => (
         <button
           key={color.hex}
           type="button"
           style={{ background: color.hex, flexGrow: Math.max(0.35, color.weight / total * 100) }}
-          title={`${color.hex} · ${Math.round((color.weight / total) * 100)}%`}
-          aria-label={`${color.hex}, ${Math.round((color.weight / total) * 100)} percent of uses`}
+          title={t('ui_colorbar_segment_title', color.hex, Math.round((color.weight / total) * 100))}
+          aria-label={t('ui_colorbar_segment_aria', color.hex, Math.round((color.weight / total) * 100))}
           onClick={() => onSelect?.(color.hex)}
         />
       ))}
@@ -139,7 +143,7 @@ export function Empty(props: { icon: IconName; title: string; children?: ReactNo
 }
 
 /** A row that copies its value when clicked and briefly confirms with a tick. */
-export function CopyRow({ label, value }: { label: string; value: string }) {
+function CopyRow({ label, value }: { label: string; value: string }) {
   const [copied, setCopied] = useState(false);
   useEffect(() => {
     if (!copied) return;
@@ -152,19 +156,18 @@ export function CopyRow({ label, value }: { label: string; value: string }) {
       className="copy-row"
       data-copied={copied ? '' : undefined}
       onClick={async () => {
-        await copy(value);
-        setCopied(true);
+        if (await copy(value)) setCopied(true);
       }}
     >
-      <span className="sr-only">Copy </span>
-      <span className="copy-row-label">{label}</span>{' '}
-      <span className="copy-row-value">{value}</span>
+      <span className="sr-only">{t('ui_copy_row_sr', label, value)}</span>
+      <span className="copy-row-label" aria-hidden="true">{label}</span>{' '}
+      <span className="copy-row-value" aria-hidden="true">{value}</span>
       <Icon name={copied ? 'check' : 'copy'} size={14} />
     </button>
   );
 }
 
-const FORMAT_LABELS: Record<ColorFormat, string> = { hex: 'HEX', rgb: 'RGB', hsl: 'HSL' };
+const FORMAT_LABELS: Record<ColorFormat, string> = { hex: 'HEX', rgb: 'RGB', hsl: 'HSL', oklch: 'OKLCH' };
 
 /** All three formats of one colour, the user's default format first. */
 export function ColorFormats({ hex, settings }: { hex: string; settings: Settings }) {
@@ -186,12 +189,5 @@ export function inDefaultFormat(hex: string, settings: Settings): string {
   return color ? formatColor(color, settings.format, { upperHex: settings.upperHex }) : hex;
 }
 
-export function timeAgo(ts: number): string {
-  const minutes = Math.round((Date.now() - ts) / 60000);
-  if (minutes < 1) return 'just now';
-  if (minutes < 60) return `${minutes} min ago`;
-  const hours = Math.round(minutes / 60);
-  if (hours < 24) return `${hours} h ago`;
-  const days = Math.round(hours / 24);
-  return days === 1 ? 'yesterday' : `${days} days ago`;
-}
+/** "3 min ago", "yesterday", in the browser's language. */
+export const timeAgo = relativeTime;

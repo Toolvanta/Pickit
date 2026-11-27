@@ -1,6 +1,6 @@
 // Stand-in for the chrome.* extension APIs, used only by scripts/preview.mjs.
 (() => {
-  const KEY = 'pickkit-preview';
+  const KEY = 'pickit-preview';
   const now = Date.now();
   const color = (hex, i, extra = {}) => ({ id: `c${i}`, hex, ts: now - i * 600000, origin: 'example.com', ...extra });
   const font = (id, family, extra) => ({
@@ -119,7 +119,29 @@
     },
     windows: { getCurrent: async () => ({ id: 1 }) },
     sidePanel: { open: async () => void (location.href = '/sidepanel.html'), setPanelBehavior: async () => {} },
-    permissions: { contains: async () => false, request: async () => true, remove: async () => true },
+    // Preview a translation with ?lang=de (or ar for right-to-left). Loaded synchronously,
+    // as chrome.i18n is synchronous.
+    i18n: (() => {
+      const lang = new URLSearchParams(location.search).get('lang') || 'en';
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', '/_locales/' + lang + '/messages.json', false);
+      xhr.send();
+      const messages = xhr.status === 200 ? JSON.parse(xhr.responseText) : {};
+      return {
+        getUILanguage: () => lang.replace('_', '-'),
+        getMessage: (key) => {
+          if (key === '@@bidi_dir') return lang === 'ar' ? 'rtl' : 'ltr';
+          return messages[key]?.message ?? '';
+        },
+      };
+    })(),
+    permissions: {
+      contains: async () => false,
+      request: async () => true,
+      remove: async () => true,
+      onAdded: event(),
+      onRemoved: event(),
+    },
     commands: {
       getAll: async () => [
         { name: 'pick-color', shortcut: 'Alt+Shift+C' },

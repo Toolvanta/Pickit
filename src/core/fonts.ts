@@ -2,6 +2,7 @@
 // reads the live page and therefore only runs inside the overlay.
 
 import { parseColor, rgbToHex } from './color';
+import { t } from './i18n';
 import type { FontEntry, FontSourceKind } from './storage';
 
 export type FontInfo = Omit<FontEntry, 'id' | 'ts'>;
@@ -11,9 +12,17 @@ const GENERIC = new Set([
   'ui-monospace', 'ui-rounded', 'emoji', 'math', 'fangsong',
 ]);
 
-const WEIGHT_NAMES: Record<number, string> = {
-  100: 'Thin', 200: 'Extra Light', 300: 'Light', 400: 'Regular', 500: 'Medium',
-  600: 'Semi Bold', 700: 'Bold', 800: 'Extra Bold', 900: 'Black',
+// Looked up when called (not at module load) so the text follows the UI language.
+const WEIGHT_NAMES: Record<number, () => string> = {
+  100: () => t('font_weight_thin'),
+  200: () => t('font_weight_extra_light'),
+  300: () => t('font_weight_light'),
+  400: () => t('font_weight_regular'),
+  500: () => t('font_weight_medium'),
+  600: () => t('font_weight_semi_bold'),
+  700: () => t('font_weight_bold'),
+  800: () => t('font_weight_extra_bold'),
+  900: () => t('font_weight_black'),
 };
 
 /** Splits a font-family value into family names, honouring quotes and escaped commas. */
@@ -44,12 +53,12 @@ export function isGenericFamily(family: string): boolean {
 
 export function weightName(weight: number): string {
   const nearest = Math.min(900, Math.max(100, Math.round(weight / 100) * 100));
-  return WEIGHT_NAMES[nearest];
+  return WEIGHT_NAMES[nearest]();
 }
 
 /** "1.5 · 24px" style label for a stored line height. */
 export function lineHeightLabel(font: Pick<FontEntry, 'lineHeight' | 'size'>): string {
-  if (font.lineHeight === 'normal') return 'Normal';
+  if (font.lineHeight === 'normal') return t('font_line_height_normal');
   const ratio = parseFloat(font.lineHeight);
   return `${font.lineHeight} · ${Math.round(ratio * font.size * 10) / 10}px`;
 }
@@ -118,9 +127,24 @@ function loadedWebFamilies(): Set<string> {
 }
 
 const detectionCache = new Map<string, Detection>();
+let watchingFontLoads = false;
+
+/**
+ * Forgets cached detections and @font-face hosts. The overlay script stays in a tab
+ * across single-page navigations, and web fonts can load at any time (often only when
+ * text first needs them), so answers cached earlier can go stale.
+ */
+export function resetFontCaches(): void {
+  detectionCache.clear();
+  faceHosts = null;
+}
 
 /** Works out which family in a stack is really rendering the text. */
 export function detectRenderedFamily(stack: string): Detection {
+  if (!watchingFontLoads) {
+    watchingFontLoads = true;
+    document.fonts.addEventListener('loadingdone', resetFontCaches);
+  }
   const cached = detectionCache.get(stack);
   if (cached) return cached;
   const web = loadedWebFamilies();
@@ -139,7 +163,7 @@ export function detectRenderedFamily(stack: string): Detection {
       break;
     }
   }
-  result ??= { family: 'Browser default', certain: false, kind: 'generic' };
+  result ??= { family: t('font_source_browser_default'), certain: false, kind: 'generic' };
   // Web fonts can finish loading after the first hover, so only cache settled answers.
   if (document.fonts.status === 'loaded') detectionCache.set(stack, result);
   return result;
@@ -201,8 +225,8 @@ function linkedFromGoogle(family: string): boolean {
 }
 
 export function fontSource(detection: Detection): { source: FontSourceKind; label: string; link?: string } {
-  if (detection.kind === 'generic') return { source: 'generic', label: 'Browser default' };
-  if (detection.kind === 'local') return { source: 'system', label: 'Installed on this device' };
+  if (detection.kind === 'generic') return { source: 'generic', label: t('font_source_browser_default') };
+  if (detection.kind === 'local') return { source: 'system', label: t('font_source_installed') };
 
   const hosts = [...(fontFaceHosts().get(detection.family.toLowerCase()) ?? [])];
   if (hosts.some((h) => h.endsWith('gstatic.com') || h.endsWith('googleapis.com')) || linkedFromGoogle(detection.family)) {
@@ -211,9 +235,9 @@ export function fontSource(detection: Detection): { source: FontSourceKind; labe
   if (hosts.some((h) => h.includes('typekit')) || (!hosts.length && document.querySelector('link[href*="typekit.net"], script[src*="typekit.net"]'))) {
     return { source: 'adobe', label: 'Adobe Fonts' };
   }
-  if (!hosts.length) return { source: 'hosted', label: 'Web font' };
+  if (!hosts.length) return { source: 'hosted', label: t('font_source_web_font') };
   const external = hosts.find((h) => h !== location.host);
-  return { source: 'hosted', label: external ? `Hosted on ${external}` : 'Self-hosted' };
+  return { source: 'hosted', label: external ? t('font_source_hosted_on', external) : t('font_source_self_hosted') };
 }
 
 /** Everything the font card shows for one element. */

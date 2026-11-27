@@ -3,8 +3,6 @@
 
 import { browser } from 'wxt/browser';
 
-export const PRODUCT_NAME = 'PickKit';
-
 /** Number of colour picks after which the popup asks for a store rating (once). */
 export const RATING_PROMPT_AFTER_PICKS = 20;
 
@@ -29,3 +27,20 @@ export function isRestrictedUrl(url: string | undefined): boolean {
     /^https:\/\/chrome\.google\.com\/webstore/i.test(url)
   );
 }
+
+/**
+ * Sponsor shown on Pickit's own pages. The UTM tags let the sponsor see visits came
+ * from Pickit; they carry nothing about the person or the pages they visit.
+ */
+export const SPONSOR = {
+  name: 'ToolEnhancer',
+  url: 'https://toolenhancer.com/?utm_source=pickit&utm_medium=extension&utm_campaign=sponsor',
+} as const;
+
+/** The maker and the project's public pages, shown in the About areas. */
+export const CREATOR = {
+  name: 'Shoaib Arif',
+  github: 'https://github.com/Toolvanta/Pickit',
+  linkedin: 'https://www.linkedin.com/in/shoaibmarif/',
+  portfolio: 'https://shoaibarif.vercel.app/',
+} as const;

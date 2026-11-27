@@ -1,11 +1,1358 @@
 {
   "extName": {
-    "message": "PickKit – 取色器和字体识别"
+    "message": "Pickit - 取色器和字体检测"
   },
   "extDescription": {
     "message": "从网页或屏幕拾取任意颜色，悬停即可识别字体，检查对比度并导出调色板。"
   },
   "actionTitle": {
-    "message": "打开 PickKit"
+    "message": "打开 Pickit"
+  },
+  "cmdPickColor": {
+    "message": "拾取颜色"
+  },
+  "cmdInspectFont": {
+    "message": "检查字体"
+  },
+  "fonts_likely_badge": {
+    "message": "推测"
+  },
+  "fonts_likely_title": {
+    "message": "根据设备上已安装的字体推测"
+  },
+  "fonts_specimen_pangram": {
+    "message": "天地玄黄，宇宙洪荒。日月盈昃，辰宿列张。"
+  },
+  "fonts_fact_size": {
+    "message": "字号"
+  },
+  "fonts_fact_weight": {
+    "message": "字重"
+  },
+  "fonts_fact_line_height": {
+    "message": "行高"
+  },
+  "fonts_fact_spacing": {
+    "message": "字距"
+  },
+  "fonts_spacing_normal": {
+    "message": "常规"
+  },
+  "fonts_copy_css": {
+    "message": "复制 CSS"
+  },
+  "fonts_copied_css": {
+    "message": "已复制字体 CSS"
+  },
+  "fonts_save_font": {
+    "message": "保存字体"
+  },
+  "fonts_add_favourite": {
+    "message": "添加到收藏"
+  },
+  "fonts_remove_favourite": {
+    "message": "从收藏中移除"
+  },
+  "fonts_remove": {
+    "message": "移除"
+  },
+  "fonts_eyebrow_library": {
+    "message": "字体库"
+  },
+  "fonts_heading_recent": {
+    "message": "最近检查"
+  },
+  "fonts_heading_saved": {
+    "message": "已保存的字体"
+  },
+  "fonts_search_label": {
+    "message": "搜索字体"
+  },
+  "fonts_search_placeholder": {
+    "message": "搜索字体族、来源、出处…"
+  },
+  "fonts_list_label": {
+    "message": "字体列表"
+  },
+  "fonts_tab_recent_other": {
+    "message": "最近 · {0}"
+  },
+  "fonts_tab_saved_other": {
+    "message": "已保存 · {0}"
+  },
+  "fonts_empty_search_title": {
+    "message": "没有与搜索匹配的字体"
+  },
+  "fonts_empty_search_body": {
+    "message": "请尝试字体族名称、来源或主机名。"
+  },
+  "fonts_empty_recent_title": {
+    "message": "尚未检查任何字体"
+  },
+  "fonts_empty_recent_body": {
+    "message": "在任意网页上选中文字，并从检查器中保存其字体，即可在此保留字体详情。"
+  },
+  "fonts_empty_saved_title": {
+    "message": "没有已保存的字体"
+  },
+  "fonts_empty_saved_body": {
+    "message": "从检查器或“最近”中保存字体，以便日后查看。"
+  },
+  "fonts_saved_toast": {
+    "message": "已保存到你的字体"
+  },
+  "page_loading_eyebrow": {
+    "message": "页面扫描"
+  },
+  "page_loading_heading": {
+    "message": "正在读取此页面"
+  },
+  "page_loading_badge": {
+    "message": "处理中"
+  },
+  "page_restricted_title": {
+    "message": "无法扫描此页面"
+  },
+  "page_restricted_body": {
+    "message": "Chrome 会在浏览器页面和 Web Store 中禁用扩展程序。请切换到任意网站。"
+  },
+  "page_unreadable_title": {
+    "message": "Pickit 无法读取此页面"
+  },
+  "page_unreadable_body": {
+    "message": "请重新加载页面后再次扫描。如果是本地文件，请在扩展程序详情中允许访问文件网址。"
+  },
+  "page_not_invoked_title": {
+    "message": "尚未在此标签页中启用 Pickit"
+  },
+  "page_not_invoked_body": {
+    "message": "为保护你的隐私，Pickit 只会读取你主动启用它的页面。请在此标签页中点击工具栏上的 Pickit 图标后再次扫描，或允许访问所有网站，以便侧边栏扫描任意页面。"
+  },
+  "page_scan_again": {
+    "message": "重新扫描"
+  },
+  "page_allow_all_sites": {
+    "message": "在所有网站上允许"
+  },
+  "page_default_palette_name": {
+    "message": "页面调色板"
+  },
+  "page_saved_as_palette": {
+    "message": "已保存为调色板"
+  },
+  "page_style_guide_downloaded": {
+    "message": "样式指南已下载"
+  },
+  "page_current_eyebrow": {
+    "message": "当前页面"
+  },
+  "page_this_page": {
+    "message": "此页面"
+  },
+  "page_rescan": {
+    "message": "重新扫描"
+  },
+  "page_fingerprint_heading": {
+    "message": "颜色指纹"
+  },
+  "page_fingerprint_hint": {
+    "message": "点按色块即可复制"
+  },
+  "page_copied_colour": {
+    "message": "已复制颜色"
+  },
+  "page_style_guide_button": {
+    "message": "样式指南（PNG）"
+  },
+  "page_copy_tokens": {
+    "message": "复制令牌"
+  },
+  "page_copied_css_variables": {
+    "message": "已复制 CSS 变量"
+  },
+  "page_palette_eyebrow": {
+    "message": "提取的调色板"
+  },
+  "page_colours_heading_other": {
+    "message": "颜色 · {0}"
+  },
+  "page_save_as_palette": {
+    "message": "保存为调色板"
+  },
+  "page_role_label": {
+    "message": "颜色用途"
+  },
+  "page_role_all": {
+    "message": "全部"
+  },
+  "page_role_text": {
+    "message": "文字"
+  },
+  "page_role_background": {
+    "message": "背景"
+  },
+  "page_role_border": {
+    "message": "边框"
+  },
+  "page_no_colours_in_role": {
+    "message": "此用途下没有使用任何颜色。"
+  },
+  "page_copy_value": {
+    "message": "复制 {0}"
+  },
+  "page_uses_count_other": {
+    "message": "{0} 次"
+  },
+  "page_type_eyebrow": {
+    "message": "字体系统"
+  },
+  "page_typography_heading_other": {
+    "message": "排版 · {0}"
+  },
+  "page_font_likely": {
+    "message": "推测"
+  },
+  "page_view_on_google_fonts": {
+    "message": "在 Google Fonts 上查看"
+  },
+  "page_more_sizes_other": {
+    "message": "+{0}"
+  },
+  "page_no_text_found": {
+    "message": "此页面上未找到文字。"
+  },
+  "page_truncated_notice_other": {
+    "message": "此页面较大，仅读取了前 {0} 个元素。"
+  },
+  "palettes_name_label": {
+    "message": "调色板名称"
+  },
+  "palettes_colour_count_other": {
+    "message": "{0} 种颜色"
+  },
+  "palettes_delete_confirm": {
+    "message": "删除"
+  },
+  "palettes_delete_cancel": {
+    "message": "取消"
+  },
+  "palettes_delete_palette": {
+    "message": "删除调色板"
+  },
+  "palettes_empty_ribbon": {
+    "message": "在下方或从“颜色”标签页添加颜色。"
+  },
+  "palettes_swatches_label": {
+    "message": "{0} 色板"
+  },
+  "palettes_swatch_title": {
+    "message": "{0} · 点击复制，拖动排序，按 Delete 移除"
+  },
+  "palettes_swatch_aria": {
+    "message": "{0}。按 Enter 复制，按 Delete 移除，按 Alt 加方向键排序。"
+  },
+  "palettes_swatch_hint": {
+    "message": "拖动排序 · Alt + ←/→ 移动 · Delete 移除"
+  },
+  "palettes_add_placeholder": {
+    "message": "#5548E0 或 rgb(…)"
+  },
+  "palettes_add_label": {
+    "message": "要添加的颜色"
+  },
+  "palettes_add_button": {
+    "message": "添加"
+  },
+  "palettes_export_format_label": {
+    "message": "导出格式"
+  },
+  "palettes_copy_button": {
+    "message": "复制"
+  },
+  "palettes_copied_export": {
+    "message": "已复制导出内容"
+  },
+  "palettes_file_button": {
+    "message": "文件"
+  },
+  "palettes_downloaded_palette": {
+    "message": "已下载 {0}"
+  },
+  "palettes_default_name": {
+    "message": "调色板 {0}"
+  },
+  "palettes_heading": {
+    "message": "调色板"
+  },
+  "palettes_vision_label": {
+    "message": "以色觉障碍视角预览调色板"
+  },
+  "palettes_vision_title": {
+    "message": "检查调色板中的颜色是否仍可区分"
+  },
+  "palettes_vision_typical": {
+    "message": "正常色觉"
+  },
+  "palettes_empty_title": {
+    "message": "还没有调色板"
+  },
+  "palettes_empty_body": {
+    "message": "将颜色归入调色板，然后导出为 CSS 变量、SCSS、Tailwind、设计令牌、JSON 或 SVG。"
+  },
+  "palettes_new_palette": {
+    "message": "新建调色板"
+  },
+  "palettes_all_colours_heading": {
+    "message": "所有颜色"
+  },
+  "palettes_export_all": {
+    "message": "全部导出"
+  },
+  "palettes_downloaded_all": {
+    "message": "已下载所有颜色"
+  },
+  "palettes_copied_colour": {
+    "message": "已复制颜色"
+  },
+  "ui_copied_value": {
+    "message": "已复制 {0}"
+  },
+  "ui_copy_failed": {
+    "message": "无法复制"
+  },
+  "ui_colorbar_label": {
+    "message": "此页面使用的颜色"
+  },
+  "ui_colorbar_segment_title": {
+    "message": "{0} · {1}%"
+  },
+  "ui_colorbar_segment_aria": {
+    "message": "{0}，占使用次数的 {1}%"
+  },
+  "ui_copy_row_sr": {
+    "message": "复制 {0} {1}"
+  },
+  "ui_search_placeholder": {
+    "message": "搜索…"
+  },
+  "ui_search_clear": {
+    "message": "清除搜索"
+  },
+  "cmd_default_label": {
+    "message": "命令"
+  },
+  "cmd_trigger_compact_label": {
+    "message": "{0}（{1}）"
+  },
+  "cmd_close_label": {
+    "message": "关闭命令菜单"
+  },
+  "cmd_list_label": {
+    "message": "{0}列表"
+  },
+  "cmd_empty": {
+    "message": "没有可用的命令"
+  },
+  "cmd_footer_navigate": {
+    "message": "导航"
+  },
+  "cmd_footer_run": {
+    "message": "运行"
+  },
+  "cmd_footer_close": {
+    "message": "关闭"
+  },
+  "styleguide_default_title": {
+    "message": "样式指南"
+  },
+  "styleguide_colours_heading": {
+    "message": "颜色"
+  },
+  "styleguide_typography_heading": {
+    "message": "排版"
+  },
+  "styleguide_font_details": {
+    "message": "{0}   ·   字重 {1}   ·   字号 {2}"
+  },
+  "styleguide_footer": {
+    "message": "由 {0} 制作"
+  },
+  "export_format_tokens": {
+    "message": "令牌"
+  },
+  "overlay_hint_bar_label": {
+    "message": "键盘快捷键"
+  },
+  "overlay_key_click": {
+    "message": "点击"
+  },
+  "overlay_key_shift_click": {
+    "message": "Shift+点击"
+  },
+  "overlay_hint_copy_colour": {
+    "message": "复制颜色"
+  },
+  "overlay_hint_pick_several": {
+    "message": "连续拾取"
+  },
+  "overlay_hint_pick_from_screen": {
+    "message": "从屏幕拾取"
+  },
+  "overlay_hint_cancel": {
+    "message": "取消"
+  },
+  "overlay_toast_cannot_read_page": {
+    "message": "Pickit 无法读取此页面"
+  },
+  "overlay_toast_cannot_read_page_sub": {
+    "message": "请点击工具栏图标后重试"
+  },
+  "overlay_toast_capture_failed": {
+    "message": "无法截取页面"
+  },
+  "overlay_toast_try_again": {
+    "message": "请重试"
+  },
+  "overlay_toast_copied": {
+    "message": "已复制 {0}"
+  },
+  "overlay_toast_saved": {
+    "message": "已保存 {0}"
+  },
+  "overlay_font_card_label": {
+    "message": "字体详情"
+  },
+  "overlay_font_key_hover": {
+    "message": "悬停"
+  },
+  "overlay_font_key_click": {
+    "message": "点击"
+  },
+  "overlay_font_hint_inspect": {
+    "message": "检查"
+  },
+  "overlay_font_hint_pin_copy": {
+    "message": "固定并复制"
+  },
+  "overlay_font_hint_exit": {
+    "message": "退出"
+  },
+  "overlay_font_row_size": {
+    "message": "字号"
+  },
+  "overlay_font_row_weight": {
+    "message": "字重"
+  },
+  "overlay_font_row_line_height": {
+    "message": "行高"
+  },
+  "overlay_font_row_letter_spacing": {
+    "message": "字距"
+  },
+  "overlay_font_row_style": {
+    "message": "样式"
+  },
+  "overlay_font_row_colour": {
+    "message": "颜色"
+  },
+  "overlay_font_likely": {
+    "message": "推测"
+  },
+  "overlay_font_likely_tooltip": {
+    "message": "根据此设备上已安装的字体推测"
+  },
+  "overlay_font_copy_css": {
+    "message": "复制 CSS"
+  },
+  "overlay_font_save": {
+    "message": "保存字体"
+  },
+  "overlay_font_open_google_fonts": {
+    "message": "Google Fonts ↗"
+  },
+  "overlay_font_footer": {
+    "message": "点击固定，然后可复制任意值"
+  },
+  "overlay_font_toast_copied": {
+    "message": "已复制 {0}"
+  },
+  "overlay_font_toast_copied_css": {
+    "message": "已复制字体 CSS"
+  },
+  "overlay_font_toast_saved": {
+    "message": "已保存到你的字体"
+  },
+  "font_weight_thin": {
+    "message": "极细"
+  },
+  "font_weight_extra_light": {
+    "message": "特细"
+  },
+  "font_weight_light": {
+    "message": "细体"
+  },
+  "font_weight_regular": {
+    "message": "常规"
+  },
+  "font_weight_medium": {
+    "message": "中等"
+  },
+  "font_weight_semi_bold": {
+    "message": "半粗"
+  },
+  "font_weight_bold": {
+    "message": "粗体"
+  },
+  "font_weight_extra_bold": {
+    "message": "特粗"
+  },
+  "font_weight_black": {
+    "message": "极粗"
+  },
+  "font_line_height_normal": {
+    "message": "常规"
+  },
+  "font_letter_spacing_normal": {
+    "message": "常规"
+  },
+  "font_source_browser_default": {
+    "message": "浏览器默认"
+  },
+  "font_source_installed": {
+    "message": "已安装在此设备上"
+  },
+  "font_source_web_font": {
+    "message": "网络字体"
+  },
+  "font_source_self_hosted": {
+    "message": "自托管"
+  },
+  "font_source_hosted_on": {
+    "message": "托管于 {0}"
+  },
+  "panel_tab_colors": {
+    "message": "颜色"
+  },
+  "panel_tab_fonts": {
+    "message": "字体"
+  },
+  "panel_tab_page": {
+    "message": "页面"
+  },
+  "panel_tab_contrast": {
+    "message": "对比度"
+  },
+  "panel_tab_palettes": {
+    "message": "调色板"
+  },
+  "panel_tabs_aria": {
+    "message": "工作区分区"
+  },
+  "panel_toast_restricted_page": {
+    "message": "Pickit 无法在此页面上运行"
+  },
+  "panel_toast_copied_colour": {
+    "message": "已复制颜色"
+  },
+  "panel_cmd_pick_colour": {
+    "message": "拾取颜色"
+  },
+  "panel_cmd_inspect_font": {
+    "message": "检查字体"
+  },
+  "panel_cmd_go_colors": {
+    "message": "前往颜色"
+  },
+  "panel_cmd_go_fonts": {
+    "message": "前往字体"
+  },
+  "panel_cmd_go_page": {
+    "message": "前往页面"
+  },
+  "panel_cmd_go_contrast": {
+    "message": "前往对比度"
+  },
+  "panel_cmd_go_palettes": {
+    "message": "前往调色板"
+  },
+  "panel_cmd_copy_selected_colour": {
+    "message": "复制所选颜色"
+  },
+  "panel_cmd_use_light_theme": {
+    "message": "使用浅色主题"
+  },
+  "panel_cmd_use_dark_theme": {
+    "message": "使用深色主题"
+  },
+  "panel_cmd_open_settings": {
+    "message": "打开设置"
+  },
+  "panel_settings": {
+    "message": "设置"
+  },
+  "panel_context_show_in_colors": {
+    "message": "在“颜色”中显示"
+  },
+  "panel_context_copy_colour": {
+    "message": "复制颜色"
+  },
+  "panel_context_check_contrast": {
+    "message": "检查对比度"
+  },
+  "colors_pick_from_page": {
+    "message": "从页面拾取"
+  },
+  "colors_screen_pick": {
+    "message": "屏幕"
+  },
+  "colors_screen_pick_title": {
+    "message": "拾取屏幕上的任意像素，包括 Chrome 之外的区域"
+  },
+  "colors_empty_title": {
+    "message": "拾取你的第一个颜色"
+  },
+  "colors_empty_body": {
+    "message": "点击“{0}”，然后点击页面上的任意位置。你拾取的每个颜色都会保存在这里，可以按任意格式复制、检查对比度并创建调色板。"
+  },
+  "colors_selected_aria": {
+    "message": "所选颜色"
+  },
+  "colors_token_match_title": {
+    "message": "与页面的 {0} 变量匹配"
+  },
+  "colors_favorite_add": {
+    "message": "添加到收藏"
+  },
+  "colors_favorite_remove": {
+    "message": "从收藏中移除"
+  },
+  "colors_copy_default_format_title": {
+    "message": "以默认格式复制"
+  },
+  "colors_toast_copied_colour": {
+    "message": "已复制颜色"
+  },
+  "colors_origin_screen": {
+    "message": "从屏幕拾取"
+  },
+  "colors_add_to_palette_aria": {
+    "message": "将此颜色添加到调色板"
+  },
+  "colors_add_to_palette_placeholder": {
+    "message": "添加到调色板…"
+  },
+  "colors_new_palette_option": {
+    "message": "+ 新建调色板"
+  },
+  "colors_default_palette_name": {
+    "message": "调色板 {0}"
+  },
+  "colors_toast_added_new_palette": {
+    "message": "已添加到新调色板"
+  },
+  "colors_toast_already_in_palette": {
+    "message": "已在 {0} 中"
+  },
+  "colors_toast_added_to_palette": {
+    "message": "已添加到 {0}"
+  },
+  "colors_as_text": {
+    "message": "作为文字"
+  },
+  "colors_as_text_title": {
+    "message": "在对比度检查器中将此颜色作为文字颜色检查"
+  },
+  "colors_as_bg": {
+    "message": "作为背景"
+  },
+  "colors_as_bg_title": {
+    "message": "在对比度检查器中将此颜色作为背景颜色检查"
+  },
+  "colors_history_title": {
+    "message": "历史记录"
+  },
+  "colors_clear_all_confirm_other": {
+    "message": "清除全部 {0} 个？"
+  },
+  "colors_clear": {
+    "message": "清除"
+  },
+  "colors_cancel": {
+    "message": "取消"
+  },
+  "colors_remove_selected": {
+    "message": "移除所选颜色"
+  },
+  "colors_search_label": {
+    "message": "搜索颜色"
+  },
+  "colors_search_placeholder": {
+    "message": "搜索 hex、名称、网站或令牌"
+  },
+  "colors_favorites_only_title": {
+    "message": "仅显示收藏"
+  },
+  "colors_no_favorites": {
+    "message": "还没有收藏。点按颜色上的爱心即可收藏。"
+  },
+  "colors_no_search_match": {
+    "message": "没有与搜索匹配的颜色。"
+  },
+  "colors_swatch_title": {
+    "message": "{0} · 双击复制"
+  },
+  "colors_swatch_title_favorite": {
+    "message": "{0} · 已收藏 · 双击复制"
+  },
+  "colors_swatch_select_aria": {
+    "message": "选择 {0}"
+  },
+  "colors_swatch_select_favorite_aria": {
+    "message": "选择 {0}，已收藏"
+  },
+  "colors_history_hint": {
+    "message": "单击查看 · 双击复制 · 收藏不会被“清除”"
+  },
+  "colors_explore_aria": {
+    "message": "探索此颜色"
+  },
+  "colors_explore": {
+    "message": "探索"
+  },
+  "colors_explore_shades": {
+    "message": "色阶"
+  },
+  "colors_explore_harmonies": {
+    "message": "配色"
+  },
+  "colors_shade_scale_aria": {
+    "message": "色阶"
+  },
+  "colors_shade_title": {
+    "message": "{0} · {1}"
+  },
+  "colors_shade_title_nearest": {
+    "message": "{0} · {1} · 最接近此颜色"
+  },
+  "colors_shade_copy_aria": {
+    "message": "复制色阶 {0}，{1}"
+  },
+  "colors_copy_scale_as": {
+    "message": "色阶复制为"
+  },
+  "colors_copy_scale_tokens": {
+    "message": "令牌"
+  },
+  "colors_toast_copied_css_variables": {
+    "message": "已复制 CSS 变量"
+  },
+  "colors_toast_copied_tailwind_scale": {
+    "message": "已复制 Tailwind 色阶"
+  },
+  "colors_toast_copied_design_tokens": {
+    "message": "已复制设计令牌"
+  },
+  "harmonies_aria": {
+    "message": "配色方案"
+  },
+  "harmonies_neutral_message": {
+    "message": "此颜色为中性色（灰色、近黑色或近白色），没有可用于生成配色的色相。请选择一个有色彩的色块来查看配色。"
+  },
+  "harmonies_toast_added_new_palette_other": {
+    "message": "已将 {0} 种颜色添加到新的“{1}”调色板"
+  },
+  "harmonies_toast_already_in_palette": {
+    "message": "{0} 的颜色均已在调色板中"
+  },
+  "harmonies_toast_added_to_palette_other": {
+    "message": "已将 {0} 种颜色添加到 {1}"
+  },
+  "harmonies_add_all_aria": {
+    "message": "全部添加到调色板：{0}"
+  },
+  "harmonies_add_all_title": {
+    "message": "将所有 {0} 颜色添加到调色板"
+  },
+  "harmonies_add_palette_button": {
+    "message": "+ 调色板"
+  },
+  "harmonies_strip_aria": {
+    "message": "{0} 颜色"
+  },
+  "harmonies_swatch_title": {
+    "message": "{0} · 点击复制"
+  },
+  "harmonies_swatch_title_base": {
+    "message": "{0} · 基准色 · 点击复制"
+  },
+  "harmonies_swatch_copy_aria": {
+    "message": "复制 {1} 中的 {0}"
+  },
+  "harmonies_swatch_copy_base_aria": {
+    "message": "复制 {1} 中的 {0}（基准色）"
+  },
+  "harmonies_toast_copied_value": {
+    "message": "已复制 {0}"
+  },
+  "harmonies_base_badge": {
+    "message": "基准"
+  },
+  "harmony_complementary": {
+    "message": "互补色"
+  },
+  "harmony_analogous": {
+    "message": "类似色"
+  },
+  "harmony_triadic": {
+    "message": "三角色"
+  },
+  "harmony_split_complement": {
+    "message": "分裂互补色"
+  },
+  "harmony_tetradic": {
+    "message": "四角色"
+  },
+  "contrast_field_text": {
+    "message": "文字"
+  },
+  "contrast_field_background": {
+    "message": "背景"
+  },
+  "contrast_text_picker_aria": {
+    "message": "文字颜色选择器"
+  },
+  "contrast_background_picker_aria": {
+    "message": "背景颜色选择器"
+  },
+  "contrast_use_recent_as_text_aria": {
+    "message": "将 {0} 用作文字颜色"
+  },
+  "contrast_use_recent_as_background_aria": {
+    "message": "将 {0} 用作背景颜色"
+  },
+  "contrast_grade_aa_large": {
+    "message": "AA 大字"
+  },
+  "contrast_grade_fails": {
+    "message": "不通过"
+  },
+  "contrast_simulating": {
+    "message": "正在模拟{0}"
+  },
+  "contrast_preview_large": {
+    "message": "24px 大号文字"
+  },
+  "contrast_preview_body": {
+    "message": "16px 正文文字。敏捷的棕色狐狸跳过了那只懒狗。"
+  },
+  "contrast_apca_title": {
+    "message": "APCA 亮度对比度，WCAG 3 提议标准"
+  },
+  "contrast_swap": {
+    "message": "交换文字和背景"
+  },
+  "contrast_apca_use": {
+    "message": "APCA：{0}"
+  },
+  "contrast_check_aa_body": {
+    "message": "AA 正文"
+  },
+  "contrast_check_aa_large": {
+    "message": "AA 大字"
+  },
+  "contrast_check_aaa_body": {
+    "message": "AAA 正文"
+  },
+  "contrast_check_aaa_large": {
+    "message": "AAA 大字"
+  },
+  "contrast_fixes_aria": {
+    "message": "修复建议"
+  },
+  "contrast_fixes_title": {
+    "message": "以最小改动达到 {0}（{1}:1）"
+  },
+  "contrast_fix_text": {
+    "message": "调整文字"
+  },
+  "contrast_fix_background": {
+    "message": "调整背景"
+  },
+  "contrast_vision_title": {
+    "message": "色觉"
+  },
+  "contrast_vision_typical_note": {
+    "message": "正常色觉"
+  },
+  "contrast_vision_picker_aria": {
+    "message": "模拟色觉"
+  },
+  "contrast_vision_short_typical": {
+    "message": "正常"
+  },
+  "contrast_vision_short_protanopia": {
+    "message": "红色盲"
+  },
+  "contrast_vision_short_deuteranopia": {
+    "message": "绿色盲"
+  },
+  "contrast_vision_short_tritanopia": {
+    "message": "蓝色盲"
+  },
+  "contrast_vision_short_achromatopsia": {
+    "message": "全色盲"
+  },
+  "contrast_pair_aria": {
+    "message": "颜色"
+  },
+  "apca_use_body_any_size": {
+    "message": "任意字号的正文"
+  },
+  "apca_use_body_from_18px": {
+    "message": "18px 及以上的正文"
+  },
+  "apca_use_content_from_24px": {
+    "message": "24px 及以上的内容文字"
+  },
+  "apca_use_headlines_large_text": {
+    "message": "标题和大号文字"
+  },
+  "apca_use_placeholders_non_text": {
+    "message": "仅限占位符和非文字元素"
+  },
+  "apca_use_dividers_decoration": {
+    "message": "仅限分隔线和装饰"
+  },
+  "apca_use_not_readable": {
+    "message": "不可读"
+  },
+  "vision_protanopia_label": {
+    "message": "红色盲"
+  },
+  "vision_protanopia_note": {
+    "message": "缺少红色视锥细胞"
+  },
+  "vision_deuteranopia_label": {
+    "message": "绿色盲"
+  },
+  "vision_deuteranopia_note": {
+    "message": "缺少绿色视锥细胞"
+  },
+  "vision_tritanopia_label": {
+    "message": "蓝色盲"
+  },
+  "vision_tritanopia_note": {
+    "message": "缺少蓝色视锥细胞"
+  },
+  "vision_achromatopsia_label": {
+    "message": "全色盲"
+  },
+  "vision_achromatopsia_note": {
+    "message": "无色觉"
+  },
+  "popup_failure_restricted_title": {
+    "message": "Pickit 无法在此页面上运行"
+  },
+  "popup_failure_restricted_text": {
+    "message": "Chrome 会在浏览器页面和 Web Store 中禁用扩展程序。请打开任意网站后重试。"
+  },
+  "popup_failure_no_access_title": {
+    "message": "Pickit 无法访问此页面"
+  },
+  "popup_failure_no_access_text": {
+    "message": "请重新加载页面后重试。如果是本地文件，请在扩展程序详情中允许访问文件网址。"
+  },
+  "popup_failure_unknown_title": {
+    "message": "出了点问题"
+  },
+  "popup_failure_unknown_text": {
+    "message": "请重新加载页面后重试。"
+  },
+  "popup_command_pick_colour": {
+    "message": "拾取颜色"
+  },
+  "popup_command_inspect_font": {
+    "message": "检查字体"
+  },
+  "popup_command_open_workspace": {
+    "message": "打开工作区面板"
+  },
+  "popup_command_copy_latest": {
+    "message": "复制最新颜色"
+  },
+  "popup_command_light_theme": {
+    "message": "使用浅色主题"
+  },
+  "popup_command_dark_theme": {
+    "message": "使用深色主题"
+  },
+  "popup_command_open_settings": {
+    "message": "打开设置"
+  },
+  "popup_toast_copied_colour": {
+    "message": "已复制颜色"
+  },
+  "popup_open_workspace_label": {
+    "message": "打开工作区面板"
+  },
+  "popup_settings_label": {
+    "message": "设置"
+  },
+  "popup_tools_label": {
+    "message": "工具"
+  },
+  "popup_tool_pick_title": {
+    "message": "拾取颜色"
+  },
+  "popup_tool_pick_sub": {
+    "message": "点击任意像素"
+  },
+  "popup_tool_font_title": {
+    "message": "检查字体"
+  },
+  "popup_tool_font_sub": {
+    "message": "悬停在任意文字上"
+  },
+  "popup_empty_colours": {
+    "message": "你拾取的颜色会显示在这里，可按任意格式复制。"
+  },
+  "popup_latest_colour_label": {
+    "message": "最新颜色"
+  },
+  "popup_latest_copy_title": {
+    "message": "以默认格式复制"
+  },
+  "popup_origin_screen": {
+    "message": "从屏幕拾取"
+  },
+  "popup_recent_colours_label": {
+    "message": "最近的颜色"
+  },
+  "popup_recent_copy_label": {
+    "message": "复制 {0}"
+  },
+  "popup_recent_copy_title": {
+    "message": "{0} · 点击复制"
+  },
+  "popup_latest_font_label": {
+    "message": "最新字体"
+  },
+  "popup_font_details": {
+    "message": "{0}px · {1} · {2}"
+  },
+  "popup_workspace_link": {
+    "message": "打开工作区"
+  },
+  "popup_workspace_link_sub": {
+    "message": "历史记录、对比度、调色板"
+  },
+  "popup_rating_title": {
+    "message": "觉得 Pickit 有用吗？"
+  },
+  "popup_rating_text": {
+    "message": "你的评分可以帮助更多人发现它。"
+  },
+  "popup_rating_rate": {
+    "message": "为 Pickit 评分"
+  },
+  "popup_rating_dismiss": {
+    "message": "以后再说"
+  },
+  "welcome_step_pick_title": {
+    "message": "拾取颜色"
+  },
+  "welcome_step_pick_text": {
+    "message": "打开弹出窗口或使用快捷键，然后点击页面上的颜色。Pickit 只读取颜色，不会监视你的操作。"
+  },
+  "welcome_step_font_title": {
+    "message": "检查字体"
+  },
+  "welcome_step_font_text": {
+    "message": "选择字体工具并点击任意文字，即可在一个小面板中看到字体族、字号、字重和颜色。"
+  },
+  "welcome_step_workspace_title": {
+    "message": "一切尽在工作区"
+  },
+  "welcome_step_workspace_text": {
+    "message": "侧边栏汇集了颜色历史记录、字体、调色板、对比度检查器，以及一键生成的页面样式指南。"
+  },
+  "welcome_shortcut_label": {
+    "message": "快捷键 {0}"
+  },
+  "welcome_kicker": {
+    "message": "欢迎使用 Pickit"
+  },
+  "welcome_title_lead": {
+    "message": "任意颜色，任意字体。"
+  },
+  "welcome_title_accent": {
+    "message": "触手可及。"
+  },
+  "welcome_lead": {
+    "message": "了解以下三点，即可开始使用。"
+  },
+  "welcome_tip_pin": {
+    "message": "提示：点击 Chrome 工具栏中的拼图图标并固定 Pickit，随时一键即可打开。"
+  },
+  "welcome_cta": {
+    "message": "开始使用"
+  },
+  "access_unreachable_title": {
+    "message": "Pickit 无法访问此页面"
+  },
+  "access_unreachable_text": {
+    "message": "请重新加载页面后重试。如果是本地文件，请在扩展程序详情中允许访问文件网址。"
+  },
+  "access_allow_title": {
+    "message": "在此页面上允许 Pickit"
+  },
+  "access_allow_text": {
+    "message": "侧边栏无法自行访问标签页。请在此标签页中点击工具栏上的 Pickit 图标，或允许访问所有网站，让侧边栏在任何页面上都能使用。"
+  },
+  "access_allow_all_sites": {
+    "message": "在所有网站上允许"
+  },
+  "access_dismiss_label": {
+    "message": "关闭"
+  },
+  "settings_theme_light": {
+    "message": "浅色"
+  },
+  "settings_theme_dark": {
+    "message": "深色"
+  },
+  "settings_theme_system": {
+    "message": "跟随系统"
+  },
+  "settings_shortcut_not_set": {
+    "message": "未设置"
+  },
+  "settings_shortcut_label": {
+    "message": "快捷键 {0}"
+  },
+  "settings_count_colours_other": {
+    "message": "{0} 种颜色"
+  },
+  "settings_count_fonts_other": {
+    "message": "{0} 个字体"
+  },
+  "settings_count_palettes_other": {
+    "message": "{0} 个调色板"
+  },
+  "settings_eyebrow": {
+    "message": "偏好设置"
+  },
+  "settings_heading": {
+    "message": "Pickit 设置"
+  },
+  "settings_intro": {
+    "message": "调整颜色的复制方式、Pickit 的外观以及它保存的内容。"
+  },
+  "settings_version_badge": {
+    "message": "版本 {0}"
+  },
+  "settings_colours_title": {
+    "message": "颜色"
+  },
+  "settings_colours_description": {
+    "message": "复制颜色时使用的格式和大小写。"
+  },
+  "settings_default_format_title": {
+    "message": "默认格式"
+  },
+  "settings_default_format_help": {
+    "message": "用于拾取颜色和一键复制。"
+  },
+  "settings_default_format_label": {
+    "message": "默认颜色格式"
+  },
+  "settings_hex_case_title": {
+    "message": "HEX 字母大小写"
+  },
+  "settings_hex_case_help": {
+    "message": "复制时 HEX 值的书写方式。"
+  },
+  "settings_history_size_title": {
+    "message": "历史记录数量"
+  },
+  "settings_history_size_help": {
+    "message": "达到上限后会移除较早的颜色。收藏的颜色始终保留。"
+  },
+  "settings_history_size_option_other": {
+    "message": "{0} 种颜色"
+  },
+  "settings_appearance_title": {
+    "message": "外观"
+  },
+  "settings_appearance_description": {
+    "message": "选择 Pickit 窗口和页面浮层的外观。"
+  },
+  "settings_theme_title": {
+    "message": "主题"
+  },
+  "settings_theme_help": {
+    "message": "应用于 Pickit 自身的窗口和页面浮层。"
+  },
+  "settings_shortcuts_title": {
+    "message": "键盘快捷键"
+  },
+  "settings_shortcuts_description": {
+    "message": "无需打开弹出窗口即可启动拾取工具。"
+  },
+  "settings_shortcut_pick_colour_title": {
+    "message": "拾取颜色"
+  },
+  "settings_shortcut_pick_colour_help": {
+    "message": "在当前标签页中打开取色器。"
+  },
+  "settings_shortcut_inspect_font_title": {
+    "message": "检查字体"
+  },
+  "settings_shortcut_inspect_font_help": {
+    "message": "在当前标签页中打开字体检查器。"
+  },
+  "settings_change_shortcuts_title": {
+    "message": "更改快捷键"
+  },
+  "settings_change_shortcuts_help": {
+    "message": "默认快捷键为 {0} 和 {1}。Chrome 会在同一处管理所有扩展程序的快捷键。"
+  },
+  "settings_open_chrome_shortcuts": {
+    "message": "打开 Chrome 快捷键"
+  },
+  "settings_backup_title": {
+    "message": "备份"
+  },
+  "settings_backup_description": {
+    "message": "将你的颜色、字体和调色板迁移到其他浏览器，或保留一份副本。"
+  },
+  "settings_export_title": {
+    "message": "导出备份"
+  },
+  "settings_export_help": {
+    "message": "将 Pickit 存储的所有内容保存为设备上的一个 JSON 文件。"
+  },
+  "settings_export_button": {
+    "message": "导出"
+  },
+  "settings_toast_backup_downloaded": {
+    "message": "备份已下载"
+  },
+  "settings_restore_title": {
+    "message": "恢复备份"
+  },
+  "settings_restore_help": {
+    "message": "用备份内容替换当前存储的数据。如需同时保留两者，请先导出。"
+  },
+  "settings_restore_confirm": {
+    "message": "替换我的数据"
+  },
+  "settings_cancel": {
+    "message": "取消"
+  },
+  "settings_restore_choose_file": {
+    "message": "选择文件"
+  },
+  "settings_toast_file_too_large": {
+    "message": "该文件过大，不可能是 Pickit 备份"
+  },
+  "settings_toast_restored": {
+    "message": "已恢复 {0}、{1}、{2}"
+  },
+  "settings_restore_banner": {
+    "message": "此备份包含 {0}、{1} 和 {2}。恢复后将替换 Pickit 当前存储的所有内容。"
+  },
+  "settings_privacy_title": {
+    "message": "隐私"
+  },
+  "settings_privacy_description": {
+    "message": "决定 Pickit 可以读取哪些内容以及保留多久。"
+  },
+  "settings_clear_data_title": {
+    "message": "清除数据"
+  },
+  "settings_clear_data_help": {
+    "message": "从此设备中移除颜色历史记录、字体和调色板。设置将会保留。"
+  },
+  "settings_clear_data_button": {
+    "message": "清除数据"
+  },
+  "settings_clear_data_confirm": {
+    "message": "是，全部清除"
+  },
+  "settings_toast_data_cleared": {
+    "message": "所有数据已清除"
+  },
+  "settings_privacy_note": {
+    "message": "Pickit 保存的所有内容都留在此浏览器中。它没有账号，也不会向服务器发送任何数据。"
+  },
+  "backup_imported_palette_name": {
+    "message": "导入的调色板"
+  },
+  "backup_error_invalid_json": {
+    "message": "此文件不是有效的 JSON。"
+  },
+  "backup_error_not_pickit": {
+    "message": "此文件不是 Pickit 备份文件。"
+  },
+  "backup_error_newer_version": {
+    "message": "此备份由更新版本的 Pickit 创建。请更新 Pickit 后重试。"
+  },
+  "ui_shortcut_title": {
+    "message": "快捷键 {0}"
+  },
+  "ui_shortcut_none": {
+    "message": "未设置快捷键"
+  },
+  "settings_sync_title": {
+    "message": "同步调色板和收藏"
+  },
+  "settings_sync_help": {
+    "message": "在你登录的每个 Chrome 中保持调色板和收藏颜色一致。历史记录和字体仅保留在此设备上。"
+  },
+  "settings_sync_error_quota": {
+    "message": "Chrome 同步存储空间已满，部分调色板未能同步。请删除不再需要的调色板。"
+  },
+  "settings_sync_error_too_large": {
+    "message": "某个调色板过大，无法同步。请将其拆分为较小的调色板。"
+  },
+  "settings_sync_error_unavailable": {
+    "message": "同步功能暂时不可用。请确认你已登录 Chrome 并开启同步。"
+  },
+  "overlay_font_close": {
+    "message": "关闭字体检查器"
+  },
+  "sponsor_label": {
+    "message": "赞助商"
+  },
+  "sponsor_tagline": {
+    "message": "免费的在线图片、视频、音频和 PDF 工具。文件只在浏览器中处理。"
+  },
+  "sponsor_tagline_short": {
+    "message": "免费的图片、PDF 等工具"
+  },
+  "sponsor_cta": {
+    "message": "访问"
+  },
+  "sponsor_open": {
+    "message": "在新标签页中打开 {0}"
+  },
+  "credits_title": {
+    "message": "关于"
+  },
+  "credits_made_by": {
+    "message": "作者：{0}"
+  },
+  "credits_open_source": {
+    "message": "Pickit 是开源项目。欢迎反馈问题、建议功能或关注进展。"
+  },
+  "credits_github": {
+    "message": "GitHub"
+  },
+  "credits_linkedin": {
+    "message": "LinkedIn"
+  },
+  "credits_portfolio": {
+    "message": "个人作品集"
   }
 }

@@ -4,10 +4,13 @@
 import { parseColor, sameColor, type RGB } from '../color';
 
 const MAX_PROPERTIES = 3000;
-let propertyNames: string[] | null = null;
 
-function collectPropertyNames(): string[] {
-  if (propertyNames) return propertyNames;
+/**
+ * Custom property names declared on the page. Collected afresh on every pick: single-page
+ * apps add stylesheets as they navigate, so a cached list would go stale. Walking the
+ * rules is cheap next to the screenshot each pick already needs.
+ */
+function collectPropertyNames(el: Element | null): string[] {
   const names = new Set<string>();
   const visit = (rules: CSSRuleList) => {
     for (const rule of rules) {
@@ -20,24 +23,32 @@ function collectPropertyNames(): string[] {
       if ('cssRules' in rule) visit((rule as CSSGroupingRule).cssRules);
     }
   };
-  for (const sheet of document.styleSheets) {
+  // Sheets attached by scripts (constructable stylesheets) are not in document.styleSheets.
+  // Pickit's own cursor sheet is adopted too, but it declares no custom properties.
+  for (const sheet of [...document.styleSheets, ...document.adoptedStyleSheets]) {
     try {
       visit(sheet.cssRules);
     } catch {
       // Cross-origin stylesheet without CORS: not readable, skip it.
     }
   }
-  propertyNames = [...names];
-  return propertyNames;
+  // Tokens set inline, e.g. <html style="--brand: #0af">, on the element or its ancestors.
+  for (let node: Element | null = el ?? document.documentElement; node; node = node.parentElement) {
+    if (!(node instanceof HTMLElement || node instanceof SVGElement)) continue;
+    for (const name of node.style) {
+      if (name.startsWith('--')) names.add(name);
+    }
+  }
+  return [...names];
 }
 
-const COLOR_LIKE = /^(#|rgb|hsl|color\(|[a-z]+$|-?[\d.]+(deg)?\s+[\d.]+%\s+[\d.]+%$)/i;
+const COLOR_LIKE = /^(#|rgb|hsl|color\(|(ok)?(lab|lch)\(|[a-z]+$|-?[\d.]+(deg)?\s+[\d.]+%\s+[\d.]+%$)/i;
 
 /** Name of a custom property resolving to `color` at `el`, or null. */
 export function findToken(color: RGB, el: Element | null): string | null {
   const scope = el ?? document.documentElement;
   const computed = getComputedStyle(scope);
-  for (const name of collectPropertyNames()) {
+  for (const name of collectPropertyNames(el)) {
     const value = computed.getPropertyValue(name).trim();
     if (!value || value.length > 48 || !COLOR_LIKE.test(value)) continue;
     const parsed = parseColor(value);
